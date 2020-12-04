@@ -1,14 +1,12 @@
-# Music Centre
+# CNC Community Ladder
 
 [![style: styled-components](https://img.shields.io/badge/component_style-%F0%9F%92%85%20styled_components-orange.svg?ff69b4)](https://www.styled-components.com/)
 [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg)](https://github.com/prettier/prettier)
 [![XO code linter](https://img.shields.io/badge/code_linter-XO-5ed9c7.svg)](https://github.com/xojs/xo)
 
-A website that aims to provide a well-rounded reason for the study of music.
-
 Access:
 
-* Github Pages: https://dan-mcm.github.io/cnc-site/
+* Github Pages: https://dan-mcm.github.io/cnc-community-ladder/
 
 ## Overview
 
@@ -34,8 +32,8 @@ DevOps:
 ## Running Locally
 
 ```bash
-npm install
-npm start # will start service on port 3000 by default
+yarn install
+yarn start # will start service on port 3000 by default
 ```
 
 ### Using Docker
@@ -70,8 +68,5 @@ Handled by [ReactScripts](https://create-react-app.dev/docs/running-tests/) a pr
 
 ## Deployment & Hosting
 
-The main website is deployed on [AWS Static Web Hosting](https://docs.aws.amazon.com/AmazonS3/latest/dev/WebsiteHosting.html) @ http://music-centre.info/
-This can be updated via the `npm run aws-deploy` script. (note: this requires [aws-cli](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-configure.html) configuration)
-
-A version of the site is also hosted on [GitHub pages](https://pages.github.com/) @ https://daniel40392.github.io/music-centre/.
-Due to domain structures the Github pages codebase is maintained on the [deploy-branch](https://github.com/daniel40392/music-centre/tree/deploy-branch) with source code hosted on the [gh-pages](https://github.com/daniel40392/music-centre/tree/gh-pages) branch.
+A version of the site is hosted on [GitHub pages](https://pages.github.com/) @ https://dan-mcm.github.io/cnc-community-ladder/.
+Due to domain structures the Github pages codebase is maintained on the [deploy-branch](https://github.com/dan-mcm/cnc-community-ladder/tree/deploy-branch) with source code hosted on the [gh-pages](https://github.com/dan-mcm/cnc-community-ladder/tree/gh-pages) branch.

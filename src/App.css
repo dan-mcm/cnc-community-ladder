@@ -1,0 +1,73 @@
+/* used for h1 fonts in header */
+@import url('https://fonts.googleapis.com/css?family=Tangerine&family=Do+Hyeon');
+@import url('https://fonts.googleapis.com/css2?family=Inconsolata:wght@600&display=swap');
+
+.App {
+  text-align: center;
+  width: auto;
+}
+
+.App-logo {
+  height: 40vmin;
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #09d3ac;
+}
+
+img {
+  padding: 10px;
+  max-width: 500px;
+  margin: 10px
+}
+
+body{
+  background-image:  url("https://wallpapercave.com/wp/wp6423323.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+}
+
+h2, h3, h4{
+  font-family: 'Inconsolata', monospace;
+  font-size: 40px;
+  color: darkred;
+}
+
+table, th, td {
+  border-collapse: collapse;
+  padding: 10px;
+  margin-left: auto;
+  margin-right: auto;
+  font-family: 'Inconsolata', monospace;
+  font-size: 24px;
+}
+
+body:after{
+  content: "beta";
+  position: fixed;
+  width: 80px;
+  height: 25px;
+  background: gold;
+  top: 7px;
+  left: -20px;
+  text-align: center;
+  font-size: 13px;
+  font-family: sans-serif;
+  text-transform: uppercase;
+  font-weight: bold;
+  color: darkred;
+  line-height: 27px;
+  transform:rotate(-45deg);
+}

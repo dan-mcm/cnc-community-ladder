@@ -1,0 +1,98 @@
+{
+  "name": "cnc-community-ladder",
+  "version": "0.1.0",
+  "private": true,
+  "author": "Daniel McMahon <daniel40392@gmail.com>",
+  "bugs": {
+    "url": "https://github.com/dan-mcm/cnc-community-ladder/issues"
+  },
+  "dependencies": {
+    "grid-styled": "^5.0.2",
+    "history": "^4.10.1",
+    "react": "^16.10.2",
+    "react-dom": "^16.10.2",
+    "react-ga": "^2.7.0",
+    "react-instagram-embed": "^1.5.0",
+    "react-router-dom": "^5.1.2",
+    "react-scripts": "3.2.0",
+    "styled-components": "^4.4.0"
+  },
+  "pre-commit": [
+    "pretify",
+    "lint",
+    "test"
+  ],
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "echo Stage 3: Running Tests... 🧪 && react-scripts test --watchAll=false",
+    "test:coverage": "react-scripts test --coverage",
+    "eject": "react-scripts eject",
+    "aws-deploy": "aws s3 sync build/ s3://musiccentre.info",
+    "pretify": "echo Stage 1: Running Pretify...🌸 && prettier --write \"**/*.js\"",
+    "lint": "echo Stage 2: Running Linter... 💩 && xo --prettier"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "eslint-config-xo-react": "^0.20.0",
+    "jest": "^24.9.0",
+    "pre-commit": "^1.2.2",
+    "prettier": "^1.18.2",
+    "xo": "^0.25.3"
+  },
+  "jest": {
+    "coverageThreshold": {
+      "global": {
+        "branches": 75,
+        "functions": 75,
+        "lines": 75,
+        "statements": 75
+      }
+    }
+  },
+  "prettier": {
+    "bracketSpacing": true,
+    "singleQuote": true
+  },
+  "xo": {
+    "env": [
+      "browser",
+      "node",
+      "jest"
+    ],
+    "extends": [
+      "xo-react"
+    ],
+    "plugins": [
+      "unicorn"
+    ],
+    "space": 2,
+    "prettier": true,
+    "rules": {
+      "unicorn/filename-case": [
+        "warn",
+        {
+          "cases": {
+            "camelCase": true,
+            "pascalCase": true
+          }
+        }
+      ],
+      "unicorn/regex-shorthand": "off"
+    }
+  }
+}

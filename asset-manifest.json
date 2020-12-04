@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.css": "/cnc-community-ladder/static/css/main.732cf4ca.chunk.css",
+    "main.js": "/cnc-community-ladder/static/js/main.02229f55.chunk.js",
+    "main.js.map": "/cnc-community-ladder/static/js/main.02229f55.chunk.js.map",
+    "runtime-main.js": "/cnc-community-ladder/static/js/runtime-main.7f01e5bc.js",
+    "runtime-main.js.map": "/cnc-community-ladder/static/js/runtime-main.7f01e5bc.js.map",
+    "static/js/2.fef15589.chunk.js": "/cnc-community-ladder/static/js/2.fef15589.chunk.js",
+    "static/js/2.fef15589.chunk.js.map": "/cnc-community-ladder/static/js/2.fef15589.chunk.js.map",
+    "index.html": "/cnc-community-ladder/index.html",
+    "precache-manifest.81dc3ec0d92cd98f1215bfaa32b007a6.js": "/cnc-community-ladder/precache-manifest.81dc3ec0d92cd98f1215bfaa32b007a6.js",
+    "service-worker.js": "/cnc-community-ladder/service-worker.js",
+    "static/css/main.732cf4ca.chunk.css.map": "/cnc-community-ladder/static/css/main.732cf4ca.chunk.css.map",
+    "static/media/twitch.png": "/cnc-community-ladder/static/media/twitch.186ee7bd.png",
+    "static/media/youtube.png": "/cnc-community-ladder/static/media/youtube.89695bf5.png"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.7f01e5bc.js",
+    "static/js/2.fef15589.chunk.js",
+    "static/css/main.732cf4ca.chunk.css",
+    "static/js/main.02229f55.chunk.js"
+  ]
+}

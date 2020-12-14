@@ -7,6 +7,7 @@ import {
 } from '../utils/styles';
 import { Flex, Box } from 'grid-styled';
 
+import discord from '../images/discord.png';
 import canyonpaths from '../images/maps/CanyonPaths.png'
 import duality36 from '../images/maps/Duality36.png';
 import frosted from '../images/maps/FrostedHostilities.png';
@@ -25,13 +26,10 @@ class Home extends Component {
             Welcome to the community run ladder for Command & Conquer Remastered Collection.<br/>
             The site is just up and running so bear with us while we work out the bugs.
           </p>
+          <a href="https://discord.gg/wRH37XXy3n"><StandardImage src={discord} alt="discord" /></a>
         </div>
         <hr/>
-        <br/>
-        <br/>
-        Placeholder for video guide to getting setup on ladder.
-        <br/>
-        <br/>
+        <h3>🦅 Season 4 Guide 🦂</h3>
         <iframe title="placeholder-video" width="560" height="315" src="https://www.youtube.com/embed/g2DAK4dtEZQ" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         <br/>
         <br/>

@@ -57,6 +57,7 @@ table, th, td {
 tr:hover{
   color:gold;
   background:black;
+  cursor: grab;
 }
 
 body:after{

@@ -5,7 +5,30 @@ export const ladderData = [
     points: 1100,
     wins: 14,
     losses: 2,
-    games: []
+    games:
+    [
+      {
+        date: "12/14/2020",
+        opponent: "AOD Gaming" ,
+        result: "W" ,
+        map: "Vales of the Templar" ,
+        replay: "https://www.gamereplays.org/cnctiberiandawnremastered/replays.php?game=99&show=details&id=349370"
+      },
+      {
+        date: "12/14/2020",
+        opponent: "Adam" ,
+        result: "L" ,
+        map: "Sand Crystal Shard" ,
+        replay: "https://www.gamereplays.org/cnctiberiandawnremastered/replays.php?game=99&show=details&id=349370"
+      },
+      {
+        date: "12/14/2020",
+        opponent: "AOD Gaming" ,
+        result: "W" ,
+        map: "Vales of the Templar" ,
+        replay: "https://www.gamereplays.org/cnctiberiandawnremastered/replays.php?game=99&show=details&id=349370"
+      }
+    ]
   },
   {
     rank: 2,

@@ -1,9 +1,5 @@
 import React, { Component } from 'react';
-import {
-  CenterBullets,
-  StyledLink,
-  Wrapper
-} from '../utils/styles';
+import { Wrapper } from '../utils/styles';
 
 class Tournaments extends Component {
   render() {

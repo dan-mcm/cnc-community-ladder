@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Wrapper, NonbulletList, StandardImage, StyledLink } from '../utils/styles';
+import { Wrapper, StandardImage, StyledLink } from '../utils/styles';
 import { Flex, Box } from 'grid-styled';
 import { twitchData } from '../utils/socialData';
 import twitch from '../images/twitch.png';

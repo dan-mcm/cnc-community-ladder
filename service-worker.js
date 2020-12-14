@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/cnc-community-ladder/precache-manifest.98c58a64e7b971273f55a3f58a782b50.js"
+  "/cnc-community-ladder/precache-manifest.459bb5fc2aa8fb40fb403a963299a09e.js"
 );
 
 self.addEventListener('message', (event) => {

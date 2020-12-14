@@ -1,23 +1,31 @@
 {
   "files": {
-    "main.css": "/cnc-community-ladder/static/css/main.732cf4ca.chunk.css",
-    "main.js": "/cnc-community-ladder/static/js/main.02229f55.chunk.js",
-    "main.js.map": "/cnc-community-ladder/static/js/main.02229f55.chunk.js.map",
+    "main.css": "/cnc-community-ladder/static/css/main.57f9f459.chunk.css",
+    "main.js": "/cnc-community-ladder/static/js/main.6679946d.chunk.js",
+    "main.js.map": "/cnc-community-ladder/static/js/main.6679946d.chunk.js.map",
     "runtime-main.js": "/cnc-community-ladder/static/js/runtime-main.7f01e5bc.js",
     "runtime-main.js.map": "/cnc-community-ladder/static/js/runtime-main.7f01e5bc.js.map",
-    "static/js/2.fef15589.chunk.js": "/cnc-community-ladder/static/js/2.fef15589.chunk.js",
-    "static/js/2.fef15589.chunk.js.map": "/cnc-community-ladder/static/js/2.fef15589.chunk.js.map",
+    "static/js/2.8778d1f2.chunk.js": "/cnc-community-ladder/static/js/2.8778d1f2.chunk.js",
+    "static/js/2.8778d1f2.chunk.js.map": "/cnc-community-ladder/static/js/2.8778d1f2.chunk.js.map",
     "index.html": "/cnc-community-ladder/index.html",
-    "precache-manifest.81dc3ec0d92cd98f1215bfaa32b007a6.js": "/cnc-community-ladder/precache-manifest.81dc3ec0d92cd98f1215bfaa32b007a6.js",
+    "precache-manifest.5ba43045971ff9195bd406061bbbc307.js": "/cnc-community-ladder/precache-manifest.5ba43045971ff9195bd406061bbbc307.js",
     "service-worker.js": "/cnc-community-ladder/service-worker.js",
-    "static/css/main.732cf4ca.chunk.css.map": "/cnc-community-ladder/static/css/main.732cf4ca.chunk.css.map",
+    "static/css/main.57f9f459.chunk.css.map": "/cnc-community-ladder/static/css/main.57f9f459.chunk.css.map",
+    "static/media/CanyonPaths.png": "/cnc-community-ladder/static/media/CanyonPaths.4fcf4d00.png",
+    "static/media/Duality36.png": "/cnc-community-ladder/static/media/Duality36.9f1127c2.png",
+    "static/media/FrostedHostilities.png": "/cnc-community-ladder/static/media/FrostedHostilities.7f2a6cd1.png",
+    "static/media/HigherOrder.png": "/cnc-community-ladder/static/media/HigherOrder.1c3c8d3f.png",
+    "static/media/NeoTwinPeaks.png": "/cnc-community-ladder/static/media/NeoTwinPeaks.d1348de8.png",
+    "static/media/Quicksilver.png": "/cnc-community-ladder/static/media/Quicksilver.5e148583.png",
+    "static/media/SandCrystalShard.png": "/cnc-community-ladder/static/media/SandCrystalShard.c09ad9db.png",
+    "static/media/ValesOfTheTemplars.png": "/cnc-community-ladder/static/media/ValesOfTheTemplars.14bfc7a8.png",
     "static/media/twitch.png": "/cnc-community-ladder/static/media/twitch.186ee7bd.png",
     "static/media/youtube.png": "/cnc-community-ladder/static/media/youtube.89695bf5.png"
   },
   "entrypoints": [
     "static/js/runtime-main.7f01e5bc.js",
-    "static/js/2.fef15589.chunk.js",
-    "static/css/main.732cf4ca.chunk.css",
-    "static/js/main.02229f55.chunk.js"
+    "static/js/2.8778d1f2.chunk.js",
+    "static/css/main.57f9f459.chunk.css",
+    "static/js/main.6679946d.chunk.js"
   ]
 }

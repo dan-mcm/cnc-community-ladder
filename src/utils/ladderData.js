@@ -2,8 +2,8 @@ export const ladderData = [
   {
     rank: 1,
     name: 'Danku',
-    points: 1000,
-    wins: 11,
+    points: 1100,
+    wins: 14,
     losses: 2,
     games: []
   },
@@ -35,7 +35,7 @@ export const ladderData = [
     rank: 5,
     name: 'PaRappa56',
     points: 1000,
-    wins: 11,
+    wins: 6,
     losses: 2,
     games: []
   },
@@ -43,24 +43,24 @@ export const ladderData = [
     rank: 6,
     name: 'WarMachine',
     points: 1000,
-    wins: 11,
-    losses: 2,
+    wins: 7,
+    losses: 4,
     games: []
   },
   {
     rank: 7,
     name: 'Peasy',
-    points: 1000,
-    wins: 11,
+    points: 900,
+    wins: 4,
     losses: 2,
     games: []
   },
   {
     rank: 8,
     name: 'Khanomancer',
-    points: 1000,
-    wins: 11,
-    losses: 2,
+    points: 800,
+    wins: 8,
+    losses: 7,
     games: []
   }
 ];

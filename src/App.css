@@ -54,6 +54,11 @@ table, th, td {
   font-size: 24px;
 }
 
+tr:hover{
+  color:gold;
+  background:black;
+}
+
 body:after{
   content: "beta";
   position: fixed;

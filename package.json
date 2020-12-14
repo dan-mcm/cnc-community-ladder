@@ -1,4 +1,5 @@
 {
+  "homepage": "http://dan-mcm.github.io/cnc-community-ladder",
   "name": "cnc-community-ladder",
   "version": "0.1.0",
   "private": true,
@@ -7,6 +8,7 @@
     "url": "https://github.com/dan-mcm/cnc-community-ladder/issues"
   },
   "dependencies": {
+    "gh-pages": "^3.1.0",
     "grid-styled": "^5.0.2",
     "history": "^4.10.1",
     "react": "^16.10.2",
@@ -28,7 +30,9 @@
     "test": "echo Stage 3: Running Tests... 🧪 && react-scripts test --watchAll=false",
     "test:coverage": "react-scripts test --coverage",
     "eject": "react-scripts eject",
-    "aws-deploy": "aws s3 sync build/ s3://musiccentre.info",
+    "aws-deploy": "aws s3 sync build/ s3://cnc-community-ladder.info",
+    "ghpages-predeploy": "yarn run build",
+    "ghpages-deploy": "gh-pages -d build",
     "pretify": "echo Stage 1: Running Pretify...🌸 && prettier --write \"**/*.js\"",
     "lint": "echo Stage 2: Running Linter... 💩 && xo --prettier"
   },

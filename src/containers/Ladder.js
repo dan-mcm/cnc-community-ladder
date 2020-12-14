@@ -35,7 +35,7 @@ class Home extends Component {
              </tr>
            ))}
           </TableCentered>
-
+          <br/>
         </div>
 
 

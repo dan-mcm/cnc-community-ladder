@@ -59,9 +59,10 @@ export const RoundedImage = styled.img`
 export const StyledLink = styled.a`
   text-decoration: none;
   font-weight: bold;
-  color: gold;
+  color: white;
   &:hover {
-    text-decoration: underline;
+    text-decoration: none;
+    color: gold;
   }
 `;
 
@@ -115,4 +116,7 @@ export const Wrapper = styled.div`
   background-color: rgba(0, 0, 0, 0.8);
   color: white;
   line-height: 1.6;
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.9);
+  }
 `;

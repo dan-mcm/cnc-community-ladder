@@ -7,7 +7,7 @@ const CustomerFooter = styled.footer`
   padding-top: 30px;
   padding-bottom: 30px;
   background-color: rgb(139, 0, 0, 0.3);
-  color: gold;
+  color: white;
   border-top: 2px solid black;
   line-height: 1.6;
   font-weight: bold;
@@ -15,10 +15,11 @@ const CustomerFooter = styled.footer`
 `;
 
 const CustomLink = styled.a`
-  color: gold;
+  color: white;
   text-decoration: none;
   &:hover {
-    text-decoration: underline;
+    text-decoration: none;
+    color: gold;
   }
 `;
 

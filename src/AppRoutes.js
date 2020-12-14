@@ -5,6 +5,7 @@ import createHistory from 'history/createBrowserHistory';
 import Home from './containers/Home';
 import Social from './containers/Social';
 import Ladder from './containers/Ladder';
+import Tournaments from './containers/Tournaments';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import Nav from './components/Nav';
@@ -29,6 +30,7 @@ export default class AppRoutes extends Component {
           <Route exact path="/" component={Home} />
           <Route exact path="/ladder" component={Ladder} />
           <Route exact path="/social" component={Social} />
+          <Route exact path="/tournaments" component={Tournaments} />
         </div>
         <Footer />
       </Router>

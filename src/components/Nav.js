@@ -13,9 +13,12 @@ const CustomLink = styled(Link)`
   color: white;
   text-decoration: none;
   font-weight: bold;
+
   &:hover {
-    text-decoration: underline;
+    text-decoration: none;
+    color: gold;
   }
+
 `;
 
 class Nav extends Component {
@@ -23,13 +26,16 @@ class Nav extends Component {
     return (
       <CustomNav>
         <Flex flexWrap="wrap">
-          <Box px={2} py={3} width={[1, 1 / 3]}>
+          <Box px={2} py={3} width={[1, 1 / 4]}>
             <CustomLink to="/">Home</CustomLink>
           </Box>
-          <Box px={2} py={3} width={[1, 1 / 3]}>
+          <Box px={2} py={3} width={[1, 1 / 4]}>
             <CustomLink to="/ladder">Ladder</CustomLink>
           </Box>
-          <Box px={2} py={3} width={[1, 1 / 3]}>
+          <Box px={2} py={3} width={[1, 1 / 4]}>
+            <CustomLink to="/tournaments">Tournaments</CustomLink>
+          </Box>
+          <Box px={2} py={3} width={[1, 1 / 4]}>
             <CustomLink to="/social">Social</CustomLink>
           </Box>
         </Flex>

@@ -9,10 +9,9 @@ import { ModalManager } from 'react-dynamic-modal';
 
 
 class Home extends Component {
-  openModal(data){
-        console.log(data);
+  openModal(data, index){
        //const text = this.refs.input.value;
-       ModalManager.open(<ScoreModal data={data} onRequestClose={() => true}/>);
+       ModalManager.open(<ScoreModal data={data} rank={index} onRequestClose={() => true}/>);
     }
 
   render() {
@@ -32,16 +31,16 @@ class Home extends Component {
              <th>Played</th>
              <th>Win Rate</th>
            </tr>
-           {ladderData.map(data => (
+           {ladderData.map((data, index) => (
              <>
-               <tr onClick={() => this.openModal(data)}>
-                <td>{data.rank}</td>
+               <tr onClick={() => this.openModal(data, index)}>
+                <td>{index+1}</td>
                 <td>{data.name}</td>
                 <td>{data.points}</td>
-                <td>{data.wins}</td>
-                <td>{data.losses}</td>
-                <td>{data.wins + data.losses}</td>
-                <td>{Math.floor((data.wins / (data.losses+data.wins) * 100))+'%'}</td>
+                <td>{(data.games.filter(game => game.result === "W")).length}</td>
+                <td>{(data.games.filter(game => game.result === "L")).length}</td>
+                <td>{data.games.length}</td>
+                <td>{Math.floor((((data.games.filter(game => game.result === "W")).length) / (data.games.length) * 100))+'%'}</td>
                </tr>
 
              </>

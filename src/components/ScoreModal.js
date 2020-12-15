@@ -27,26 +27,26 @@ let redStyle = {
 
 class ScoreModal extends Component{
    render(){
-      const { data,onRequestClose } = this.props;
+      const { data, rank, onRequestClose } = this.props;
       return (
          <Modal
             onRequestClose={onRequestClose}
             effect={Effect.ScaleUp}>
             <ModalWrap>
-              <h3>#{data.rank} {data.name}</h3>
+              <h3>#{rank + 1} {data.name}</h3>
               <div style={greenStyle}>
                 <Flex flexWrap="wrap">
                   <Box px={2} py={3} width={[1, 1 / 4]}>
-                    🏆 WINS: {data.wins}
+                    🏆 WINS: {(data.games.filter(game => game.result === "W")).length}
                   </Box>
                   <Box px={2} py={3} width={[1, 1 / 4]}>
-                    ❌ LOSSES: {data.losses}
+                    ❌ LOSSES: {(data.games.filter(game => game.result === "L")).length}
                   </Box>
                   <Box px={2} py={3} width={[1, 1 / 4]}>
-                    ▶️ PLAYED: {data.wins + data.losses}
+                    ▶️ PLAYED: {data.games.length}
                   </Box>
                   <Box px={2} py={3} width={[1, 1 / 4]}>
-                    📈 WIN RATIO: {Math.floor((data.wins / (data.losses+data.wins) * 100))+'%'}
+                    📈 WIN RATIO: {Math.floor((((data.games.filter(game => game.result === "W")).length) / (data.games.length) * 100))+'%'}
                   </Box>
                 </Flex>
               </div>

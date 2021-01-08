@@ -39,8 +39,11 @@ class Ladder extends Component {
     .then(
       matches => {
         let data = this.DBdataTranslation(matches.data)
+        // highly experimental
+        let eloData = this.eloCalculations(data)
+        console.log(eloData)
+        data.sort((a,b) => (a.current_elo > b.current_elo) ? -1 : 1 )
         this.setState({ matchData: data });
-
       }
     )
   }
@@ -54,6 +57,7 @@ class Ladder extends Component {
       if (!listedPlayers.includes(match.player1_name)){
         let frontend = {
           name: "",
+          current_elo: 1000,
           games: []
         }
         listedPlayers.push(match.player1_name)
@@ -94,6 +98,7 @@ class Ladder extends Component {
       if (!listedPlayers.includes(match.player2_name)){
         let frontend = {
           name: "",
+          current_elo: 1000,
           games: []
         }
         listedPlayers.push(match.player1_name)
@@ -130,6 +135,49 @@ class Ladder extends Component {
       }
     })
     return output
+  }
+
+  eloCalculator(p1,p2,p1_result){
+    //p1_result of true means player 1 was winner.
+    var EloRating = require('elo-rating');
+    let player1 = p1
+    let player2 = p2
+
+    let score = EloRating.calculate(player1, player2, p1_result, 32)
+    console.log(`DEBUG p1 ${p1}  p1_result ${p1_result} p2 ${p2} score ${JSON.stringify(score)}`)
+    return score
+  }
+
+  eloCalculations(data){
+    console.log(`TEST ${JSON.stringify(data)}`)
+    data.map(player => {
+      let playername = player.name
+      let playerelo = player.current_elo
+      player.games.map(game => {
+        let result = (game.result==="W") ? true : false
+        let opponentsName = game.opponent
+        let opponentsCheck = data.find( ({name}) => name === opponentsName)
+
+        // if for some reason the player isnt in the list we will default them to having 1,000 ELO
+        let opponentElo = 1000
+        let elo = 0
+        if (opponentsCheck != undefined){
+          elo = this.eloCalculator(playerelo, opponentsCheck.current_elo, result)
+        } else {
+          elo = this.eloCalculator(playerelo, opponentElo, result)
+        }
+
+        let playersNewElo = elo.playerRating
+        let opponentsNewElo = elo.opponentRating
+
+        console.log(`DEBUG playersNewElo ${playersNewElo} opponentsNewElo ${opponentsNewElo}`)
+        player.current_elo = playersNewElo
+        return player
+        }
+      )
+    }
+
+    )
   }
 
   render() {
@@ -174,7 +222,7 @@ class Ladder extends Component {
                <tr onClick={() => this.openModal(data, index)}>
                 <td>{data.score}</td>
                 <td>{data.name}</td>
-                <td>{data.points}</td>
+                <td>{data.current_elo}</td>
                 <td>{(data.games.filter(game => game.result === "W")).length}</td>
                 <td>{(data.games.filter(game => game.result === "L")).length}</td>
                 <td>{data.games.length}</td>

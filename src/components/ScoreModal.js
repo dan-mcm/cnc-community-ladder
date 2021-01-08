@@ -63,16 +63,16 @@ class ScoreModal extends Component{
               <div style={greenStyle}>
                 <Flex flexWrap="wrap">
                   <Box px={2} py={3} width={[1, 1 / 4]}>
-                    🏆 WINS: {(data.games.filter(game => game.result === "W")).length}
+                    <span role="img" aria-label="trophy">🏆</span> WINS: {(data.games.filter(game => game.result === "W")).length}
                   </Box>
                   <Box px={2} py={3} width={[1, 1 / 4]}>
-                    ❌ LOSSES: {(data.games.filter(game => game.result === "L")).length}
+                    <span role="img" aria-label="x">❌</span> LOSSES: {(data.games.filter(game => game.result === "L")).length}
                   </Box>
                   <Box px={2} py={3} width={[1, 1 / 4]}>
-                    ▶️ PLAYED: {data.games.length}
+                    <span role="img" aria-label="play">▶️</span> PLAYED: {data.games.length}
                   </Box>
                   <Box px={2} py={3} width={[1, 1 / 4]}>
-                    📈 WIN RATIO: {Math.floor((((data.games.filter(game => game.result === "W")).length) / (data.games.length) * 100))+'%'}
+                    <span role="img" aria-label="graph">📈</span> WIN RATIO: {Math.floor((((data.games.filter(game => game.result === "W")).length) / (data.games.length) * 100))+'%'}
                   </Box>
                 </Flex>
               </div>

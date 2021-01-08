@@ -73,3 +73,12 @@ Handled by [ReactScripts](https://create-react-app.dev/docs/running-tests/) a pr
 
 A version of the site is hosted on [GitHub pages](https://pages.github.com/) @ https://dan-mcm.github.io/cnc-community-ladder/.
 Due to domain structures the Github pages codebase is maintained on the [deploy-branch](https://github.com/dan-mcm/cnc-community-ladder/tree/deploy-branch) with source code hosted on the [gh-pages](https://github.com/dan-mcm/cnc-community-ladder/tree/gh-pages) branch.
+
+## Heroku configuration
+
+For logs
+
+```
+heroku login
+heroku logs -a cnc-site -t
+```

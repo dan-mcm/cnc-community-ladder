@@ -7,7 +7,6 @@ import {
 } from '../utils/styles';
 import { Flex, Box } from 'grid-styled';
 
-import discord from '../images/discord.png';
 import canyonpaths from '../images/maps/CanyonPaths.png'
 import duality36 from '../images/maps/Duality36.png';
 import frosted from '../images/maps/FrostedHostilities.png';
@@ -28,13 +27,13 @@ class Home extends Component {
           </p>
         </div>
         <hr/>
-        <h3>🦅 Season 4 Guide 🦂</h3>
+        <h3><span role="img" aria-label="eagle">🦅</span> Season 4 Guide <span role="img" aria-label="scorpion">🦂</span></h3>
         <iframe title="placeholder-video" width="560" height="315" src="https://www.youtube.com/embed/g2DAK4dtEZQ" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         <br/>
         <br/>
         <hr/>
         <div>
-          <h3>📜 Season 4 Rules 📜</h3>
+          <h3><span role="img" aria-label="rules">📜</span> Season 4 Rules <span role="img" aria-label="rules">📜</span></h3>
           <p>The community for Season 4 is primarily moderated via the official <StyledLink href="https://discord.gg/wRH37XXy3n">C&C Tiberian Dawn Remastered Communiy Ladder</StyledLink> Discord channel. All rules, regulations and issues can be found there. Players are welcome to join the season at any time. The following is a brief snapshot of the current rules:
           </p>
           <CenterBullets>
@@ -48,7 +47,7 @@ class Home extends Component {
         <br/>
         <hr/>
         <div>
-        <h3>🌍 Season 4 Maps 🌍</h3>
+        <h3><span role="img" aria-label="map">🌍</span> Season 4 Maps <span role="img" aria-label="map">🌍</span></h3>
 
 
 

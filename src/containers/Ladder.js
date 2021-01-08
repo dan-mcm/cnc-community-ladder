@@ -4,16 +4,13 @@ import {
   TableCentered
 } from '../utils/styles';
 import styled from 'styled-components';
-import { ladderData } from '../utils/ladderData';
 import ScoreModal from '../components/ScoreModal';
 import { ModalManager } from 'react-dynamic-modal';
 const axios = require('axios').default;
 
-
 const CustomP = styled.p`
   font-size: 14px;
 `;
-
 
 class Ladder extends Component {
   constructor(props) {
@@ -37,6 +34,7 @@ class Ladder extends Component {
       matches => {
         let data = this.DBdataTranslation(matches.data)
         this.setState({ matchData: data });
+
       }
     )
   }
@@ -54,10 +52,6 @@ class Ladder extends Component {
         }
         listedPlayers.push(match.player1_name)
         frontend.name = match.player1_name
-        let date = match.starttime
-        let map = match.map
-        let replay = match.replay
-
         frontend.games.push(
           {
             date: match.starttime,
@@ -96,10 +90,6 @@ class Ladder extends Component {
         }
         listedPlayers.push(match.player1_name)
         frontend.name = match.player1_name
-        let date = match.starttime
-        let map = match.map
-        let replay = match.replay
-
         frontend.games.push(
           {
             date: match.starttime,
@@ -116,7 +106,7 @@ class Ladder extends Component {
         // second case if we have encountered player2 yet...
         let index = output.findIndex(player => player.name === match.player1_name)
 
-        output[index].games.push(
+        return output[index].games.push(
           {
             date: match.starttime,
             opponent: match.player2_name,
@@ -136,7 +126,7 @@ class Ladder extends Component {
     return (
       <Wrapper>
         <div>
-          <h3>🏆 Season 3+ Ladder 🏆</h3>
+          <h3><span role="img" aria-label="trophy">🏆</span> Season 3+ Ladder <span role="img" aria-label="trophy">🏆</span></h3>
           <CustomP>Start: 01/01/21 00:00 GMT</CustomP>
           <CustomP>End: 31/01/21 12:00 GMT</CustomP>
 

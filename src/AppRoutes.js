@@ -6,7 +6,6 @@ import Home from './containers/Home';
 import Social from './containers/Social';
 import Ladder from './containers/Ladder';
 import Tournaments from './containers/Tournaments';
-import Header from './components/Header';
 import Footer from './components/Footer';
 import Nav from './components/Nav';
 

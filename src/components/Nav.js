@@ -42,7 +42,7 @@ class Nav extends Component {
       <CustomNav>
         <Flex flexWrap="wrap">
           <Box px={2} py={3} width={[1, 1 / 6]}>
-            <CustomText>C&C Remastered<br/>Tiberian Dawn<br/> Community</CustomText>
+            <CustomText>C&C REMASTERED<br/>TIBERIAN DAWN<br/> COMMUNITY</CustomText>
           </Box>
           <Box px={2} py={3} width={[1, 1 / 6]}>
             <CustomLink to="/">HOME</CustomLink>

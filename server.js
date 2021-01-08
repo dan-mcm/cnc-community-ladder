@@ -45,8 +45,10 @@ let customMapNames = [
   "UGC_01100001013FFA5D_0000000081AC4211_MAPDATA" // frosted_hostilities_vertically_mirrored
 ]
 
-app.use(express.static(path.join(__dirname, 'build')));
-app.use(express.static("public"));
+app.use(express.static(path.join(__dirname, "build")));
+app.get("/", function(req, res) {
+  res.sendFile(path.join(__dirname, "build", "index.html"));
+});
 
 app.get('/db-get', (req, result) => {
   const pool = new Pool({
@@ -72,10 +74,6 @@ app.get('/db-get', (req, result) => {
 
 
 app.get('/test', (req, res) => {res.send('Welcome to the backend!')})
-
-app.get('/', function (req, res) {
-  res.sendFile(path.join(__dirname, 'build', 'index.html'));
-});
 
 app.get('/ladder-s3-api', (req, res) => {
   let games = []
@@ -255,4 +253,5 @@ function DBdataTranslation(dataArray){
 }
 
 app.listen(port);
+
 console.log('App is listening on port ' + port)

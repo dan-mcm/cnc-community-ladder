@@ -35,7 +35,7 @@ class Ladder extends Component {
 
   // sample call to get recent games... need some parsing logic to integrate it...
   componentDidMount() {
-    axios.get('/db-get')
+    axios.get('/db-get') //need to aggregate here?
     .then(
       matches => {
         let data = this.DBdataTranslation(matches.data)
@@ -75,7 +75,7 @@ class Ladder extends Component {
           }
         )
         return output.push(frontend)
-      } else {
+      } else if (listedPlayers.includes(match.player1_name)){
         // second case if we have encountered player1 yet...
         let index = output.findIndex(player => player.name === match.player1_name)
 
@@ -101,35 +101,35 @@ class Ladder extends Component {
           current_elo: 1000,
           games: []
         }
-        listedPlayers.push(match.player1_name)
-        frontend.name = match.player1_name
+        listedPlayers.push(match.player2_name)
+        frontend.name = match.player2_name
         frontend.games.push(
           {
             date: match.starttime,
             duration: match.match_duration,
-            opponent: match.player2_name,
-            opponent_faction: match.player2_faction,
-            player_faction: match.player1_faction,
+            opponent: match.player1_name,
+            opponent_faction: match.player1_faction,
+            player_faction: match.player2_faction,
             map: match.map,
             replay: `https://replays.cnctdra.ea.com/${match.replay}`,
-            result: (match.result === match.player1_name) ? "W" : "L"
+            result: (match.result === match.player2_name) ? "W" : "L"
           }
         )
         return output.push(frontend)
-      } else {
+      } else if (listedPlayers.includes(match.player2_name)){
         // second case if we have encountered player2 yet...
-        let index = output.findIndex(player => player.name === match.player1_name)
+        let index = output.findIndex(player => player.name === match.player2_name)
 
         return output[index].games.push(
           {
             date: match.starttime,
             duration: match.match_duration,
-            opponent: match.player2_name,
-            opponent_faction: match.player2_faction,
-            player_faction: match.player1_faction,
+            opponent: match.player1_name,
+            opponent_faction: match.player1_faction,
+            player_faction: match.player2_faction,
             map: match.map,
             replay: `https://replays.cnctdra.ea.com/${match.replay}`,
-            result: (match.result === match.player1_name) ? "W" : "L"
+            result: (match.result === match.player2_name) ? "W" : "L"
           }
         )
       }
@@ -144,16 +144,13 @@ class Ladder extends Component {
     let player2 = p2
 
     let score = EloRating.calculate(player1, player2, p1_result, 32)
-    console.log(`DEBUG p1 ${p1}  p1_result ${p1_result} p2 ${p2} score ${JSON.stringify(score)}`)
     return score
   }
 
   eloCalculations(data){
-    console.log(`TEST ${JSON.stringify(data)}`)
-    data.map(player => {
-      let playername = player.name
+    return data.map(player => {
       let playerelo = player.current_elo
-      player.games.map(game => {
+      return player.games.map(game => {
         let result = (game.result==="W") ? true : false
         let opponentsName = game.opponent
         let opponentsCheck = data.find( ({name}) => name === opponentsName)
@@ -161,7 +158,7 @@ class Ladder extends Component {
         // if for some reason the player isnt in the list we will default them to having 1,000 ELO
         let opponentElo = 1000
         let elo = 0
-        if (opponentsCheck != undefined){
+        if (opponentsCheck !== undefined){
           elo = this.eloCalculator(playerelo, opponentsCheck.current_elo, result)
         } else {
           elo = this.eloCalculator(playerelo, opponentElo, result)
@@ -170,7 +167,6 @@ class Ladder extends Component {
         let playersNewElo = elo.playerRating
         let opponentsNewElo = elo.opponentRating
 
-        console.log(`DEBUG playersNewElo ${playersNewElo} opponentsNewElo ${opponentsNewElo}`)
         player.current_elo = playersNewElo
         return player
         }

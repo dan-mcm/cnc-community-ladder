@@ -51,35 +51,35 @@ class Home extends Component {
 
 
         <Flex flexWrap="wrap">
-          <Box px={2} py={3} width={[1, 1 / 3]}>
+          <Box px={2} py={3} width={[1, 1 / 4]}>
             <StyledLink href="https://steamcommunity.com/sharedfiles/filedetails/?id=2190033889">Canyon Paths</StyledLink><br/>
             <StandardImage src={canyonpaths} alt="canyonpaths" />
           </Box>
-          <Box px={2} py={3} width={[1, 1 / 3]}>
+          <Box px={2} py={3} width={[1, 1 / 4]}>
             <StyledLink href="https://steamcommunity.com/sharedfiles/filedetails/?id=2179708584">Duality 3.6</StyledLink><br/>
             <StandardImage src={duality36} alt="duality36" />
           </Box>
-          <Box px={2} py={3} width={[1, 1 / 3]}>
+          <Box px={2} py={3} width={[1, 1 / 4]}>
             <StyledLink href="https://discord.com/channels/784235637715894293/784235821531922433/784236389142495243">Frosted Hostilities (vertically mirrored)</StyledLink><br/>
             <StandardImage src={frosted} alt="frosted" />
           </Box>
-          <Box px={2} py={3} width={[1, 1 / 3]}>
+          <Box px={2} py={3} width={[1, 1 / 4]}>
             <StyledLink href="https://steamcommunity.com/sharedfiles/filedetails/?id=2154039195">Higher Order</StyledLink><br/>
             <StandardImage src={higherorder} alt="higherorder" />
           </Box>
-          <Box px={2} py={3} width={[1, 1 / 3]}>
+          <Box px={2} py={3} width={[1, 1 / 4]}>
             <StyledLink href="https://steamcommunity.com/sharedfiles/filedetails/?id=2178849887">Neo Twin Peaks</StyledLink><br/>
             <StandardImage src={neopeaks} alt="neopeaks" />
           </Box>
-          <Box px={2} py={3} width={[1, 1 / 3]}>
+          <Box px={2} py={3} width={[1, 1 / 4]}>
             <StyledLink href="https://steamcommunity.com/sharedfiles/filedetails/?id=2121157850">Quicksilver</StyledLink><br/>
             <StandardImage src={quicksilver} alt="quicksilver" />
           </Box>
-          <Box px={2} py={3} width={[1, 1 / 2]}>
+          <Box px={2} py={3} width={[1, 1 / 4]}>
             <StyledLink href="https://steamcommunity.com/sharedfiles/filedetails/?id=2192624799">Sand Crystal Shard</StyledLink><br/>
             <StandardImage src={crystal} alt="crystal" />
           </Box>
-          <Box px={2} py={3} width={[1, 1 / 2]}>
+          <Box px={2} py={3} width={[1, 1 / 4]}>
             <StyledLink href="https://steamcommunity.com/sharedfiles/filedetails/?id=2190063332">Vales of the Templars</StyledLink><br/>
             <StandardImage src={vales} alt="vales" />
           </Box>

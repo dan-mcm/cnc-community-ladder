@@ -59,12 +59,12 @@ table, th, td {
 }
 
 tr:hover{
-  background-color:rgb(128, 0, 0);
+  background-color: rgb(205,133,63);
   cursor: grab;
 }
 
 tr:nth-child(odd):hover{
-  background-color:rgb(128, 0, 0);
+  background-color: rgb(205,133,63);
 }
 
 body:after{

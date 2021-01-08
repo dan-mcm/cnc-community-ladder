@@ -61,6 +61,7 @@ class Ladder extends Component {
         frontend.games.push(
           {
             date: match.starttime,
+            duration: match.match_duration,
             opponent: match.player2_name,
             opponent_faction: match.player2_faction,
             player_faction: match.player1_faction,
@@ -77,6 +78,7 @@ class Ladder extends Component {
         output[index].games.push(
           {
             date: match.starttime,
+            duration: match.match_duration,
             opponent: match.player2_name,
             opponent_faction: match.player2_faction,
             player_faction: match.player1_faction,
@@ -99,6 +101,7 @@ class Ladder extends Component {
         frontend.games.push(
           {
             date: match.starttime,
+            duration: match.match_duration,
             opponent: match.player2_name,
             opponent_faction: match.player2_faction,
             player_faction: match.player1_faction,
@@ -115,6 +118,7 @@ class Ladder extends Component {
         return output[index].games.push(
           {
             date: match.starttime,
+            duration: match.match_duration,
             opponent: match.player2_name,
             opponent_faction: match.player2_faction,
             player_faction: match.player1_faction,

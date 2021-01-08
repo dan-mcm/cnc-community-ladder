@@ -8,6 +8,7 @@ const ModalWrap = styled.div`
   margin: 0 auto;
   min-width: 600px;
   max-height: 600px;
+  overflow-y: auto;
   text-align: center;
   padding-top: 10px;
   padding-bottom: 10px;
@@ -17,7 +18,7 @@ const ModalWrap = styled.div`
 `;
 
 const CustomP = styled.p`
-  font-size: 14px;
+  font-size: 15px;
 `;
 
 const CustomImg = styled.img`
@@ -83,13 +84,13 @@ class ScoreModal extends Component{
                  data.games.map(game => (
                     <Box px={2} py={3} width={[1, 1 / 3]}>
                       <CustomP>
-
-                      <b>{data.name}</b> -v- <b>{game.opponent}</b> <br/>
+                      {(game.player_faction === 'GDI')  ? '🦅' : '🦂'}<b> {data.name}</b> -v- <b>{game.opponent} </b>{(game.opponent_faction === 'GDI') ? '🦅' : '🦂'} <br/>
+                      {this.toDateString(game.date)} <br/>
+                      {`${Math.floor(game.duration / 60)}mins ${Math.trunc(game.duration - Math.floor(game.duration / 60) * 60)}secs`}<br/>
                       {(game.result==="W") ? <span style={greenStyle}>Win</span> : <span style={redStyle}>Loss</span>} <br/>
-                      {this.toDateString(game.date)                      }
-                      <br/>
+                      <StyledLink href={game.replay}>Replay File</StyledLink>  <br/>
                       <CustomImg src={require(`../images/maps/${game.map}.png`)}/><br/>
-                      <StyledLink href={game.replay}>Replay File</StyledLink>
+
                       </CustomP>
                     </Box>
                    )
@@ -99,6 +100,7 @@ class ScoreModal extends Component{
                <br/>
                <br/>
             <button onClick={ModalManager.close}>Close</button>
+            <br/><br/>
             </ModalWrap>
          </Modal>
       );

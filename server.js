@@ -80,7 +80,7 @@ app.get('/', function (req, res) {
 app.get('/ladder-s3-api', (req, res) => {
   let games = []
   // note this limit variable needs dynamic adjusting based on starttime to prevent matches being cutoff
-  axios.get(`${ENDPOINT}?limit=200`)
+  axios.get(`${process.env.ENDPOINT}?limit=200`)
   .then(
     res => {
       let data = res.data
@@ -154,7 +154,7 @@ app.get('/ladder-s3-api', (req, res) => {
 app.get('/ladder-s4', (req, res) => {
   let games = []
   // note this limit variable needs dynamic adjusting based on starttime to prevent matches being cutoff
-  axios.get(`${ENDPOINT}?limit=200`)
+  axios.get(`${process.env.ENDPOINT}?limit=200`)
   .then(
     res => {
       let data = res.data

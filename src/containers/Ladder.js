@@ -220,7 +220,7 @@ class Ladder extends Component {
            {this.state.matchData.map((data, index) => (
              <>
                <tr onClick={() => this.openModal(data, index)}>
-                <td>{data.score}</td>
+                <td>{index +1}</td>
                 <td>{data.name}</td>
                 <td>{data.current_elo}</td>
                 <td>{(data.games.filter(game => game.result === "W")).length}</td>

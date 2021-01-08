@@ -156,13 +156,13 @@ class Ladder extends Component {
           <CustomP>Total Players: {this.state.matchData.length}</CustomP>
           <TableFormat>
            <tr>
-             <th>Rank</th>
-             <th>Name</th>
-             <th>Points</th>
-             <th>Wins</th>
-             <th>Losses</th>
-             <th>Played</th>
-             <th>Win Rate</th>
+             <th>RANK</th>
+             <th>NAME</th>
+             <th>POINTS</th>
+             <th>WINS</th>
+             <th>LOSSES</th>
+             <th>PLAYED</th>
+             <th>WIN RATE</th>
            </tr>
            {this.state.matchData.map((data, index) => (
              <>

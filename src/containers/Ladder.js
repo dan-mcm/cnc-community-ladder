@@ -149,8 +149,8 @@ class Ladder extends Component {
 
   eloCalculations(data){
     return data.map(player => {
-      let playerelo = player.current_elo
       return player.games.map(game => {
+        let playerelo = player.current_elo
         let result = (game.result==="W") ? true : false
         let opponentsName = game.opponent
         let opponentsCheck = data.find( ({name}) => name === opponentsName)

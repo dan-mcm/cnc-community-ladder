@@ -1,17 +1,23 @@
 import React, { Component } from 'react';
 import {
   Wrapper,
-  TableCentered
+  TableFormat
 } from '../utils/styles';
 import styled from 'styled-components';
 import ScoreModal from '../components/ScoreModal';
 import { ModalManager } from 'react-dynamic-modal';
+import { Flex, Box } from 'grid-styled';
+
 const axios = require('axios').default;
 
 const CustomP = styled.p`
   font-size: 14px;
 `;
 
+const CustomImage = styled.img`
+  max-width: 180px;
+  max-height: 180px;
+`
 class Ladder extends Component {
   constructor(props) {
     super(props)
@@ -126,12 +132,29 @@ class Ladder extends Component {
     return (
       <Wrapper>
         <div>
+        <Flex flexWrap="wrap">
+          <Box px={2} py={3} width={[1, 2 / 3]}>
+          <p>
+          <b>TIBERIAN DAWN REMASTERED</b><br/>
+          COMMUNITY LEADERBOARD RANKINGS
+          </p>
+          </Box>
+          <Box px={2} py={3} width={[1, 1 / 3]}>
+          <p>
+          <CustomImage src={require('../images/cnc_remastered.png')} />
+          </p>
+          <Box px={2} py={3} width={[1, 3 / 3]}>
+          </Box>
+          </Box>
+        </Flex>
+
+        <hr/>
           <h3><span role="img" aria-label="trophy">🏆</span> Season 3+ Ladder <span role="img" aria-label="trophy">🏆</span></h3>
           <CustomP>Start: 01/01/21 00:00 GMT</CustomP>
           <CustomP>End: 31/01/21 12:00 GMT</CustomP>
 
           <CustomP>Total Players: {this.state.matchData.length}</CustomP>
-          <TableCentered>
+          <TableFormat>
            <tr>
              <th>Rank</th>
              <th>Name</th>
@@ -155,7 +178,7 @@ class Ladder extends Component {
 
              </>
            ))}
-          </TableCentered>
+          </TableFormat>
           <br/>
         </div>
         <div>

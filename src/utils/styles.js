@@ -67,13 +67,14 @@ export const StyledLink = styled.a`
   }
 `;
 
-export const TableCentered = styled.table`
-  text-align: center;
+export const TableFormat = styled.table`
+  text-align: left;
   border-collapse: collapse;
   margin: auto;
   font-family: 'Inconsolata', monospace;
   border-spacing: 0 1em;
   border: 2px solid white;
+  min-width: 1000px;
   tr {
     border-bottom: 2px solid white;
   }

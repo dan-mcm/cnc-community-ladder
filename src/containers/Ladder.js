@@ -15,8 +15,8 @@ const CustomP = styled.p`
 `;
 
 const CustomImage = styled.img`
-  max-width: 180px;
-  max-height: 180px;
+  max-width: 200px;
+  max-height: 200px;
 `
 class Ladder extends Component {
   constructor(props) {
@@ -135,7 +135,7 @@ class Ladder extends Component {
         <Flex flexWrap="wrap">
           <Box px={2} py={3} width={[1, 2 / 3]}>
           <p>
-          <b>TIBERIAN DAWN REMASTERED</b><br/>
+          <h3>TIBERIAN DAWN REMASTERED</h3>
           COMMUNITY LEADERBOARD RANKINGS
           </p>
           </Box>
@@ -150,8 +150,9 @@ class Ladder extends Component {
 
         <hr/>
             <h3><span role="img" aria-label="trophy">🏆</span> SEASON 3+ LADDER <span role="img" aria-label="trophy">🏆</span></h3>
-          <CustomP>Start: 01/01/21 00:00 GMT</CustomP>
-          <CustomP>End: 31/01/21 12:00 GMT</CustomP>
+          <CustomP>A natural extension of the official Season 3 ladder using the same maps, considers a starting ELO level of 1,000 for each player starting from the 01/01/2021</CustomP>
+          <CustomP>Start: 01/01/21 00:00 GMT <br/>
+          End: TBC</CustomP>
 
           <CustomP>Total Players: {this.state.matchData.length}</CustomP>
           <TableFormat>

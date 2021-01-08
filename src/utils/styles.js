@@ -115,15 +115,12 @@ export const StandardImage = styled.img`
 
 export const Wrapper = styled.div`
   margin: 0 auto;
-  width: 70%;
+  width: 80%;
   min-width: 600px;
   text-align: center;
   padding-top: 10px;
   padding-bottom: 10px;
-  background-color: rgba(0, 0, 0, 0.8);
+  background-color: rgba(0, 0, 0, 0.9);
   color: white;
   line-height: 1.6;
-  &:hover {
-    background-color: rgba(0, 0, 0, 0.9);
-  }
 `;

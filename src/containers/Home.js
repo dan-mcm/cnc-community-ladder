@@ -22,32 +22,31 @@ class Home extends Component {
       <Wrapper>
         <div>
           <p>
-            Welcome to the community run ladder for the Command & Conquer Remastered Collection.<br/>
+            Welcome to the community run Tiberian Dawn ladders for the Command & Conquer Remastered Collection.<br/>
             The site is just up and running so bear with us while we work out the bugs.
           </p>
         </div>
         <hr/>
-        <h3><span role="img" aria-label="eagle">🦅</span> Season 4 Guide <span role="img" aria-label="scorpion">🦂</span></h3>
+        <h3><span role="img" aria-label="eagle">🦅</span> C&C TIBERIAN DAWN COMMUNITY <span role="img" aria-label="scorpion">🦂</span></h3>
         <iframe title="placeholder-video" width="560" height="315" src="https://www.youtube.com/embed/g2DAK4dtEZQ" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         <br/>
         <br/>
         <hr/>
         <div>
-          <h3><span role="img" aria-label="rules">📜</span> Season 4 Rules <span role="img" aria-label="rules">📜</span></h3>
-          <p>The community for Season 4 is primarily moderated via the official <StyledLink href="https://discord.gg/wRH37XXy3n">C&C Tiberian Dawn Remastered Communiy Ladder</StyledLink> Discord channel. All rules, regulations and issues can be found there. Players are welcome to join the season at any time. The following is a brief snapshot of the current rules:
+          <h3><span role="img" aria-label="rules">📜</span> SEASON 4 RULES <span role="img" aria-label="rules">📜</span></h3>
+          <p>The community for Season 4 is primarily moderated via the official <StyledLink href="https://discord.gg/wRH37XXy3n">C&C Tiberian Dawn Remastered Communiy </StyledLink> Discord channel. All rules, regulations and issues can be found there. Players are welcome to join the season at any time. The following is a brief snapshot of the current rules:
           </p>
           <CenterBullets>
             <li>When online and available to play be sure to react to the relevant role in the #ready-to-play channel</li>
-            <li>Players must pre-agree to a ranked game publicly using the #matchups channel and using the !mapselector </li>
-            <li>The public leaderboard will be updated every 24-48hrs</li>
+            <li>The public leaderboard will be updated automatically every 24-48hrs</li>
             <li>Issues of misconduct may be reported to a Season Refree</li>
-            <li>Season is scheduled to start at 12:00 GMT 01/01/21 and end on ???</li>
+            <li>Season is scheduled to start at 12:00 GMT 01/01/21 and end on TBC</li>
           </CenterBullets>
         </div>
         <br/>
         <hr/>
         <div>
-        <h3><span role="img" aria-label="map">🌍</span> Season 4 Maps <span role="img" aria-label="map">🌍</span></h3>
+        <h3><span role="img" aria-label="map">🌍</span> SEASON 4 MAPS <span role="img" aria-label="map">🌍</span></h3>
 
 
 

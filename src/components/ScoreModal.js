@@ -77,7 +77,7 @@ class ScoreModal extends Component{
                 </Flex>
               </div>
 
-               <h3>Recent Games</h3>
+               <h3>RECENT GAMES</h3>
                <Flex flexWrap="wrap">
                {
                  data.games.map(game => (

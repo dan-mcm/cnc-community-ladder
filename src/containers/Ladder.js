@@ -149,7 +149,7 @@ class Ladder extends Component {
         </Flex>
 
         <hr/>
-          <h3><span role="img" aria-label="trophy">🏆</span> Season 3+ Ladder <span role="img" aria-label="trophy">🏆</span></h3>
+            <h3><span role="img" aria-label="trophy">🏆</span> SEASON 3+ LADDER <span role="img" aria-label="trophy">🏆</span></h3>
           <CustomP>Start: 01/01/21 00:00 GMT</CustomP>
           <CustomP>End: 31/01/21 12:00 GMT</CustomP>
 

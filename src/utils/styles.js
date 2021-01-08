@@ -73,13 +73,18 @@ export const TableFormat = styled.table`
   margin: auto;
   font-family: 'Inconsolata', monospace;
   border-spacing: 0 1em;
-  border: 2px solid white;
+
   min-width: 1000px;
+  background-color: rgb(16,16,16);
+  tr:nth-child(odd){
+    background-color: rgb(40,40,40);
+  }
   tr {
     border-bottom: 2px solid white;
   }
   th {
     padding: 10px;
+    background-color: rgb(30,30,30);
   }
   td {
     font-weight: bold;

@@ -6,7 +6,10 @@
 
 Access:
 
-* Github Pages: https://dan-mcm.github.io/cnc-community-ladder/
+Legacy Static Site Deployed via Github Pages: https://dan-mcm.github.io/cnc-community-ladder/
+Updated site to be Deployed via Heroku shortly with custom domain...
+
+Note: there is now a dependency on a local DB solution, the codebase for which is available [here](https://github.com/dan-mcm/cnc-db)
 
 ## Overview
 

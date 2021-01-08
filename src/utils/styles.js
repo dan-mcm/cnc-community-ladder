@@ -6,6 +6,7 @@ export const CenterBullets = styled.ul`
   text-align: left;
   list-style-position: inside;
   display: inline-block;
+  font-size: 20px
 `;
 
 export const Flip90Image = styled.img`

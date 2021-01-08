@@ -7,13 +7,23 @@ import styled from 'styled-components';
 const ModalWrap = styled.div`
   margin: 0 auto;
   min-width: 600px;
+  max-height: 600px;
   text-align: center;
   padding-top: 10px;
   padding-bottom: 10px;
-  background-color: rgba(0, 0, 0, 1);
+  background-color: black;
   color: white;
   line-height: 1.6;
 `;
+
+const CustomP = styled.p`
+  font-size: 14px;
+`;
+
+const CustomImg = styled.img`
+  max-width: 180px;
+  max-height: 180px;
+`
 
 let greenStyle = {
   color: 'green',
@@ -25,13 +35,29 @@ let redStyle = {
   fontWeight: 'bold'
 }
 
+const modalStyle = {
+  color: "yellow",
+   backgroundColor: "black"
+ };
+
 class ScoreModal extends Component{
+    toDateString(epochValue){
+      let date = epochValue
+      var utcSeconds = date
+      var d = new Date(0) // sets the date to the epoch
+      d.setUTCSeconds(utcSeconds)
+      date = d
+      return `${d.toLocaleDateString()} - ${d.toLocaleTimeString()}`
+    }
+
    render(){
       const { data, rank, onRequestClose } = this.props;
       return (
          <Modal
             onRequestClose={onRequestClose}
-            effect={Effect.ScaleUp}>
+            effect={Effect.ScaleUp}
+            styles={modalStyle}
+            >
             <ModalWrap>
               <h3>#{rank + 1} {data.name}</h3>
               <div style={greenStyle}>
@@ -56,14 +82,15 @@ class ScoreModal extends Component{
                {
                  data.games.map(game => (
                     <Box px={2} py={3} width={[1, 1 / 3]}>
-                      <p>
-                      {game.date} <br/>
-                      {data.name} -v- {game.opponent} <br/>
-                      {(game.result==="W") ? <span style={greenStyle}>Win</span> : <span style={redStyle}>Loss</span>}
+                      <CustomP>
+
+                      <b>{data.name}</b> -v- <b>{game.opponent}</b> <br/>
+                      {(game.result==="W") ? <span style={greenStyle}>Win</span> : <span style={redStyle}>Loss</span>} <br/>
+                      {this.toDateString(game.date)                      }
                       <br/>
-                      {game.map} <br/>
+                      <CustomImg src={require(`../images/maps/${game.map}.png`)}/><br/>
                       <StyledLink href={game.replay}>Replay File</StyledLink>
-                      </p>
+                      </CustomP>
                     </Box>
                    )
                  )

@@ -37,12 +37,14 @@ body{
   background-repeat: no-repeat;
   background-size: cover;
   background-attachment: fixed;
+  background-color: black;
 }
 
 h2, h3, h4{
   font-family: 'Inconsolata', monospace;
   font-size: 40px;
   color: darkred;
+  margin: 20px;
 }
 
 table, th, td {
@@ -76,4 +78,8 @@ body:after{
   color: darkred;
   line-height: 27px;
   transform:rotate(-45deg);
+}
+
+p{
+  font-size: 24px
 }

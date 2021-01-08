@@ -24,9 +24,8 @@ export default class AppRoutes extends Component {
   render() {
     return (
       <Router history={history}>
-        <Header />
+        <Nav />
         <div>
-          <Nav />
           <Route exact path="/" component={Home} />
           <Route exact path="/ladder" component={Ladder} />
           <Route exact path="/social" component={Social} />

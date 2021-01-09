@@ -30,12 +30,25 @@ import quicksilver from '../images/maps/Quicksilver.png';
 import crystal from '../images/maps/SandCrystalShard.png';
 import vales from '../images/maps/ValesOfTheTemplars.png';
 
-
+const CustomCenterD = styled.div`
+  text-align: center;
+  padding: 2.5rem;
+`
+const CustomLeftP = styled.p`
+  max-width: 1000px;
+  text-align: left;
+  margin: auto;
+`
 const CustomLink = styled(Link)`
   color: white;
   text-decoration: none;
   font-weight: bold;
+  font-size: 1.8rem;
+  background-color: rgba(64, 64, 64, 0.6);
+  padding: 10px;
+  border-radius: 10px;
   &:hover {
+    background-color: rgba(64, 64, 64, 0.9);
     text-decoration: none;
     color: gold;
   }
@@ -45,25 +58,23 @@ class Home extends Component {
   render() {
     return (
       <Wrapper>
-        <div>
-          <p>
-            Welcome to the community run Tiberian Dawn ladders for the Command & Conquer Remastered Collection.<br/>
-            The site is just up and running so bear with us while we work out the bugs.
-          </p>
-        </div>
-        <hr/>
         <h3><span role="img" aria-label="eagle">🦅</span> C&C TIBERIAN DAWN COMMUNITY <span role="img" aria-label="scorpion">🦂</span></h3>
-        <iframe title="placeholder-video" width="560" height="315" src="https://www.youtube.com/embed/g2DAK4dtEZQ" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-        <br/>
+        <p>
+          Welcome to the community run Tiberian Dawn ladders for the Command & Conquer Remastered Collection.<br/>
+          The site is just up and running so bear with us while we work out the bugs.
+        </p>
         <br/>
         <hr/>
         <div>
           <h3><span role="img" aria-label="rules">📜</span> SEASON 3+ OVERVIEW <span role="img" aria-label="rules">📜</span></h3>
-          <p>As there has been no official reset for the <StyledLink href="https://cnc.community/command-and-conquer-remastered/leaderboard/tiberian-dawn">Official C&C Remastered Tiberian Dawn Ladder</StyledLink>,<br/>
-          we the community have set out to create out own reset of the current 'final' season 3 ladder. <br/>
+          <CustomCenterD>
+          <CustomLeftP>As there has been no official reset for the <StyledLink href="https://cnc.community/command-and-conquer-remastered/leaderboard/tiberian-dawn">Official C&C Remastered Tiberian Dawn Ladder</StyledLink>,
+          we the community have set out to create out own reset of the current 'final' season 3 ladder.
           This Season 3+ ladder automatically tracks games played on the existing ladder maps and has reset all players elos to a score of 1000 from the the 01/01/2020.<br/><br/>
-          <CustomLink to="/ladder">Go to Season 3+ Ladder</CustomLink>
-          </p>
+
+          </CustomLeftP>
+          <CustomLink to="/ladder">Season 3+ Ladder</CustomLink>
+          </CustomCenterD>
           <br/>
         </div>
         <hr/>
@@ -98,26 +109,27 @@ class Home extends Component {
             <StyledLink href="#">Heavy Metal</StyledLink><br/>
             <StandardImage src={heavymetal} alt="heavymetal" />
           </Box>
-
         </Flex>
         </div>
         <hr/>
         <div>
           <h3><span role="img" aria-label="rules">📜</span> SEASON 4 OVERVIEW <span role="img" aria-label="rules">📜</span></h3>
-          <p>In addition to providing a season 3 elo reset we have set out to create a new map pool for a new community run season - Season 4.<br/>
-          The community for Season 4 is primarily moderated via the official <StyledLink href="https://discord.gg/wRH37XXy3n">C&C Tiberian Dawn Remastered Communiy </StyledLink> Discord channel.<br/>
+          <CustomCenterD>
+          <CustomLeftP>In addition to providing a season 3 elo reset we have set out to create a new map pool for a new community run season - Season 4.
+          The community for Season 4 is primarily moderated via the official <StyledLink href="https://discord.gg/wRH37XXy3n">C&C Tiberian Dawn Remastered Communiy </StyledLink> Discord channel.
           All rules, regulations and issue reporting can be found there. <br/><br/>
-          Players are welcome to join the season at any time.<br/>
+          Players are welcome to join the season at any time.
           Any matches played on the selected Season 4 maps will be scored and counted - nothing extra is required for you to pariticpate.<br/><br/>
           The following is a brief snapshot of the current rules:
-          </p>
+          </CustomLeftP>
+          </CustomCenterD>
           <CenterBullets>
             <li>When online and available to play be sure to react to the relevant role in the #ready-to-play channel</li>
             <li>The public leaderboard will be updated automatically every 24-48hrs</li>
             <li>Issues of misconduct may be reported to a Season Refree</li>
           </CenterBullets>
           <p>
-            Official start date of season 4 pending, currently trialing setup with Season 3+ first.
+            Official start date of Season 4 pending, currently trialing setup with Season 3+ first.
           </p>
         </div>
         <br/>

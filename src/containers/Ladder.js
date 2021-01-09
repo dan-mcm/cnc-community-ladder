@@ -202,7 +202,8 @@ class Ladder extends Component {
           <CustomP>Start: 01/01/21 00:00 GMT <br/>
           End: TBC</CustomP>
 
-          <CustomP>Total Players: {this.state.matchData.length}</CustomP>
+          <CustomP>Total Players: {this.state.matchData.length}<br/><br/>* click rows for extra player data *</CustomP>
+
           <TableFormat>
            <tr>
              <th>RANK</th>

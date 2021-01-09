@@ -25,7 +25,8 @@
     "react-modal": "^3.12.1",
     "react-router-dom": "^5.1.2",
     "react-scripts": "3.2.0",
-    "styled-components": "^4.4.0"
+    "styled-components": "^4.4.0",
+    "utf8": "^3.0.0"
   },
   "pre-commit": [
     "pretify",

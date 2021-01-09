@@ -48,9 +48,13 @@ class Ladder extends Component {
     )
   }
 
+  utf8(string){
+    const utf8 = require('utf8');
+    return utf8.decode(string);
+  }
+
   // should really be refactored, repeated code...
   DBdataTranslation(dataArray){
-    const utf8 = require('utf8');
     let listedPlayers = []
     let output = []
     dataArray.map(match => {
@@ -61,8 +65,8 @@ class Ladder extends Component {
           current_elo: 1000,
           games: []
         }
-        listedPlayers.push(utf8.decode(match.player1_name))
-        frontend.name = utf8.decode(match.player1_name)
+        listedPlayers.push(match.player1_name)
+        frontend.name = match.player1_name
         frontend.games.push(
           {
             date: match.starttime,
@@ -102,8 +106,8 @@ class Ladder extends Component {
           current_elo: 1000,
           games: []
         }
-        listedPlayers.push(utf8.decode(match.player2_name))
-        frontend.name = utf8.decode(match.player2_name)
+        listedPlayers.push(match.player2_name)
+        frontend.name = match.player2_name
         frontend.games.push(
           {
             date: match.starttime,
@@ -219,7 +223,7 @@ class Ladder extends Component {
              <>
                <tr onClick={() => this.openModal(data, index)}>
                 <td>{index +1}</td>
-                <td>{decodeURIComponent(data.name)}</td>
+                <td>{this.utf8(data.name)}</td>
                 <td>{data.current_elo}</td>
                 <td>{(data.games.filter(game => game.result === "W")).length}</td>
                 <td>{(data.games.filter(game => game.result === "L")).length}</td>

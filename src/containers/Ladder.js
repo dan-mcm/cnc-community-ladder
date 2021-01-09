@@ -28,7 +28,7 @@ class Ladder extends Component {
 
   openModal(data, index){
        //const text = this.refs.input.value;
-       ModalManager.open(
+       return ModalManager.open(
          <ScoreModal data={data} rank={index} onRequestClose={() => true}/>
        );
     }
@@ -41,16 +41,10 @@ class Ladder extends Component {
         let data = this.DBdataTranslation(matches.data)
         // highly experimental
         let eloData = this.eloCalculations(data)
-        console.log(eloData)
         data.sort((a,b) => (a.current_elo > b.current_elo) ? -1 : 1 )
         this.setState({ matchData: data });
       }
     )
-  }
-
-  utf8(string){
-    const utf8 = require('utf8');
-    return utf8.decode(string);
   }
 
   // should really be refactored, repeated code...
@@ -177,7 +171,6 @@ class Ladder extends Component {
         }
       )
     }
-
     )
   }
 
@@ -203,8 +196,8 @@ class Ladder extends Component {
 
         <hr/>
             <h3><span role="img" aria-label="trophy">🏆</span> SEASON 3+ LADDER <span role="img" aria-label="trophy">🏆</span></h3>
-          <CustomP>A natural extension of the official Season 3 ladder using the same maps, considers a starting ELO level of 1,000 for each player starting from the 01/01/2021</CustomP>
-          <CustomP>Start: 01/01/21 00:00 GMT <br/>
+          <CustomP>A natural extension of the official Season 3 ladder using the same maps, considers a starting ELO level of 1,000 for each player</CustomP>
+          <CustomP>Start: 09/01/21 ~20:40 GMT <br/>
           End: TBC</CustomP>
 
           <CustomP>Total Players: {this.state.matchData.length}<br/><br/>* click rows for extra player data *</CustomP>
@@ -223,7 +216,7 @@ class Ladder extends Component {
              <>
                <tr onClick={() => this.openModal(data, index)}>
                 <td>{index +1}</td>
-                <td>{this.utf8(data.name)}</td>
+                <td>{data.name}</td>
                 <td>{data.current_elo}</td>
                 <td>{(data.games.filter(game => game.result === "W")).length}</td>
                 <td>{(data.games.filter(game => game.result === "L")).length}</td>

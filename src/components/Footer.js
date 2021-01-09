@@ -6,7 +6,7 @@ const CustomerFooter = styled.footer`
   text-align: center;
   padding-top: 30px;
   padding-bottom: 30px;
-  background-color: rgb(139, 0, 0, 0.3);
+  background-color: black;
   color: white;
   border-top: 2px solid black;
   line-height: 1.6;

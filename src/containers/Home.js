@@ -70,8 +70,7 @@ class Home extends Component {
           <CustomCenterD>
           <CustomLeftP>As there has been no official reset for the <StyledLink href="https://cnc.community/command-and-conquer-remastered/leaderboard/tiberian-dawn">Official C&C Remastered Tiberian Dawn Ladder</StyledLink>,
           we the community have set out to create out own reset of the current 'final' season 3 ladder.
-          This Season 3+ ladder automatically tracks games played on the existing ladder maps and has reset all players elos to a score of 1000 from the the 01/01/2020.<br/><br/>
-
+          This Season 3+ ladder automatically tracks games played on the existing ladder maps and has reset all players elos to a score of 1000.<br/><br/>
           </CustomLeftP>
           <CustomLink to="/ladder">Season 3+ Ladder</CustomLink>
           </CustomCenterD>

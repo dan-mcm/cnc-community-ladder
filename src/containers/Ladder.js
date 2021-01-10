@@ -35,7 +35,12 @@ class Ladder extends Component {
 
   // sample call to get recent games... need some parsing logic to integrate it...
   componentDidMount() {
-    axios.get('/db-get') //need to aggregate here?
+    // defaulting to season 3
+    this.ladderState(3);
+  }
+
+  ladderState(season){
+    return axios.get(`/db-get/${season}`)
     .then(
       matches => {
         let data = this.DBdataTranslation(matches.data)

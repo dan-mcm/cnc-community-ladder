@@ -13,7 +13,7 @@ app.get("/", function(req, res) {
   res.sendFile(path.join(__dirname, "build", "index.html"));
 });
 
-app.get('/db-get', (req, result) => {
+app.get('/db-get/:season', (req, result) => {
   // for local...
   // const pool = new Pool({
   //   user: process.env.DB_USER,
@@ -31,7 +31,7 @@ app.get('/db-get', (req, result) => {
 });
   pool.connect().then(client => {
     // deduplicates reuslts based on timestamp being unique and also orders results by time
-    return client.query('SELECT distinct(starttime) starttime, match_duration, player1_name, player1_faction, player2_name, player2_faction, result, map, replay, season FROM matches order by starttime DESC')
+    return client.query(`SELECT distinct(starttime) starttime, match_duration, player1_name, player1_faction, player2_name, player2_faction, result, map, replay, season FROM matches  WHERE season=${req.params.season} order by starttime DESC`)
       .then(res => {
           client.release();
           result.send(res.rows)

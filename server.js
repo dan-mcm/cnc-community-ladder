@@ -30,7 +30,8 @@ app.get('/db-get', (req, result) => {
   }
 });
   pool.connect().then(client => {
-    return client.query('SELECT * FROM matches')
+    // deduplicates reuslts based on timestamp being unique and also orders results by time
+    return client.query('SELECT distinct(starttime) starttime, match_duration, player1_name, player1_faction, player2_name, player2_faction, result, map, replay, season FROM matches order by starttime DESC')
       .then(res => {
           client.release();
           result.send(res.rows)

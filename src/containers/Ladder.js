@@ -8,6 +8,7 @@ import ScoreModal from '../components/ScoreModal';
 import { ModalManager } from 'react-dynamic-modal';
 import { Flex, Box } from 'grid-styled';
 import Pagination from "react-js-pagination";
+import ScrollToTop from '../components/Scroll.js';
 
 const axios = require('axios').default;
 
@@ -296,6 +297,8 @@ class Ladder extends Component {
              itemClass="page-item"
              linkClass="page-link"
            />
+           <ScrollToTop/>
+           <br/>
         </div>
         <div>
      </div>

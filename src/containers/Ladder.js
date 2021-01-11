@@ -215,7 +215,7 @@ class Ladder extends Component {
              <th>WINS</th>
              <th>LOSSES</th>
              <th>PLAYED</th>
-             <th>WIN RATE</th>
+             <th>WINRATE</th>
            </tr>
            {this.state.matchData.map((data, index) => (
              <>

@@ -105,13 +105,13 @@ class ScoreModal extends Component{
                     <IconImg src={gdi} alt="gdi" /><br/>
                     GAMES WON - {data.games.filter(game => game.result === "W" && game.player_faction==="GDI").length}<br/>
                     GAMES LOST - {data.games.filter(game => game.result === "L" && game.player_faction==="GDI").length}<br/>
-                    WINRATE - {(data.games.filter(game => game.result === "W" && game.player_faction==="GDI").length > 0) ? Math.floor(data.games.filter(game => game.result === "W" && game.player_faction==="GDI").length) / (data.games.filter(game => game.result === "W" && game.player_faction==="GDI").length + data.games.filter(game => game.result === "L" && game.player_faction==="GDI").length) * 100 : 0}%
+                    WINRATE - {(data.games.filter(game => game.result === "W" && game.player_faction==="GDI").length > 0) ? Math.floor((data.games.filter(game => game.result === "W" && game.player_faction==="GDI").length) / (data.games.filter(game => game.result === "W" && game.player_faction==="GDI").length + data.games.filter(game => game.result === "L" && game.player_faction==="GDI").length) * 100) : 0}%
                   </Box>
                   <Box px={2} py={3} width={[1, 1 / 2]}>
                     <IconImg src={nod} alt="nod" /><br/>
                     GAMES WON - {data.games.filter(game => game.result === "W" && game.player_faction==="Nod").length}<br/>
                     GAMES LOST - {data.games.filter(game => game.result === "L" && game.player_faction==="Nod").length}<br/>
-                    WINRATE - {(data.games.filter(game => game.result === "W" && game.player_faction==="Nod").length > 0) ? Math.floor(data.games.filter(game => game.result === "W" && game.player_faction==="Nod").length) / (data.games.filter(game => game.result === "W" && game.player_faction==="Nod").length + data.games.filter(game => game.result === "L" && game.player_faction==="Nod").length) * 100 : 0}%
+                    WINRATE - {(data.games.filter(game => game.result === "W" && game.player_faction==="Nod").length > 0) ? Math.floor((data.games.filter(game => game.result === "W" && game.player_faction==="Nod").length) / (data.games.filter(game => game.result === "W" && game.player_faction==="Nod").length + data.games.filter(game => game.result === "L" && game.player_faction==="Nod").length) * 100) : 0}%
                   </Box>
                 </Flex>
                 <br/>

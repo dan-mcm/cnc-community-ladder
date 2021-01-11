@@ -8,6 +8,7 @@ import Ladder from './containers/Ladder';
 import Tournaments from './containers/Tournaments';
 import Footer from './components/Footer';
 import Nav from './components/Nav';
+import CookieBanner from 'react-cookie-banner';
 
 const history = createHistory();
 history.listen(location => {
@@ -24,6 +25,11 @@ export default class AppRoutes extends Component {
     return (
       <Router history={history}>
         <Nav />
+        <CookieBanner
+          message="By continuing you consent to using 🍪 for site analytics purposes only."
+          cookie="user-has-accepted-cookies"
+          onAccept={() => {}}
+        />
         <div>
           <Route exact path="/" component={Home} />
           <Route exact path="/ladder" component={Ladder} />

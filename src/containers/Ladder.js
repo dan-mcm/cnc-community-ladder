@@ -23,6 +23,7 @@ const CustomImage = styled.img`
 const CustomBadge = styled.img`
   max-width: 50px;
   max-height: 50px;
+  padding: 0px;
 `
 
 class Ladder extends Component {

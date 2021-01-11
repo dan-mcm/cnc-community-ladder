@@ -30,6 +30,11 @@ import quicksilver from '../images/maps/Quicksilver.png';
 import crystal from '../images/maps/SandCrystalShard.png';
 import vales from '../images/maps/ValesOfTheTemplars.png';
 
+
+// icons
+import gdi from '../images/factions/gdi.png';
+import nod from '../images/factions/nod.png';
+
 const CustomCenterD = styled.div`
   text-align: center;
   padding: 2.5rem;
@@ -54,11 +59,36 @@ const CustomLink = styled(Link)`
   }
 `;
 
+const IconImg = styled.img`
+  max-width: 200px;
+  max-height: 200px;
+  margin: 0 auto;
+  padding: 0px;
+  vertical-align:middle
+`
+
+const IconDiv = styled.div`
+  overflow:auto;
+`
+
 class Home extends Component {
   render() {
     return (
       <Wrapper>
-        <h3><span role="img" aria-label="eagle">🦅</span> C&C TIBERIAN DAWN COMMUNITY <span role="img" aria-label="scorpion">🦂</span></h3>
+      <Flex flexWrap="wrap">
+        <Box px={2} py={3} width={[1, 1 / 3]}>
+        <IconImg src={gdi} alt="gdi" />
+        </Box>
+        <Box px={2} py={3} width={[1, 1 / 3]}>
+        <h3>C&C TIBERIAN DAWN REMASTERED COMMUNITY</h3>
+        </Box>
+        <Box px={2} py={3} width={[1, 1 / 3]}>
+        <IconImg src={nod} alt="nod" />
+        </Box>
+      </Flex>
+
+
+
         <p>
           Welcome to the community run Tiberian Dawn ladders for the Command & Conquer Remastered Collection.<br/>
           The site is just up and running so bear with us while we work out the bugs.

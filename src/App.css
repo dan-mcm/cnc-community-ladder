@@ -73,6 +73,11 @@ tr:nth-child(odd):hover{
 
 td{
   max-width: 300px;
+  text-align: center;
+}
+
+th{
+text-align: center;
 }
 
 body:after{

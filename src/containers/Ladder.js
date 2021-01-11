@@ -20,6 +20,11 @@ const CustomImage = styled.img`
   max-height: 200px;
 `
 
+const CustomBadge = styled.img`
+  max-width: 50px;
+  max-height: 50px;
+`
+
 class Ladder extends Component {
   constructor(props) {
     super(props)
@@ -196,6 +201,21 @@ class Ladder extends Component {
     )
   }
 
+  getRank(rank){
+
+    if(rank<=16){
+      return "general"
+    } else if (rank<=200){
+      return "major"
+    } else if (rank<=400){
+      return "captain"
+    } else if (rank<=600){
+      return "lieutenant"
+    } else {
+      return "sergeant";
+    }
+  }
+
   render() {
     return (
       <Wrapper>
@@ -239,6 +259,7 @@ class Ladder extends Component {
           <TableFormat>
            <tr>
              <th>RANK</th>
+             <th>POSITION</th>
              <th>NAME</th>
              <th>POINTS</th>
              <th>WINS</th>
@@ -249,7 +270,8 @@ class Ladder extends Component {
            {this.state.matchData.slice(this.state.startPlayer, this.state.endPlayer).map((data, index) => (
              <>
                <tr onClick={() => this.openModal(data, index)}>
-                <td>{index + 1 + this.state.startPlayer}</td>
+               <td> <CustomBadge src={require(`../images/ranks/${this.getRank(index+1+this.state.startPlayer)}.png`)} /></td>
+                <td>#{index + 1 + this.state.startPlayer}</td>
                 <td>{data.name}</td>
                 <td>{data.current_elo}</td>
                 <td>{(data.games.filter(game => game.result === "W")).length}</td>

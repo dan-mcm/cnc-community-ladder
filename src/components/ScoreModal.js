@@ -13,7 +13,8 @@ const IconImg = styled.img`
   max-height: 40px;
   margin: 0 auto;
   padding: 0px;
-  vertical-align:middle;
+  vertical-align: middle;
+  padding-bottom: 5px;
 `
 
 const ModalWrap = styled.div`
@@ -48,6 +49,11 @@ let redStyle = {
   fontWeight: 'bold'
 }
 
+let plainStyle = {
+  color: 'white',
+  fontWeight: 'bold'
+}
+
 const modalStyle = {
   color: "yellow",
    backgroundColor: "black"
@@ -73,21 +79,43 @@ class ScoreModal extends Component{
             >
             <ModalWrap>
               <h3>#{rank + 1} {data.name}</h3>
-              <div style={greenStyle}>
+              <br/>
+              <hr/>
+              <br/>
+              <div style={plainStyle}>
                 <Flex flexWrap="wrap">
                   <Box px={2} py={3} width={[1, 1 / 4]}>
-                    <span role="img" aria-label="trophy">🏆</span> WINS: {(data.games.filter(game => game.result === "W")).length}
+                    <span role="img" aria-label="trophy">🏆</span> TOTAL WINS <br/>{(data.games.filter(game => game.result === "W")).length}
                   </Box>
                   <Box px={2} py={3} width={[1, 1 / 4]}>
-                    <span role="img" aria-label="x">❌</span> LOSSES: {(data.games.filter(game => game.result === "L")).length}
+                    <span role="img" aria-label="x">❌</span> TOTAL LOSSES <br/>{(data.games.filter(game => game.result === "L")).length}
                   </Box>
                   <Box px={2} py={3} width={[1, 1 / 4]}>
-                    <span role="img" aria-label="play">▶️</span> PLAYED: {data.games.length}
+                    <span role="img" aria-label="play">▶️</span> TOTAL PLAYED <br/>{data.games.length}
                   </Box>
                   <Box px={2} py={3} width={[1, 1 / 4]}>
-                    <span role="img" aria-label="graph">📈</span> WIN RATIO: {Math.floor((((data.games.filter(game => game.result === "W")).length) / (data.games.length) * 100))+'%'}
+                    <span role="img" aria-label="graph">📈</span> OVERALL WINRATE <br/> {Math.floor((((data.games.filter(game => game.result === "W")).length) / (data.games.length) * 100))+'%'}
                   </Box>
                 </Flex>
+                <br/>
+                <hr/>
+                <h3>FACTION STATS</h3><br/>
+                <Flex>
+                  <Box px={2} py={3} width={[1, 1 / 2]}>
+                    <IconImg src={gdi} alt="gdi" /><br/>
+                    GAMES WON - {data.games.filter(game => game.result === "W" && game.player_faction==="GDI").length}<br/>
+                    GAMES LOST - {data.games.filter(game => game.result === "L" && game.player_faction==="GDI").length}<br/>
+                    WINRATE - {(data.games.filter(game => game.result === "W" && game.player_faction==="GDI").length > 0) ? Math.floor(data.games.filter(game => game.result === "W" && game.player_faction==="GDI").length) / (data.games.filter(game => game.result === "W" && game.player_faction==="GDI").length + data.games.filter(game => game.result === "L" && game.player_faction==="GDI").length) * 100 : 0}%
+                  </Box>
+                  <Box px={2} py={3} width={[1, 1 / 2]}>
+                    <IconImg src={nod} alt="nod" /><br/>
+                    GAMES WON - {data.games.filter(game => game.result === "W" && game.player_faction==="Nod").length}<br/>
+                    GAMES LOST - {data.games.filter(game => game.result === "L" && game.player_faction==="Nod").length}<br/>
+                    WINRATE - {(data.games.filter(game => game.result === "W" && game.player_faction==="Nod").length > 0) ? Math.floor(data.games.filter(game => game.result === "W" && game.player_faction==="Nod").length) / (data.games.filter(game => game.result === "W" && game.player_faction==="Nod").length + data.games.filter(game => game.result === "L" && game.player_faction==="Nod").length) * 100 : 0}%
+                  </Box>
+                </Flex>
+                <br/>
+                <hr/>
               </div>
 
                <h3>RECENT GAMES</h3>

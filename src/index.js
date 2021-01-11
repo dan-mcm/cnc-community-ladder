@@ -5,9 +5,7 @@ import Styles from './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 
-const dotenv = require('dotenv').config();
-
-ReactGA.initialize({ trackingId: process.env.GA });
+ReactGA.initialize("UA-47078105-7");
 
 ReactDOM.render(<App style={Styles} />, document.querySelector('#root'));
 serviceWorker.register();

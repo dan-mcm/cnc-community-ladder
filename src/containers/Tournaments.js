@@ -20,7 +20,7 @@ class Tournaments extends Component {
         </div>
         <div>
           <h4>GROUNDHOG BRAWL #5</h4>
-          <iframe title="groundhog brawl #5" width="560" height="315" src="https://www.youtube.com/embed/LCIADKgFYgg" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          <iframe title="groundhog brawl #5" width="560" height="315" src="https://www.youtube.com/embed/LCIADKgFYgg" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
           <br/><StyledLink href='https://www.gamereplays.org/cnctiberiandawnremastered/replays.php?game=99&show=event&id=1401'>Replay Files</StyledLink> | <StyledLink href='https://www.gamereplays.org/community/index.php?showtopic=1045680'>Results</StyledLink>
           <br/>
           <br/>
@@ -28,7 +28,7 @@ class Tournaments extends Component {
         </div>
         <div>
           <h4>GROUNDHOG BRAWL #4</h4>
-          <iframe title="groundhog brawl #4" width="560" height="315" src="https://www.youtube.com/embed/g2DAK4dtEZQ" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          <iframe title="groundhog brawl #4" width="560" height="315" src="https://www.youtube.com/embed/g2DAK4dtEZQ" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
           <br/><StyledLink href='https://www.gamereplays.org/cnctiberiandawnremastered/replays.php?game=99&show=event&id=1396'>Replay Files</StyledLink> | <StyledLink href='https://www.gamereplays.org/community/index.php?showtopic=1044672'>Results</StyledLink>
           <br/>
           <br/>

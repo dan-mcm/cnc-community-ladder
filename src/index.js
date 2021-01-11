@@ -7,7 +7,7 @@ import * as serviceWorker from './serviceWorker';
 
 const dotenv = require('dotenv').config();
 
-ReactGA.initialize([{ trackingId: process.env.GA }]);
+ReactGA.initialize({ trackingId: process.env.GA });
 
 ReactDOM.render(<App style={Styles} />, document.querySelector('#root'));
 serviceWorker.register();

@@ -71,6 +71,10 @@ tr:nth-child(odd):hover{
   background-color: rgb(205,133,63);
 }
 
+td{
+  max-width: 300px;
+}
+
 body:after{
   content: "beta";
   position: fixed;
@@ -94,4 +98,27 @@ p{
   font-weight: 500px;
   font-size: 1.25rem;
   color: rgb(176,176,176);
+}
+
+/*
+for pagination component
+*/
+
+.page-item{
+  color: red;
+  list-style-type: none;
+  display: inline-block;
+  background-color: rgb(16,16,16);
+}
+
+.page-link{
+  color:white;
+  font-weight: bold;
+  text-decoration: none;
+  padding: 5px;
+  margin: 5px;
+}
+
+.page-link:hover{
+  color: gold;
 }

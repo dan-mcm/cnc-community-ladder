@@ -7,6 +7,7 @@ import styled from 'styled-components';
 import ScoreModal from '../components/ScoreModal';
 import { ModalManager } from 'react-dynamic-modal';
 import { Flex, Box } from 'grid-styled';
+import Pagination from "react-js-pagination";
 
 const axios = require('axios').default;
 
@@ -18,18 +19,34 @@ const CustomImage = styled.img`
   max-width: 200px;
   max-height: 200px;
 `
+
 class Ladder extends Component {
   constructor(props) {
     super(props)
     this.state = {
+      activePage: 1,
+      startPlayer: 0,
+      endPlayer: 200,
       matchData: []
     }
+  }
+
+  handlePageChange(activePage) {
+    console.log(`active page is ${activePage}`);
+    let startPlayer = (activePage === 1) ? 0 : 200 * (activePage - 1)
+    this.setState(
+      {
+        activePage,
+        startPlayer,
+        endPlayer: (startPlayer + 200)
+      }
+    );
   }
 
   openModal(data, index){
        //const text = this.refs.input.value;
        return ModalManager.open(
-         <ScoreModal data={data} rank={index} onRequestClose={() => true}/>
+         <ScoreModal data={data} rank={index + this.state.startPlayer} onRequestClose={() => true}/>
        );
     }
 
@@ -207,6 +224,18 @@ class Ladder extends Component {
 
           <CustomP>Total Players: {this.state.matchData.length}<br/><br/>* click rows for extra player data *</CustomP>
 
+          <Pagination
+             activePage={this.state.activePage}
+             itemsCountPerPage={200}
+             totalItemsCount={this.state.matchData.length}
+             pageRangeDisplayed={Math.ceil(this.state.matchData.length / 200)}
+             onChange={this.handlePageChange.bind(this)}
+             prevPageText='<'
+             nextPageText='>'
+             itemClass="page-item"
+             linkClass="page-link"
+           />
+
           <TableFormat>
            <tr>
              <th>RANK</th>
@@ -217,10 +246,10 @@ class Ladder extends Component {
              <th>PLAYED</th>
              <th>WINRATE</th>
            </tr>
-           {this.state.matchData.map((data, index) => (
+           {this.state.matchData.slice(this.state.startPlayer, this.state.endPlayer).map((data, index) => (
              <>
                <tr onClick={() => this.openModal(data, index)}>
-                <td>{index +1}</td>
+                <td>{index + 1 + this.state.startPlayer}</td>
                 <td>{data.name}</td>
                 <td>{data.current_elo}</td>
                 <td>{(data.games.filter(game => game.result === "W")).length}</td>
@@ -233,6 +262,17 @@ class Ladder extends Component {
            ))}
           </TableFormat>
           <br/>
+          <Pagination
+             activePage={this.state.activePage}
+             itemsCountPerPage={200}
+             totalItemsCount={this.state.matchData.length}
+             pageRangeDisplayed={Math.ceil(this.state.matchData.length / 200)}
+             onChange={this.handlePageChange.bind(this)}
+             prevPageText='<'
+             nextPageText='>'
+             itemClass="page-item"
+             linkClass="page-link"
+           />
         </div>
         <div>
      </div>

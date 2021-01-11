@@ -58,6 +58,10 @@ table, th, td {
   font-size: 24px
 }
 
+table {
+  max-width: 80%;
+}
+
 tr:hover{
   background-color: rgb(205,133,63);
   cursor: grab;

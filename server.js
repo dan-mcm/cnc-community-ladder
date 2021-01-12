@@ -83,7 +83,7 @@ function DBdataTranslation(dataArray){
       return output.push(frontend)
     } else if (listedPlayers.includes(decodedPlayer2)){
       // second case if we have encountered player2 yet...
-      let index = output.findIndex(player => player.name === decodedPlayer1)
+      let index = output.findIndex(player => player.name === decodedPlayer2)
 
       return output[index].games.push(
         {

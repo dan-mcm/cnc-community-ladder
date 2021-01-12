@@ -51,13 +51,11 @@ class Ladder extends Component {
   }
 
   openModal(data, index){
-       //const text = this.refs.input.value;
-       return ModalManager.open(
-         <ScoreModal data={data} rank={index + this.state.startPlayer} onRequestClose={() => true}/>
-       );
-    }
+     return ModalManager.open(
+       <ScoreModal data={data} rank={index + this.state.startPlayer} onRequestClose={() => true}/>
+     );
+  }
 
-  // sample call to get recent games... need some parsing logic to integrate it...
   componentDidMount() {
     // defaulting to season 3
     this.ladderState(3);
@@ -67,102 +65,13 @@ class Ladder extends Component {
     return axios.get(`/db-get/${season}`)
     .then(
       matches => {
-        let data = this.DBdataTranslation(matches.data)
+        let data = matches.data
         // highly experimental
         let eloData = this.eloCalculations(data)
         data.sort((a,b) => (a.current_elo > b.current_elo) ? -1 : 1 )
         this.setState({ matchData: data });
       }
     )
-  }
-
-  // should really be refactored, repeated code...
-  DBdataTranslation(dataArray){
-    let listedPlayers = []
-    let output = []
-    dataArray.map(match => {
-      // default case if we haven't encountered player1 yet...
-      if (!listedPlayers.includes(match.player1_name)){
-        let frontend = {
-          name: "",
-          current_elo: 1000,
-          games: []
-        }
-        listedPlayers.push(match.player1_name)
-        frontend.name = match.player1_name
-        frontend.games.push(
-          {
-            date: match.starttime,
-            duration: match.match_duration,
-            opponent: match.player2_name,
-            opponent_faction: match.player2_faction,
-            player_faction: match.player1_faction,
-            map: match.map,
-            replay: `https://replays.cnctdra.ea.com/${match.replay}`,
-            result: (match.result === match.player1_name) ? "W" : "L"
-          }
-        )
-        return output.push(frontend)
-      } else if (listedPlayers.includes(match.player1_name)){
-        // second case if we have encountered player1 yet...
-        let index = output.findIndex(player => player.name === match.player1_name)
-
-        output[index].games.push(
-          {
-            date: match.starttime,
-            duration: match.match_duration,
-            opponent: match.player2_name,
-            opponent_faction: match.player2_faction,
-            player_faction: match.player1_faction,
-            map: match.map,
-            replay: `https://replays.cnctdra.ea.com/${match.replay}`,
-            result: (match.result === match.player1_name) ? "W" : "L"
-          }
-        )
-      }
-
-      // updating player 2 default case
-      // default case if we haven't encountered player1 yet...
-      if (!listedPlayers.includes(match.player2_name)){
-        let frontend = {
-          name: "",
-          current_elo: 1000,
-          games: []
-        }
-        listedPlayers.push(match.player2_name)
-        frontend.name = match.player2_name
-        frontend.games.push(
-          {
-            date: match.starttime,
-            duration: match.match_duration,
-            opponent: match.player1_name,
-            opponent_faction: match.player1_faction,
-            player_faction: match.player2_faction,
-            map: match.map,
-            replay: `https://replays.cnctdra.ea.com/${match.replay}`,
-            result: (match.result === match.player2_name) ? "W" : "L"
-          }
-        )
-        return output.push(frontend)
-      } else if (listedPlayers.includes(match.player2_name)){
-        // second case if we have encountered player2 yet...
-        let index = output.findIndex(player => player.name === match.player2_name)
-
-        return output[index].games.push(
-          {
-            date: match.starttime,
-            duration: match.match_duration,
-            opponent: match.player1_name,
-            opponent_faction: match.player1_faction,
-            player_faction: match.player2_faction,
-            map: match.map,
-            replay: `https://replays.cnctdra.ea.com/${match.replay}`,
-            result: (match.result === match.player2_name) ? "W" : "L"
-          }
-        )
-      }
-    })
-    return output
   }
 
   eloCalculator(p1,p2,p1_result){

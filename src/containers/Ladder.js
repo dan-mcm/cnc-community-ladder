@@ -86,6 +86,7 @@ class Ladder extends Component {
 
   eloCalculations(data){
     return data.map(player => {
+      // console.log(player)
       return player.games.map(game => {
         let playerelo = player.current_elo
         let result = (game.result==="W") ? true : false
@@ -125,6 +126,13 @@ class Ladder extends Component {
     } else {
       return "sergeant";
     }
+  }
+
+  specialBadge(player, rank){
+    if (rank === 1) return '🥇 ' + player + ' 🥇'
+    if (rank === 2) return '🥈 ' + player + ' 🥈'
+    if (rank === 3) return '🥉 ' + player + ' 🥉'
+    return player;
   }
 
   render() {
@@ -183,7 +191,7 @@ class Ladder extends Component {
                <tr onClick={() => this.openModal(data, index)}>
                <td> <CustomBadge src={require(`../images/ranks/${this.getRank(index+1+this.state.startPlayer)}.png`)} /></td>
                 <td>#{index + 1 + this.state.startPlayer}</td>
-                <td>{data.name}</td>
+                <td>{this.specialBadge(data.name, index+1+this.state.startPlayer)}</td>
                 <td>{data.current_elo}</td>
                 <td>{(data.games.filter(game => game.result === "W")).length}</td>
                 <td>{(data.games.filter(game => game.result === "L")).length}</td>

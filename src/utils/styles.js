@@ -76,9 +76,6 @@ export const TableFormat = styled.table`
 
   min-width: 1000px;
   background-color: rgb(16,16,16);
-  tr:nth-child(odd){
-    background-color: rgb(40,40,40);
-  }
   tr {
     border-bottom: 2px solid white;
   }

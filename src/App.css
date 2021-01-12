@@ -62,13 +62,40 @@ table {
   max-width: 80%;
 }
 
-tr:hover{
-  background-color: rgb(205,133,63);
-  cursor: grab;
+tr:nth-child(odd){
+  background-color: rgb(40,40,40);
 }
 
-tr:nth-child(odd):hover{
+tr:hover{
+  background-color: rgb(64,64,64);
+  cursor: pointer;
+}
+
+/* tr:nth-child(odd):hover{
   background-color: rgb(205,133,63);
+} */
+
+tr:nth-child(2){
+  background-color: rgb(212,175,55,0.6);
+}
+tr:nth-child(2):hover{
+  background-color: rgb(212,175,55,0.9);
+}
+
+tr:nth-child(3){
+  background-color: rgb(192,192,192,0.6);
+}
+tr:nth-child(3):hover{
+  background-color: rgb(192,192,192,0.9);
+}
+
+
+tr:nth-child(4){
+  background-color: rgb(205, 127, 50, 0.6);
+}
+
+tr:nth-child(4):hover{
+  background-color: rgb(205, 127, 50, 0.9);
 }
 
 td{

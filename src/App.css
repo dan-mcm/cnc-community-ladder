@@ -75,29 +75,6 @@ tr:hover{
   background-color: rgb(205,133,63);
 } */
 
-tr:nth-child(2){
-  background-color: rgb(212,175,55,0.6);
-}
-tr:nth-child(2):hover{
-  background-color: rgb(212,175,55,0.9);
-}
-
-tr:nth-child(3){
-  background-color: rgb(192,192,192,0.6);
-}
-tr:nth-child(3):hover{
-  background-color: rgb(192,192,192,0.9);
-}
-
-
-tr:nth-child(4){
-  background-color: rgb(205, 127, 50, 0.6);
-}
-
-tr:nth-child(4):hover{
-  background-color: rgb(205, 127, 50, 0.9);
-}
-
 td{
   max-width: 800px;
   text-align: center;

@@ -27,6 +27,28 @@ const CustomBadge = styled.img`
   padding: 0px;
 `
 
+const CustomRow = styled.tr`
+  &:nth-child(2){
+    background-color: rgb(212,175,55,0.6);
+  }
+  &:nth-child(2):hover{
+    background-color: rgb(212,175,55,0.9);
+  }
+  &:nth-child(3){
+    background-color: rgb(192,192,192,0.6);
+  }
+  &:nth-child(3):hover{
+    background-color: rgb(192,192,192,0.9);
+  }
+  &:nth-child(4){
+    background-color: rgb(205, 127, 50, 0.6);
+  }
+  &:nth-child(4):hover{
+    background-color: rgb(205, 127, 50, 0.9);
+  }
+`
+
+
 class Ladder extends Component {
   constructor(props) {
     super(props)
@@ -188,16 +210,29 @@ class Ladder extends Component {
            </tr>
            {this.state.matchData.slice(this.state.startPlayer, this.state.endPlayer).map((data, index) => (
              <>
-               <tr onClick={() => this.openModal(data, index)}>
-               <td> <CustomBadge src={require(`../images/ranks/${this.getRank(index+1+this.state.startPlayer)}.png`)} /></td>
-                <td>#{index + 1 + this.state.startPlayer}</td>
-                <td>{this.specialBadge(data.name, index+1+this.state.startPlayer)}</td>
-                <td>{data.current_elo}</td>
-                <td>{(data.games.filter(game => game.result === "W")).length}</td>
-                <td>{(data.games.filter(game => game.result === "L")).length}</td>
-                <td>{data.games.length}</td>
-                <td>{Math.floor((((data.games.filter(game => game.result === "W")).length) / (data.games.length) * 100))+'%'}</td>
-               </tr>
+                {(this.state.activePage === 1) ?
+
+                 <CustomRow onClick={() => this.openModal(data, index)}>
+                 <td> <CustomBadge src={require(`../images/ranks/${this.getRank(index+1+this.state.startPlayer)}.png`)} /></td>
+                  <td>#{index + 1 + this.state.startPlayer}</td>
+                  <td>{this.specialBadge(data.name, index+1+this.state.startPlayer)}</td>
+                  <td>{data.current_elo}</td>
+                  <td>{(data.games.filter(game => game.result === "W")).length}</td>
+                  <td>{(data.games.filter(game => game.result === "L")).length}</td>
+                  <td>{data.games.length}</td>
+                  <td>{Math.floor((((data.games.filter(game => game.result === "W")).length) / (data.games.length) * 100))+'%'}</td>
+                 </CustomRow> :
+                 <tr onClick={() => this.openModal(data, index)}>
+                 <td> <CustomBadge src={require(`../images/ranks/${this.getRank(index+1+this.state.startPlayer)}.png`)} /></td>
+                  <td>#{index + 1 + this.state.startPlayer}</td>
+                  <td>{this.specialBadge(data.name, index+1+this.state.startPlayer)}</td>
+                  <td>{data.current_elo}</td>
+                  <td>{(data.games.filter(game => game.result === "W")).length}</td>
+                  <td>{(data.games.filter(game => game.result === "L")).length}</td>
+                  <td>{data.games.length}</td>
+                  <td>{Math.floor((((data.games.filter(game => game.result === "W")).length) / (data.games.length) * 100))+'%'}</td>
+                 </tr>
+               }
 
              </>
            ))}

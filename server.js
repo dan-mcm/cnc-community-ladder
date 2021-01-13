@@ -215,7 +215,6 @@ app.get('/obs/:season/:playername', (req, result) => {
           parsed.sort((a,b) => (a.current_elo > b.current_elo) ? -1 : 1 )
           possibleIndex = parsed.findIndex(player => player.name === req.params.playername ) +1
           let selected = parsed.filter(player => player.name === req.params.playername);
-          console.log(`POSSIBLE INDEX ${possibleIndex}`)
           let output = {
             name: selected[0].name,
             rank: possibleIndex,
@@ -225,7 +224,14 @@ app.get('/obs/:season/:playername', (req, result) => {
             played: selected[0].games.length,
             season: (req.params.season === 3) ? "3+" : req.params.season
           }
-          return result.send(output)
+          let customHTML = `
+            <div>
+              <p>
+              ${output.name}  Rank: ${output.rank}   Wins: ${output.wins}   Lost: ${output.lost}   Points: ${output.points}   Points: ${output.played}
+              </p>
+            </div>
+          `
+          return result.send(customHTML)
       })
       .catch(e => {
           client.release();

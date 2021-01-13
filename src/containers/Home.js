@@ -86,9 +86,6 @@ class Home extends Component {
         <IconImg src={nod} alt="nod" />
         </Box>
       </Flex>
-
-
-
         <p>
           Welcome to the community run Tiberian Dawn ladders for the Command & Conquer Remastered Collection.<br/>
           The site is just up and running so bear with us while we work out the bugs.

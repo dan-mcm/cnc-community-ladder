@@ -13,10 +13,11 @@ const CustomBadge = styled.img`
 `
 
 const CustomHeaderRow = styled.tr`
-  background-color: black;
+  border-bottom: 2px solid white;
 `
 const CustomRow = styled.tr`
   background-color: rgb(16,16,16);
+  border-bottom: 2px solid white;
 `
 
 

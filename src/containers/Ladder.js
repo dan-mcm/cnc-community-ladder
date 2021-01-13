@@ -23,9 +23,10 @@ const CustomImage = styled.img`
 `
 
 const CustomBadge = styled.img`
-  max-width: 50px;
-  max-height: 50px;
+  max-width: 40px;
+  max-height: 40px;
   padding: 0px;
+  margin: 0px;
 `
 
 const CustomRow = styled.tr`

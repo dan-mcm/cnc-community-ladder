@@ -6,13 +6,17 @@ import { ModalManager } from 'react-dynamic-modal';
 import styled from 'styled-components';
 
 const CustomBadge = styled.img`
-  max-width: 50px;
-  max-height: 50px;
+  max-width: 40px;
+  max-height: 40px;
   padding: 0px;
+  margin: 0px;
 `
 
+const CustomHeaderRow = styled.tr`
+  background-color: black;
+`
 const CustomRow = styled.tr`
-background-color: rgb(16,16,16);
+  background-color: rgb(16,16,16);
 `
 
 
@@ -83,7 +87,7 @@ class SearchBar extends Component {
         <br/><br/>
         {(this.state.result.length > 0 && this.state.query.length > 0) ?
           <table>
-          <tr>
+          <CustomHeaderRow>
             <th>RANK</th>
             <th>POSITION</th>
             <th>NAME</th>
@@ -92,7 +96,7 @@ class SearchBar extends Component {
             <th>LOSSES</th>
             <th>PLAYED</th>
             <th>WINRATE</th>
-          </tr>
+          </CustomHeaderRow>
           {
             this.state.result.map(
               result =>

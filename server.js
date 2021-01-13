@@ -222,12 +222,12 @@ app.get('/obs/:season/:playername', (req, result) => {
             lost: selected[0].games.filter(game => game.result === "L").length,
             points: selected[0].current_elo,
             played: selected[0].games.length,
-            season: (req.params.season === 3) ? "3+" : req.params.season
+            season: (req.params.season === "3") ? "3+" : req.params.season
           }
           let customHTML = `
             <div>
-              <p>
-              ${output.name}  Rank: ${output.rank}   Wins: ${output.wins}   Lost: ${output.lost}   Points: ${output.points}   Points: ${output.played}
+              <p style="color:white;border-style=solid;border-color=white;padding=5px">
+                <b style="font-size=large;">${output.name}      Season: ${output.season}      Rank: ${output.rank}      Wins: ${output.wins}      Lost: ${output.lost}      Points: ${output.points}      Points: ${output.played}</b>
               </p>
             </div>
           `

@@ -225,9 +225,9 @@ app.get('/obs/:season/:playername', (req, result) => {
             season: (req.params.season === "3") ? "3+" : req.params.season
           }
           let customHTML = `
-            <div>
-              <p style="color:white;border-style=solid;border-color=white;padding=5px">
-                <b style="font-size=large;">${output.name}      Season: ${output.season}      Rank: ${output.rank}      Wins: ${output.wins}      Lost: ${output.lost}      Points: ${output.points}      Points: ${output.played}</b>
+            <div style="border=2px solid white;">
+              <p style="color:white;padding=5px;background-color:black;">
+                <b style="font-size=24px;">${output.name}      Season: ${output.season}      Rank: ${output.rank}      Wins: ${output.wins}      Lost: ${output.lost}      Points: ${output.points}      Points: ${output.played}</b>
               </p>
             </div>
           `

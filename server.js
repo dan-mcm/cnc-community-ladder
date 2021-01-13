@@ -39,7 +39,7 @@ function DBdataTranslation(dataArray){
           result: (match.result === decodedPlayer1) ? "W" : "L"
         }
       )
-      return output.push(frontend)
+      output.push(frontend)
     } else if (listedPlayers.includes(decodedPlayer1)){
       // second case if we have encountered player1 yet...
       let index = output.findIndex(player => player.name === decodedPlayer1)
@@ -80,12 +80,12 @@ function DBdataTranslation(dataArray){
           result: (match.result === decodedPlayer2) ? "W" : "L"
         }
       )
-      return output.push(frontend)
+      output.push(frontend)
     } else if (listedPlayers.includes(decodedPlayer2)){
       // second case if we have encountered player2 yet...
       let index = output.findIndex(player => player.name === decodedPlayer2)
 
-      return output[index].games.push(
+      output[index].games.push(
         {
           date: match.starttime,
           duration: match.match_duration,

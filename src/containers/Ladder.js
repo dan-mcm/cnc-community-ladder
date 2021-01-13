@@ -202,6 +202,7 @@ class Ladder extends Component {
              nextPageText='>'
              itemClass="page-item"
              linkClass="page-link"
+             activeLinkClass="page-selected"
            />
 
           <TableFormat>

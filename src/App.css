@@ -131,3 +131,7 @@ for pagination component
 .page-link:hover{
   color: gold;
 }
+
+.page-selected{
+  color:yellow;
+}

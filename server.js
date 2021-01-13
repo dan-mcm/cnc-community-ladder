@@ -281,8 +281,8 @@ app.get('/obs/:season/:playername', (req, result) => {
               <meta http-equiv="refresh" content="900">
             </head>
             <div style="background-color:black;">
-              <p style="border=2px solid white;color:white;padding=5px;word-spacing=20px;">
-                <b style="font-size=24px;">${output.name} Rank: #${output.rank} Wins: ${output.wins} Lost: ${output.lost} Points: ${output.points} Played: ${output.played}</b>
+              <p style="border:2px solid white; color:white; padding:5px; word-spacing:15px; margin: 0 auto">
+                <b style="font-size=24px;">${output.name} Rank:#${output.rank} Wins:${output.wins} Lost:${output.lost} Points:${output.points} Played:${output.played}</b>
               </p>
             </div>
             </html>

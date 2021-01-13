@@ -274,12 +274,18 @@ app.get('/obs/:season/:playername', (req, result) => {
             played: selected[0].games.length,
             season: (req.params.season === "3") ? "3+" : req.params.season
           }
+          // 15 minutes refresh time
           let customHTML = `
+            <html>
+            <head>
+              <meta http-equiv="refresh" content="900">
+            </head>
             <div style="background-color:black;">
               <p style="border=2px solid white;color:white;padding=5px;word-spacing=20px;">
                 <b style="font-size=24px;">${output.name} Rank: #${output.rank} Wins: ${output.wins} Lost: ${output.lost} Points: ${output.points} Points: ${output.played}</b>
               </p>
             </div>
+            </html>
           `
           return result.send(customHTML)
       })

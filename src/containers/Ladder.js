@@ -5,6 +5,7 @@ import {
 } from '../utils/styles';
 import styled from 'styled-components';
 import ScoreModal from '../components/ScoreModal';
+import SearchBar from '../components/SearchBar';
 import { ModalManager } from 'react-dynamic-modal';
 import { Flex, Box } from 'grid-styled';
 import Pagination from "react-js-pagination";
@@ -178,13 +179,18 @@ class Ladder extends Component {
         </Flex>
 
         <hr/>
+
             <h3><span role="img" aria-label="trophy">🏆</span> SEASON 3+ LADDER <span role="img" aria-label="trophy">🏆</span></h3>
           <CustomP>A natural extension of the official Season 3 ladder using the same maps, considers a starting ELO level of 1,000 for each player</CustomP>
           <CustomP>Start: 09/01/21 ~20:40 GMT <br/>
           End: TBC</CustomP>
 
           <CustomP>Total Players: {this.state.matchData.length}<br/><br/>* click rows for extra player data *</CustomP>
-
+          <br/>
+          <hr/>
+          <SearchBar data={this.state.matchData}/>
+          <br/>
+          <hr/>
           <Pagination
              activePage={this.state.activePage}
              itemsCountPerPage={200}

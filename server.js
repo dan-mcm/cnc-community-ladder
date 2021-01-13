@@ -188,6 +188,56 @@ app.get('/health', (req, res) => {
   return res.sendStatus(200)
 })
 
+app.get(`/nightbot/:season/:playername`, (req, result) => {
+  // for local...
+  // const pool = new Pool({
+  //   user: process.env.DB_USER,
+  //   host: process.env.DB_HOST,
+  //   database: process.env.DB_NAME,
+  //   password: process.env.DB_PASSWORD,
+  //   port: process.env.DB_PORT
+  // });
+  // for prod
+    const pool = new Pool({
+    connectionString: process.env.DATABASE_URL,
+    ssl: {
+      rejectUnauthorized: false
+    }
+  });
+  pool.connect()
+  .then(client => {
+    // deduplicates reuslts based on timestamp being unique and also orders results by time
+    return client.query(`SELECT distinct(starttime) starttime, match_duration, player1_name, player1_faction, player2_name, player2_faction, result, map, replay, season FROM matches  WHERE season=${req.params.season} order by starttime DESC`)
+      .then(res => {
+          client.release();
+          let parsed = DBdataTranslation(res.rows)
+          let eloData = eloCalculations(parsed)
+          parsed.sort((a,b) => (a.current_elo > b.current_elo) ? -1 : 1 )
+          possibleIndex = parsed.findIndex(player => player.name === req.params.playername ) +1
+          let selected = parsed.filter(player => player.name === req.params.playername);
+          let output = {
+            name: selected[0].name,
+            rank: possibleIndex,
+            wins: selected[0].games.filter(game => game.result === "W").length,
+            lost: selected[0].games.filter(game => game.result === "L").length,
+            points: selected[0].current_elo,
+            played: selected[0].games.length,
+            season: (req.params.season === "3") ? "3+" : req.params.season
+          }
+          return result.send(output)
+      })
+      .catch(e => {
+          client.release();
+          console.log(e.stack);
+      })
+  })
+  .catch(err => {
+    console.log(err)
+    }
+  )
+  .finally(() => pool.end());
+})
+
 app.get('/obs/:season/:playername', (req, result) => {
   // for local...
   // const pool = new Pool({

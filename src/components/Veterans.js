@@ -10,7 +10,7 @@ const CustomHeaderRow = styled.tr`
 `
 
 const CustomRow = styled.tr`
-  border-bottom: 2px solid white;
+  border: 2px solid white;
 `
 const GDIData = styled.td`
   background-color: rgb(89,83,39, 0.7);
@@ -22,7 +22,7 @@ const GDIData = styled.td`
 const NodData = styled.td`
   background-color: rgb(114,47,55, 0.7);
   &:hover{
-    background-color: rgb(114,47,55, 0.7)
+    background-color: rgb(114,47,55, 1)
   }
 `
 
@@ -59,11 +59,6 @@ class Veterans extends Component {
       <div>
         <h3>SEASON 3+ VETERANS</h3>
         <table>
-        <CustomHeaderRow>
-          <th>GDI</th>
-          <th>NOD</th>
-          <th>TOTAL</th>
-        </CustomHeaderRow>
         <CustomRow>
           <GDIData><IconImg src={gdi} alt="nod" /><br/>🎖️ {this.props.highestGDI.player} 🎖️ <br/> {this.props.highestGDI.gdiTotal} GDI Games Played</GDIData>
           <NodData><IconImg src={nod} alt="nod" /><br/>🎖️ {this.props.highestNod.player} 🎖️ <br/> {this.props.highestNod.nodTotal} Nod Games Played</NodData>

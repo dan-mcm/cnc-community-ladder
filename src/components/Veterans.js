@@ -4,32 +4,36 @@ import styled from 'styled-components';
 // icons
 import gdi from '../images/factions/gdi.png';
 import nod from '../images/factions/nod.png';
-
-const CustomHeaderRow = styled.tr`
-  border-bottom: 2px solid white;
-`
+import random from '../images/factions/random.png'
 
 const CustomRow = styled.tr`
   border: 2px solid white;
 `
 const GDIData = styled.td`
-  background-color: rgb(89,83,39, 0.7);
+  background-color: rgb(250, 192, 0, 0.7);
   &:hover{
-    background-color: rgb(89,83,39,1);
+    background-color: rgb(250, 192, 0, 1);
   }
 `
 
 const NodData = styled.td`
-  background-color: rgb(114,47,55, 0.7);
+  background-color: rgb(247, 55, 24, 0.7);
   &:hover{
-    background-color: rgb(114,47,55, 1)
+    background-color: rgb(247, 55, 24, 1)
   }
 `
 
 const RandomData = styled.td`
-  background-color: rgb(34,139,34, 0.7);
+  background-color: rgb(17,30,108, 0.7);
   &:hover{
-    background-color: rgb(34,139,34, 1);
+    background-color: rgb(17, 30, 108, 1);
+  }
+`
+
+const TotalData = styled.td`
+  background-color: rgb(165,42,42,0.7);
+  &:hover{
+    background-color: rgb(165,42,42, 1);
   }
 `
 
@@ -43,17 +47,6 @@ const IconImg = styled.img`
 `
 
 class Veterans extends Component {
-  constructor(props) {
-    super(props)
-  }
-
-  specialBadge(player, rank){
-    if (rank === 1) return '🥇 ' + player + ' 🥇'
-    if (rank === 2) return '🥈 ' + player + ' 🥈'
-    if (rank === 3) return '🥉 ' + player + ' 🥉'
-    return player;
-  }
-
   render() {
     return (
       <div>
@@ -61,7 +54,8 @@ class Veterans extends Component {
       <CustomRow>
         <GDIData><IconImg src={gdi} alt="nod" /><br/>🎖️ {this.props.highestGDI.player} 🎖️ <br/> {this.props.highestGDI.gdiTotal} GDI Games Played</GDIData>
         <NodData><IconImg src={nod} alt="nod" /><br/>🎖️ {this.props.highestNod.player} 🎖️ <br/> {this.props.highestNod.nodTotal} Nod Games Played</NodData>
-        <RandomData><IconImg src={gdi} alt="nod" /> + <IconImg src={nod} alt="nod" /><br/>🎖️ {this.props.highestTotal.player} 🎖️ <br/> {this.props.highestTotal.playerTotal} Total Games Played</RandomData>
+        <RandomData><IconImg src={random} alt="random" /><br/>🎖️ AOD Gaming 🎖️ <br/> ? Games Played</RandomData>
+        <TotalData><IconImg src={gdi} alt="nod" /> + <IconImg src={nod} alt="nod" /> + <IconImg src={random} alt="random" /><br/>🎖️ {this.props.highestTotal.player} 🎖️ <br/> {this.props.highestTotal.playerTotal} Total Games Played</TotalData>
       </CustomRow>
       </table>
       </div>

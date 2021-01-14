@@ -3,7 +3,6 @@ import ScoreModal from '../components/ScoreModal';
 import { ModalManager } from 'react-dynamic-modal';
 import styled from 'styled-components';
 import {
-  Wrapper,
   TableFormat
 } from '../utils/styles';
 
@@ -12,10 +11,6 @@ const CustomBadge = styled.img`
   max-height: 40px;
   padding: 0px;
   margin: 0px;
-`
-
-const CustomHeaderRow = styled.tr`
-  border-bottom: 2px solid white;
 `
 
 const CustomRow = styled.tr`

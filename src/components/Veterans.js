@@ -11,6 +11,7 @@ const CustomRow = styled.tr`
 `
 const GDIData = styled.td`
   background-color: rgb(250, 192, 0, 0.7);
+  min-width: 200px;
   &:hover{
     background-color: rgb(250, 192, 0, 1);
   }
@@ -18,6 +19,7 @@ const GDIData = styled.td`
 
 const NodData = styled.td`
   background-color: rgb(247, 55, 24, 0.7);
+  min-width: 200px;
   &:hover{
     background-color: rgb(247, 55, 24, 1)
   }
@@ -25,6 +27,7 @@ const NodData = styled.td`
 
 const RandomData = styled.td`
   background-color: rgb(17,30,108, 0.7);
+  min-width: 200px;
   &:hover{
     background-color: rgb(17, 30, 108, 1);
   }
@@ -32,6 +35,7 @@ const RandomData = styled.td`
 
 const TotalData = styled.td`
   background-color: rgb(165,42,42,0.7);
+  min-width: 200px;
   &:hover{
     background-color: rgb(165,42,42, 1);
   }
@@ -46,19 +50,23 @@ const IconImg = styled.img`
   padding-bottom: 5px;
 `
 
+const Overflow = styled.div`
+overflow-x: hidden;
+`
+
 class Veterans extends Component {
   render() {
     return (
-      <div>
+      <Overflow>
       <table>
       <CustomRow>
         <GDIData><IconImg src={gdi} alt="nod" /><br/>🎖️ {this.props.highestGDI.player} 🎖️ <br/> {this.props.highestGDI.gdiTotal} GDI Games Played</GDIData>
         <NodData><IconImg src={nod} alt="nod" /><br/>🎖️ {this.props.highestNod.player} 🎖️ <br/> {this.props.highestNod.nodTotal} Nod Games Played</NodData>
         <RandomData><IconImg src={random} alt="random" /><br/>🎖️ AOD Gaming 🎖️ <br/> ? Games Played</RandomData>
-        <TotalData><IconImg src={gdi} alt="nod" /> + <IconImg src={nod} alt="nod" /> + <IconImg src={random} alt="random" /><br/>🎖️ {this.props.highestTotal.player} 🎖️ <br/> {this.props.highestTotal.playerTotal} Total Games Played</TotalData>
+        <TotalData><IconImg src={gdi} alt="nod" /> <IconImg src={nod} alt="nod" /> <IconImg src={random} alt="random" /><br/>🎖️ {this.props.highestTotal.player} 🎖️ <br/> {this.props.highestTotal.playerTotal} Total Games Played</TotalData>
       </CustomRow>
       </table>
-      </div>
+      </Overflow>
     );
   }
 }

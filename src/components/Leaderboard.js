@@ -34,6 +34,10 @@ const CustomRow = styled.tr`
   }
 `
 
+const Overflow = styled.div`
+overflow-x: hidden;
+`
+
 class Leaderboard extends Component {
   getRank(rank){
 
@@ -65,6 +69,7 @@ class Leaderboard extends Component {
 
   render() {
     return (
+      <Overflow>
       <TableFormat>
        <tr>
          <th>RANK</th>
@@ -105,6 +110,7 @@ class Leaderboard extends Component {
          </>
        ))}
       </TableFormat>
+      </Overflow>
     );
   }
 }

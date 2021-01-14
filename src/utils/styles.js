@@ -73,7 +73,6 @@ export const TableFormat = styled.table`
   margin: auto;
   font-family: 'Inconsolata', monospace;
   border-spacing: 0 1em;
-
   min-width: 1000px;
   background-color: rgb(16,16,16);
   tr {

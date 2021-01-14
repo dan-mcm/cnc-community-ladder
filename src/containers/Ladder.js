@@ -193,12 +193,13 @@ class Ladder extends Component {
           <CustomP>Total Players: {this.state.matchData.length}<br/><br/>* click rows for extra player data *</CustomP>
           <br/>
           <hr/>
-          <Veterans highestTotal={this.state.highestTotal} highestGDI={this.state.highestGDI} highestNod={this.state.highestNod}/>
-          <br/>
-          <hr/>
           <SearchBar data={this.state.matchData}/>
           <br/>
           <hr/>
+          <h3>LEADERBOARD</h3>
+          <Veterans highestTotal={this.state.highestTotal} highestGDI={this.state.highestGDI} highestNod={this.state.highestNod}/>
+          <br/>
+
           <Pagination
              activePage={this.state.activePage}
              itemsCountPerPage={200}
@@ -211,7 +212,6 @@ class Ladder extends Component {
              linkClass="page-link"
              activeLinkClass="page-selected"
            />
-
           <Leaderboard
             data={this.state.matchData}
             startPlayer={this.state.startPlayer}

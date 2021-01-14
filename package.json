@@ -113,5 +113,8 @@
       ],
       "unicorn/regex-shorthand": "off"
     }
+  },
+  "engines": {
+    "node": "14.x"
   }
 }

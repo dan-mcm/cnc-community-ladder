@@ -20,7 +20,7 @@ import heavymetal from '../images/maps/heavy_metal.png';
 
 // season 4 maps
 import canyonpaths from '../images/maps/canyon_paths.png';
-import duality36 from '../images/maps/duality_36.png';
+import duality36 from '../images/maps/duality.png';
 import frosted from '../images/maps/frosted_hostilities_vertically_mirrored.png';
 import higherorder from '../images/maps/higher_order.png';
 import neopeaks from '../images/maps/neo_twin_peaks.png';

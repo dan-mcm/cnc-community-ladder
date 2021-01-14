@@ -71,11 +71,10 @@ class SearchBar extends Component {
     return player;
   }
 
-
   render() {
     return (
       <div>
-        <h3>PLAYER SEARCH</h3>
+        <p>SEARCH FOR A PLAYER</p>
         <input
           type="text"
           id="filter"
@@ -113,6 +112,7 @@ class SearchBar extends Component {
           }
           </table>
           : ""}
+          <br/>
       </div>
     );
   }

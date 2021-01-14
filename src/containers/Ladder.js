@@ -31,7 +31,8 @@ class Ladder extends Component {
       matchData: [],
       highestTotal: {},
       highestGDI: {},
-      highestNod: {}
+      highestNod: {},
+      selectedSeason: 3
     }
   }
 
@@ -153,14 +154,17 @@ class Ladder extends Component {
       nodTotals.sort((a,b) => a.nodTotal - b.nodTotal);
       nodHighestTotal = nodTotals.sort((a,b) => a.value - b.value);
     })
-
-    console.log(`HIGHEST: ${JSON.stringify(highestTotal)}`)
     return this.setState({
     highestTotal: highestTotal[highestTotal.length-1],
     highestGDI: gdiHighestTotal[gdiHighestTotal.length-1],
     highestNod: nodHighestTotal[nodHighestTotal.length-1]
   })
 
+  }
+
+  handleSeasonChange = (event) => {
+    this.setState({ selectedSeason: parseInt(event.target.value) });
+    this.ladderState(event.target.value)
   }
 
   render() {
@@ -185,18 +189,26 @@ class Ladder extends Component {
 
         <hr/>
 
-            <h3><span role="img" aria-label="trophy">🏆</span> SEASON 3+ LADDER <span role="img" aria-label="trophy">🏆</span></h3>
+            <h3><span role="img" aria-label="trophy">🏆</span> SEASON LADDER <span role="img" aria-label="trophy">🏆</span></h3>
           <CustomP>A natural extension of the official Season 3 ladder using the same maps, considers a starting ELO level of 1,000 for each player</CustomP>
           <CustomP>Start: 09/01/21 ~20:40 GMT <br/>
           End: TBC</CustomP>
 
-          <CustomP>Total Players: {this.state.matchData.length}<br/><br/>* click rows for extra player data *</CustomP>
-          <br/>
-          <hr/>
+          <CustomP>* click rows for extra player data *</CustomP>
+          <>
+          <p>SELECT A SEASON</p>
+          <select name="season" onChange={this.handleSeasonChange}>
+            <option value="" disabled selected>-Select a season-</option>
+            <option value="3">3+</option>
+            <option value="4">4</option>
+          </select>
+          {this.state.matchata}
+          </>
           <SearchBar data={this.state.matchData}/>
-          <br/>
           <hr/>
-          <h3>LEADERBOARD</h3>
+
+          <h3>SEASON {(this.state.selectedSeason === 3) ? "3+" : this.state.selectedSeason}</h3>
+          TOTAL PLAYERS: {this.state.matchData.length}<br/><br/>
           <Veterans highestTotal={this.state.highestTotal} highestGDI={this.state.highestGDI} highestNod={this.state.highestNod}/>
           <Pagination
              activePage={this.state.activePage}

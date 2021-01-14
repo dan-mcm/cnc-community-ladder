@@ -67,10 +67,6 @@ const IconImg = styled.img`
   vertical-align:middle
 `
 
-const IconDiv = styled.div`
-  overflow:auto;
-`
-
 class Home extends Component {
   render() {
     return (

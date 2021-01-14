@@ -29,13 +29,6 @@ const CustomIcon = styled.img`
   }
 `;
 
-const CustomText = styled.p`
-color: white;
-text-decoration: none;
-font-weight: bold;
-font-size: 14px;
-`
-
 class Nav extends Component {
   render() {
     return (

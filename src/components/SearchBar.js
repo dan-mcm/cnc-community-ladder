@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
-import { Flex, Box } from 'grid-styled';
 import ScoreModal from '../components/ScoreModal';
 import { ModalManager } from 'react-dynamic-modal';
 import styled from 'styled-components';

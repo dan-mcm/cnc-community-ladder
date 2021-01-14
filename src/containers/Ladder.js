@@ -1,15 +1,14 @@
 import React, { Component } from 'react';
 import {
-  Wrapper,
-  TableFormat
+  Wrapper
 } from '../utils/styles';
 import styled from 'styled-components';
-import ScoreModal from '../components/ScoreModal';
 import SearchBar from '../components/SearchBar';
-import { ModalManager } from 'react-dynamic-modal';
 import { Flex, Box } from 'grid-styled';
 import Pagination from "react-js-pagination";
 import ScrollToTop from '../components/Scroll.js';
+import Veterans from '../components/Veterans.js';
+import Leaderboard from '../components/Leaderboard.js';
 
 const axios = require('axios').default;
 
@@ -22,35 +21,6 @@ const CustomImage = styled.img`
   max-height: 200px;
 `
 
-const CustomBadge = styled.img`
-  max-width: 40px;
-  max-height: 40px;
-  padding: 0px;
-  margin: 0px;
-`
-
-const CustomRow = styled.tr`
-  &:nth-child(2){
-    background-color: rgb(212,175,55,0.6);
-  }
-  &:nth-child(2):hover{
-    background-color: rgb(212,175,55,0.9);
-  }
-  &:nth-child(3){
-    background-color: rgb(192,192,192,0.6);
-  }
-  &:nth-child(3):hover{
-    background-color: rgb(192,192,192,0.9);
-  }
-  &:nth-child(4){
-    background-color: rgb(205, 127, 50, 0.6);
-  }
-  &:nth-child(4):hover{
-    background-color: rgb(205, 127, 50, 0.9);
-  }
-`
-
-
 class Ladder extends Component {
   constructor(props) {
     super(props)
@@ -58,12 +28,19 @@ class Ladder extends Component {
       activePage: 1,
       startPlayer: 0,
       endPlayer: 200,
-      matchData: []
+      matchData: [],
+      highestTotal: {},
+      highestGDI: {},
+      highestNod: {}
     }
   }
 
+  componentDidMount() {
+    // defaulting to season 3
+    this.ladderState(3);
+  }
+
   handlePageChange(activePage) {
-    console.log(`active page is ${activePage}`);
     let startPlayer = (activePage === 1) ? 0 : 200 * (activePage - 1)
     this.setState(
       {
@@ -74,17 +51,6 @@ class Ladder extends Component {
     );
   }
 
-  openModal(data, index){
-     return ModalManager.open(
-       <ScoreModal data={data} rank={index + this.state.startPlayer} onRequestClose={() => true}/>
-     );
-  }
-
-  componentDidMount() {
-    // defaulting to season 3
-    this.ladderState(3);
-  }
-
   ladderState(season){
     return axios.get(`/db-get/${season}`)
     .then(
@@ -93,6 +59,7 @@ class Ladder extends Component {
         // highly experimental
         this.eloCalculations(data)
         data.sort((a,b) => (a.current_elo > b.current_elo) ? -1 : 1 )
+        this.topPlayers(data);
         this.setState({ matchData: data });
       }
     )
@@ -112,7 +79,6 @@ class Ladder extends Component {
   }
 
   eloCalculations(data){
-    console.log(JSON.stringify(data))
     return data.map(player => {
       // console.log(player)
       return player.games.map(game => {
@@ -149,26 +115,52 @@ class Ladder extends Component {
     )
   }
 
-  getRank(rank){
+  topPlayers(data){
+    let playerTotals = []
+    let highestTotal = {}
 
-    if(rank<=16){
-      return "general"
-    } else if (rank<=200){
-      return "major"
-    } else if (rank<=400){
-      return "captain"
-    } else if (rank<=600){
-      return "lieutenant"
-    } else {
-      return "sergeant";
-    }
-  }
+    let gdiTotals = []
+    let gdiHighestTotal = {}
 
-  specialBadge(player, rank){
-    if (rank === 1) return '🥇 ' + player + ' 🥇'
-    if (rank === 2) return '🥈 ' + player + ' 🥈'
-    if (rank === 3) return '🥉 ' + player + ' 🥉'
-    return player;
+    let nodTotals = []
+    let nodHighestTotal = {}
+    // overallTotal
+    data.map(player => {
+
+      playerTotals.push({
+        player: player.name,
+        playerTotal: player.games.length
+      })
+
+      playerTotals.sort((a,b) => a.playerTotal - b.playerTotal);
+      highestTotal = playerTotals.sort((a,b) => a.value - b.value);
+
+      // overallGDI
+      let gdiOnly = (player.games.filter(game => game.player_faction === "GDI")).length
+      gdiTotals.push({
+        player: player.name,
+        gdiTotal: gdiOnly
+      })
+      gdiTotals.sort((a,b) => a.gdiTotal - b.gdiTotal);
+      gdiHighestTotal = gdiTotals.sort((a,b) => a.value - b.value);
+
+      // overallNod
+      let nodOnly = (player.games.filter(game => game.player_faction === "Nod")).length
+      nodTotals.push({
+        player: player.name,
+        nodTotal: nodOnly
+      })
+      nodTotals.sort((a,b) => a.nodTotal - b.nodTotal);
+      nodHighestTotal = nodTotals.sort((a,b) => a.value - b.value);
+    })
+
+    console.log(`HIGHEST: ${JSON.stringify(highestTotal)}`)
+    return this.setState({
+    highestTotal: highestTotal[highestTotal.length-1],
+    highestGDI: gdiHighestTotal[gdiHighestTotal.length-1],
+    highestNod: nodHighestTotal[nodHighestTotal.length-1]
+  })
+
   }
 
   render() {
@@ -201,6 +193,9 @@ class Ladder extends Component {
           <CustomP>Total Players: {this.state.matchData.length}<br/><br/>* click rows for extra player data *</CustomP>
           <br/>
           <hr/>
+          <Veterans highestTotal={this.state.highestTotal} highestGDI={this.state.highestGDI} highestNod={this.state.highestNod}/>
+          <br/>
+          <hr/>
           <SearchBar data={this.state.matchData}/>
           <br/>
           <hr/>
@@ -217,46 +212,13 @@ class Ladder extends Component {
              activeLinkClass="page-selected"
            />
 
-          <TableFormat>
-           <tr>
-             <th>RANK</th>
-             <th>POSITION</th>
-             <th>NAME</th>
-             <th>POINTS</th>
-             <th>WINS</th>
-             <th>LOSSES</th>
-             <th>PLAYED</th>
-             <th>WINRATE</th>
-           </tr>
-           {this.state.matchData.slice(this.state.startPlayer, this.state.endPlayer).map((data, index) => (
-             <>
-                {(this.state.activePage === 1) ?
+          <Leaderboard
+            data={this.state.matchData}
+            startPlayer={this.state.startPlayer}
+            endPlayer={this.state.endPlayer}
+            activePage={this.state.activePage}
+          />
 
-                 <CustomRow onClick={() => this.openModal(data, index)}>
-                 <td> <CustomBadge src={require(`../images/ranks/${this.getRank(index+1+this.state.startPlayer)}.png`)} /></td>
-                  <td>#{index + 1 + this.state.startPlayer}</td>
-                  <td>{this.specialBadge(data.name, index+1+this.state.startPlayer)}</td>
-                  <td>{data.current_elo}</td>
-                  <td>{(data.games.filter(game => game.result === "W")).length}</td>
-                  <td>{(data.games.filter(game => game.result === "L")).length}</td>
-                  <td>{data.games.length}</td>
-                  <td>{Math.floor((((data.games.filter(game => game.result === "W")).length) / (data.games.length) * 100))+'%'}</td>
-                 </CustomRow> :
-                 <tr onClick={() => this.openModal(data, index)}>
-                 <td> <CustomBadge src={require(`../images/ranks/${this.getRank(index+1+this.state.startPlayer)}.png`)} /></td>
-                  <td>#{index + 1 + this.state.startPlayer}</td>
-                  <td>{this.specialBadge(data.name, index+1+this.state.startPlayer)}</td>
-                  <td>{data.current_elo}</td>
-                  <td>{(data.games.filter(game => game.result === "W")).length}</td>
-                  <td>{(data.games.filter(game => game.result === "L")).length}</td>
-                  <td>{data.games.length}</td>
-                  <td>{Math.floor((((data.games.filter(game => game.result === "W")).length) / (data.games.length) * 100))+'%'}</td>
-                 </tr>
-               }
-
-             </>
-           ))}
-          </TableFormat>
           <br/>
           <Pagination
              activePage={this.state.activePage}

@@ -198,8 +198,6 @@ class Ladder extends Component {
           <hr/>
           <h3>LEADERBOARD</h3>
           <Veterans highestTotal={this.state.highestTotal} highestGDI={this.state.highestGDI} highestNod={this.state.highestNod}/>
-          <br/>
-
           <Pagination
              activePage={this.state.activePage}
              itemsCountPerPage={200}

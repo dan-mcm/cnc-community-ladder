@@ -6,6 +6,7 @@ import Home from './containers/Home';
 import Social from './containers/Social';
 import Ladder from './containers/Ladder';
 import Tournaments from './containers/Tournaments';
+import Streamers from './containers/Streamers';
 import Footer from './components/Footer';
 import Nav from './components/Nav';
 import CookieBanner from 'react-cookie-banner';
@@ -35,6 +36,7 @@ export default class AppRoutes extends Component {
           <Route exact path="/ladder" component={Ladder} />
           <Route exact path="/social" component={Social} />
           <Route exact path="/tournaments" component={Tournaments} />
+          <Route exact path="/streamers" component={Streamers} />
         </div>
         <Footer />
       </Router>

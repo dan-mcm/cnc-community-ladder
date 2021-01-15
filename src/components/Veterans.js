@@ -60,9 +60,9 @@ class Veterans extends Component {
       <Overflow>
       <table>
       <CustomRow>
-        <GDIData><IconImg src={gdi} alt="nod" /><br/>🎖️ {this.props.highestGDI.player} 🎖️ <br/> {this.props.highestGDI.gdiTotal} GDI Games Played</GDIData>
-        <NodData><IconImg src={nod} alt="nod" /><br/>🎖️ {this.props.highestNod.player} 🎖️ <br/> {this.props.highestNod.nodTotal} Nod Games Played</NodData>
-        <RandomData><IconImg src={random} alt="random" /><br/>🎖️ AOD Gaming 🎖️ <br/> ? Games Played</RandomData>
+        <GDIData><IconImg src={gdi} alt="nod" /><br/><span role="img" aria-label="medal">🎖️</span> {this.props.highestGDI.player} <span role="img" aria-label="medal">🎖️</span> <br/> {this.props.highestGDI.gdiTotal} GDI Games Played</GDIData>
+        <NodData><IconImg src={nod} alt="nod" /><br/><span role="img" aria-label="medal">🎖️</span> {this.props.highestNod.player} <span role="img" aria-label="medal">🎖️</span> <br/> {this.props.highestNod.nodTotal} Nod Games Played</NodData>
+        <RandomData><IconImg src={random} alt="random" /><br/><span role="img" aria-label="medal">🎖️</span> AOD Gaming <span role="img" aria-label="medal">🎖️</span> <br/> ? Games Played</RandomData>
         <TotalData><IconImg src={gdi} alt="nod" /> <IconImg src={nod} alt="nod" /> <IconImg src={random} alt="random" /><br/>🎖️ {this.props.highestTotal.player} 🎖️ <br/> {this.props.highestTotal.playerTotal} Total Games Played</TotalData>
       </CustomRow>
       </table>

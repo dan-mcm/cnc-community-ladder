@@ -34,19 +34,22 @@ class Nav extends Component {
     return (
       <CustomNav>
         <Flex flexWrap="wrap">
-          <Box px={2} py={3} width={[1, 1 / 5]}>
+          <Box px={2} py={3} width={[1, 1 / 6]}>
             <CustomLink to="/">C&C REMASTERED<br/>TIBERIAN DAWN<br/> COMMUNITY</CustomLink>
           </Box>
-          <Box px={2} py={3} width={[1, 1 / 5]}>
+          <Box px={2} py={3} width={[1, 1 / 6]}>
             <CustomLink to="/ladder">LADDER</CustomLink>
           </Box>
-          <Box px={2} py={3} width={[1, 1 / 5]}>
+          <Box px={2} py={3} width={[1, 1 / 6]}>
+            <CustomLink to="/streamers">STREAMERS</CustomLink>
+          </Box>
+          <Box px={2} py={3} width={[1, 1 / 6]}>
             <CustomLink to="/tournaments">TOURNAMENTS</CustomLink>
           </Box>
-          <Box px={2} py={3} width={[1, 1 / 5]}>
+          <Box px={2} py={3} width={[1, 1 / 6]}>
             <CustomLink to="/social">SOCIAL</CustomLink>
           </Box>
-          <Box px={2} py={3} width={[1, 1 / 5]}>
+          <Box px={2} py={3} width={[1, 1 / 6]}>
             <a href="https://discord.gg/wRH37XXy3n"><CustomIcon src={require('../images/icons/discord.png')} /></a>
           </Box>
         </Flex>

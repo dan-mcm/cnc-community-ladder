@@ -2,6 +2,7 @@ import React,{Component} from 'react';
 import { Modal,ModalManager,Effect} from 'react-dynamic-modal';
 import { StyledLink } from '../utils/styles';
 import { Flex, Box } from 'grid-styled';
+import ModalSearchBar from '../components/ModalSearchBar';
 import styled from 'styled-components';
 
 // icons
@@ -117,9 +118,9 @@ class ScoreModal extends Component{
                 <br/>
                 <hr/>
               </div>
-
+              <ModalSearchBar data={data}/>
                <h3>RECENT GAMES</h3>
-               <Flex flexWrap="wrap">
+              <Flex flexWrap="wrap">
                {
                  data.games.map(game => (
                     <Box px={2} py={3} width={[1, 1 / 3]}>

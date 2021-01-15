@@ -83,6 +83,7 @@ class SearchBar extends Component {
           onChange={this.handleInputChange}
         />
         <br/><br/>
+        {(this.state.result.length > 0 && this.state.query.length > 0) ? <h3>PLAYERS FOUND</h3> : ""}
         {(this.state.result.length > 0 && this.state.query.length > 0) ?
           <table>
           <CustomHeaderRow>

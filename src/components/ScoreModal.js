@@ -137,7 +137,7 @@ class ScoreModal extends Component{
                <h3>RECENT GAMES</h3>
               <Flex flexWrap="wrap">
                {
-                 data.games.map(game => (
+                 data.games.sort((a,b) => (a.date > b.date) ? -1 : 1 ).map(game => (
                     <Box px={2} py={3} width={[1, 1 / 3]}>
                       <CustomP>
                       {( game.player_random===false) ? ((game.player_faction === 'GDI')  ? <IconImg src={gdi} alt="gdi" /> : <IconImg src={nod} alt="nod" />) : ((game.player_faction === 'GDI') ? <IconImg src={randomgdi} alt="randomgdi" /> : <IconImg src={randomnod} alt="randomnod" />)}<b> {data.name}</b> -v- <b>{game.opponent} </b>{( game.opponent_random===false) ? ((game.opponent_faction === 'GDI')  ? <IconImg src={gdi} alt="gdi" /> : <IconImg src={nod} alt="nod" />) : ((game.opponent_faction === 'GDI') ? <IconImg src={randomgdi} alt="randomgdi" /> : <IconImg src={randomnod} alt="randomnod" />)} <br/>

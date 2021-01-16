@@ -147,7 +147,7 @@ class ScoreModal extends Component{
                         }
                         <b> {data.name}</b> -v- <b>{game.opponent} </b>
                         {
-                          ( game.opponent_random===false) ?
+                          ( game.opponent_random===true) ?
                           ((game.opponent_faction === 'GDI') ? <IconImg src={randomgdi} alt="randomgdi" /> : <IconImg src={randomnod} alt="randomnod" />)
                           : ((game.opponent_faction === 'GDI')  ? <IconImg src={gdi} alt="gdi" /> : <IconImg src={nod} alt="nod" />)
                         } <br/>

@@ -114,9 +114,10 @@ class Ladder extends Component {
         randomTotal: randomOnly
       })
 
-      randomhighestTotal = randomTotals.sort((a,b) => a.randomTotal - b.randomTotal)
+      randomTotals.sort((a,b) => a.randomTotal - b.randomTotal);
+      randomhighestTotal = randomTotals.sort((a,b) => a.value - b.value);
     })
-    
+
     return this.setState({
     highestTotal: highestTotal[highestTotal.length-1],
     highestGDI: gdiHighestTotal[gdiHighestTotal.length-1],

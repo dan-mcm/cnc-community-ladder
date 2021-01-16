@@ -75,7 +75,7 @@ app.get(`/nightbot/:season/:playername`, (req, result) => {
   pool.connect()
   .then(client => {
     // deduplicates reuslts based on timestamp being unique and also orders results by time
-    return client.query(`SELECT distinct(starttime) starttime, match_duration, player1_name, player1_faction, player2_name, player2_faction, result, map, replay, season FROM matches  WHERE season=${req.params.season} order by starttime DESC`)
+    return client.query(`SELECT distinct(starttime) starttime, match_duration, player1_name, player1_faction, player1_random, player2_name, player2_faction, player2_random, result, map, replay, season FROM matches  WHERE season=${req.params.season} order by starttime ASC`)
       .then(res => {
           client.release();
           let parsed = DBdataTranslation(res.rows)
@@ -125,7 +125,7 @@ app.get('/obs/:season/:playername', (req, result) => {
   pool.connect()
   .then(client => {
     // deduplicates reuslts based on timestamp being unique and also orders results by time
-    return client.query(`SELECT distinct(starttime) starttime, match_duration, player1_name, player1_faction, player2_name, player2_faction, result, map, replay, season FROM matches  WHERE season=${req.params.season} order by starttime DESC`)
+    return client.query(`SELECT distinct(starttime) starttime, match_duration, player1_name, player1_faction, player1_random, player2_name, player2_faction, player2_random, result, map, replay, season FROM matches  WHERE season=${req.params.season} order by starttime ASC`)
       .then(res => {
           client.release();
           let parsed = DBdataTranslation(res.rows)

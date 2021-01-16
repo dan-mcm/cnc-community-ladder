@@ -95,7 +95,6 @@ class Ladder extends Component {
         player: player.name,
         gdiTotal: gdiOnly
       })
-      gdiTotals.sort((a,b) => a.gdiTotal - b.gdiTotal);
       gdiHighestTotal = gdiTotals.sort((a,b) => a.value - b.value);
 
       // overallNod
@@ -104,7 +103,6 @@ class Ladder extends Component {
         player: player.name,
         nodTotal: nodOnly
       })
-      nodTotals.sort((a,b) => a.nodTotal - b.nodTotal);
       nodHighestTotal = nodTotals.sort((a,b) => a.value - b.value);
 
       // overallRandom
@@ -113,11 +111,11 @@ class Ladder extends Component {
         player: player.name,
         randomTotal: randomOnly
       })
-      randomTotals.sort((a,b) => a.nodTotal - b.nodTotal);
-      randomhighestTotal = randomTotals.sort((a,b) => a.value - b.value)
+
+      randomhighestTotal = randomTotals.sort((a,b) => a.randomTotal - b.randomTotal)
     })
 
-
+    console.log(randomhighestTotal)
     return this.setState({
     highestTotal: highestTotal[highestTotal.length-1],
     highestGDI: gdiHighestTotal[gdiHighestTotal.length-1],

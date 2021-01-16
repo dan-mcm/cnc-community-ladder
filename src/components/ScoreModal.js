@@ -105,20 +105,21 @@ class ScoreModal extends Component{
                 <hr/>
                 <h3>FACTION STATS</h3><br/>
                 <Flex>
-                  { (data.games.filter(game => game.player_faction==="GDI" && game.player_random===false).length > 0) ?
+                  {console.log(data.games.filter(game => game.player_faction==="GDI").length)}
+                  { (data.games.filter(game => game.player_faction==="GDI").length > 0) ?
                   <Box px={2} py={3} width={[1, 1 / 3]}>
                     <IconImg src={gdi} alt="gdi" /><br/>
-                    GAMES WON - {data.games.filter(game => game.result === "W" && game.player_faction==="GDI" && game.player_random===false).length}<br/>
-                    GAMES LOST - {data.games.filter(game => game.result === "L" && game.player_faction==="GDI" && game.player_random===false).length}<br/>
-                    WINRATE - {(data.games.filter(game => game.result === "W" && game.player_faction==="GDI" && game.player_random===false).length > 0) ? Math.floor((data.games.filter(game => game.result === "W" && game.player_faction==="GDI" && game.player_random===false).length) / (data.games.filter(game => game.result === "W" && game.player_faction==="GDI" && game.player_random===false).length + data.games.filter(game => game.result === "L" && game.player_faction==="GDI" && game.player_random===false).length) * 100) : 0}%
+                    GAMES WON - {data.games.filter(game => game.result === "W" && game.player_faction==="GDI" && ( game.player_random===false || game.player_random===null)).length}<br/>
+                    GAMES LOST - {data.games.filter(game => game.result === "L" && game.player_faction==="GDI" && ( game.player_random===false || game.player_random===null)).length}<br/>
+                    WINRATE - {(data.games.filter(game => game.result === "W" && game.player_faction==="GDI" && (game.player_random===false || game.player_random===null)).length > 0) ? Math.floor((data.games.filter(game => game.result === "W" && game.player_faction==="GDI" && (game.player_random===false || game.player_random===null)).length) / (data.games.filter(game => game.result === "W" && game.player_faction==="GDI" && (game.player_random===false || game.player_random===null)).length + data.games.filter(game => game.result === "L" && game.player_faction==="GDI" && (game.player_random===false || game.player_random===null)).length) * 100) : 0}%
                   </Box> : ""
                 }
-                { (data.games.filter(game => game.player_faction==="Nod" && game.player_random===false).length > 0) ?
+                { (data.games.filter(game => game.player_faction==="Nod").length > 0) ?
                   <Box px={2} py={3} width={[1, 1 / 3]}>
                     <IconImg src={nod} alt="nod" /><br/>
-                    GAMES WON - {data.games.filter(game => game.result === "W" && game.player_faction==="Nod" && game.player_random===false).length}<br/>
-                    GAMES LOST - {data.games.filter(game => game.result === "L" && game.player_faction==="Nod" && game.player_random===false).length}<br/>
-                    WINRATE - {(data.games.filter(game => game.result === "W" && game.player_faction==="Nod" && game.player_random===false).length > 0) ? Math.floor((data.games.filter(game => game.result === "W" && game.player_faction==="Nod" && game.player_random===false).length) / (data.games.filter(game => game.result === "W" && game.player_faction==="Nod" && game.player_random===false).length + data.games.filter(game => game.result === "L" && game.player_faction==="Nod" && game.player_random===false).length) * 100) : 0}%
+                    GAMES WON - {data.games.filter(game => game.result === "W" && game.player_faction==="Nod" && (game.player_random===false || game.player_random===null)).length}<br/>
+                    GAMES LOST - {data.games.filter(game => game.result === "L" && game.player_faction==="Nod" && (game.player_random===false || game.player_random===null)).length}<br/>
+                    WINRATE - {(data.games.filter(game => game.result === "W" && game.player_faction==="Nod" && (game.player_random===false || game.player_random===null)).length > 0) ? Math.floor((data.games.filter(game => game.result === "W" && game.player_faction==="Nod" && (game.player_random===false || game.player_random===null)).length) / (data.games.filter(game => game.result === "W" && game.player_faction==="Nod" && (game.player_random===false || game.player_random===null)).length + data.games.filter(game => game.result === "L" && game.player_faction==="Nod" && (game.player_random===false || game.player_random===null)).length) * 100) : 0}%
                   </Box> : ""
                 }
                 { (data.games.filter(game => game.player_random===true).length > 0) ?

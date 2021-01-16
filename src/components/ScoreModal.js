@@ -105,7 +105,6 @@ class ScoreModal extends Component{
                 <hr/>
                 <h3>FACTION STATS</h3><br/>
                 <Flex>
-                  {console.log(data.games.filter(game => game.player_faction==="GDI").length)}
                   { (data.games.filter(game => game.player_faction==="GDI").length > 0) ?
                   <Box px={2} py={3} width={[1, 1 / 3]}>
                     <IconImg src={gdi} alt="gdi" /><br/>

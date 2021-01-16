@@ -119,7 +119,6 @@ const getFormattedMatches = async function() {
       if (err) {
         console.log(err.stack);
       } else {
-        console.log(`FORMATTED MESSAGES DEBUG: ${JSON.stringify(res.rows)}`);
         data = res.rows.map(async starttime =>
           getSpecificTimedMatches(starttime.starttime)
         );

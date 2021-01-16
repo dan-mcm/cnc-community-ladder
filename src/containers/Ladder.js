@@ -81,7 +81,6 @@ class Ladder extends Component {
 
     // overallTotal
     data.map(player => {
-      console.log(`PLAYER: ${JSON.stringify(player)}`)
       playerTotals.push({
         player: player.name,
         playerTotal: player.games.length

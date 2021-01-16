@@ -9,6 +9,8 @@ import styled from 'styled-components';
 import gdi from '../images/factions/gdi.png';
 import nod from '../images/factions/nod.png';
 import random from '../images/factions/random.png'
+import randomgdi from '../images/factions/gdirandom.png'
+import randomnod from '../images/factions/nodrandom.png'
 
 const IconImg = styled.img`
   max-width: 40px;
@@ -138,7 +140,7 @@ class ScoreModal extends Component{
                  data.games.map(game => (
                     <Box px={2} py={3} width={[1, 1 / 3]}>
                       <CustomP>
-                      {(game.player_faction === 'GDI')  ? <IconImg src={gdi} alt="gdi" /> : <IconImg src={nod} alt="nod" />}<b> {data.name}</b> -v- <b>{game.opponent} </b>{(game.opponent_faction === 'GDI') ? <IconImg src={gdi} alt="gdi" /> : <IconImg src={nod} alt="nod" />} <br/>
+                      {( game.player_random===false) ? ((game.player_faction === 'GDI')  ? <IconImg src={gdi} alt="gdi" /> : <IconImg src={nod} alt="nod" />) : ((game.player_faction === 'GDI') ? <IconImg src={randomgdi} alt="randomgdi" /> : <IconImg src={randomnod} alt="randomnod" />)}<b> {data.name}</b> -v- <b>{game.opponent} </b>{( game.opponent_random===false) ? ((game.opponent_faction === 'GDI')  ? <IconImg src={gdi} alt="gdi" /> : <IconImg src={nod} alt="nod" />) : ((game.opponent_faction === 'GDI') ? <IconImg src={randomgdi} alt="randomgdi" /> : <IconImg src={randomnod} alt="randomnod" />)} <br/>
                       {this.toDateString(game.date)} <br/>
                       {`${Math.floor(game.duration / 60)}mins ${Math.trunc(game.duration - Math.floor(game.duration / 60) * 60)}secs`}<br/>
                       {(game.result==="W") ? <span style={greenStyle}>Win</span> : <span style={redStyle}>Loss</span>} <br/>

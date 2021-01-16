@@ -147,7 +147,7 @@ app.get('/obs/:season/:playername', (req, result) => {
           let customHTML = `
             <html>
             <head>
-              <meta http-equiv="refresh" content="900">
+              <meta http-equiv="refresh" content="300">
             </head>
             <div style="background-color:black; display: table">
               <p style="border:2px solid white; color:white; padding:5px; margin: 0 auto">

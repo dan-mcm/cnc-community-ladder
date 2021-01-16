@@ -8,6 +8,7 @@ import styled from 'styled-components';
 // icons
 import gdi from '../images/factions/gdi.png';
 import nod from '../images/factions/nod.png';
+import random from '../images/factions/random.png'
 
 const IconImg = styled.img`
   max-width: 40px;
@@ -102,18 +103,30 @@ class ScoreModal extends Component{
                 <hr/>
                 <h3>FACTION STATS</h3><br/>
                 <Flex>
-                  <Box px={2} py={3} width={[1, 1 / 2]}>
+                  { (data.games.filter(game => game.player_faction==="GDI" && game.player_random===false).length > 0) ?
+                  <Box px={2} py={3} width={[1, 1 / 3]}>
                     <IconImg src={gdi} alt="gdi" /><br/>
-                    GAMES WON - {data.games.filter(game => game.result === "W" && game.player_faction==="GDI").length}<br/>
-                    GAMES LOST - {data.games.filter(game => game.result === "L" && game.player_faction==="GDI").length}<br/>
-                    WINRATE - {(data.games.filter(game => game.result === "W" && game.player_faction==="GDI").length > 0) ? Math.floor((data.games.filter(game => game.result === "W" && game.player_faction==="GDI").length) / (data.games.filter(game => game.result === "W" && game.player_faction==="GDI").length + data.games.filter(game => game.result === "L" && game.player_faction==="GDI").length) * 100) : 0}%
-                  </Box>
-                  <Box px={2} py={3} width={[1, 1 / 2]}>
+                    GAMES WON - {data.games.filter(game => game.result === "W" && game.player_faction==="GDI" && game.player_random===false).length}<br/>
+                    GAMES LOST - {data.games.filter(game => game.result === "L" && game.player_faction==="GDI" && game.player_random===false).length}<br/>
+                    WINRATE - {(data.games.filter(game => game.result === "W" && game.player_faction==="GDI" && game.player_random===false).length > 0) ? Math.floor((data.games.filter(game => game.result === "W" && game.player_faction==="GDI" && game.player_random===false).length) / (data.games.filter(game => game.result === "W" && game.player_faction==="GDI" && game.player_random===false).length + data.games.filter(game => game.result === "L" && game.player_faction==="GDI" && game.player_random===false).length) * 100) : 0}%
+                  </Box> : ""
+                }
+                { (data.games.filter(game => game.player_faction==="Nod" && game.player_random===false).length > 0) ?
+                  <Box px={2} py={3} width={[1, 1 / 3]}>
                     <IconImg src={nod} alt="nod" /><br/>
-                    GAMES WON - {data.games.filter(game => game.result === "W" && game.player_faction==="Nod").length}<br/>
-                    GAMES LOST - {data.games.filter(game => game.result === "L" && game.player_faction==="Nod").length}<br/>
-                    WINRATE - {(data.games.filter(game => game.result === "W" && game.player_faction==="Nod").length > 0) ? Math.floor((data.games.filter(game => game.result === "W" && game.player_faction==="Nod").length) / (data.games.filter(game => game.result === "W" && game.player_faction==="Nod").length + data.games.filter(game => game.result === "L" && game.player_faction==="Nod").length) * 100) : 0}%
-                  </Box>
+                    GAMES WON - {data.games.filter(game => game.result === "W" && game.player_faction==="Nod" && game.player_random===false).length}<br/>
+                    GAMES LOST - {data.games.filter(game => game.result === "L" && game.player_faction==="Nod" && game.player_random===false).length}<br/>
+                    WINRATE - {(data.games.filter(game => game.result === "W" && game.player_faction==="Nod" && game.player_random===false).length > 0) ? Math.floor((data.games.filter(game => game.result === "W" && game.player_faction==="Nod" && game.player_random===false).length) / (data.games.filter(game => game.result === "W" && game.player_faction==="Nod" && game.player_random===false).length + data.games.filter(game => game.result === "L" && game.player_faction==="Nod" && game.player_random===false).length) * 100) : 0}%
+                  </Box> : ""
+                }
+                { (data.games.filter(game => game.player_random===true).length > 0) ?
+                  <Box px={2} py={3} width={[1, 1 / 3]}>
+                    <IconImg src={random} alt="random" /><br/>
+                    GAMES WON - {data.games.filter(game => game.result === "W" && game.player_random===true).length}<br/>
+                    GAMES LOST - {data.games.filter(game => game.result === "L" && game.player_random===true).length}<br/>
+                    WINRATE - {(data.games.filter(game => game.result === "W" && game.player_random===true).length > 0) ? Math.floor((data.games.filter(game => game.result === "W" && game.player_random===true).length) / (data.games.filter(game => game.result === "W" && game.player_random===true).length + data.games.filter(game => game.result === "L" && game.player_random===true).length) * 100) : 0}%
+                  </Box> : ""
+                }
                 </Flex>
                 <br/>
                 <hr/>

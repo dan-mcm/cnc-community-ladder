@@ -94,6 +94,8 @@ function DBdataTranslation(dataArray){
           opponent: decodedPlayer2,
           opponent_faction: match.player2_faction,
           player_faction: match.player1_faction,
+          player_random: match.player1_random,
+          opponent_random: match.player2_random,
           map: match.map,
           replay: `https://replays.cnctdra.ea.com/${match.replay}`,
           result: (match.result === decodedPlayer1) ? "W" : "L"
@@ -118,6 +120,8 @@ function DBdataTranslation(dataArray){
           opponent: decodedPlayer1,
           opponent_faction: match.player1_faction,
           player_faction: match.player2_faction,
+          player_random: match.player1_random,
+          opponent_random: match.player2_random,
           map: match.map,
           replay: `https://replays.cnctdra.ea.com/${match.replay}`,
           result: (match.result === decodedPlayer2) ? "W" : "L"
@@ -135,6 +139,8 @@ function DBdataTranslation(dataArray){
           opponent: decodedPlayer1,
           opponent_faction: match.player1_faction,
           player_faction: match.player2_faction,
+          player_random: match.player1_random,
+          opponent_random: match.player2_random,
           map: match.map,
           replay: `https://replays.cnctdra.ea.com/${match.replay}`,
           result: (match.result === decodedPlayer2) ? "W" : "L"

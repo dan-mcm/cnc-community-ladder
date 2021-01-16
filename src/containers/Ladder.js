@@ -32,6 +32,7 @@ class Ladder extends Component {
       highestTotal: {},
       highestGDI: {},
       highestNod: {},
+      highestRandom: {},
       selectedSeason: 3
     }
   }
@@ -74,9 +75,13 @@ class Ladder extends Component {
 
     let nodTotals = []
     let nodHighestTotal = {}
+
+    let randomTotals = []
+    let randomhighestTotal = {}
+
     // overallTotal
     data.map(player => {
-
+      console.log(`PLAYER: ${JSON.stringify(player)}`)
       playerTotals.push({
         player: player.name,
         playerTotal: player.games.length
@@ -102,11 +107,22 @@ class Ladder extends Component {
       })
       nodTotals.sort((a,b) => a.nodTotal - b.nodTotal);
       nodHighestTotal = nodTotals.sort((a,b) => a.value - b.value);
+
+      // overallRandom
+      let randomOnly = (player.games.filter(game => game.player_random === true)).length
+      randomTotals.push({
+        player: player.name,
+        randomTotal: randomOnly
+      })
+      randomhighestTotal = randomTotals.sort((a,b) => a.value - b.value)
     })
+
+
     return this.setState({
     highestTotal: highestTotal[highestTotal.length-1],
     highestGDI: gdiHighestTotal[gdiHighestTotal.length-1],
-    highestNod: nodHighestTotal[nodHighestTotal.length-1]
+    highestNod: nodHighestTotal[nodHighestTotal.length-1],
+    highestRandom: randomhighestTotal[randomhighestTotal.length-1]
   })
 
   }
@@ -160,7 +176,7 @@ class Ladder extends Component {
 
           <h3>SEASON {(this.state.selectedSeason === 3) ? "3+" : this.state.selectedSeason}</h3>
           TOTAL PLAYERS: {this.state.matchData.length}<br/><br/>
-          <Veterans highestTotal={this.state.highestTotal} highestGDI={this.state.highestGDI} highestNod={this.state.highestNod}/>
+          <Veterans highestTotal={this.state.highestTotal} highestGDI={this.state.highestGDI} highestNod={this.state.highestNod} highestRandom={this.state.highestRandom}/>
           <Pagination
              activePage={this.state.activePage}
              itemsCountPerPage={200}

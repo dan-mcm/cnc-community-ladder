@@ -34,7 +34,7 @@ app.get('/db-get/:season', (req, result) => {
   pool.connect()
   .then(client => {
     // deduplicates reuslts based on timestamp being unique and also orders results by time
-    return client.query(`SELECT distinct(starttime) starttime, match_duration, player1_name, player1_faction, player2_name, player2_faction, result, map, replay, season FROM matches  WHERE season=${req.params.season} order by starttime DESC`)
+    return client.query(`SELECT distinct(starttime) starttime, match_duration, player1_name, player1_faction, player1_random, player2_name, player2_faction, player2_random, result, map, replay, season FROM matches  WHERE season=${req.params.season} order by starttime DESC`)
       .then(res => {
           client.release();
           let startSorted = res.rows.sort((a,b) => (a.starttime > b.starttime) ? -1 : 1 )
@@ -65,7 +65,7 @@ app.get(`/nightbot/:season/:playername`, (req, result) => {
   //   database: process.env.DB_NAME,
   //   password: process.env.DB_PASSWORD,
   //   port: process.env.DB_PORT
-  // });
+  //  });
   // for prod
     const pool = new Pool({
     connectionString: process.env.DATABASE_URL,

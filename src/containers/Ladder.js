@@ -114,6 +114,7 @@ class Ladder extends Component {
         player: player.name,
         randomTotal: randomOnly
       })
+      randomTotals.sort((a,b) => a.nodTotal - b.nodTotal);
       randomhighestTotal = randomTotals.sort((a,b) => a.value - b.value)
     })
 

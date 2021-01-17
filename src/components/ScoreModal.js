@@ -75,6 +75,7 @@ class ScoreModal extends Component{
 
    render(){
       const { data, rank, onRequestClose } = this.props;
+
       return (
          <Modal
             onRequestClose={onRequestClose}
@@ -145,7 +146,7 @@ class ScoreModal extends Component{
                           ((game.player_faction === 'GDI') ? <IconImg src={randomgdi} alt="randomgdi" /> : <IconImg src={randomnod} alt="randomnod" />)
                           : ((game.player_faction === 'GDI')  ? <IconImg src={gdi} alt="gdi" /> : <IconImg src={nod} alt="nod" />)
                         }
-                        <b> {data.name}</b> -v- <b>{game.opponent} </b>
+                        <b> {data.name}</b> [{(game.player_new_elo - game.player_existing_elo > 0) ? <span style={{color: "green", fontWeight: "bold"}}>+{game.player_new_elo - game.player_existing_elo}</span> : <span style={{color: "red", fontWeight: "bold"}}>{game.player_new_elo - game.player_existing_elo}</span>}] -v- [{(game.opponent_new_elo - game.opponent_existing_elo > 0) ? <span style={{color: "green", fontWeight: "bold"}}>+{game.opponent_new_elo - game.opponent_existing_elo}</span> : <span style={{color: "red", fontWeight: "bold"}}>{game.opponent_new_elo - game.opponent_existing_elo}</span> }] <b>{game.opponent} </b>
                         {
                           ( game.opponent_random===true) ?
                           ((game.opponent_faction === 'GDI') ? <IconImg src={randomgdi} alt="randomgdi" /> : <IconImg src={randomnod} alt="randomnod" />)

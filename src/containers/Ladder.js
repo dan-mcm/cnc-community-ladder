@@ -9,7 +9,6 @@ import Pagination from "react-js-pagination";
 import ScrollToTop from '../components/Scroll.js';
 import Veterans from '../components/Veterans.js';
 import Leaderboard from '../components/Leaderboard.js';
-import { eloCalculations } from '../utils/functions';
 const axios = require('axios').default;
 
 const CustomP = styled.p`
@@ -58,7 +57,6 @@ class Ladder extends Component {
     .then(
       matches => {
         let data = matches.data
-        eloCalculations(data)
         data.sort((a,b) => (a.current_elo > b.current_elo) ? -1 : 1 )
         this.topPlayers(data);
         this.setState({ matchData: data });

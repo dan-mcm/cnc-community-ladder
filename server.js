@@ -6,7 +6,7 @@ const port = process.env.PORT || 5000;
 const dotenv = require('dotenv').config();
 const DB = require('./utils/dbQueries.js');
 const { Pool } = require('pg');
-const eloCalculations = require('./utils/helpers.js').eloCalculations;
+const eloCalculationsRawRevised = require('./utils/helpers.js').eloCalculationsRawRevised;
 const DBdataTranslation = require('./utils/helpers.js').DBdataTranslation;
 
 app.use(express.static(path.join(__dirname, "build")));
@@ -37,7 +37,8 @@ app.get('/db-get/:season', (req, result) => {
     return client.query(`SELECT distinct(starttime) starttime, match_duration, player1_name, player1_faction, player1_random, player2_name, player2_faction, player2_random, result, map, replay, season FROM matches  WHERE season=${req.params.season} order by starttime ASC`)
       .then(res => {
           client.release();
-          let translatedData = DBdataTranslation(res.rows)
+          let eloAddition = eloCalculationsRawRevised(res.rows)
+          let translatedData = DBdataTranslation(eloAddition)
           result.send(translatedData)
       })
       .catch(e => {
@@ -77,12 +78,11 @@ app.get(`/nightbot/:season/:playername`, (req, result) => {
     // deduplicates reuslts based on timestamp being unique and also orders results by time
     return client.query(`SELECT distinct(starttime) starttime, match_duration, player1_name, player1_faction, player1_random, player2_name, player2_faction, player2_random, result, map, replay, season FROM matches  WHERE season=${req.params.season} order by starttime ASC`)
       .then(res => {
-          client.release();
-          let parsed = DBdataTranslation(res.rows)
-          let eloData = eloCalculations(parsed)
-          parsed.sort((a,b) => (a.current_elo > b.current_elo) ? 1 : -1 )
-          possibleIndex = parsed.findIndex(player => player.name === req.params.playername ) +1
-          let selected = parsed.filter(player => player.name === req.params.playername);
+          let eloAddition = eloCalculationsRawRevised(res.rows)
+          let translatedData = DBdataTranslation(eloAddition)
+          translatedData.sort((a,b) => (a.current_elo > b.current_elo) ? -1 : 1 )
+          possibleIndex = translatedData.findIndex(player => player.name === req.params.playername ) +1
+          let selected = translatedData.filter(player => player.name === req.params.playername);
           let output = {
             name: selected[0].name,
             rank: possibleIndex,
@@ -92,6 +92,7 @@ app.get(`/nightbot/:season/:playername`, (req, result) => {
             played: selected[0].games.length,
             season: (req.params.season === "3") ? "3+" : req.params.season
           }
+          client.release();
           return result.send(output)
       })
       .catch(e => {
@@ -127,12 +128,11 @@ app.get('/obs/:season/:playername', (req, result) => {
     // deduplicates reuslts based on timestamp being unique and also orders results by time
     return client.query(`SELECT distinct(starttime) starttime, match_duration, player1_name, player1_faction, player1_random, player2_name, player2_faction, player2_random, result, map, replay, season FROM matches  WHERE season=${req.params.season} order by starttime ASC`)
       .then(res => {
-          client.release();
-          let parsed = DBdataTranslation(res.rows)
-          let eloData = eloCalculations(parsed)
-          parsed.sort((a,b) => (a.current_elo > b.current_elo) ? -1 : 1 )
-          possibleIndex = parsed.findIndex(player => player.name === req.params.playername ) +1
-          let selected = parsed.filter(player => player.name === req.params.playername);
+          let eloAddition = eloCalculationsRawRevised(res.rows)
+          let translatedData = DBdataTranslation(eloAddition)
+          translatedData.sort((a,b) => (a.current_elo > b.current_elo) ? -1 : 1 )
+          possibleIndex = translatedData.findIndex(player => player.name === req.params.playername ) +1
+          let selected = translatedData.filter(player => player.name === req.params.playername);
           let output = {
             name: selected[0].name,
             rank: possibleIndex,
@@ -155,6 +155,7 @@ app.get('/obs/:season/:playername', (req, result) => {
             </div>
             </html>
           `
+          client.release();
           return result.send(customHTML)
       })
       .catch(e => {

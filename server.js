@@ -37,9 +37,7 @@ app.get('/db-get/:season', (req, result) => {
     return client.query(`SELECT distinct(starttime) starttime, match_duration, player1_name, player1_faction, player1_random, player2_name, player2_faction, player2_random, result, map, replay, season FROM matches  WHERE season=${req.params.season} order by starttime ASC`)
       .then(res => {
           client.release();
-          let eloAddition = eloCalculationsRawRevised(res.rows)
-          let translatedData = DBdataTranslation(eloAddition)
-          result.send(translatedData)
+          result.send(DBdataTranslation(eloCalculationsRawRevised(res.rows)))
       })
       .catch(e => {
           client.release();

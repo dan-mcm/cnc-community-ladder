@@ -7,21 +7,8 @@ function eloCalculator(p1,p2,p1_result){
   return p1Score
 }
 
-function checkFilterContent(filteredData, playerName){
-    return filteredData.map(game =>{
-      if(playerName === game.player1_name){
-        return true
-      }
-      if(playerName === game.player2_name){
-        return false
-      }
-    }
-  )
-}
-
 function getElo(filteredData, playerName){
   let matches = []
-
   filteredData.map(game => {
     if(game.player1_name === playerName){
       matches.push(game)
@@ -48,8 +35,8 @@ function eloCalculationsRawRevised(data){
   data.map((game) => {
 
     // check it filteredOutput has names from either player
-    let p1Exists = checkFilterContent(filteredOutput, game.player1_name)
-    let p2Exists = checkFilterContent(filteredOutput, game.player2_name)
+    let p1Exists = filteredOutput.some(recordedGame => recordedGame.player1_name === game.player1_name) || filteredOutput.some(recordedGame => recordedGame.player2_name === game.player1_name)
+    let p2Exists = filteredOutput.some(recordedGame => recordedGame.player2_name === game.player2_name) || filteredOutput.some(recordedGame => recordedGame.player1_name === game.player2_name)
 
     // not exist case
     p1Elo = (!p1Exists) ? defaultStartingElo : getElo(filteredOutput, game.player1_name)

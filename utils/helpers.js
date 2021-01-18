@@ -1,9 +1,9 @@
-function eloCalculator(p1, p2, p1_result) {
+function eloCalculator(p1, p2, p1Result) {
   // A p1_result of true means player 1 was winner.
-  var EloRating = require('elo-rating');
+  const EloRating = require('elo-rating');
   const player1 = p1;
   const player2 = p2;
-  const p1Score = EloRating.calculate(player1, player2, p1_result, 32);
+  const p1Score = EloRating.calculate(player1, player2, p1Result, 32);
   return p1Score;
 }
 
@@ -13,6 +13,7 @@ function getElo(filteredData, playerName) {
     if (game.player1_name === playerName) {
       matches.push(game);
     }
+
     if (game.player2_name === playerName) {
       matches.push(game);
     }
@@ -25,6 +26,7 @@ function getElo(filteredData, playerName) {
       ? matches[matches.length - 1].player1_elo_after
       : matches[matches.length - 1].player2_elo_after;
   }
+
   return 1000;
 }
 
@@ -66,7 +68,7 @@ function eloCalculationsRawRevised(data) {
     const afterElo = eloCalculator(
       game.player1_elo_before,
       game.player2_elo_before,
-      game.player1_name === game.result ? true : false
+      game.player1_name === game.result
     );
 
     // Set out new elo values to game object
@@ -80,7 +82,7 @@ function eloCalculationsRawRevised(data) {
   return filteredOutput;
 }
 
-function DBdataTranslation(dataArray) {
+function dbdataTranslation(dataArray) {
   const utf8 = require('utf8');
 
   const listedPlayers = [];
@@ -190,10 +192,12 @@ function DBdataTranslation(dataArray) {
       });
     }
   });
+
   return output;
 }
+
 module.exports = {
-  DBdataTranslation,
+  dbdataTranslation,
   eloCalculator,
   eloCalculationsRawRevised
 };

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 // Icons
@@ -97,5 +98,12 @@ class Veterans extends Component {
     );
   }
 }
+
+Veterans.propTypes = {
+  highestGDI: PropTypes.object.isRequired,
+  highestNod: PropTypes.object.isRequired,
+  highestRandom: PropTypes.object.isRequired,
+  highestTotal: PropTypes.object.isRequired
+};
 
 export default Veterans;

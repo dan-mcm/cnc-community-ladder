@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import ScoreModal from './ScoreModal';
 import { ModalManager } from 'react-dynamic-modal';
 import styled from 'styled-components';
@@ -94,7 +95,10 @@ class Leaderboard extends Component {
             .map((data, index) => (
               <>
                 {this.props.activePage === 1 ? (
-                  <CustomRow key={data.name} onClick={() => this.openModal(data, index)}>
+                  <CustomRow
+                    key={data.name}
+                    onClick={() => this.openModal(data, index)}
+                  >
                     <td>
                       {' '}
                       <CustomBadge
@@ -171,5 +175,16 @@ class Leaderboard extends Component {
     );
   }
 }
+
+Leaderboard.propTypes = {
+  highestGDI: PropTypes.object.isRequired,
+  highestNod: PropTypes.object.isRequired,
+  highestRandom: PropTypes.object.isRequired,
+  highestTotal: PropTypes.object.isRequired,
+  startPlayer: PropTypes.number.isRequired,
+  endPlayer: PropTypes.number.isRequired,
+  activePage: PropTypes.number.isRequired,
+  data: PropTypes.object.isRequired
+};
 
 export default Leaderboard;

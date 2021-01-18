@@ -17,6 +17,7 @@
     "history": "^4.10.1",
     "nodemon": "^2.0.6",
     "pg": "^8.5.1",
+    "prop-types": "^15.7.2",
     "react": "^16.10.2",
     "react-cookie-banner": "^4.1.0",
     "react-dom": "^16.10.2",

@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { Modal, ModalManager, Effect } from 'react-dynamic-modal';
 import { StyledLink } from '../utils/styles';
 import { Flex, Box } from 'grid-styled';
-import ModalSearchBar from '../components/ModalSearchBar';
+import ModalSearchBar from './ModalSearchBar';
 import styled from 'styled-components';
 
 // Icons
@@ -66,8 +67,8 @@ const modalStyle = {
 class ScoreModal extends Component {
   toDateString(epochValue) {
     let date = epochValue;
-    let utcSeconds = date;
-    let d = new Date(0); // Sets the date to the epoch
+    const utcSeconds = date;
+    const d = new Date(0); // Sets the date to the epoch
     d.setUTCSeconds(utcSeconds);
     date = d;
     return `${d.toLocaleDateString()} - ${d.toLocaleTimeString()}`;
@@ -78,9 +79,9 @@ class ScoreModal extends Component {
 
     return (
       <Modal
-        onRequestClose={onRequestClose}
         styles={modalStyle}
         effect={Effect.ScaleUp}
+        onRequestClose={onRequestClose}
       >
         <ModalWrap>
           <h3>
@@ -129,8 +130,10 @@ class ScoreModal extends Component {
             <h3>FACTION STATS</h3>
             <br />
             <Flex>
-              {data.games.filter(game => game.player_faction === 'GDI' && game.player_random === false).length >
-              0 ? (
+              {data.games.filter(
+                game =>
+                  game.player_faction === 'GDI' && game.player_random === false
+              ).length > 0 ? (
                 <Box px={2} py={3} width={[1, 1 / 3]}>
                   <IconImg src={gdi} alt="gdi" />
                   <br />
@@ -194,8 +197,10 @@ class ScoreModal extends Component {
               ) : (
                 ''
               )}
-              {data.games.filter(game => game.player_faction === 'Nod' && game.player_random === false).length >
-              0 ? (
+              {data.games.filter(
+                game =>
+                  game.player_faction === 'Nod' && game.player_random === false
+              ).length > 0 ? (
                 <Box px={2} py={3} width={[1, 1 / 3]}>
                   <IconImg src={nod} alt="nod" />
                   <br />
@@ -313,8 +318,8 @@ class ScoreModal extends Component {
           <Flex flexWrap="wrap">
             {data.games
               .sort((a, b) => (a.date > b.date ? -1 : 1))
-              .map(game => (
-                <Box px={2} py={3} width={[1, 1 / 3]}>
+              .map((game, index) => (
+                <Box key={index} px={2} py={3} width={[1, 1 / 3]}>
                   <CustomP>
                     {game.player_random === true ? (
                       game.player_faction === 'GDI' ? (
@@ -391,5 +396,11 @@ class ScoreModal extends Component {
     );
   }
 }
+
+ScoreModal.propTypes = {
+  data: PropTypes.object.isRequired,
+  rank: PropTypes.number.isRequired,
+  onRequestClose: PropTypes.func.isRequired
+};
 
 export default ScoreModal;

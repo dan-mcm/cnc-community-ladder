@@ -6,9 +6,8 @@ const port = process.env.PORT || 5000;
 const dotenv = require('dotenv').config();
 const DB = require('./utils/dbQueries.js');
 const { Pool } = require('pg');
-const eloCalculationsRawRevised = require('./utils/helpers.js')
-  .eloCalculationsRawRevised;
-const DBdataTranslation = require('./utils/helpers.js').DBdataTranslation;
+const { eloCalculationsRawRevised } = require('./utils/helpers.js');
+const { dbdataTranslation } = require('./utils/helpers.js');
 
 app.use(express.static(path.join(__dirname, 'build')));
 
@@ -42,7 +41,7 @@ app.get('/db-get/:season', (req, result) => {
         )
         .then(res => {
           client.release();
-          result.send(DBdataTranslation(eloCalculationsRawRevised(res.rows)));
+          result.send(dbdataTranslation(eloCalculationsRawRevised(res.rows)));
         })
         .catch(e => {
           client.release();
@@ -84,19 +83,19 @@ app.get(`/nightbot/:season/:playername`, (req, result) => {
           `SELECT distinct(starttime) starttime, match_duration, player1_name, player1_faction, player1_random, player2_name, player2_faction, player2_random, result, map, replay, season FROM matches  WHERE season=${req.params.season} order by starttime ASC`
         )
         .then(res => {
-          let eloAddition = eloCalculationsRawRevised(res.rows);
-          let translatedData = DBdataTranslation(eloAddition);
+          const eloAddition = eloCalculationsRawRevised(res.rows);
+          const translatedData = dbdataTranslation(eloAddition);
           translatedData.sort((a, b) =>
             a.current_elo > b.current_elo ? -1 : 1
           );
-          possibleIndex =
+          const possibleIndex =
             translatedData.findIndex(
               player => player.name === req.params.playername
             ) + 1;
-          let selected = translatedData.filter(
+          const selected = translatedData.filter(
             player => player.name === req.params.playername
           );
-          let output = {
+          const output = {
             name: selected[0].name,
             rank: possibleIndex,
             wins: selected[0].games.filter(game => game.result === 'W').length,
@@ -144,19 +143,19 @@ app.get('/obs/:season/:playername', (req, result) => {
           `SELECT distinct(starttime) starttime, match_duration, player1_name, player1_faction, player1_random, player2_name, player2_faction, player2_random, result, map, replay, season FROM matches  WHERE season=${req.params.season} order by starttime ASC`
         )
         .then(res => {
-          let eloAddition = eloCalculationsRawRevised(res.rows);
-          let translatedData = DBdataTranslation(eloAddition);
+          const eloAddition = eloCalculationsRawRevised(res.rows);
+          const translatedData = dbdataTranslation(eloAddition);
           translatedData.sort((a, b) =>
             a.current_elo > b.current_elo ? -1 : 1
           );
-          let possibleIndex =
+          const possibleIndex =
             translatedData.findIndex(
               player => player.name === req.params.playername
             ) + 1;
-          let selected = translatedData.filter(
+          const selected = translatedData.filter(
             player => player.name === req.params.playername
           );
-          let output = {
+          const output = {
             name: selected[0].name,
             rank: possibleIndex,
             wins: selected[0].games.filter(game => game.result === 'W').length,
@@ -166,7 +165,7 @@ app.get('/obs/:season/:playername', (req, result) => {
             season: req.params.season === '3' ? '3+' : req.params.season
           };
           // 15 minutes refresh time
-          let customHTML = `
+          const customHTML = `
             <html>
             <head>
               <meta http-equiv="refresh" content="300">

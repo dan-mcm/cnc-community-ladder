@@ -10,7 +10,7 @@ import {
   CustomCenterD,
   CustomLeftP,
   CustomLink2,
-  IconImg
+  HomeImg
 } from '../utils/styles';
 
 // Season 3+ maps
@@ -42,13 +42,13 @@ class Home extends Component {
       <Wrapper>
         <Flex flexWrap="wrap">
           <Box px={2} py={3} width={[1, 1 / 3]}>
-            <IconImg src={gdi} alt="gdi" />
+            <HomeImg src={gdi} alt="gdi" />
           </Box>
           <Box px={2} py={3} width={[1, 1 / 3]}>
             <h3>C&C TIBERIAN DAWN REMASTERED COMMUNITY</h3>
           </Box>
           <Box px={2} py={3} width={[1, 1 / 3]}>
-            <IconImg src={nod} alt="nod" />
+            <HomeImg src={nod} alt="nod" />
           </Box>
         </Flex>
         <p>

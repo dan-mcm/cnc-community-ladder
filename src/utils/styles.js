@@ -196,6 +196,14 @@ export const CustomImg = styled.img`
   max-height: 180px;
 `;
 
+export const HomeImg = styled.img`
+  max-width: 200px;
+  max-height: 200px;
+  margin: 0 auto;
+  padding: 0px;
+  vertical-align: middle;
+`;
+
 export const IconImg = styled.img`
   max-width: 40px;
   max-height: 40px;

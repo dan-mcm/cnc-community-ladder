@@ -1,22 +1,7 @@
 import React, { Component } from 'react';
 import ScoreModal from '../components/ScoreModal';
 import { ModalManager } from 'react-dynamic-modal';
-import styled from 'styled-components';
-
-const CustomBadge = styled.img`
-  max-width: 40px;
-  max-height: 40px;
-  padding: 0px;
-  margin: 0px;
-`;
-
-const CustomHeaderRow = styled.tr`
-  border-bottom: 2px solid white;
-`;
-const CustomRow = styled.tr`
-  background-color: rgb(16, 16, 16);
-  border-bottom: 2px solid white;
-`;
+import { CustomRow2, CustomBadge, CustomHeaderRow } from '../utils/styles';
 
 class SearchBar extends Component {
   constructor(props) {
@@ -111,7 +96,7 @@ class SearchBar extends Component {
               <th>WINRATE</th>
             </CustomHeaderRow>
             {this.state.result.map(result => (
-              <CustomRow
+              <CustomRow2
                 onClick={() =>
                   this.openModal(
                     this.props.data[
@@ -167,7 +152,7 @@ class SearchBar extends Component {
                       100
                   ) + '%'}
                 </td>
-              </CustomRow>
+              </CustomRow2>
             ))}
           </table>
         ) : (

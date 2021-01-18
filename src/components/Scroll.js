@@ -1,17 +1,7 @@
 // Sourced from: https://www.coderomeos.org/scroll-to-top-of-the-page-a-simple-react-component
 
 import React, { Component } from 'react';
-import styled from 'styled-components';
-
-const CustomButton = styled.button`
-  color: white;
-  background-color: rgb(40, 40, 40);
-  padding: 0.5em;
-  &:hover {
-    background-color: rgb(16, 16, 16);
-    color: gold;
-  }
-`;
+import { CustomButton } from '../utils/styles';
 
 export default class ScrollToTop extends Component {
   constructor(props) {

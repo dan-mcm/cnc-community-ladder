@@ -1,10 +1,15 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Modal, ModalManager, Effect } from 'react-dynamic-modal';
-import { StyledLink } from '../utils/styles';
+import {
+  CustomImg,
+  CustomP,
+  IconImg,
+  ModalWrap,
+  StyledLink
+} from '../utils/styles';
 import { Flex, Box } from 'grid-styled';
 import ModalSearchBar from './ModalSearchBar';
-import styled from 'styled-components';
 
 // Icons
 import gdi from '../images/factions/gdi.png';
@@ -12,37 +17,6 @@ import nod from '../images/factions/nod.png';
 import random from '../images/factions/random.png';
 import randomgdi from '../images/factions/gdirandom.png';
 import randomnod from '../images/factions/nodrandom.png';
-
-const IconImg = styled.img`
-  max-width: 40px;
-  max-height: 40px;
-  margin: 0 auto;
-  padding: 0px;
-  vertical-align: middle;
-  padding-bottom: 5px;
-`;
-
-const ModalWrap = styled.div`
-  margin: 0 auto;
-  min-width: 600px;
-  max-height: 600px;
-  overflow-y: auto;
-  text-align: center;
-  padding-top: 10px;
-  padding-bottom: 10px;
-  background-color: black;
-  color: white;
-  line-height: 1.6;
-`;
-
-const CustomP = styled.p`
-  font-size: 15px;
-`;
-
-const CustomImg = styled.img`
-  max-width: 180px;
-  max-height: 180px;
-`;
 
 const greenStyle = {
   color: 'green',

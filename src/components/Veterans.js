@@ -1,54 +1,26 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import styled from 'styled-components';
+import {
+  CustomRow3,
+  GDIData,
+  NodData,
+  RandomData,
+  TotalData,
+  IconImg,
+  Overflow
+} from '../utils/styles';
 
 // Icons
 import gdi from '../images/factions/gdi.png';
 import nod from '../images/factions/nod.png';
 import random from '../images/factions/random.png';
 
-const CustomRow = styled.tr`
-  border: 2px solid white;
-`;
-const GDIData = styled.td`
-  background-color: rgb(16, 16, 16);
-  min-width: 200px;
-`;
-
-const NodData = styled.td`
-  background-color: rgb(30, 30, 30);
-  min-width: 200px;
-`;
-
-const RandomData = styled.td`
-  background-color: rgb(16, 16, 16);
-  min-width: 200px;
-`;
-
-const TotalData = styled.td`
-  background-color: rgb(30, 30, 30);
-  min-width: 200px;
-`;
-
-const IconImg = styled.img`
-  max-width: 40px;
-  max-height: 40px;
-  margin: 0 auto;
-  padding: 0px;
-  vertical-align: middle;
-  padding-bottom: 5px;
-`;
-
-const Overflow = styled.div`
-  overflow-x: hidden;
-`;
-
 class Veterans extends Component {
   render() {
     return (
       <Overflow>
         <table>
-          <CustomRow>
+          <CustomRow3>
             <GDIData>
               <IconImg src={gdi} alt="nod" />
               <br />
@@ -92,7 +64,7 @@ class Veterans extends Component {
               🎖️ {this.props.highestTotal.player} 🎖️ <br />{' '}
               {this.props.highestTotal.playerTotal} Total Games Played
             </TotalData>
-          </CustomRow>
+          </CustomRow3>
         </table>
       </Overflow>
     );

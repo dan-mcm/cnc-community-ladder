@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import styled from 'styled-components';
-import { StyledLink } from '../utils/styles';
+import { CustomP, CustomImg, IconImg, StyledLink } from '../utils/styles';
 import { Flex, Box } from 'grid-styled';
 
 // icons
@@ -16,24 +15,6 @@ let redStyle = {
   color: 'red',
   fontWeight: 'bold'
 };
-
-const CustomImg = styled.img`
-  max-width: 180px;
-  max-height: 180px;
-`;
-
-const IconImg = styled.img`
-  max-width: 40px;
-  max-height: 40px;
-  margin: 0 auto;
-  padding: 0px;
-  vertical-align: middle;
-  padding-bottom: 5px;
-`;
-
-const CustomP = styled.p`
-  font-size: 15px;
-`;
 
 class ModalSearchBar extends Component {
   constructor(props) {

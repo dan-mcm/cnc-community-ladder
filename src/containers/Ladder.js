@@ -1,22 +1,14 @@
 import React, { Component } from 'react';
 import { Wrapper } from '../utils/styles';
-import styled from 'styled-components';
 import SearchBar from '../components/SearchBar';
 import { Flex, Box } from 'grid-styled';
 import Pagination from 'react-js-pagination';
 import ScrollToTop from '../components/Scroll.js';
 import Veterans from '../components/Veterans.js';
 import Leaderboard from '../components/Leaderboard.js';
+import { CustomP, CustomImage } from '../utils/styles';
+
 const axios = require('axios').default;
-
-const CustomP = styled.p`
-  font-size: 14px;
-`;
-
-const CustomImage = styled.img`
-  max-width: 200px;
-  max-height: 200px;
-`;
 
 class Ladder extends Component {
   constructor(props) {

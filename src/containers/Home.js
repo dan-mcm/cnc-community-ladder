@@ -5,9 +5,13 @@ import {
   StyledLink,
   Wrapper
 } from '../utils/styles';
-import { Link } from 'react-router-dom';
 import { Flex, Box } from 'grid-styled';
-import styled from 'styled-components';
+import {
+  CustomCenterD,
+  CustomLeftP,
+  CustomLink2,
+  IconImg
+} from '../utils/styles';
 
 // Season 3+ maps
 import elevation from '../images/maps/elevation.png';
@@ -31,38 +35,6 @@ import vales from '../images/maps/vales_of_the_templars.png';
 // Icons
 import gdi from '../images/factions/gdi.png';
 import nod from '../images/factions/nod.png';
-
-const CustomCenterD = styled.div`
-  text-align: center;
-  padding: 2.5rem;
-`;
-const CustomLeftP = styled.p`
-  max-width: 1000px;
-  text-align: left;
-  margin: auto;
-`;
-const CustomLink = styled(Link)`
-  color: white;
-  text-decoration: none;
-  font-weight: bold;
-  font-size: 1.8rem;
-  background-color: rgba(64, 64, 64, 0.6);
-  padding: 10px;
-  border-radius: 10px;
-  &:hover {
-    background-color: rgba(64, 64, 64, 0.9);
-    text-decoration: none;
-    color: gold;
-  }
-`;
-
-const IconImg = styled.img`
-  max-width: 200px;
-  max-height: 200px;
-  margin: 0 auto;
-  padding: 0px;
-  vertical-align: middle;
-`;
 
 class Home extends Component {
   render() {
@@ -111,7 +83,7 @@ class Home extends Component {
               <br />
               <br />
             </CustomLeftP>
-            <CustomLink to="/ladder">Season 3+ Ladder</CustomLink>
+            <CustomLink2 to="/ladder">Season 3+ Ladder</CustomLink2>
           </CustomCenterD>
           <br />
         </div>

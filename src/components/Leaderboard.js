@@ -2,40 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import ScoreModal from './ScoreModal';
 import { ModalManager } from 'react-dynamic-modal';
-import styled from 'styled-components';
-import { TableFormat } from '../utils/styles';
-
-const CustomBadge = styled.img`
-  max-width: 40px;
-  max-height: 40px;
-  padding: 0px;
-  margin: 0px;
-`;
-
-const CustomRow = styled.tr`
-  &:nth-child(2) {
-    background-color: rgb(212, 175, 55, 0.6);
-  }
-  &:nth-child(2):hover {
-    background-color: rgb(212, 175, 55, 0.9);
-  }
-  &:nth-child(3) {
-    background-color: rgb(192, 192, 192, 0.6);
-  }
-  &:nth-child(3):hover {
-    background-color: rgb(192, 192, 192, 0.9);
-  }
-  &:nth-child(4) {
-    background-color: rgb(205, 127, 50, 0.6);
-  }
-  &:nth-child(4):hover {
-    background-color: rgb(205, 127, 50, 0.9);
-  }
-`;
-
-const Overflow = styled.div`
-  overflow-x: hidden;
-`;
+import { CustomBadge, CustomRow, Overflow, TableFormat } from '../utils/styles';
 
 class Leaderboard extends Component {
   getRank(rank) {

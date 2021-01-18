@@ -1,33 +1,6 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 import { Flex, Box } from 'grid-styled';
-import styled from 'styled-components';
-
-const CustomNav = styled.div`
-  background-repeat: repeat;
-  background-color: black;
-  min-width: 600px;
-`;
-
-const CustomLink = styled(Link)`
-  color: white;
-  text-decoration: none;
-  font-weight: bold;
-  &:hover {
-    text-decoration: none;
-    color: gold;
-  }
-`;
-
-const CustomIcon = styled.img`
-  max-width: 50px;
-  max-height: 50px;
-  padding: 0px;
-  filter: grayscale(50%);
-  &:hover {
-    filter: grayscale(0%);
-  }
-`;
+import { CustomNav, CustomReactLink, CustomIcon } from '../utils/styles';
 
 class Nav extends Component {
   render() {
@@ -35,24 +8,24 @@ class Nav extends Component {
       <CustomNav>
         <Flex flexWrap="wrap">
           <Box px={2} py={3} width={[1, 1 / 6]}>
-            <CustomLink to="/">
+            <CustomReactLink to="/">
               C&C REMASTERED
               <br />
               TIBERIAN DAWN
               <br /> COMMUNITY
-            </CustomLink>
+            </CustomReactLink>
           </Box>
           <Box px={2} py={3} width={[1, 1 / 6]}>
-            <CustomLink to="/ladder">LADDER</CustomLink>
+            <CustomReactLink to="/ladder">LADDER</CustomReactLink>
           </Box>
           <Box px={2} py={3} width={[1, 1 / 6]}>
-            <CustomLink to="/streamers">STREAMERS</CustomLink>
+            <CustomReactLink to="/streamers">STREAMERS</CustomReactLink>
           </Box>
           <Box px={2} py={3} width={[1, 1 / 6]}>
-            <CustomLink to="/tournaments">TOURNAMENTS</CustomLink>
+            <CustomReactLink to="/tournaments">TOURNAMENTS</CustomReactLink>
           </Box>
           <Box px={2} py={3} width={[1, 1 / 6]}>
-            <CustomLink to="/social">SOCIAL</CustomLink>
+            <CustomReactLink to="/social">SOCIAL</CustomReactLink>
           </Box>
           <Box px={2} py={3} width={[1, 1 / 6]}>
             <a href="https://discord.gg/wRH37XXy3n">

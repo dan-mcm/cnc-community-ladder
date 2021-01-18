@@ -169,7 +169,13 @@ class Ladder extends Component {
           </select>
           {this.state.matchata}
           </>
-          <SearchBar data={this.state.matchData}/>
+          <SearchBar
+            data={this.state.matchData}
+            highestTotal={this.state.highestTotal}
+            highestGDI={this.state.highestGDI}
+            highestNod={this.state.highestNod}
+            highestRandom={this.state.highestRandom}
+          />
           <hr/>
 
           <h3>SEASON {(this.state.selectedSeason === 3) ? "3+" : this.state.selectedSeason}</h3>
@@ -187,14 +193,18 @@ class Ladder extends Component {
              linkClass="page-link"
              activeLinkClass="page-selected"
            />
+
           <Leaderboard
             data={this.state.matchData}
             startPlayer={this.state.startPlayer}
             endPlayer={this.state.endPlayer}
             activePage={this.state.activePage}
+            highestTotal={this.state.highestTotal}
+            highestGDI={this.state.highestGDI}
+            highestNod={this.state.highestNod}
+            highestRandom={this.state.highestRandom}
           />
 
-          <br/>
           <Pagination
              activePage={this.state.activePage}
              itemsCountPerPage={200}

@@ -10,35 +10,23 @@ const CustomRow = styled.tr`
   border: 2px solid white;
 `
 const GDIData = styled.td`
-  background-color: rgb(250, 192, 0, 0.7);
+  background-color: rgb(16,16,16);
   min-width: 200px;
-  &:hover{
-    background-color: rgb(250, 192, 0, 1);
-  }
 `
 
 const NodData = styled.td`
-  background-color: rgb(247, 55, 24, 0.7);
+  background-color: rgb(30,30,30);
   min-width: 200px;
-  &:hover{
-    background-color: rgb(247, 55, 24, 1)
-  }
 `
 
 const RandomData = styled.td`
-  background-color: rgb(17,30,108, 0.7);
+  background-color: rgb(16,16,16);
   min-width: 200px;
-  &:hover{
-    background-color: rgb(17, 30, 108, 1);
-  }
 `
 
 const TotalData = styled.td`
-  background-color: rgb(165,42,42,0.7);
+  background-color: rgb(30,30,30);
   min-width: 200px;
-  &:hover{
-    background-color: rgb(165,42,42, 1);
-  }
 `
 
 const IconImg = styled.img`

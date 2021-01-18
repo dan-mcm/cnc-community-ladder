@@ -54,10 +54,17 @@ class Leaderboard extends Component {
     }
   }
 
-  specialBadge(player, rank){
+  specialBadge(player, rank, total, gdi, nod, random){
+    // top 3 badges
     if (rank === 1) return '🥇 ' + player + ' 🥇'
     if (rank === 2) return '🥈 ' + player + ' 🥈'
     if (rank === 3) return '🥉 ' + player + ' 🥉'
+
+    // most played badges
+    if (player === total) return '🎖️ ' + player + ' 🎖️'
+    if (player === gdi) return '🎖️ ' + player + ' 🎖️'
+    if (player === nod) return '🎖️ ' + player + ' 🎖️'
+    if (player === random) return '🎖️ ' + player + ' 🎖️'
     return player;
   }
 
@@ -88,7 +95,7 @@ class Leaderboard extends Component {
              <CustomRow onClick={() => this.openModal(data, index)}>
              <td> <CustomBadge src={require(`../images/ranks/${this.getRank(index+1+this.props.startPlayer)}.png`)} /></td>
               <td>#{index + 1 + this.props.startPlayer}</td>
-              <td>{this.specialBadge(data.name, index+1+this.props.startPlayer)}</td>
+              <td>{this.specialBadge(data.name, index+1+this.props.startPlayer, this.props.highestTotal.player, this.props.highestGDI.player, this.props.highestNod.player, this.props.highestRandom.player)}</td>
               <td>{data.current_elo}</td>
               <td>{(data.games.filter(game => game.result === "W")).length}</td>
               <td>{(data.games.filter(game => game.result === "L")).length}</td>

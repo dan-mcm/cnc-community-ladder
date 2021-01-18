@@ -64,10 +64,17 @@ class SearchBar extends Component {
      );
   }
 
-  specialBadge(player, rank){
+  specialBadge(player, rank, total, gdi, nod, random){
+    // top 3 badges
     if (rank === 1) return '🥇 ' + player + ' 🥇'
     if (rank === 2) return '🥈 ' + player + ' 🥈'
     if (rank === 3) return '🥉 ' + player + ' 🥉'
+
+    // most played badges
+    if (player === total) return '🎖️ ' + player + ' 🎖️'
+    if (player === gdi) return '🎖️ ' + player + ' 🎖️'
+    if (player === nod) return '🎖️ ' + player + ' 🎖️'
+    if (player === random) return '🎖️ ' + player + ' 🎖️'
     return player;
   }
 
@@ -102,7 +109,7 @@ class SearchBar extends Component {
             <CustomRow onClick={() => this.openModal(this.props.data[this.props.data.findIndex(player => player.name === result.name)], this.props.data.findIndex(player => player.name === result.name))}>
               <td> <CustomBadge src={require(`../images/ranks/${this.getRank(this.props.data.findIndex(player => player.name === result.name)+1)}.png`)} /></td>
               <td>{this.props.data.findIndex(player => player.name === result.name) + 1}</td>
-              <td>{this.specialBadge(result.name, this.props.data.findIndex(player => player.name === result.name)+1)}</td>
+              <td>{this.specialBadge(result.name, this.props.data.findIndex(player => player.name === result.name)+1, this.props.highestTotal.player, this.props.highestGDI.player, this.props.highestNod.player, this.props.highestRandom.player)}</td>
               <td>{result.current_elo}</td>
               <td>{(result.games.filter(game => game.result === "W")).length}</td>
               <td>{(result.games.filter(game => game.result === "L")).length}</td>

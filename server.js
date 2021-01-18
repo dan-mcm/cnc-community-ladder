@@ -9,6 +9,11 @@ const { Pool } = require('pg');
 const { eloCalculationsRawRevised } = require('./utils/helpers.js');
 const { dbdataTranslation } = require('./utils/helpers.js');
 
+// For handling SQL injection
+function cleanInput(input){
+  return (/^\d+$/.test(input)) ? input : 3;
+}
+
 if (process.env.NODE_ENV === 'production') {
   app.use((req, res, next) => {
     if (req.header('x-forwarded-proto') !== 'https')
@@ -33,6 +38,7 @@ app.get('/db-get/:season', (req, result) => {
   //   port: process.env.DB_PORT
   // });
   // For prod
+  const cleanedInput = cleanInput(req.params.season)
   const pool = new Pool({
     connectionString: process.env.DATABASE_URL,
     ssl: {
@@ -45,7 +51,7 @@ app.get('/db-get/:season', (req, result) => {
       // Deduplicates reuslts based on timestamp being unique and also orders results by time
       return client
         .query(
-          `SELECT distinct(starttime) starttime, match_duration, player1_name, player1_faction, player1_random, player2_name, player2_faction, player2_random, result, map, replay, season FROM matches  WHERE season=${req.params.season} order by starttime ASC`
+          `SELECT distinct(starttime) starttime, match_duration, player1_name, player1_faction, player1_random, player2_name, player2_faction, player2_random, result, map, replay, season FROM matches  WHERE season=${cleanedInput} order by starttime ASC`
         )
         .then(res => {
           client.release();
@@ -75,6 +81,7 @@ app.get(`/nightbot/:season/:playername`, (req, result) => {
   //   password: process.env.DB_PASSWORD,
   //   port: process.env.DB_PORT
   //  });
+  const cleanedInput = cleanInput(req.params.season)
   // For prod
   const pool = new Pool({
     connectionString: process.env.DATABASE_URL,
@@ -88,7 +95,7 @@ app.get(`/nightbot/:season/:playername`, (req, result) => {
       // Deduplicates reuslts based on timestamp being unique and also orders results by time
       return client
         .query(
-          `SELECT distinct(starttime) starttime, match_duration, player1_name, player1_faction, player1_random, player2_name, player2_faction, player2_random, result, map, replay, season FROM matches  WHERE season=${req.params.season} order by starttime ASC`
+          `SELECT distinct(starttime) starttime, match_duration, player1_name, player1_faction, player1_random, player2_name, player2_faction, player2_random, result, map, replay, season FROM matches  WHERE season=${cleanedInput} order by starttime ASC`
         )
         .then(res => {
           const eloAddition = eloCalculationsRawRevised(res.rows);
@@ -135,6 +142,7 @@ app.get('/obs/:season/:playername', (req, result) => {
   //   password: process.env.DB_PASSWORD,
   //   port: process.env.DB_PORT
   // });
+  const cleanedInput = cleanInput(req.params.season)
   // For prod
   const pool = new Pool({
     connectionString: process.env.DATABASE_URL,
@@ -148,7 +156,7 @@ app.get('/obs/:season/:playername', (req, result) => {
       // Deduplicates reuslts based on timestamp being unique and also orders results by time
       return client
         .query(
-          `SELECT distinct(starttime) starttime, match_duration, player1_name, player1_faction, player1_random, player2_name, player2_faction, player2_random, result, map, replay, season FROM matches  WHERE season=${req.params.season} order by starttime ASC`
+          `SELECT distinct(starttime) starttime, match_duration, player1_name, player1_faction, player1_random, player2_name, player2_faction, player2_random, result, map, replay, season FROM matches  WHERE season=${cleanedInput} order by starttime ASC`
         )
         .then(res => {
           const eloAddition = eloCalculationsRawRevised(res.rows);

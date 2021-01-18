@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import ScoreModal from '../components/ScoreModal';
+import ScoreModal from './ScoreModal';
 import { ModalManager } from 'react-dynamic-modal';
 import styled from 'styled-components';
 import { TableFormat } from '../utils/styles';
@@ -52,12 +52,12 @@ class Leaderboard extends Component {
   }
 
   specialBadge(player, rank, total, gdi, nod, random) {
-    // top 3 badges
+    // Top 3 badges
     if (rank === 1) return '🥇 ' + player + ' 🥇';
     if (rank === 2) return '🥈 ' + player + ' 🥈';
     if (rank === 3) return '🥉 ' + player + ' 🥉';
 
-    // most played badges
+    // Most played badges
     if (player === total) return '🎖️ ' + player + ' 🎖️';
     if (player === gdi) return '🎖️ ' + player + ' 🎖️';
     if (player === nod) return '🎖️ ' + player + ' 🎖️';
@@ -94,7 +94,7 @@ class Leaderboard extends Component {
             .map((data, index) => (
               <>
                 {this.props.activePage === 1 ? (
-                  <CustomRow onClick={() => this.openModal(data, index)}>
+                  <CustomRow key={data.name} onClick={() => this.openModal(data, index)}>
                     <td>
                       {' '}
                       <CustomBadge

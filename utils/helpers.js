@@ -1,14 +1,14 @@
 function eloCalculator(p1, p2, p1_result) {
-  //p1_result of true means player 1 was winner.
+  // A p1_result of true means player 1 was winner.
   var EloRating = require('elo-rating');
-  let player1 = p1;
-  let player2 = p2;
-  let p1Score = EloRating.calculate(player1, player2, p1_result, 32);
+  const player1 = p1;
+  const player2 = p2;
+  const p1Score = EloRating.calculate(player1, player2, p1_result, 32);
   return p1Score;
 }
 
 function getElo(filteredData, playerName) {
-  let matches = [];
+  const matches = [];
   filteredData.map(game => {
     if (game.player1_name === playerName) {
       matches.push(game);
@@ -29,21 +29,20 @@ function getElo(filteredData, playerName) {
 }
 
 function eloCalculationsRawRevised(data) {
-  let filteredOutput = [];
-  let defaultStartingElo = 1000;
+  const filteredOutput = [];
+  const defaultStartingElo = 1000;
   let p1Elo = 0;
   let p2Elo = 0;
 
   data.map(game => {
-    // check it filteredOutput has names from either player
-    let p1Exists =
+    const p1Exists =
       filteredOutput.some(
         recordedGame => recordedGame.player1_name === game.player1_name
       ) ||
       filteredOutput.some(
         recordedGame => recordedGame.player2_name === game.player1_name
       );
-    let p2Exists =
+    const p2Exists =
       filteredOutput.some(
         recordedGame => recordedGame.player2_name === game.player2_name
       ) ||
@@ -51,7 +50,7 @@ function eloCalculationsRawRevised(data) {
         recordedGame => recordedGame.player1_name === game.player2_name
       );
 
-    // not exist case
+    // Not exist case
     p1Elo = !p1Exists
       ? defaultStartingElo
       : getElo(filteredOutput, game.player1_name);
@@ -59,18 +58,18 @@ function eloCalculationsRawRevised(data) {
       ? defaultStartingElo
       : getElo(filteredOutput, game.player2_name);
 
-    // set out existing elo values to game object
+    // Set out existing elo values to game object
     game.player1_elo_before = p1Elo;
     game.player2_elo_before = p2Elo;
 
-    // calculating newElo
-    let afterElo = eloCalculator(
+    // Calculating newElo
+    const afterElo = eloCalculator(
       game.player1_elo_before,
       game.player2_elo_before,
       game.player1_name === game.result ? true : false
     );
 
-    // set out new elo values to game object
+    // Set out new elo values to game object
     game.player1_elo_after = afterElo.playerRating;
     game.player2_elo_after = afterElo.opponentRating;
 
@@ -78,22 +77,21 @@ function eloCalculationsRawRevised(data) {
     return game;
   });
 
-  // console.log(filteredOutput)
   return filteredOutput;
 }
 
 function DBdataTranslation(dataArray) {
   const utf8 = require('utf8');
 
-  let listedPlayers = [];
-  let output = [];
+  const listedPlayers = [];
+  const output = [];
   dataArray.map(match => {
-    // default case if we haven't encountered player1 yet...
-    let decodedPlayer1 = utf8.decode(eval("'" + match.player1_name + "'"));
-    let decodedPlayer2 = utf8.decode(eval("'" + match.player2_name + "'"));
+    // Default case if we haven't encountered player1 yet...
+    const decodedPlayer1 = utf8.decode(eval("'" + match.player1_name + "'"));
+    const decodedPlayer2 = utf8.decode(eval("'" + match.player2_name + "'"));
 
     if (!listedPlayers.includes(decodedPlayer1)) {
-      let frontend = {
+      const frontend = {
         name: '',
         current_elo: 1000,
         games: []
@@ -121,8 +119,8 @@ function DBdataTranslation(dataArray) {
       });
       output.push(frontend);
     } else if (listedPlayers.includes(decodedPlayer1)) {
-      // second case if we have encountered player1 yet...
-      let index = output.findIndex(player => player.name === decodedPlayer1);
+      // Second case if we have encountered player1 yet...
+      const index = output.findIndex(player => player.name === decodedPlayer1);
 
       output[index].games.push({
         date: match.starttime,
@@ -142,10 +140,10 @@ function DBdataTranslation(dataArray) {
       });
     }
 
-    // updating player 2 default case
-    // default case if we haven't encountered player1 yet...
+    // Updating player 2 default case
+    // Default case if we haven't encountered player1 yet...
     if (!listedPlayers.includes(decodedPlayer2)) {
-      let frontend = {
+      const frontend = {
         name: '',
         current_elo: 1000,
         games: []
@@ -171,8 +169,8 @@ function DBdataTranslation(dataArray) {
       });
       output.push(frontend);
     } else if (listedPlayers.includes(decodedPlayer2)) {
-      // second case if we have encountered player2 yet...
-      let index = output.findIndex(player => player.name === decodedPlayer2);
+      // Second case if we have encountered player2 yet...
+      const index = output.findIndex(player => player.name === decodedPlayer2);
 
       output[index].games.push({
         date: match.starttime,

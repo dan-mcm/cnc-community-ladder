@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 
-// icons
+// Icons
 import gdi from '../images/factions/gdi.png';
 import nod from '../images/factions/nod.png';
 import random from '../images/factions/random.png';

@@ -58,7 +58,7 @@ class Social extends Component {
           <StandardImage src={twitch} alt="Twitch" />
           <Flex flexWrap="wrap">
             {twitchData.map(streamer => (
-              <Box px={2} py={3} width={[1, 1 / 3]}>
+              <Box key={streamer} px={2} py={3} width={[1, 1 / 3]}>
                 <StyledLink href={'https://www.twitch.tv/' + streamer}>
                   {streamer}
                 </StyledLink>

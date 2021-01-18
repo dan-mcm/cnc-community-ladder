@@ -5,7 +5,7 @@ import { Flex, Box } from 'grid-styled';
 import ModalSearchBar from '../components/ModalSearchBar';
 import styled from 'styled-components';
 
-// icons
+// Icons
 import gdi from '../images/factions/gdi.png';
 import nod from '../images/factions/nod.png';
 import random from '../images/factions/random.png';
@@ -43,17 +43,17 @@ const CustomImg = styled.img`
   max-height: 180px;
 `;
 
-let greenStyle = {
+const greenStyle = {
   color: 'green',
   fontWeight: 'bold'
 };
 
-let redStyle = {
+const redStyle = {
   color: 'red',
   fontWeight: 'bold'
 };
 
-let plainStyle = {
+const plainStyle = {
   color: 'white',
   fontWeight: 'bold'
 };
@@ -66,8 +66,8 @@ const modalStyle = {
 class ScoreModal extends Component {
   toDateString(epochValue) {
     let date = epochValue;
-    var utcSeconds = date;
-    var d = new Date(0); // sets the date to the epoch
+    let utcSeconds = date;
+    let d = new Date(0); // Sets the date to the epoch
     d.setUTCSeconds(utcSeconds);
     date = d;
     return `${d.toLocaleDateString()} - ${d.toLocaleTimeString()}`;
@@ -79,8 +79,8 @@ class ScoreModal extends Component {
     return (
       <Modal
         onRequestClose={onRequestClose}
-        effect={Effect.ScaleUp}
         styles={modalStyle}
+        effect={Effect.ScaleUp}
       >
         <ModalWrap>
           <h3>
@@ -129,7 +129,7 @@ class ScoreModal extends Component {
             <h3>FACTION STATS</h3>
             <br />
             <Flex>
-              {data.games.filter(game => game.player_faction === 'GDI').length >
+              {data.games.filter(game => game.player_faction === 'GDI' && game.player_random === false).length >
               0 ? (
                 <Box px={2} py={3} width={[1, 1 / 3]}>
                   <IconImg src={gdi} alt="gdi" />
@@ -194,7 +194,7 @@ class ScoreModal extends Component {
               ) : (
                 ''
               )}
-              {data.games.filter(game => game.player_faction === 'Nod').length >
+              {data.games.filter(game => game.player_faction === 'Nod' && game.player_random === false).length >
               0 ? (
                 <Box px={2} py={3} width={[1, 1 / 3]}>
                   <IconImg src={nod} alt="nod" />

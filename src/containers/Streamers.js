@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import { Wrapper, CenterBullets, StyledLink } from '../utils/styles';
 
-// obs screenshots
+// OBS screenshots
 import obs from '../images/streamers/obs-overlay.png';
 import obszoom from '../images/streamers/obs-overlay-zoomed.png';
 import obsbrowser from '../images/streamers/obs-browser.png';
 import obslink from '../images/streamers/obs-link.png';
 
-// nightbot screenshots
+// Nightbot screenshots
 import nightbot from '../images/streamers/nightbot.png';
 
 class Streamers extends Component {

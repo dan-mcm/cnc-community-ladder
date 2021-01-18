@@ -17,7 +17,7 @@ app.get('/', function(req, res) {
 });
 
 app.get('/db-get/:season', (req, result) => {
-  // for local...
+  // For local...
   // const pool = new Pool({
   //   user: process.env.DB_USER,
   //   host: process.env.DB_HOST,
@@ -25,7 +25,7 @@ app.get('/db-get/:season', (req, result) => {
   //   password: process.env.DB_PASSWORD,
   //   port: process.env.DB_PORT
   // });
-  // for prod
+  // For prod
   const pool = new Pool({
     connectionString: process.env.DATABASE_URL,
     ssl: {
@@ -35,7 +35,7 @@ app.get('/db-get/:season', (req, result) => {
   pool
     .connect()
     .then(client => {
-      // deduplicates reuslts based on timestamp being unique and also orders results by time
+      // Deduplicates reuslts based on timestamp being unique and also orders results by time
       return client
         .query(
           `SELECT distinct(starttime) starttime, match_duration, player1_name, player1_faction, player1_random, player2_name, player2_faction, player2_random, result, map, replay, season FROM matches  WHERE season=${req.params.season} order by starttime ASC`
@@ -60,7 +60,7 @@ app.get('/health', (req, res) => {
 });
 
 app.get(`/nightbot/:season/:playername`, (req, result) => {
-  // for local...
+  // For local...
   // const pool = new Pool({
   //   user: process.env.DB_USER,
   //   host: process.env.DB_HOST,
@@ -68,7 +68,7 @@ app.get(`/nightbot/:season/:playername`, (req, result) => {
   //   password: process.env.DB_PASSWORD,
   //   port: process.env.DB_PORT
   //  });
-  // for prod
+  // For prod
   const pool = new Pool({
     connectionString: process.env.DATABASE_URL,
     ssl: {
@@ -78,7 +78,7 @@ app.get(`/nightbot/:season/:playername`, (req, result) => {
   pool
     .connect()
     .then(client => {
-      // deduplicates reuslts based on timestamp being unique and also orders results by time
+      // Deduplicates reuslts based on timestamp being unique and also orders results by time
       return client
         .query(
           `SELECT distinct(starttime) starttime, match_duration, player1_name, player1_faction, player1_random, player2_name, player2_faction, player2_random, result, map, replay, season FROM matches  WHERE season=${req.params.season} order by starttime ASC`
@@ -120,7 +120,7 @@ app.get(`/nightbot/:season/:playername`, (req, result) => {
 });
 
 app.get('/obs/:season/:playername', (req, result) => {
-  // for local...
+  // For local...
   // const pool = new Pool({
   //   user: process.env.DB_USER,
   //   host: process.env.DB_HOST,
@@ -128,7 +128,7 @@ app.get('/obs/:season/:playername', (req, result) => {
   //   password: process.env.DB_PASSWORD,
   //   port: process.env.DB_PORT
   // });
-  // for prod
+  // For prod
   const pool = new Pool({
     connectionString: process.env.DATABASE_URL,
     ssl: {
@@ -138,7 +138,7 @@ app.get('/obs/:season/:playername', (req, result) => {
   pool
     .connect()
     .then(client => {
-      // deduplicates reuslts based on timestamp being unique and also orders results by time
+      // Deduplicates reuslts based on timestamp being unique and also orders results by time
       return client
         .query(
           `SELECT distinct(starttime) starttime, match_duration, player1_name, player1_faction, player1_random, player2_name, player2_faction, player2_random, result, map, replay, season FROM matches  WHERE season=${req.params.season} order by starttime ASC`
@@ -149,7 +149,7 @@ app.get('/obs/:season/:playername', (req, result) => {
           translatedData.sort((a, b) =>
             a.current_elo > b.current_elo ? -1 : 1
           );
-          possibleIndex =
+          let possibleIndex =
             translatedData.findIndex(
               player => player.name === req.params.playername
             ) + 1;

@@ -100,7 +100,7 @@ export const ladderData = [
   }
 ];
 
-// sorting based on points values
+// Sorting based on points values
 ladderData.sort(function(a, b) {
   return b.points - a.points;
 });

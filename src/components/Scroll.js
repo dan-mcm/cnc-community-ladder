@@ -1,4 +1,4 @@
-// sourced from: https://www.coderomeos.org/scroll-to-top-of-the-page-a-simple-react-component
+// Sourced from: https://www.coderomeos.org/scroll-to-top-of-the-page-a-simple-react-component
 
 import React, { Component } from 'react';
 import styled from 'styled-components';
@@ -17,12 +17,12 @@ export default class ScrollToTop extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      is_visible: false
+      isVisible: false
     };
   }
 
   componentDidMount() {
-    var scrollComponent = this;
+    let scrollComponent = this;
     document.addEventListener('scroll', function(e) {
       scrollComponent.toggleVisibility();
     });
@@ -31,11 +31,11 @@ export default class ScrollToTop extends Component {
   toggleVisibility() {
     if (window.pageYOffset > 300) {
       this.setState({
-        is_visible: true
+        isVisible: true
       });
     } else {
       this.setState({
-        is_visible: false
+        isVisible: false
       });
     }
   }
@@ -48,10 +48,10 @@ export default class ScrollToTop extends Component {
   }
 
   render() {
-    const { is_visible } = this.state;
+    const { isVisible } = this.state;
     return (
       <div className="scroll-to-top">
-        {is_visible && (
+        {isVisible && (
           <CustomButton onClick={() => this.scrollToTop()}>
             Scroll To Top
           </CustomButton>

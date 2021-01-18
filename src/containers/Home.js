@@ -9,7 +9,7 @@ import { Link } from 'react-router-dom';
 import { Flex, Box } from 'grid-styled';
 import styled from 'styled-components';
 
-// season 3+ maps
+// Season 3+ maps
 import elevation from '../images/maps/elevation.png';
 import quarry from '../images/maps/quarry.png';
 import monkey from '../images/maps/monkey_in_the_middle.png';
@@ -18,7 +18,7 @@ import tournamentmiddle from '../images/maps/tournament_middle_camp.png';
 import tournamentdesert from '../images/maps/tournament_desert.png';
 import heavymetal from '../images/maps/heavy_metal.png';
 
-// season 4 maps
+// Season 4 maps
 import canyonpaths from '../images/maps/canyon_paths.png';
 import duality36 from '../images/maps/duality.png';
 import frosted from '../images/maps/frosted_hostilities_vertically_mirrored.png';
@@ -28,7 +28,7 @@ import quicksilver from '../images/maps/quicksilver.png';
 import crystal from '../images/maps/sand_crystal_shard.png';
 import vales from '../images/maps/vales_of_the_templars.png';
 
-// icons
+// Icons
 import gdi from '../images/factions/gdi.png';
 import nod from '../images/factions/nod.png';
 

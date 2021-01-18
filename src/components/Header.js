@@ -20,7 +20,9 @@ class Header extends Component {
   render() {
     return (
       <CustomerHeader>
-        <SiteTitle>Command & Conquer - Tiberian Dawn - Community Ladder</SiteTitle>
+        <SiteTitle>
+          Command & Conquer - Tiberian Dawn - Community Ladder
+        </SiteTitle>
       </CustomerHeader>
     );
   }

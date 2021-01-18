@@ -6,7 +6,7 @@ export const CenterBullets = styled.ul`
   text-align: left;
   list-style-position: inside;
   display: inline-block;
-  font-size: 20px
+  font-size: 20px;
 `;
 
 export const Flip90Image = styled.img`
@@ -74,13 +74,13 @@ export const TableFormat = styled.table`
   font-family: 'Inconsolata', monospace;
   border-spacing: 0 1em;
   min-width: 1000px;
-  background-color: rgb(16,16,16);
+  background-color: rgb(16, 16, 16);
   tr {
     border-bottom: 2px solid white;
   }
   th {
     padding: 10px;
-    background-color: rgb(30,30,30);
+    background-color: rgb(30, 30, 30);
   }
   td {
     font-weight: bold;

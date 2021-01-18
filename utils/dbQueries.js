@@ -40,17 +40,25 @@ const getAllMatches = function() {
   return res;
 };
 
-
 /* eslint-disable camelcase */
 const filteringDataForFrontend = function(data) {
-  console.log(`DATA FOR FRONTEND: ${data}`)
+  console.log(`DATA FOR FRONTEND: ${data}`);
   // Based on length of the reviews array, each review = 1 object
   const total_matches = data.length;
 
   // Underlying logic assumes consistent data across all entries for these values
-  const { starttime, match_duration, player1_name, player1_faction, player2_name, player2_faction, result, map, replay, season } = data[0];
-
-
+  const {
+    starttime,
+    match_duration,
+    player1_name,
+    player1_faction,
+    player2_name,
+    player2_faction,
+    result,
+    map,
+    replay,
+    season
+  } = data[0];
 
   const feedback_comments = data.reduce(function(total, value) {
     return total.concat(value.feedback_comments);
@@ -74,13 +82,11 @@ const filteringDataForFrontend = function(data) {
   };
   /* eslint-enable camelcase */
 
- // DEBUG console.log(`\n DEBUG 1 - filteredData -> ${JSON.stringify(filteredData)} \n`)
- return filteredData;
+  // DEBUG console.log(`\n DEBUG 1 - filteredData -> ${JSON.stringify(filteredData)} \n`)
+  return filteredData;
 };
 
-
 const getSpecificTimedMatches = async function(playerName) {
-
   const getSpecificPlayersMatches = {
     name: `${playerName}-matches`,
     test: `SELECT * FROM matches WHERE starttime LIKE '%${playerName}%'`
@@ -105,7 +111,6 @@ const getSpecificTimedMatches = async function(playerName) {
   });
   return res;
 };
-
 
 const getFormattedMatches = async function() {
   const getDistinct = {

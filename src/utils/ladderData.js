@@ -3,28 +3,30 @@ export const ladderData = [
     rank: 1,
     name: 'Danku',
     points: 1100,
-    games:
-    [
+    games: [
       {
-        date: "12/14/2020",
-        opponent: "AOD Gaming" ,
-        result: "W" ,
-        map: "Vales of the Templar" ,
-        replay: "https://www.gamereplays.org/cnctiberiandawnremastered/replays.php?game=99&show=details&id=349370"
+        date: '12/14/2020',
+        opponent: 'AOD Gaming',
+        result: 'W',
+        map: 'Vales of the Templar',
+        replay:
+          'https://www.gamereplays.org/cnctiberiandawnremastered/replays.php?game=99&show=details&id=349370'
       },
       {
-        date: "12/14/2020",
-        opponent: "Adam" ,
-        result: "L" ,
-        map: "Sand Crystal Shard" ,
-        replay: "https://www.gamereplays.org/cnctiberiandawnremastered/replays.php?game=99&show=details&id=349370"
+        date: '12/14/2020',
+        opponent: 'Adam',
+        result: 'L',
+        map: 'Sand Crystal Shard',
+        replay:
+          'https://www.gamereplays.org/cnctiberiandawnremastered/replays.php?game=99&show=details&id=349370'
       },
       {
-        date: "12/14/2020",
-        opponent: "AOD Gaming" ,
-        result: "W" ,
-        map: "Vales of the Templar" ,
-        replay: "https://www.gamereplays.org/cnctiberiandawnremastered/replays.php?game=99&show=details&id=349370"
+        date: '12/14/2020',
+        opponent: 'AOD Gaming',
+        result: 'W',
+        map: 'Vales of the Templar',
+        replay:
+          'https://www.gamereplays.org/cnctiberiandawnremastered/replays.php?game=99&show=details&id=349370'
       }
     ]
   },
@@ -34,18 +36,20 @@ export const ladderData = [
     points: 900,
     games: [
       {
-        date: "12/14/2020",
-        opponent: "Danku" ,
-        result: "L" ,
-        map: "Vales of the Templar" ,
-        replay: "https://www.gamereplays.org/cnctiberiandawnremastered/replays.php?game=99&show=details&id=349370"
+        date: '12/14/2020',
+        opponent: 'Danku',
+        result: 'L',
+        map: 'Vales of the Templar',
+        replay:
+          'https://www.gamereplays.org/cnctiberiandawnremastered/replays.php?game=99&show=details&id=349370'
       },
       {
-        date: "12/14/2020",
-        opponent: "Danku" ,
-        result: "L" ,
-        map: "Vales of the Templar" ,
-        replay: "https://www.gamereplays.org/cnctiberiandawnremastered/replays.php?game=99&show=details&id=349370"
+        date: '12/14/2020',
+        opponent: 'Danku',
+        result: 'L',
+        map: 'Vales of the Templar',
+        replay:
+          'https://www.gamereplays.org/cnctiberiandawnremastered/replays.php?game=99&show=details&id=349370'
       }
     ]
   },
@@ -55,11 +59,12 @@ export const ladderData = [
     points: 1050,
     games: [
       {
-        date: "12/14/2020",
-        opponent: "Danku" ,
-        result: "W" ,
-        map: "Sand Crystal Shard" ,
-        replay: "https://www.gamereplays.org/cnctiberiandawnremastered/replays.php?game=99&show=details&id=349370"
+        date: '12/14/2020',
+        opponent: 'Danku',
+        result: 'W',
+        map: 'Sand Crystal Shard',
+        replay:
+          'https://www.gamereplays.org/cnctiberiandawnremastered/replays.php?game=99&show=details&id=349370'
       }
     ]
   },
@@ -96,6 +101,6 @@ export const ladderData = [
 ];
 
 // sorting based on points values
-ladderData.sort(function(a, b){
+ladderData.sort(function(a, b) {
   return b.points - a.points;
-})
+});

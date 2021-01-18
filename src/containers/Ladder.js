@@ -177,49 +177,60 @@ class Ladder extends Component {
             SEASON{' '}
             {this.state.selectedSeason === 3 ? '3+' : this.state.selectedSeason}
           </h3>
-          TOTAL PLAYERS: {this.state.matchData.length}
-          <br />
-          <br />
-          <Veterans
-            highestTotal={this.state.highestTotal}
-            highestGDI={this.state.highestGDI}
-            highestNod={this.state.highestNod}
-            highestRandom={this.state.highestRandom}
-          />
-          <Pagination
-            activePage={this.state.activePage}
-            itemsCountPerPage={200}
-            totalItemsCount={this.state.matchData.length}
-            pageRangeDisplayed={Math.ceil(this.state.matchData.length / 200)}
-            onChange={this.handlePageChange.bind(this)}
-            prevPageText="<"
-            nextPageText=">"
-            itemClass="page-item"
-            linkClass="page-link"
-            activeLinkClass="page-selected"
-          />
-          <Leaderboard
-            data={this.state.matchData}
-            startPlayer={this.state.startPlayer}
-            endPlayer={this.state.endPlayer}
-            activePage={this.state.activePage}
-            highestTotal={this.state.highestTotal}
-            highestGDI={this.state.highestGDI}
-            highestNod={this.state.highestNod}
-            highestRandom={this.state.highestRandom}
-          />
-          <Pagination
-            activePage={this.state.activePage}
-            itemsCountPerPage={200}
-            totalItemsCount={this.state.matchData.length}
-            pageRangeDisplayed={Math.ceil(this.state.matchData.length / 200)}
-            onChange={this.handlePageChange.bind(this)}
-            prevPageText="<"
-            nextPageText=">"
-            itemClass="page-item"
-            linkClass="page-link"
-            activeLinkClass="page-selected"
-          />
+          {this.state.matchData.length === 0 ? (
+            <div class="loader"></div>
+          ) : (
+            <>
+              TOTAL PLAYERS: {this.state.matchData.length}
+              <br />
+              <br />
+              <Veterans
+                highestTotal={this.state.highestTotal}
+                highestGDI={this.state.highestGDI}
+                highestNod={this.state.highestNod}
+                highestRandom={this.state.highestRandom}
+              />
+              <Pagination
+                activePage={this.state.activePage}
+                itemsCountPerPage={200}
+                totalItemsCount={this.state.matchData.length}
+                pageRangeDisplayed={Math.ceil(
+                  this.state.matchData.length / 200
+                )}
+                onChange={this.handlePageChange.bind(this)}
+                prevPageText="<"
+                nextPageText=">"
+                itemClass="page-item"
+                linkClass="page-link"
+                activeLinkClass="page-selected"
+              />
+              <Leaderboard
+                data={this.state.matchData}
+                startPlayer={this.state.startPlayer}
+                endPlayer={this.state.endPlayer}
+                activePage={this.state.activePage}
+                highestTotal={this.state.highestTotal}
+                highestGDI={this.state.highestGDI}
+                highestNod={this.state.highestNod}
+                highestRandom={this.state.highestRandom}
+              />
+              <Pagination
+                activePage={this.state.activePage}
+                itemsCountPerPage={200}
+                totalItemsCount={this.state.matchData.length}
+                pageRangeDisplayed={Math.ceil(
+                  this.state.matchData.length / 200
+                )}
+                onChange={this.handlePageChange.bind(this)}
+                prevPageText="<"
+                nextPageText=">"
+                itemClass="page-item"
+                linkClass="page-link"
+                activeLinkClass="page-selected"
+              />
+            </>
+          )}
+
           <ScrollToTop />
           <br />
         </div>

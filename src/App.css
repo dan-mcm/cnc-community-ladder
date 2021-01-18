@@ -141,8 +141,9 @@ for pagination component
 }
 .loader {
   margin: 0 auto;
-  border: 16px solid #ffffff; /* Light grey */
-  border-top: 16px solid gray; /* Blue */
+  border: 16px solid gray;
+  border-top: 16px solid #ffffff;
+
   border-radius: 50%;
   width: 60px;
   height: 60px;

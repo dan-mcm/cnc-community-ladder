@@ -154,3 +154,8 @@ for pagination component
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
 }
+
+.item:nth-child(3n) {
+  page-break-after: always; /* CSS 2.1 syntax */
+  break-after: always; /* New syntax */
+}

@@ -62,6 +62,25 @@ class Tournaments extends Component {
           <br />
           <hr />
         </div>
+        <div>
+          <h4>GROUNDHOG BRAWL #1</h4>
+          <iframe
+            allowfullscreen
+            title="groundhog brawl #1"
+            width="560"
+            height="315"
+            src="https://www.youtube.com/embed/uWEdHzKw6lQ"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          />
+          <br />
+          <StyledLink href="https://www.gamereplays.org/community/index.php?showtopic=1040829">
+            Results
+          </StyledLink>
+          <br />
+          <br />
+          <hr />
+        </div>
         <br />
       </Wrapper>
     );

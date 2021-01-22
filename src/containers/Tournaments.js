@@ -11,7 +11,10 @@ class Tournaments extends Component {
         <hr />
         <div>
           <h3>UPCOMING TOURNAMENTS</h3>
-          <p>Pending...</p>
+          <p><StyledLink href="https://www.gamereplays.org/cnctiberiandawnremastered/portals.php?show=page&name=admirals_cup">The Admirals Cup 2021</StyledLink></p>
+          <p>Taking place throughout the month of February - hosted by GameReplays.<br/>
+          For more details checkout the <StyledLink href="https://www.gamereplays.org/cnctiberiandawnremastered/portals.php?show=page&name=admirals_cup">announcement post</StyledLink></p>
+          <img src={require(`../images/admiralscup.jpg`)}/>
           <br />
           <br />
           <hr />

@@ -340,7 +340,9 @@ class ScoreModal extends Component {
                       game.duration - Math.floor(game.duration / 60) * 60
                     )}secs`}
                     <br />
-                    {game.result === true ? (
+                    {
+                      ((game.player === playername && game.result === false) ||
+                      (game.opponent === playername && game.result === true)) ? (
                       <span style={greenStyle}>Win</span>
                     ) : (
                       <span style={redStyle}>Loss</span>

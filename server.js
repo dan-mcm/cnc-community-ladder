@@ -218,6 +218,7 @@ app.get('/health', (req, res) => {
 
 app.get(`/nightbot/:season/:playername`, (req, result) => {
   let pool = createPool()
+  const cleanedSeasonInput = cleanInput(req.params.season);
 
   pool
     .connect()
@@ -225,28 +226,16 @@ app.get(`/nightbot/:season/:playername`, (req, result) => {
       // Deduplicates reuslts based on timestamp being unique and also orders results by time
       return client
         .query(
-          `SELECT distinct(starttime) starttime, match_duration, player1_name, player1_faction, player1_random, player2_name, player2_faction, player2_random, result, map, replay, season FROM matches  WHERE season=${cleanedInput} order by starttime ASC`
+          `SELECT DISTINCT player_name, season, rank, position, points, wins, loses, played, winrate FROM leaderboard WHERE season=${cleanedSeasonInput} AND player_name='${req.params.playername}' order by position ASC`
         )
         .then(res => {
-          const eloAddition = eloCalculationsRawRevised(res.rows);
-          const translatedData = dbdataTranslation(eloAddition);
-          translatedData.sort((a, b) =>
-            a.current_elo > b.current_elo ? -1 : 1
-          );
-          const possibleIndex =
-            translatedData.findIndex(
-              player => player.name === req.params.playername
-            ) + 1;
-          const selected = translatedData.filter(
-            player => player.name === req.params.playername
-          );
           const output = {
-            name: selected[0].name,
-            rank: possibleIndex,
-            wins: selected[0].games.filter(game => game.result === 'W').length,
-            lost: selected[0].games.filter(game => game.result === 'L').length,
-            points: selected[0].current_elo,
-            played: selected[0].games.length,
+            name: res.rows[0].player_name,
+            rank: res.rows[0].position,
+            wins: res.rows[0].wins,
+            lost: res.rows[0].loses,
+            points: res.rows[0].points,
+            played: res.rows[0].played,
             season: req.params.season === '3' ? '3+' : req.params.season
           };
           client.release();
@@ -265,35 +254,23 @@ app.get(`/nightbot/:season/:playername`, (req, result) => {
 
 app.get('/obs/:season/:playername', (req, result) => {
   let pool = createPool()
-
+  const cleanedSeasonInput = cleanInput(req.params.season);
   pool
     .connect()
     .then(client => {
       // Deduplicates reuslts based on timestamp being unique and also orders results by time
       return client
         .query(
-          `SELECT distinct(starttime) starttime, match_duration, player1_name, player1_faction, player1_random, player2_name, player2_faction, player2_random, result, map, replay, season FROM matches  WHERE season=${cleanedInput} order by starttime ASC`
+          `SELECT DISTINCT player_name, season, rank, position, points, wins, loses, played, winrate FROM leaderboard WHERE season=${cleanedSeasonInput} AND player_name='${req.params.playername}' order by position ASC`
         )
         .then(res => {
-          const eloAddition = eloCalculationsRawRevised(res.rows);
-          const translatedData = dbdataTranslation(eloAddition);
-          translatedData.sort((a, b) =>
-            a.current_elo > b.current_elo ? -1 : 1
-          );
-          const possibleIndex =
-            translatedData.findIndex(
-              player => player.name === req.params.playername
-            ) + 1;
-          const selected = translatedData.filter(
-            player => player.name === req.params.playername
-          );
           const output = {
-            name: selected[0].name,
-            rank: possibleIndex,
-            wins: selected[0].games.filter(game => game.result === 'W').length,
-            lost: selected[0].games.filter(game => game.result === 'L').length,
-            points: selected[0].current_elo,
-            played: selected[0].games.length,
+            name: res.rows[0].player_name,
+            rank: res.rows[0].position,
+            wins: res.rows[0].wins,
+            lost: res.rows[0].loses,
+            points: res.rows[0].points,
+            played: res.rows[0].played,
             season: req.params.season === '3' ? '3+' : req.params.season
           };
           // 15 minutes refresh time

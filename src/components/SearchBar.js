@@ -106,10 +106,7 @@ class SearchBar extends Component {
                   {' '}
                   <CustomBadge
                     src={require(`../images/ranks/${this.getRank(
-                      this.props.data.findIndex(
-                        player => player.name === result.name
-                      ) + 1
-                    )}.png`)}
+                      result.position)}.png`)}
                   />
                 </td>
                 <td>

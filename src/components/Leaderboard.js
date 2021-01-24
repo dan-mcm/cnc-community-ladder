@@ -39,6 +39,7 @@ class Leaderboard extends Component {
         data={data}
         playername={data.player_name}
         rank={index + this.props.startPlayer}
+        season={this.props.season}
         onRequestClose={() => true}
       />
     );
@@ -111,24 +112,20 @@ class Leaderboard extends Component {
                     <td>#{index + 1 + this.props.startPlayer}</td>
                     <td>
                       {this.specialBadge(
-                        data.name,
+                        data.player_name,
                         index + 1 + this.props.startPlayer
                       )}
                     </td>
-                    <td>{data.current_elo}</td>
+                    <td>{data.points}</td>
                     <td>
-                      {data.games.filter(game => game.result === 'W').length}
+                      {data.wins}
                     </td>
                     <td>
-                      {data.games.filter(game => game.result === 'L').length}
+                      {data.loses}
                     </td>
-                    <td>{data.games.length}</td>
+                    <td>{data.length}</td>
                     <td>
-                      {Math.floor(
-                        (data.games.filter(game => game.result === 'W').length /
-                          data.games.length) *
-                          100
-                      ) + '%'}
+                      {(data.winrate) + '%'}
                     </td>
                   </tr>
                 )}

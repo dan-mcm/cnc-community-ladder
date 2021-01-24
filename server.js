@@ -110,7 +110,7 @@ app.get('/elohistory/:season/:player', (req, result) => {
       // Deduplicates reuslts based on timestamp being unique and also orders results by time
       return client
         .query(
-          `SELECT * FROM elo_history WHERE season=${cleanedSeasonInput} and player='${req.params.player}' or opponent='${req.params.player}' order by starttime DESC`
+          `SELECT * FROM elo_history WHERE season=${cleanedSeasonInput} and (player='${req.params.player}' or opponent='${req.params.player}') order by starttime DESC`
         )
         .then(res => {
           client.release();

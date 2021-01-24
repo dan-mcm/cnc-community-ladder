@@ -51,7 +51,7 @@ class ScoreModal extends Component {
 
   componentDidMount() {
     // defaulting to season 3
-    this.scoreState(3, this.props.data.player_name);
+    this.scoreState(this.props.season, this.props.data.player_name);
   }
 
   scoreState(season, player){
@@ -71,7 +71,7 @@ class ScoreModal extends Component {
   }
 
   render() {
-    const { playername, rank, onRequestClose } = this.props;
+    const { playername, season, rank, onRequestClose } = this.props;
 
     return (
       <Modal

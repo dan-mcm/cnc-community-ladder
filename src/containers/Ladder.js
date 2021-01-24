@@ -89,6 +89,9 @@ class Ladder extends Component {
             Start: 09/01/21 ~20:40 GMT <br />
             End: TBC
           </CustomP>
+          <img src="https://bhagavagallery.com/maintenance.jpeg"/>
+          <p>Currently updating for faster load speeds, results within last 24hrs may not yet be visible as we work on it.<br/>
+          Sorry for any inconvenience</p>
           <CustomP>* click rows for extra player data *</CustomP>
           <>
             <p>SELECT A SEASON</p>

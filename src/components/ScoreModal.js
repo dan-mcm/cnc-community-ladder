@@ -18,6 +18,9 @@ import random from '../images/factions/random.png';
 import randomgdi from '../images/factions/gdirandom.png';
 import randomnod from '../images/factions/nodrandom.png';
 
+const axios = require('axios').default;
+
+
 const greenStyle = {
   color: 'green',
   fontWeight: 'bold'
@@ -39,6 +42,25 @@ const modalStyle = {
 };
 
 class ScoreModal extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      matches: []
+    };
+  }
+
+  componentDidMount() {
+    // defaulting to season 3
+    this.scoreState(3, this.props.data.player_name);
+  }
+
+  scoreState(season, player){
+    return axios.get(`/elohistory/${season}/${player}`).then(matches => {
+      let data = matches.data;
+      this.setState({ matches: data });
+    });
+  }
+
   toDateString(epochValue) {
     let date = epochValue;
     const utcSeconds = date;
@@ -49,7 +71,7 @@ class ScoreModal extends Component {
   }
 
   render() {
-    const { data, rank, onRequestClose } = this.props;
+    const { playername, rank, onRequestClose } = this.props;
 
     return (
       <Modal
@@ -59,7 +81,7 @@ class ScoreModal extends Component {
       >
         <ModalWrap>
           <h3>
-            #{rank + 1} {data.name}
+            #{rank + 1} {playername}
           </h3>
           <br />
           <hr />
@@ -71,21 +93,21 @@ class ScoreModal extends Component {
                   🏆
                 </span>{' '}
                 TOTAL WINS <br />
-                {data.games.filter(game => game.result === 'W').length}
+                {this.state.matches.filter(game => game.result === true).length}
               </Box>
               <Box px={2} py={3} width={[1, 1 / 4]}>
                 <span role="img" aria-label="x">
                   ❌
                 </span>{' '}
                 TOTAL LOSSES <br />
-                {data.games.filter(game => game.result === 'L').length}
+                {this.state.matches.filter(game => game.result === false).length}
               </Box>
               <Box px={2} py={3} width={[1, 1 / 4]}>
                 <span role="img" aria-label="play">
                   ▶️
                 </span>{' '}
                 TOTAL PLAYED <br />
-                {data.games.length}
+                {this.state.matches.length}
               </Box>
               <Box px={2} py={3} width={[1, 1 / 4]}>
                 <span role="img" aria-label="graph">
@@ -93,8 +115,8 @@ class ScoreModal extends Component {
                 </span>{' '}
                 OVERALL WINRATE <br />{' '}
                 {Math.floor(
-                  (data.games.filter(game => game.result === 'W').length /
-                    data.games.length) *
+                  (this.state.matches.filter(game => game.result === true).length /
+                    this.state.matches.length) *
                     100
                 ) + '%'}
               </Box>
@@ -104,7 +126,7 @@ class ScoreModal extends Component {
             <h3>FACTION STATS</h3>
             <br />
             <Flex>
-              {data.games.filter(
+              {this.state.matches.filter(
                 game =>
                   game.player_faction === 'GDI' && game.player_random === false
               ).length > 0 ? (
@@ -113,9 +135,9 @@ class ScoreModal extends Component {
                   <br />
                   GAMES WON -{' '}
                   {
-                    data.games.filter(
+                    this.state.matches.filter(
                       game =>
-                        game.result === 'W' &&
+                        game.result === true &&
                         game.player_faction === 'GDI' &&
                         (game.player_random === false ||
                           game.player_random === null)
@@ -124,9 +146,9 @@ class ScoreModal extends Component {
                   <br />
                   GAMES LOST -{' '}
                   {
-                    data.games.filter(
+                    this.state.matches.filter(
                       game =>
-                        game.result === 'L' &&
+                        game.result === false &&
                         game.player_faction === 'GDI' &&
                         (game.player_random === false ||
                           game.player_random === null)
@@ -134,31 +156,31 @@ class ScoreModal extends Component {
                   }
                   <br />
                   WINRATE -{' '}
-                  {data.games.filter(
+                  {this.state.matches.filter(
                     game =>
-                      game.result === 'W' &&
+                      game.result === true &&
                       game.player_faction === 'GDI' &&
                       (game.player_random === false ||
                         game.player_random === null)
                   ).length > 0
                     ? Math.floor(
-                        (data.games.filter(
+                        (this.state.matches.filter(
                           game =>
-                            game.result === 'W' &&
+                            game.result === true &&
                             game.player_faction === 'GDI' &&
                             (game.player_random === false ||
                               game.player_random === null)
                         ).length /
-                          (data.games.filter(
+                          (this.state.matches.filter(
                             game =>
-                              game.result === 'W' &&
+                              game.result === true &&
                               game.player_faction === 'GDI' &&
                               (game.player_random === false ||
                                 game.player_random === null)
                           ).length +
-                            data.games.filter(
+                            this.state.matches.filter(
                               game =>
-                                game.result === 'L' &&
+                                game.result === false &&
                                 game.player_faction === 'GDI' &&
                                 (game.player_random === false ||
                                   game.player_random === null)
@@ -171,7 +193,7 @@ class ScoreModal extends Component {
               ) : (
                 ''
               )}
-              {data.games.filter(
+              {this.state.matches.filter(
                 game =>
                   game.player_faction === 'Nod' && game.player_random === false
               ).length > 0 ? (
@@ -180,9 +202,9 @@ class ScoreModal extends Component {
                   <br />
                   GAMES WON -{' '}
                   {
-                    data.games.filter(
+                    this.state.matches.filter(
                       game =>
-                        game.result === 'W' &&
+                        game.result === true &&
                         game.player_faction === 'Nod' &&
                         (game.player_random === false ||
                           game.player_random === null)
@@ -191,9 +213,9 @@ class ScoreModal extends Component {
                   <br />
                   GAMES LOST -{' '}
                   {
-                    data.games.filter(
+                    this.state.matches.filter(
                       game =>
-                        game.result === 'L' &&
+                        game.result === false &&
                         game.player_faction === 'Nod' &&
                         (game.player_random === false ||
                           game.player_random === null)
@@ -201,31 +223,31 @@ class ScoreModal extends Component {
                   }
                   <br />
                   WINRATE -{' '}
-                  {data.games.filter(
+                  {this.state.matches.filter(
                     game =>
-                      game.result === 'W' &&
+                      game.result === true &&
                       game.player_faction === 'Nod' &&
                       (game.player_random === false ||
                         game.player_random === null)
                   ).length > 0
                     ? Math.floor(
-                        (data.games.filter(
+                        (this.state.matches.filter(
                           game =>
-                            game.result === 'W' &&
+                            game.result === true &&
                             game.player_faction === 'Nod' &&
                             (game.player_random === false ||
                               game.player_random === null)
                         ).length /
-                          (data.games.filter(
+                          (this.state.matches.filter(
                             game =>
-                              game.result === 'W' &&
+                              game.result === true &&
                               game.player_faction === 'Nod' &&
                               (game.player_random === false ||
                                 game.player_random === null)
                           ).length +
-                            data.games.filter(
+                            this.state.matches.filter(
                               game =>
-                                game.result === 'L' &&
+                                game.result === false &&
                                 game.player_faction === 'Nod' &&
                                 (game.player_random === false ||
                                   game.player_random === null)
@@ -238,41 +260,41 @@ class ScoreModal extends Component {
               ) : (
                 ''
               )}
-              {data.games.filter(game => game.player_random === true).length >
+              {this.state.matches.filter(game => game.player_random === true).length >
               0 ? (
                 <Box px={2} py={3} width={[1, 1 / 3]}>
                   <IconImg src={random} alt="random" />
                   <br />
                   GAMES WON -{' '}
                   {
-                    data.games.filter(
-                      game => game.result === 'W' && game.player_random === true
+                    this.state.matches.filter(
+                      game => game.result === true && game.player_random === true
                     ).length
                   }
                   <br />
                   GAMES LOST -{' '}
                   {
-                    data.games.filter(
-                      game => game.result === 'L' && game.player_random === true
+                    this.state.matches.filter(
+                      game => game.result === false && game.player_random === true
                     ).length
                   }
                   <br />
                   WINRATE -{' '}
-                  {data.games.filter(
-                    game => game.result === 'W' && game.player_random === true
+                  {this.state.matches.filter(
+                    game => game.result === true && game.player_random === true
                   ).length > 0
                     ? Math.floor(
-                        (data.games.filter(
+                        (this.state.matches.filter(
                           game =>
-                            game.result === 'W' && game.player_random === true
+                            game.result === true && game.player_random === true
                         ).length /
-                          (data.games.filter(
+                          (this.state.matches.filter(
                             game =>
-                              game.result === 'W' && game.player_random === true
+                              game.result === true && game.player_random === true
                           ).length +
-                            data.games.filter(
+                            this.state.matches.filter(
                               game =>
-                                game.result === 'L' &&
+                                game.result === false &&
                                 game.player_random === true
                             ).length)) *
                           100
@@ -287,12 +309,10 @@ class ScoreModal extends Component {
             <br />
             <hr />
           </div>
-          <ModalSearchBar data={data} />
+          <ModalSearchBar data={this.state.matches} />
           <h3>RECENT GAMES</h3>
           <Flex flexWrap="wrap">
-            {data.games
-              .sort((a, b) => (a.date > b.date ? -1 : 1))
-              .map((game, index) => (
+            {this.state.matches.map((game, index) => (
                 <Box key={index} px={2} py={3} width={[1, 1 / 3]}>
                   <CustomP>
                     {game.player_random === true ? (
@@ -306,7 +326,7 @@ class ScoreModal extends Component {
                     ) : (
                       <IconImg src={nod} alt="nod" />
                     )}
-                    <b> {data.name}</b> [
+                    <b> {game.player}</b> [
                     {game.player_new_elo - game.player_existing_elo > 0 ? (
                       <span style={{ color: 'green', fontWeight: 'bold' }}>
                         +{game.player_new_elo - game.player_existing_elo}
@@ -339,12 +359,12 @@ class ScoreModal extends Component {
                       <IconImg src={nod} alt="nod" />
                     )}{' '}
                     <br />
-                    {this.toDateString(game.date)} <br />
+                    {this.toDateString(game.starttime)} <br />
                     {`${Math.floor(game.duration / 60)}mins ${Math.trunc(
                       game.duration - Math.floor(game.duration / 60) * 60
                     )}secs`}
                     <br />
-                    {game.result === 'W' ? (
+                    {game.result === true ? (
                       <span style={greenStyle}>Win</span>
                     ) : (
                       <span style={redStyle}>Loss</span>

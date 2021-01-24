@@ -9,10 +9,6 @@ const { Pool } = require('pg');
 const { eloCalculationsRawRevised } = require('./utils/helpers.js');
 const { dbdataTranslation } = require('./utils/helpers.js');
 
-// For handling SQL injection
-function cleanInput(input) {
-  return /^\d+$/.test(input) ? input : 3;
-}
 
 if (process.env.NODE_ENV === 'production') {
   app.use((req, res, next) => {
@@ -22,14 +18,41 @@ if (process.env.NODE_ENV === 'production') {
   });
 }
 
+function createPool(){
+  let pool;
+  if (process.env.NODE_ENV === 'production') {
+    pool = new Pool({
+      connectionString: process.env.DATABASE_URL,
+      ssl: {
+        rejectUnauthorized: false
+      }
+    });
+  }
+
+  if (process.env.NODE_ENV !== 'production') {
+    pool = new Pool({
+      user: process.env.DB_USER,
+      host: process.env.DB_HOST,
+      database: process.env.DB_NAME,
+      password: process.env.DB_PASSWORD,
+      port: process.env.DB_PORT
+    });
+  }
+  return pool
+}
+
+// For handling SQL injection
+function cleanInput(input) {
+  return /^\d+$/.test(input) ? input : 3;
+}
+
 app.use(express.static(path.join(__dirname, 'build')));
 
 app.get('/', function(req, res) {
   res.sendFile(path.join(__dirname, 'build', 'index.html'));
 });
 
-app.get('/db-get/:season', (req, result) => {
-  // For local...
+app.get('/leaderboard/:season', (req, result) => {
   let pool;
 
   if (process.env.NODE_ENV === 'production') {
@@ -53,18 +76,17 @@ app.get('/db-get/:season', (req, result) => {
 
   // For prod
   const cleanedInput = cleanInput(req.params.season);
-
   pool
     .connect()
     .then(client => {
       // Deduplicates reuslts based on timestamp being unique and also orders results by time
       return client
         .query(
-          `SELECT distinct(starttime) starttime, match_duration, player1_name, player1_faction, player1_random, player2_name, player2_faction, player2_random, result, map, replay, season FROM matches  WHERE season=${cleanedInput} order by starttime ASC`
+          `SELECT player_name, season, rank, position, points, wins, loses, played, winrate FROM leaderboard  WHERE season=${cleanedInput} order by position ASC`
         )
         .then(res => {
           client.release();
-          result.send(dbdataTranslation(eloCalculationsRawRevised(res.rows)));
+          result.send(res.rows);
         })
         .catch(e => {
           client.release();
@@ -75,33 +97,127 @@ app.get('/db-get/:season', (req, result) => {
       console.log(err);
     })
     .finally(() => pool.end());
-});
+
+})
+
+app.get('/elohistory/:season/:player', (req, result) => {
+  let pool = createPool()
+  const cleanedSeasonInput = cleanInput(req.params.season);
+
+  pool
+    .connect()
+    .then(client => {
+      // Deduplicates reuslts based on timestamp being unique and also orders results by time
+      return client
+        .query(
+          `SELECT * FROM elo_history WHERE season=${cleanedSeasonInput} and player='${req.params.player}' or opponent='${req.params.player}' order by starttime DESC`
+        )
+        .then(res => {
+          client.release();
+          result.send(res.rows);
+        })
+        .catch(e => {
+          client.release();
+          console.log(e.stack);
+        });
+    })
+    .catch(err => {
+      console.log(err);
+    })
+    .finally(() => pool.end());
+
+})
+
+app.get(`/awards/total/:season`, (req, result) => {
+  let pool = createPool()
+  const cleanedSeasonInput = cleanInput(req.params.season);
+
+  pool
+    .connect()
+    .then(client => {
+      // Deduplicates reuslts based on timestamp being unique and also orders results by time
+      return client
+        .query(
+          `select player, count(*) as totals from elo_history where season=${cleanedSeasonInput} group by player order by count(*) desc limit 1`
+        )
+        .then(res => {
+          client.release();
+          result.send(res.rows);
+        })
+        .catch(e => {
+          client.release();
+          console.log(e.stack);
+        });
+    })
+    .catch(err => {
+      console.log(err);
+    })
+    .finally(() => pool.end());
+})
+
+
+app.get('/awards/faction/random/:season', (req, result) => {
+  let pool = createPool()
+  const cleanedSeasonInput = cleanInput(req.params.season);
+
+  pool
+    .connect()
+    .then(client => {
+      // Deduplicates reuslts based on timestamp being unique and also orders results by time
+      return client
+        .query(
+          `select player, count(*) as totals from elo_history where player_random=true and season=${cleanedSeasonInput} group by player order by count(*) desc limit 1`
+        )
+        .then(res => {
+          client.release();
+          result.send(res.rows);
+        })
+        .catch(e => {
+          client.release();
+          console.log(e.stack);
+        });
+    })
+    .catch(err => {
+      console.log(err);
+    })
+    .finally(() => pool.end());
+})
+
+app.get('/awards/faction/:faction/:season', (req, result) => {
+  let pool = createPool()
+  const cleanedSeasonInput = cleanInput(req.params.season);
+
+  pool
+    .connect()
+    .then(client => {
+      // Deduplicates reuslts based on timestamp being unique and also orders results by time
+      return client
+        .query(
+          `select player, count(*) as totals from elo_history where player_faction='${req.params.faction}' and player_random=false and season=${cleanedSeasonInput} group by player order by count(*) desc limit 1`
+        )
+        .then(res => {
+          client.release();
+          result.send(res.rows);
+        })
+        .catch(e => {
+          client.release();
+          console.log(e.stack);
+        });
+    })
+    .catch(err => {
+      console.log(err);
+    })
+    .finally(() => pool.end());
+})
+
+
 
 app.get('/health', (req, res) => {
   return res.sendStatus(200);
 });
 
 app.get(`/nightbot/:season/:playername`, (req, result) => {
-  let pool;
-
-  if (process.env.NODE_ENV === 'production') {
-    pool = new Pool({
-      connectionString: process.env.DATABASE_URL,
-      ssl: {
-        rejectUnauthorized: false
-      }
-    });
-  }
-
-  if (process.env.NODE_ENV !== 'production') {
-    pool = new Pool({
-      user: process.env.DB_USER,
-      host: process.env.DB_HOST,
-      database: process.env.DB_NAME,
-      password: process.env.DB_PASSWORD,
-      port: process.env.DB_PORT
-    });
-  }
+  let pool = createPool()
 
   pool
     .connect()
@@ -148,26 +264,7 @@ app.get(`/nightbot/:season/:playername`, (req, result) => {
 });
 
 app.get('/obs/:season/:playername', (req, result) => {
-  let pool;
-
-  if (process.env.NODE_ENV === 'production') {
-    pool = new Pool({
-      connectionString: process.env.DATABASE_URL,
-      ssl: {
-        rejectUnauthorized: false
-      }
-    });
-  }
-
-  if (process.env.NODE_ENV !== 'production') {
-    pool = new Pool({
-      user: process.env.DB_USER,
-      host: process.env.DB_HOST,
-      database: process.env.DB_NAME,
-      password: process.env.DB_PASSWORD,
-      port: process.env.DB_PORT
-    });
-  }
+  let pool = createPool()
 
   pool
     .connect()
@@ -227,26 +324,7 @@ app.get('/obs/:season/:playername', (req, result) => {
 });
 
 app.get('/recent', (req, result) => {
-  let pool;
-
-  if (process.env.NODE_ENV === 'production') {
-    pool = new Pool({
-      connectionString: process.env.DATABASE_URL,
-      ssl: {
-        rejectUnauthorized: false
-      }
-    });
-  }
-
-  if (process.env.NODE_ENV !== 'production') {
-    pool = new Pool({
-      user: process.env.DB_USER,
-      host: process.env.DB_HOST,
-      database: process.env.DB_NAME,
-      password: process.env.DB_PASSWORD,
-      port: process.env.DB_PORT
-    });
-  }
+  let pool = createPool()
 
   const cleanedInput = cleanInput(req.params.season);
 

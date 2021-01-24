@@ -15,7 +15,40 @@ import gdi from '../images/factions/gdi.png';
 import nod from '../images/factions/nod.png';
 import random from '../images/factions/random.png';
 
+const axios = require('axios').default;
+
 class Veterans extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      totalAward: {},
+      randomAward: {},
+      nodAward: {},
+      gdiAward: {}
+    };
+  }
+
+  componentDidMount() {
+    // defaulting to season 3
+    this.awardState(3);
+  }
+
+  awardState(season, player){
+    axios.get(`/awards/total/${season}`).then(matches => {
+      this.setState({ totalAward: matches.data[0] });
+    });
+    axios.get(`/awards/faction/GDI/${season}`).then(matches => {
+      this.setState({ gdiAward: matches.data[0] });
+    });
+    axios.get(`/awards/faction/Nod/${season}`).then(matches => {
+      this.setState({ nodAward: matches.data[0] });
+    });
+    axios.get(`/awards/faction/random/${season}`).then(matches => {
+      this.setState({ randomAward: matches.data[0] });
+    });
+    return
+  }
+
   render() {
     return (
       <Overflow>
@@ -27,11 +60,11 @@ class Veterans extends Component {
               <span role="img" aria-label="medal">
                 🎖️
               </span>{' '}
-              {this.props.highestGDI.player}{' '}
+              {this.state.gdiAward.player}{' '}
               <span role="img" aria-label="medal">
                 🎖️
               </span>{' '}
-              <br /> {this.props.highestGDI.gdiTotal} GDI Games Played
+              <br /> {this.state.gdiAward.totals} GDI Games Played
             </GDIData>
             <NodData>
               <IconImg src={nod} alt="nod" />
@@ -39,11 +72,11 @@ class Veterans extends Component {
               <span role="img" aria-label="medal">
                 🎖️
               </span>{' '}
-              {this.props.highestNod.player}{' '}
+              {this.state.nodAward.player}{' '}
               <span role="img" aria-label="medal">
                 🎖️
               </span>{' '}
-              <br /> {this.props.highestNod.nodTotal} Nod Games Played
+              <br /> {this.state.nodAward.totals} Nod Games Played
             </NodData>
             <RandomData>
               <IconImg src={random} alt="random" />
@@ -51,18 +84,18 @@ class Veterans extends Component {
               <span role="img" aria-label="medal">
                 🎖️
               </span>{' '}
-              {this.props.highestRandom.player}{' '}
+              {this.state.randomAward.player}{' '}
               <span role="img" aria-label="medal">
                 🎖️
               </span>{' '}
-              <br /> {this.props.highestRandom.randomTotal} Random Games Played
+              <br /> {this.state.randomAward.totals} Random Games Played
             </RandomData>
             <TotalData>
               <IconImg src={gdi} alt="nod" /> <IconImg src={nod} alt="nod" />{' '}
               <IconImg src={random} alt="random" />
               <br />
-              🎖️ {this.props.highestTotal.player} 🎖️ <br />{' '}
-              {this.props.highestTotal.playerTotal} Total Games Played
+              🎖️ {this.state.totalAward.player} 🎖️ <br />{' '}
+              {this.state.totalAward.totals} Total Games Played
             </TotalData>
           </CustomRow3>
         </table>

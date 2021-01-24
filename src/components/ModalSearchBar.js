@@ -29,10 +29,11 @@ class ModalSearchBar extends Component {
 
   handleInputChange = event => {
     const query = event.target.value;
-    let result = this.props.data.games.filter(game =>
-      game.opponent.includes(query)
+    console.log(Object.keys(this.props.data));
+    let result = this.props.data.filter(game =>
+      game.opponent.includes(query) || game.player.includes(query)
     );
-    if (result.length === this.props.data.games.length) result = [];
+    if (result.length === this.props.data.length) result = [];
     this.setState({
       query,
       result
@@ -40,7 +41,7 @@ class ModalSearchBar extends Component {
   };
 
   searchData(data, query) {
-    return data.filter(player => player.name.includes(query));
+    return data.filter(player => player.player.includes(query) || player.opponent.includes(query));
   }
 
   toDateString(epochValue) {
@@ -53,7 +54,6 @@ class ModalSearchBar extends Component {
   }
 
   render() {
-    const { data } = this.props;
     return (
       <div>
         <p>SEARCH FOR AN OPPONENT</p>
@@ -75,14 +75,14 @@ class ModalSearchBar extends Component {
                 ) : (
                   <IconImg src={nod} alt="nod" />
                 )}
-                <b> {data.name}</b> -v- <b>{game.opponent} </b>
+                <b> {game.player}</b> -v- <b>{game.opponent} </b>
                 {game.opponent_faction === 'GDI' ? (
                   <IconImg src={gdi} alt="gdi" />
                 ) : (
                   <IconImg src={nod} alt="nod" />
                 )}{' '}
                 <br />
-                {this.toDateString(game.date)} <br />
+                {this.toDateString(game.starttime)} <br />
                 {`${Math.floor(game.duration / 60)}mins ${Math.trunc(
                   game.duration - Math.floor(game.duration / 60) * 60
                 )}secs`}

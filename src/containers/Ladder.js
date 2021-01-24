@@ -22,7 +22,8 @@ class Ladder extends Component {
       highestGDI: {},
       highestNod: {},
       highestRandom: {},
-      selectedSeason: 3
+      selectedSeason: 3,
+      leaderboard: []
     };
   }
 
@@ -41,74 +42,9 @@ class Ladder extends Component {
   }
 
   ladderState(season) {
-    return axios.get(`/db-get/${season}`).then(matches => {
+    return axios.get(`/leaderboard/${season}`).then(matches => {
       let data = matches.data;
-      data.sort((a, b) => (a.current_elo > b.current_elo ? -1 : 1));
-      this.topPlayers(data);
-      this.setState({ matchData: data });
-    });
-  }
-
-  topPlayers(data) {
-    let playerTotals = [];
-    let highestTotal = {};
-
-    let gdiTotals = [];
-    let gdiHighestTotal = {};
-
-    let nodTotals = [];
-    let nodHighestTotal = {};
-
-    let randomTotals = [];
-    let randomhighestTotal = {};
-
-    // overallTotal
-    data.map(player => {
-      playerTotals.push({
-        player: player.name,
-        playerTotal: player.games.length
-      });
-
-      playerTotals.sort((a, b) => a.playerTotal - b.playerTotal);
-      highestTotal = playerTotals.sort((a, b) => a.value - b.value);
-
-      // overallGDI
-      let gdiOnly = player.games.filter(game => game.player_faction === 'GDI')
-        .length;
-      gdiTotals.push({
-        player: player.name,
-        gdiTotal: gdiOnly
-      });
-      gdiTotals.sort((a, b) => a.gdiTotal - b.gdiTotal);
-      gdiHighestTotal = gdiTotals.sort((a, b) => a.value - b.value);
-
-      // overallNod
-      let nodOnly = player.games.filter(game => game.player_faction === 'Nod')
-        .length;
-      nodTotals.push({
-        player: player.name,
-        nodTotal: nodOnly
-      });
-      nodTotals.sort((a, b) => a.nodTotal - b.nodTotal);
-      nodHighestTotal = nodTotals.sort((a, b) => a.value - b.value);
-
-      // overallRandom
-      let randomOnly = player.games.filter(game => game.player_random === true)
-        .length;
-      randomTotals.push({
-        player: player.name,
-        randomTotal: randomOnly
-      });
-
-      randomTotals.sort((a, b) => a.randomTotal - b.randomTotal);
-      randomhighestTotal = randomTotals.sort((a, b) => a.value - b.value);
-    });
-
-    return this.setState({
-      highestTotal: highestTotal[highestTotal.length - 1],
-      highestGDI: gdiHighestTotal[gdiHighestTotal.length - 1],
-      highestNod: nodHighestTotal[nodHighestTotal.length - 1],
-      highestRandom: randomhighestTotal[randomhighestTotal.length - 1]
+      this.setState({ leaderboard: data });
     });
   }
 
@@ -166,7 +102,7 @@ class Ladder extends Component {
             {this.state.matchata}
           </>
           <SearchBar
-            data={this.state.matchData}
+            data={this.state.leaderboard}
             highestTotal={this.state.highestTotal}
             highestGDI={this.state.highestGDI}
             highestNod={this.state.highestNod}
@@ -177,11 +113,11 @@ class Ladder extends Component {
             SEASON{' '}
             {this.state.selectedSeason === 3 ? '3+' : this.state.selectedSeason}
           </h3>
-          {this.state.matchData.length === 0 ? (
+          {this.state.leaderboard.length === 0 ? (
             <div class="loader"></div>
           ) : (
             <>
-              TOTAL PLAYERS: {this.state.matchData.length}
+              TOTAL PLAYERS: {this.state.leaderboard.length}
               <br />
               <br />
               <Veterans
@@ -193,9 +129,9 @@ class Ladder extends Component {
               <Pagination
                 activePage={this.state.activePage}
                 itemsCountPerPage={200}
-                totalItemsCount={this.state.matchData.length}
+                totalItemsCount={this.state.leaderboard.length}
                 pageRangeDisplayed={Math.ceil(
-                  this.state.matchData.length / 200
+                  this.state.leaderboard.length / 200
                 )}
                 onChange={this.handlePageChange.bind(this)}
                 prevPageText="<"
@@ -205,7 +141,7 @@ class Ladder extends Component {
                 activeLinkClass="page-selected"
               />
               <Leaderboard
-                data={this.state.matchData}
+                data={this.state.leaderboard}
                 startPlayer={this.state.startPlayer}
                 endPlayer={this.state.endPlayer}
                 activePage={this.state.activePage}
@@ -217,9 +153,9 @@ class Ladder extends Component {
               <Pagination
                 activePage={this.state.activePage}
                 itemsCountPerPage={200}
-                totalItemsCount={this.state.matchData.length}
+                totalItemsCount={this.state.leaderboard.length}
                 pageRangeDisplayed={Math.ceil(
-                  this.state.matchData.length / 200
+                  this.state.leaderboard.length / 200
                 )}
                 onChange={this.handlePageChange.bind(this)}
                 prevPageText="<"

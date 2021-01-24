@@ -36,6 +36,35 @@ DevOps:
 * A [Dockerfile](./Dockerfile) & [Makefile](./Makefile) are available for portable deployment.
 * Google Analytics tracking enabled
 
+## Endpoints
+
+### /
+Serves built react app.
+
+### /leaderboard/:season
+Fetches leaderboard results for a specified season from our DB.
+
+### /elohistory/:season/:player
+Fetches information specific to a specified player from our DB.
+
+### /awards/total/:season
+Fetches our top ranked players for total games played
+
+### /awards/faction/random/:season or /awards/faction/{GDI/Nod}/:season
+Returns our top ranked players for a specific faction.
+
+### /health
+General health check endpoint currently in use with [Uptime Robot](https://uptimerobot.com/)
+
+### /nightbot/:season/:playername
+Used for nightbot extension
+
+### /obs/:season/:playername
+Used for obs extension
+
+
+
+
 ## Running Locally
 
 ```bash

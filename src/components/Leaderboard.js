@@ -37,6 +37,7 @@ class Leaderboard extends Component {
     return ModalManager.open(
       <ScoreModal
         data={data}
+        playername={data.player_name}
         rank={index + this.props.startPlayer}
         onRequestClose={() => true}
       />
@@ -63,7 +64,7 @@ class Leaderboard extends Component {
               <>
                 {this.props.activePage === 1 ? (
                   <CustomRow
-                    key={data.name}
+                    key={data.player_name}
                     onClick={() => this.openModal(data, index)}
                   >
                     <td>
@@ -77,7 +78,7 @@ class Leaderboard extends Component {
                     <td>#{index + 1 + this.props.startPlayer}</td>
                     <td>
                       {this.specialBadge(
-                        data.name,
+                        data.player_name,
                         index + 1 + this.props.startPlayer,
                         this.props.highestTotal.player,
                         this.props.highestGDI.player,
@@ -85,20 +86,16 @@ class Leaderboard extends Component {
                         this.props.highestRandom.player
                       )}
                     </td>
-                    <td>{data.current_elo}</td>
+                    <td>{data.points}</td>
                     <td>
-                      {data.games.filter(game => game.result === 'W').length}
+                      {data.wins}
                     </td>
                     <td>
-                      {data.games.filter(game => game.result === 'L').length}
+                      {data.loses}
                     </td>
-                    <td>{data.games.length}</td>
+                    <td>{data.played}</td>
                     <td>
-                      {Math.floor(
-                        (data.games.filter(game => game.result === 'W').length /
-                          data.games.length) *
-                          100
-                      ) + '%'}
+                      {data.winrate + '%'}
                     </td>
                   </CustomRow>
                 ) : (

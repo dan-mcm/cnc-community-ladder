@@ -16,7 +16,7 @@ class SearchBar extends Component {
 
   handleInputChange = event => {
     const query = event.target.value;
-    let result = this.props.data.filter(player => player.name.includes(query));
+    let result = this.props.data.filter(player => player.player_name.includes(query));
     this.setState({
       query,
       result
@@ -45,7 +45,8 @@ class SearchBar extends Component {
     return ModalManager.open(
       <ScoreModal
         data={data}
-        rank={this.props.data.findIndex(player => player.name === data.name)}
+        rank={data.position -1}
+        playername={data.player_name}
         onRequestClose={() => true}
       />
     );
@@ -98,16 +99,7 @@ class SearchBar extends Component {
             {this.state.result.map(result => (
               <CustomRow2
                 onClick={() =>
-                  this.openModal(
-                    this.props.data[
-                      this.props.data.findIndex(
-                        player => player.name === result.name
-                      )
-                    ],
-                    this.props.data.findIndex(
-                      player => player.name === result.name
-                    )
-                  )
+                  this.openModal(result, result.player_name)
                 }
               >
                 <td>
@@ -121,36 +113,28 @@ class SearchBar extends Component {
                   />
                 </td>
                 <td>
-                  {this.props.data.findIndex(
-                    player => player.name === result.name
-                  ) + 1}
+                  {result.position}
                 </td>
                 <td>
                   {this.specialBadge(
-                    result.name,
-                    this.props.data.findIndex(
-                      player => player.name === result.name
-                    ) + 1,
+                    result.player_name,
+                    result.position,
                     this.props.highestTotal.player,
                     this.props.highestGDI.player,
                     this.props.highestNod.player,
                     this.props.highestRandom.player
                   )}
                 </td>
-                <td>{result.current_elo}</td>
+                <td>{result.points}</td>
                 <td>
-                  {result.games.filter(game => game.result === 'W').length}
+                  {result.wins}
                 </td>
                 <td>
-                  {result.games.filter(game => game.result === 'L').length}
+                  {result.loses}
                 </td>
-                <td>{result.games.length}</td>
+                <td>{result.played}</td>
                 <td>
-                  {Math.floor(
-                    (result.games.filter(game => game.result === 'W').length /
-                      result.games.length) *
-                      100
-                  ) + '%'}
+                  {result.winrate + '%'}
                 </td>
               </CustomRow2>
             ))}

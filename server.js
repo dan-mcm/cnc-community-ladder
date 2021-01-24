@@ -82,7 +82,7 @@ app.get('/leaderboard/:season', (req, result) => {
       // Deduplicates reuslts based on timestamp being unique and also orders results by time
       return client
         .query(
-          `SELECT player_name, season, rank, position, points, wins, loses, played, winrate FROM leaderboard  WHERE season=${cleanedInput} order by position ASC`
+          `SELECT DISTINCT player_name, season, rank, position, points, wins, loses, played, winrate FROM leaderboard  WHERE season=${cleanedInput} order by position ASC`
         )
         .then(res => {
           client.release();

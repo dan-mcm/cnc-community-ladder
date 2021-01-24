@@ -285,7 +285,7 @@ class ScoreModal extends Component {
             <br />
             <hr />
           </div>
-          <ModalSearchBar data={this.state.matches} />
+          <ModalSearchBar data={this.state.matches} playername={playername} />
           <h3>RECENT GAMES</h3>
           <Flex flexWrap="wrap">
             {this.state.matches.map((game, index) => (

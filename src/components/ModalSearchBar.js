@@ -54,6 +54,7 @@ class ModalSearchBar extends Component {
   }
 
   render() {
+    const { playername } = this.props;
     return (
       <div>
         <p>SEARCH FOR AN OPPONENT</p>
@@ -75,7 +76,27 @@ class ModalSearchBar extends Component {
                 ) : (
                   <IconImg src={nod} alt="nod" />
                 )}
-                <b> {game.player}</b> -v- <b>{game.opponent} </b>
+                <b> {game.player}</b> [
+                {game.player_new_elo - game.player_existing_elo > 0 ? (
+                  <span style={{ color: 'green', fontWeight: 'bold' }}>
+                    +{game.player_new_elo - game.player_existing_elo}
+                  </span>
+                ) : (
+                  <span style={{ color: 'red', fontWeight: 'bold' }}>
+                    {game.player_new_elo - game.player_existing_elo}
+                  </span>
+                )}
+                ] -v- [
+                {game.opponent_new_elo - game.opponent_existing_elo > 0 ? (
+                  <span style={{ color: 'green', fontWeight: 'bold' }}>
+                    +{game.opponent_new_elo - game.opponent_existing_elo}
+                  </span>
+                ) : (
+                  <span style={{ color: 'red', fontWeight: 'bold' }}>
+                    {game.opponent_new_elo - game.opponent_existing_elo}
+                  </span>
+                )}
+                ] <b>{game.opponent} </b>
                 {game.opponent_faction === 'GDI' ? (
                   <IconImg src={gdi} alt="gdi" />
                 ) : (
@@ -87,7 +108,8 @@ class ModalSearchBar extends Component {
                   game.duration - Math.floor(game.duration / 60) * 60
                 )}secs`}
                 <br />
-                {game.result === 'W' ? (
+                {((game.player === playername && game.result === false) ||
+                (game.opponent === playername && game.result === true)) ? (
                   <span style={greenStyle}>Win</span>
                 ) : (
                   <span style={redStyle}>Loss</span>

@@ -46,6 +46,7 @@ class SearchBar extends Component {
       <ScoreModal
         data={data}
         rank={data.position -1}
+        season={this.props.season}
         playername={data.player_name}
         onRequestClose={() => true}
       />
@@ -96,10 +97,10 @@ class SearchBar extends Component {
               <th>PLAYED</th>
               <th>WINRATE</th>
             </CustomHeaderRow>
-            {this.state.result.map(result => (
+            {this.state.result.map((result, index) => (
               <CustomRow2
                 onClick={() =>
-                  this.openModal(result, result.player_name)
+                  this.openModal(result, index)
                 }
               >
                 <td>

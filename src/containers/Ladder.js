@@ -103,6 +103,7 @@ class Ladder extends Component {
           </>
           <SearchBar
             data={this.state.leaderboard}
+            season={this.state.selectedSeason}
             highestTotal={this.state.highestTotal}
             highestGDI={this.state.highestGDI}
             highestNod={this.state.highestNod}
@@ -125,6 +126,7 @@ class Ladder extends Component {
                 highestGDI={this.state.highestGDI}
                 highestNod={this.state.highestNod}
                 highestRandom={this.state.highestRandom}
+                season={this.state.selectedSeason}
               />
               <Pagination
                 activePage={this.state.activePage}

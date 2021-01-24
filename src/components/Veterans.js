@@ -30,10 +30,16 @@ class Veterans extends Component {
 
   componentDidMount() {
     // defaulting to season 3
-    this.awardState(3);
+    this.awardState(this.props.season);
   }
 
-  awardState(season, player){
+  componentDidUpdate(prevProps) {
+    if (prevProps.season !== this.props.season) {
+      this.awardState(this.props.season);
+    }
+  }
+
+  awardState(season){
     axios.get(`/awards/total/${season}`).then(matches => {
       this.setState({ totalAward: matches.data[0] });
     });

@@ -328,6 +328,34 @@ app.get('/recent', (req, result) => {
     .finally(() => pool.end());
 });
 
+app.get('/recent/hour', (req, result) => {
+  let pool = createPool()
+  let currentTime = Date.now()
+  let hour = 3600000 * 24
+  let hourOffset = currentTime - hour
+  pool
+    .connect()
+    .then(client => {
+      // Deduplicates reuslts based on timestamp being unique and also orders results by time
+      return client
+        .query(
+          `SELECT distinct(starttime) starttime, match_duration, player1_name, player1_faction, player1_random, player2_name, player2_faction, player2_random, result, map, replay, season FROM matches WHERE starttime > ${hourOffset} order by starttime desc limit 24`
+        )
+        .then(res => {
+          result.send(res.rows);
+          client.release();
+        })
+        .catch(e => {
+          console.log(e.stack);
+          client.release();
+        });
+    })
+    .catch(err => {
+      console.log(err);
+    })
+    .finally(() => pool.end());
+});
+
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, 'build', 'index.html'));
 });

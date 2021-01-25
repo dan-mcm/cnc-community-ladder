@@ -22,12 +22,12 @@ class RecentGames extends Component {
   componentDidMount() {
     // defaulting to season 3
     this.getRecentMatches();
+    this.lastHour();
   }
 
   getRecentMatches() {
     return axios.get(`/recent`).then(matches => {
       let data = matches.data;
-      console.log(data);
       this.setState({ matchData: data });
     });
   }
@@ -41,9 +41,17 @@ class RecentGames extends Component {
     return `${d.toLocaleDateString()} - ${d.toLocaleTimeString()}`;
   }
 
+  lastHour(){
+    return axios.get(`/recent/hour`).then(matches => {
+      let data = matches.data;
+      this.setState({ count: data.length });
+    });
+  }
+
   render() {
     return (
       <Wrapper>
+        <p>Games played in last hour: {this.state.count}</p>
         <Flex style={{ flexWrap: 'wrap' }}>
           {this.state.matchData.map((game, index) => (
             <Box px={2} py={3} width={[1, 1 / 3]}>

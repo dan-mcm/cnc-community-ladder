@@ -331,15 +331,15 @@ app.get('/recent', (req, result) => {
 app.get('/recent/hour', (req, result) => {
   let pool = createPool()
   let currentTime = Date.now()
-  let hour = 3600000 * 24
-  let hourOffset = currentTime - hour
+  let hour = 3600000
+  let hourOffset = (currentTime - hour) / 1000
   pool
     .connect()
     .then(client => {
       // Deduplicates reuslts based on timestamp being unique and also orders results by time
       return client
         .query(
-          `SELECT distinct(starttime) starttime, match_duration, player1_name, player1_faction, player1_random, player2_name, player2_faction, player2_random, result, map, replay, season FROM matches WHERE starttime > ${hourOffset} order by starttime desc limit 24`
+          `SELECT distinct(starttime) starttime, match_duration, player1_name, player1_faction, player1_random, player2_name, player2_faction, player2_random, result, map, replay, season FROM matches WHERE starttime > ${hourOffset}`
         )
         .then(res => {
           result.send(res.rows);

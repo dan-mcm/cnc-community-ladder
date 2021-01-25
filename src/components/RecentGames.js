@@ -51,7 +51,7 @@ class RecentGames extends Component {
   render() {
     return (
       <Wrapper>
-        <p>Games played in last hour: {this.state.count}</p>
+        <p>Games played in the last hour: {this.state.count}</p>
         <Flex style={{ flexWrap: 'wrap' }}>
           {this.state.matchData.map((game, index) => (
             <Box px={2} py={3} width={[1, 1 / 3]}>

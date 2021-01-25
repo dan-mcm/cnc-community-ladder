@@ -10,6 +10,7 @@ import {
 } from '../utils/styles';
 import { Flex, Box } from 'grid-styled';
 import ModalSearchBar from './ModalSearchBar';
+import ModalGraph from './ModalGraph';
 
 // Icons
 import gdi from '../images/factions/gdi.png';
@@ -282,8 +283,11 @@ class ScoreModal extends Component {
                 ''
               )}
             </Flex>
-            <br />
-            <hr />
+          <br />
+          <hr />
+          <ModalGraph matches={this.state.matches} playername={playername} key={this.state.matches}/>
+          <br />
+          <hr />
           </div>
           <ModalSearchBar data={this.state.matches} playername={playername} />
           <h3>RECENT GAMES</h3>

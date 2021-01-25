@@ -217,6 +217,10 @@ export const CustomP = styled.p`
   font-size: 15px;
 `;
 
+export const CustomP2 = styled.p`
+  color: black;
+`;
+
 export const CustomNav = styled.div`
   background-repeat: repeat;
   background-color: black;

@@ -54,10 +54,11 @@ class ModalGraph extends Component {
           title: {
             text: 'Points',
           },
+        },
+        xaxis: {
+          type: "datetime"
         }
       },
-
-
     };
   }
 
@@ -66,16 +67,23 @@ class ModalGraph extends Component {
     this.modifyData(this.props.matches, this.props.playername);
   }
 
+  epochToJsDate(ts){
+        // ts = epoch timestamp
+        // returns date obj
+        return new Date(ts*1000).toGMTString();
+   }
+
   modifyData(array, player){
     let newArrayElo = []
     // let newArrayTime = []
 
     array.map(game => {
       if (game.player === player){
-        newArrayElo.push(game.player_new_elo)
+        newArrayElo.push({ x: this.epochToJsDate(game.starttime), y: game.player_new_elo})
+        console.log(this.epochToJsDate((game.starttime)))
         // newArrayTime.push(new Date(game.starttime))
       } else {
-        newArrayElo.push(game.opponent_new_elo)
+        newArrayElo.push({x: this.epochToJsDate(game.starttime), y: game.opponent_new_elo})
         // newArrayTime.push(new Date(game.starttime))
       }
     })

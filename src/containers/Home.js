@@ -1,10 +1,5 @@
 import React, { Component } from 'react';
-import {
-  CenterBullets,
-  StandardImage,
-  StyledLink,
-  Wrapper
-} from '../utils/styles';
+import { StandardImage, StyledLink, Wrapper } from '../utils/styles';
 import { Flex, Box } from 'grid-styled';
 import {
   CustomCenterD,
@@ -54,39 +49,47 @@ class Home extends Component {
         <p>
           Welcome to the community run Tiberian Dawn ladders for the Command &
           Conquer Remastered Collection.
-          <br />
-          The site is just up and running so bear with us while we work out the
-          bugs.
         </p>
         <br />
         <hr />
         <div>
-          <h3>
-            <span role="img" aria-label="rules">
-              📜
-            </span>{' '}
-            SEASON 3+ OVERVIEW{' '}
-            <span role="img" aria-label="rules">
-              📜
-            </span>
-          </h3>
+          <h3>SEASON OVERVIEW</h3>
           <CustomCenterD>
             <CustomLeftP>
               As there has been no official reset for the{' '}
               <StyledLink href="https://cnc.community/command-and-conquer-remastered/leaderboard/tiberian-dawn">
                 Official C&C Remastered Tiberian Dawn Ladder
               </StyledLink>
-              , we the community have set out to create out own reset of the
-              current 'final' season 3 ladder. This Season 3+ ladder
-              automatically tracks games played on the existing ladder maps and
-              has reset all players elos to a score of 1000.
-              <br />
-              <br />
+              , we the community have set out to create out own ladders.
             </CustomLeftP>
-            <CustomLink2 to="/ladder">Season 3+ Ladder</CustomLink2>
+            <br />
+            <br />
+            <CustomLink2 to="/ladder">Go To Season Ladders</CustomLink2>
+            <br />
           </CustomCenterD>
+        </div>
+        <hr />
+        <div>
+          <h3>SEASON 3+ OVERVIEW</h3>
+          <CustomLeftP>
+            We currently have a <b>Season 3+</b> ladder which is an elo reset of
+            the official season 3 ladder. This Season 3+ ladder automatically
+            tracks games played on the existing quickmatch ladder pool and has
+            reset all players elos to a score of 1000. You can checkout the
+            existing map pool below.
+            <br />
+            <br />
+          </CustomLeftP>
+          Start: ~ 06/01/21 <br />
+          End: ~ 31/03/21
+          <br />
+          <br />
+          This ladder will only track games played via the in-game quickmatch
+          option as of 27/01/21.
+          <br />
           <br />
         </div>
+
         <hr />
         <div>
           <h3>
@@ -138,16 +141,8 @@ class Home extends Component {
         </div>
         <hr />
         <div>
-          <h3>
-            <span role="img" aria-label="rules">
-              📜
-            </span>{' '}
-            SEASON 4 OVERVIEW{' '}
-            <span role="img" aria-label="rules">
-              📜
-            </span>
-          </h3>
           <CustomCenterD>
+            <h3>SEASON 4 OVERVIEW</h3>
             <CustomLeftP>
               In addition to providing a season 3 elo reset we have set out to
               create a new map pool for a new community run season - Season 4.
@@ -163,24 +158,10 @@ class Home extends Component {
               nothing extra is required for you to pariticpate.
               <br />
               <br />
-              The following is a brief snapshot of the current rules:
             </CustomLeftP>
+            Start: ~ 11/01/21 <br />
+            End: ~ 31/03/21
           </CustomCenterD>
-          <CenterBullets>
-            <li>
-              When online and available to play be sure to react to the relevant
-              role in the #ready-to-play channel
-            </li>
-            <li>
-              The public leaderboard will be updated automatically every
-              24-48hrs
-            </li>
-            <li>Issues of misconduct may be reported to a Season Refree</li>
-          </CenterBullets>
-          <p>
-            Official start date of Season 4 pending, currently trialing setup
-            with Season 3+ first.
-          </p>
         </div>
         <br />
         <hr />

@@ -88,16 +88,10 @@ class Leaderboard extends Component {
                       )}
                     </td>
                     <td>{data.points}</td>
-                    <td>
-                      {data.wins}
-                    </td>
-                    <td>
-                      {data.loses}
-                    </td>
+                    <td>{data.wins}</td>
+                    <td>{data.loses}</td>
                     <td>{data.played}</td>
-                    <td>
-                      {data.winrate + '%'}
-                    </td>
+                    <td>{data.winrate + '%'}</td>
                   </CustomRow>
                 ) : (
                   <tr onClick={() => this.openModal(data, index)}>
@@ -117,16 +111,10 @@ class Leaderboard extends Component {
                       )}
                     </td>
                     <td>{data.points}</td>
-                    <td>
-                      {data.wins}
-                    </td>
-                    <td>
-                      {data.loses}
-                    </td>
+                    <td>{data.wins}</td>
+                    <td>{data.loses}</td>
                     <td>{data.length}</td>
-                    <td>
-                      {(data.winrate) + '%'}
-                    </td>
+                    <td>{data.winrate + '%'}</td>
                   </tr>
                 )}
               </>

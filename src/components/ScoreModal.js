@@ -21,7 +21,6 @@ import randomnod from '../images/factions/nodrandom.png';
 
 const axios = require('axios').default;
 
-
 const greenStyle = {
   color: 'green',
   fontWeight: 'bold'
@@ -55,7 +54,7 @@ class ScoreModal extends Component {
     this.scoreState(this.props.season, this.props.data.player_name);
   }
 
-  scoreState(season, player){
+  scoreState(season, player) {
     return axios.get(`/elohistory/${season}/${player}`).then(matches => {
       let data = matches.data;
       this.setState({ matches: data });
@@ -71,88 +70,68 @@ class ScoreModal extends Component {
     return `${d.toLocaleDateString()} - ${d.toLocaleTimeString()}`;
   }
 
-  gamesWon(data, faction, playername){
-    if(faction === 'random'){
+  gamesWon(data, faction, playername) {
+    if (faction === 'random') {
       return data.filter(
         game =>
-        ((
-          game.player === playername &&
-          game.result === false &&
-          game.player_random === true
-          ) ||
-          (
-            game.opponent === playername &&
+          (game.player === playername &&
+            game.result === false &&
+            game.player_random === true) ||
+          (game.opponent === playername &&
             game.result === true &&
-            game.opponent_random === true
-          ))
-        ).length
+            game.opponent_random === true)
+      ).length;
     } else {
       return data.filter(
         game =>
-        ((
-          game.player === playername &&
-          game.result === false &&
-          game.player_faction === faction &&
-          (game.player_random === false ||
-            game.player_random === null)
-          ) ||
-          (
-            game.opponent === playername &&
+          (game.player === playername &&
+            game.result === false &&
+            game.player_faction === faction &&
+            (game.player_random === false || game.player_random === null)) ||
+          (game.opponent === playername &&
             game.result === true &&
             game.opponent_faction === faction &&
-            (game.opponent_random === false ||
-              game.opponent_random === null)
-            ))
-      ).length
+            (game.opponent_random === false || game.opponent_random === null))
+      ).length;
     }
   }
 
-  gamesLost(data, faction, playername){
-    if(faction === 'random'){
+  gamesLost(data, faction, playername) {
+    if (faction === 'random') {
       return data.filter(
         game =>
-        ((
-          game.player === playername &&
-          game.result === true &&
-          game.player_random === true
-          ) ||
-          (
-            game.opponent === playername &&
+          (game.player === playername &&
+            game.result === true &&
+            game.player_random === true) ||
+          (game.opponent === playername &&
             game.result === false &&
-            game.opponent_random === true
-          ))
-      ).length
+            game.opponent_random === true)
+      ).length;
     } else {
       return data.filter(
         game =>
-        ((
-          game.player === playername &&
-          game.result === true &&
-          game.player_faction === faction &&
-          (game.player_random === false ||
-            game.player_random === null)
-          ) ||
-          (
-            game.opponent === playername &&
+          (game.player === playername &&
+            game.result === true &&
+            game.player_faction === faction &&
+            (game.player_random === false || game.player_random === null)) ||
+          (game.opponent === playername &&
             game.result === false &&
             game.opponent_faction === faction &&
-            (game.opponent_random === false ||
-              game.opponent_random === null)
-            ))
-      ).length
+            (game.opponent_random === false || game.opponent_random === null))
+      ).length;
     }
   }
 
-  winRate(data, faction, playername){
-    let wins = this.gamesWon(data, faction, playername)
-    let loses = this.gamesLost(data, faction, playername)
-    let result = Math.floor((wins / (wins + loses)) * 100)
-    console.log(`WINS ${wins} LOSES ${loses} RESULTS: ${result}`)
-    return wins > 0 ? result : 0
+  winRate(data, faction, playername) {
+    let wins = this.gamesWon(data, faction, playername);
+    let loses = this.gamesLost(data, faction, playername);
+    let result = Math.floor((wins / (wins + loses)) * 100);
+    console.log(`WINS ${wins} LOSES ${loses} RESULTS: ${result}`);
+    return wins > 0 ? result : 0;
   }
 
   render() {
-    const { playername, season, rank, onRequestClose } = this.props;
+    const { playername, rank, onRequestClose } = this.props;
 
     return (
       <Modal
@@ -174,14 +153,28 @@ class ScoreModal extends Component {
                   🏆
                 </span>{' '}
                 TOTAL WINS <br />
-                {this.state.matches.filter(game => { return ((game.result === false && game.player === playername) || (game.result === true && game.opponent === playername)) }).length}
+                {
+                  this.state.matches.filter(game => {
+                    return (
+                      (game.result === false && game.player === playername) ||
+                      (game.result === true && game.opponent === playername)
+                    );
+                  }).length
+                }
               </Box>
               <Box px={2} py={3} width={[1, 1 / 4]}>
                 <span role="img" aria-label="x">
                   ❌
                 </span>{' '}
                 TOTAL LOSSES <br />
-                {this.state.matches.filter(game => { return ((game.result === true && game.player === playername) || (game.result === false && game.opponent === playername)) }).length}
+                {
+                  this.state.matches.filter(game => {
+                    return (
+                      (game.result === true && game.player === playername) ||
+                      (game.result === false && game.opponent === playername)
+                    );
+                  }).length
+                }
               </Box>
               <Box px={2} py={3} width={[1, 1 / 4]}>
                 <span role="img" aria-label="play">
@@ -196,7 +189,11 @@ class ScoreModal extends Component {
                 </span>{' '}
                 OVERALL WINRATE <br />{' '}
                 {Math.floor(
-                  (this.state.matches.filter(game => ((game.result === false && game.player === playername) || (game.result === true && game.opponent === playername))).length /
+                  (this.state.matches.filter(
+                    game =>
+                      (game.result === false && game.player === playername) ||
+                      (game.result === true && game.opponent === playername)
+                  ).length /
                     this.state.matches.length) *
                     100
                 ) + '%'}
@@ -209,158 +206,155 @@ class ScoreModal extends Component {
             <Flex>
               {this.state.matches.filter(
                 game =>
-                  ((game.player === playername && game.player_faction === 'GDI' && game.player_random === false) ||
-                  (game.opponent === playername && game.player_faction === 'GDI' && game.opponent_random === false))
+                  (game.player === playername &&
+                    game.player_faction === 'GDI' &&
+                    game.player_random === false) ||
+                  (game.opponent === playername &&
+                    game.player_faction === 'GDI' &&
+                    game.opponent_random === false)
               ).length > 0 ? (
                 <Box px={2} py={3} width={[1, 1 / 3]}>
                   <IconImg src={gdi} alt="gdi" />
                   <br />
                   GAMES WON -{' '}
-                  {
-                    this.gamesWon(this.state.matches, 'GDI', playername)
-                  }
+                  {this.gamesWon(this.state.matches, 'GDI', playername)}
                   <br />
                   GAMES LOST -{' '}
-                  {
-                    this.gamesLost(this.state.matches, 'GDI', playername)
-                  }
+                  {this.gamesLost(this.state.matches, 'GDI', playername)}
                   <br />
                   WINRATE -{' '}
-                  {
-                    this.winRate(this.state.matches, 'GDI', playername)
-                  }
-                  %
+                  {this.winRate(this.state.matches, 'GDI', playername)}%
                 </Box>
               ) : (
                 ''
               )}
               {this.state.matches.filter(
                 game =>
-                ((game.player === playername && game.player_faction === 'Nod' && game.player_random === false) ||
-                (game.opponent === playername && game.player_faction === 'Nod' && game.opponent_random === false))
+                  (game.player === playername &&
+                    game.player_faction === 'Nod' &&
+                    game.player_random === false) ||
+                  (game.opponent === playername &&
+                    game.player_faction === 'Nod' &&
+                    game.opponent_random === false)
               ).length > 0 ? (
                 <Box px={2} py={3} width={[1, 1 / 3]}>
                   <IconImg src={nod} alt="nod" />
                   <br />
-                  GAMES WON -{
-                    ' ' + this.gamesWon(this.state.matches, 'Nod', playername)
-                  }
+                  GAMES WON -
+                  {' ' + this.gamesWon(this.state.matches, 'Nod', playername)}
                   <br />
-                  GAMES LOST -{
-                    ' ' + this.gamesLost(this.state.matches, 'Nod', playername)
-                  }
+                  GAMES LOST -
+                  {' ' + this.gamesLost(this.state.matches, 'Nod', playername)}
                   <br />
-                  WINRATE -{
-                    ' ' + this.winRate(this.state.matches, 'Nod', playername)
-                  }
-                  %
+                  WINRATE -
+                  {' ' + this.winRate(this.state.matches, 'Nod', playername)}%
                 </Box>
               ) : (
                 ''
               )}
               {this.state.matches.filter(
                 game =>
-                ((game.player=== playername && game.player_random === true) ||
-                (game.opponent === playername && game.opponent_random === true))
-              ).length >
-              0 ? (
+                  (game.player === playername && game.player_random === true) ||
+                  (game.opponent === playername &&
+                    game.opponent_random === true)
+              ).length > 0 ? (
                 <Box px={2} py={3} width={[1, 1 / 3]}>
                   <IconImg src={random} alt="random" />
                   <br />
-                  GAMES WON -{
-                    ' ' + this.gamesWon(this.state.matches, 'random', playername)
-                  }
+                  GAMES WON -
+                  {' ' +
+                    this.gamesWon(this.state.matches, 'random', playername)}
                   <br />
-                  GAMES LOST -{
-                    ' ' + this.gamesLost(this.state.matches, 'random', playername)
-                  }
+                  GAMES LOST -
+                  {' ' +
+                    this.gamesLost(this.state.matches, 'random', playername)}
                   <br />
-                  WINRATE -{
-                    ' ' + this.winRate(this.state.matches, 'random', playername)}
+                  WINRATE -
+                  {' ' + this.winRate(this.state.matches, 'random', playername)}
                   %
                 </Box>
               ) : (
                 ''
               )}
             </Flex>
-          <br />
-          <hr />
-          <ModalGraph matches={this.state.matches} playername={playername} key={this.state.matches}/>
-          <br />
-          <hr />
+            <br />
+            <hr />
+            <ModalGraph
+              matches={this.state.matches}
+              playername={playername}
+              key={this.state.matches}
+            />
+            <br />
+            <hr />
           </div>
           <ModalSearchBar data={this.state.matches} playername={playername} />
           <h3>RECENT GAMES</h3>
           <Flex flexWrap="wrap">
             {this.state.matches.map((game, index) => (
-                <Box key={index} px={2} py={3} width={[1, 1 / 3]}>
-                  <CustomP>
-                    {game.player_random === true ? (
-                      game.player_faction === 'GDI' ? (
-                        <IconImg src={randomgdi} alt="randomgdi" />
-                      ) : (
-                        <IconImg src={randomnod} alt="randomnod" />
-                      )
-                    ) : game.player_faction === 'GDI' ? (
-                      <IconImg src={gdi} alt="gdi" />
+              <Box key={index} px={2} py={3} width={[1, 1 / 3]}>
+                <CustomP>
+                  {game.player_random === true ? (
+                    game.player_faction === 'GDI' ? (
+                      <IconImg src={randomgdi} alt="randomgdi" />
                     ) : (
-                      <IconImg src={nod} alt="nod" />
-                    )}
-                    <b> {game.player}</b> [
-                    {game.player_new_elo - game.player_existing_elo > 0 ? (
-                      <span style={{ color: 'green', fontWeight: 'bold' }}>
-                        +{game.player_new_elo - game.player_existing_elo}
-                      </span>
+                      <IconImg src={randomnod} alt="randomnod" />
+                    )
+                  ) : game.player_faction === 'GDI' ? (
+                    <IconImg src={gdi} alt="gdi" />
+                  ) : (
+                    <IconImg src={nod} alt="nod" />
+                  )}
+                  <b> {game.player}</b> [
+                  {game.player_new_elo - game.player_existing_elo > 0 ? (
+                    <span style={{ color: 'green', fontWeight: 'bold' }}>
+                      +{game.player_new_elo - game.player_existing_elo}
+                    </span>
+                  ) : (
+                    <span style={{ color: 'red', fontWeight: 'bold' }}>
+                      {game.player_new_elo - game.player_existing_elo}
+                    </span>
+                  )}
+                  ] -v- [
+                  {game.opponent_new_elo - game.opponent_existing_elo > 0 ? (
+                    <span style={{ color: 'green', fontWeight: 'bold' }}>
+                      +{game.opponent_new_elo - game.opponent_existing_elo}
+                    </span>
+                  ) : (
+                    <span style={{ color: 'red', fontWeight: 'bold' }}>
+                      {game.opponent_new_elo - game.opponent_existing_elo}
+                    </span>
+                  )}
+                  ] <b>{game.opponent} </b>
+                  {game.opponent_random === true ? (
+                    game.opponent_faction === 'GDI' ? (
+                      <IconImg src={randomgdi} alt="randomgdi" />
                     ) : (
-                      <span style={{ color: 'red', fontWeight: 'bold' }}>
-                        {game.player_new_elo - game.player_existing_elo}
-                      </span>
-                    )}
-                    ] -v- [
-                    {game.opponent_new_elo - game.opponent_existing_elo > 0 ? (
-                      <span style={{ color: 'green', fontWeight: 'bold' }}>
-                        +{game.opponent_new_elo - game.opponent_existing_elo}
-                      </span>
-                    ) : (
-                      <span style={{ color: 'red', fontWeight: 'bold' }}>
-                        {game.opponent_new_elo - game.opponent_existing_elo}
-                      </span>
-                    )}
-                    ] <b>{game.opponent} </b>
-                    {game.opponent_random === true ? (
-                      game.opponent_faction === 'GDI' ? (
-                        <IconImg src={randomgdi} alt="randomgdi" />
-                      ) : (
-                        <IconImg src={randomnod} alt="randomnod" />
-                      )
-                    ) : game.opponent_faction === 'GDI' ? (
-                      <IconImg src={gdi} alt="gdi" />
-                    ) : (
-                      <IconImg src={nod} alt="nod" />
-                    )}{' '}
-                    <br />
-                    {this.toDateString(game.starttime)} <br />
-                    {`${Math.floor(game.duration / 60)}mins ${Math.trunc(
-                      game.duration - Math.floor(game.duration / 60) * 60
-                    )}secs`}
-                    <br />
-                    {
-                      ((game.player === playername && game.result === false) ||
-                      (game.opponent === playername && game.result === true)) ? (
-                      <span style={greenStyle}>Win</span>
-                    ) : (
-                      <span style={redStyle}>Loss</span>
-                    )}{' '}
-                    <br />
-                    <StyledLink href={game.replay}>Replay File</StyledLink>{' '}
-                    <br />
-                    <CustomImg
-                      src={require(`../images/maps/${game.map}.png`)}
-                    />
-                    <br />
-                  </CustomP>
-                </Box>
-              ))}
+                      <IconImg src={randomnod} alt="randomnod" />
+                    )
+                  ) : game.opponent_faction === 'GDI' ? (
+                    <IconImg src={gdi} alt="gdi" />
+                  ) : (
+                    <IconImg src={nod} alt="nod" />
+                  )}{' '}
+                  <br />
+                  {this.toDateString(game.starttime)} <br />
+                  {`${Math.floor(game.duration / 60)}mins ${Math.trunc(
+                    game.duration - Math.floor(game.duration / 60) * 60
+                  )}secs`}
+                  <br />
+                  {(game.player === playername && game.result === false) ||
+                  (game.opponent === playername && game.result === true) ? (
+                    <span style={greenStyle}>Win</span>
+                  ) : (
+                    <span style={redStyle}>Loss</span>
+                  )}{' '}
+                  <br />
+                  <StyledLink href={game.replay}>Replay File</StyledLink> <br />
+                  <CustomImg src={require(`../images/maps/${game.map}.png`)} />
+                  <br />
+                </CustomP>
+              </Box>
+            ))}
           </Flex>
           <br />
           <br />

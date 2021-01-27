@@ -30,8 +30,8 @@ class ModalSearchBar extends Component {
   handleInputChange = event => {
     const query = event.target.value;
     console.log(Object.keys(this.props.data));
-    let result = this.props.data.filter(game =>
-      game.opponent.includes(query) || game.player.includes(query)
+    let result = this.props.data.filter(
+      game => game.opponent.includes(query) || game.player.includes(query)
     );
     if (result.length === this.props.data.length) result = [];
     this.setState({
@@ -41,7 +41,9 @@ class ModalSearchBar extends Component {
   };
 
   searchData(data, query) {
-    return data.filter(player => player.player.includes(query) || player.opponent.includes(query));
+    return data.filter(
+      player => player.player.includes(query) || player.opponent.includes(query)
+    );
   }
 
   toDateString(epochValue) {
@@ -108,8 +110,8 @@ class ModalSearchBar extends Component {
                   game.duration - Math.floor(game.duration / 60) * 60
                 )}secs`}
                 <br />
-                {((game.player === playername && game.result === false) ||
-                (game.opponent === playername && game.result === true)) ? (
+                {(game.player === playername && game.result === false) ||
+                (game.opponent === playername && game.result === true) ? (
                   <span style={greenStyle}>Win</span>
                 ) : (
                   <span style={redStyle}>Loss</span>

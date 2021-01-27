@@ -16,7 +16,9 @@ class SearchBar extends Component {
 
   handleInputChange = event => {
     const query = event.target.value;
-    let result = this.props.data.filter(player => player.player_name.includes(query));
+    let result = this.props.data.filter(player =>
+      player.player_name.includes(query)
+    );
     this.setState({
       query,
       result
@@ -45,7 +47,7 @@ class SearchBar extends Component {
     return ModalManager.open(
       <ScoreModal
         data={data}
-        rank={data.position -1}
+        rank={data.position - 1}
         season={this.props.season}
         playername={data.player_name}
         onRequestClose={() => true}
@@ -98,21 +100,16 @@ class SearchBar extends Component {
               <th>WINRATE</th>
             </CustomHeaderRow>
             {this.state.result.map((result, index) => (
-              <CustomRow2
-                onClick={() =>
-                  this.openModal(result, index)
-                }
-              >
+              <CustomRow2 onClick={() => this.openModal(result, index)}>
                 <td>
                   {' '}
                   <CustomBadge
                     src={require(`../images/ranks/${this.getRank(
-                      result.position)}.png`)}
+                      result.position
+                    )}.png`)}
                   />
                 </td>
-                <td>
-                  {result.position}
-                </td>
+                <td>{result.position}</td>
                 <td>
                   {this.specialBadge(
                     result.player_name,
@@ -124,16 +121,10 @@ class SearchBar extends Component {
                   )}
                 </td>
                 <td>{result.points}</td>
-                <td>
-                  {result.wins}
-                </td>
-                <td>
-                  {result.loses}
-                </td>
+                <td>{result.wins}</td>
+                <td>{result.loses}</td>
                 <td>{result.played}</td>
-                <td>
-                  {result.winrate + '%'}
-                </td>
+                <td>{result.winrate + '%'}</td>
               </CustomRow2>
             ))}
           </table>

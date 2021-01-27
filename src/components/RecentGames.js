@@ -41,7 +41,7 @@ class RecentGames extends Component {
     return `${d.toLocaleDateString()} - ${d.toLocaleTimeString()}`;
   }
 
-  lastHour(){
+  lastHour() {
     return axios.get(`/recent/hour`).then(matches => {
       let data = matches.data;
       this.setState({ count: data.length });

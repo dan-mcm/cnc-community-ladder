@@ -39,7 +39,7 @@ class Veterans extends Component {
     }
   }
 
-  awardState(season){
+  awardState(season) {
     axios.get(`/awards/total/${season}`).then(matches => {
       this.setState({ totalAward: matches.data[0] });
     });
@@ -52,7 +52,7 @@ class Veterans extends Component {
     axios.get(`/awards/faction/random/${season}`).then(matches => {
       this.setState({ randomAward: matches.data[0] });
     });
-    return
+    return;
   }
 
   render() {

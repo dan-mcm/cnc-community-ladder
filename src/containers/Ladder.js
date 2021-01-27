@@ -81,15 +81,6 @@ class Ladder extends Component {
               🏆
             </span>
           </h3>
-          <CustomP>
-            A natural extension of the official Season 3 ladder using the same
-            maps, considers a starting ELO level of 1,000 for each player
-          </CustomP>
-          <CustomP>
-            Start: 09/01/21 ~20:40 GMT <br />
-            End: TBC
-          </CustomP>
-          <CustomP>* click rows for extra player data *</CustomP>
           <>
             <p>SELECT A SEASON</p>
             <select name="season" onChange={this.handleSeasonChange}>
@@ -114,8 +105,44 @@ class Ladder extends Component {
             SEASON{' '}
             {this.state.selectedSeason === 3 ? '3+' : this.state.selectedSeason}
           </h3>
+          <CustomP>
+            {this.state.selectedSeason === 3 ? (
+              <div>
+                <CustomP>
+                  A natural extension of the official Season 3 ladder using the
+                  same maps, considers a starting ELO level of 1,000 for each
+                  player.
+                  <br />
+                  Restricted to games played via in-game quickmatch option from
+                  27/01/21.
+                </CustomP>
+                <CustomP></CustomP>
+                Start: ~ 06/01/21 <br />
+                End: ~ 31/03/21
+              </div>
+            ) : (
+              <div>
+                <CustomP>
+                  A brand new ladder to enable players to have ranked games on
+                  custom maps (see homepage for map selection)
+                  <br />
+                  Considers a starting ELO level of 1,000 for each player.
+                  <br />
+                </CustomP>
+                <CustomP>
+                  Start: ~ 11/01/21 <br />
+                  End: ~ 31/03/21
+                </CustomP>
+              </div>
+            )}
+          </CustomP>
+          <CustomP>* click rows for extra player data *</CustomP>
           {this.state.leaderboard.length === 0 ? (
-            <div class="loader"></div>
+            <div>
+              <br />
+              <div class="loader"></div>
+              <br />
+            </div>
           ) : (
             <>
               TOTAL PLAYERS: {this.state.leaderboard.length}

@@ -6,14 +6,35 @@ class ModalGraph extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      series: [{
-        name: 'Elo',
-        data: [4, 3, -10, -9, -29, 19, 22, 9, 12, 7, 19, 5, 13, 9, 17, 2, 7, 5]
-      }],
+      series: [
+        {
+          name: 'Elo',
+          data: [
+            4,
+            3,
+            -10,
+            -9,
+            -29,
+            19,
+            22,
+            9,
+            12,
+            7,
+            19,
+            5,
+            13,
+            9,
+            17,
+            2,
+            7,
+            5
+          ]
+        }
+      ],
       options: {
         chart: {
           height: 350,
-          type: 'line',
+          type: 'line'
         },
         stroke: {
           width: 7,
@@ -23,7 +44,7 @@ class ModalGraph extends Component {
           text: 'Elo Progress',
           align: 'left',
           style: {
-            fontSize: "16px",
+            fontSize: '16px',
             color: '#666'
           }
         },
@@ -31,70 +52,77 @@ class ModalGraph extends Component {
           type: 'gradient',
           gradient: {
             shade: 'dark',
-            gradientToColors: [ '#FDD835'],
+            gradientToColors: ['#FDD835'],
             shadeIntensity: 1,
             type: 'horizontal',
             opacityFrom: 1,
             opacityTo: 1,
             stops: [0, 100, 100, 100]
-          },
+          }
         },
         markers: {
           size: 1,
-          colors: ["#FFA41B"],
-          strokeColors: "#fff",
+          colors: ['#FFA41B'],
+          strokeColors: '#fff',
           strokeWidth: 2,
           hover: {
-            size: 7,
+            size: 7
           }
         },
         yaxis: {
           min: 800,
           max: 2000,
           title: {
-            text: 'Points',
-          },
+            text: 'Points'
+          }
         },
         xaxis: {
-          type: "datetime"
+          type: 'datetime'
         }
-      },
+      }
     };
   }
-
 
   componentDidMount() {
     this.modifyData(this.props.matches, this.props.playername);
   }
 
-  epochToJsDate(ts){
-        // ts = epoch timestamp
-        // returns date obj
-        return new Date(ts*1000).toGMTString();
-   }
+  epochToJsDate(ts) {
+    // ts = epoch timestamp
+    // returns date obj
+    return new Date(ts * 1000).toGMTString();
+  }
 
-  modifyData(array, player){
-    let newArrayElo = []
+  modifyData(array, player) {
+    let newArrayElo = [];
     // let newArrayTime = []
 
     array.map(game => {
-      if (game.player === player){
-        newArrayElo.push({ x: this.epochToJsDate(game.starttime), y: game.player_new_elo})
-        console.log(this.epochToJsDate((game.starttime)))
+      if (game.player === player) {
+        newArrayElo.push({
+          x: this.epochToJsDate(game.starttime),
+          y: game.player_new_elo
+        });
+        console.log(this.epochToJsDate(game.starttime));
         // newArrayTime.push(new Date(game.starttime))
       } else {
-        newArrayElo.push({x: this.epochToJsDate(game.starttime), y: game.opponent_new_elo})
+        newArrayElo.push({
+          x: this.epochToJsDate(game.starttime),
+          y: game.opponent_new_elo
+        });
         // newArrayTime.push(new Date(game.starttime))
       }
-    })
+    });
     // console.log(newArrayTime.reverse())
 
     return this.setState({
-      series: [{
-        name: 'Elo',
-        data: newArrayElo.reverse()
-      }]
-  })
+      series: [
+        {
+          name: 'Elo',
+          data: newArrayElo.reverse()
+        }
+      ]
+    });
   }
 
   render() {
@@ -102,7 +130,13 @@ class ModalGraph extends Component {
       <div>
         <h3>Player Progress</h3>
         <CustomP2>
-        <ReactApexChart color={"black"} options={this.state.options} series={this.state.series} type="line" height={350} />
+          <ReactApexChart
+            color={'black'}
+            options={this.state.options}
+            series={this.state.series}
+            type="line"
+            height={350}
+          />
         </CustomP2>
       </div>
     );

@@ -4,11 +4,7 @@ const path = require('path');
 const app = express();
 const port = process.env.PORT || 5000;
 const dotenv = require('dotenv').config();
-const DB = require('./utils/dbQueries.js');
 const { Pool } = require('pg');
-const { eloCalculationsRawRevised } = require('./utils/helpers.js');
-const { dbdataTranslation } = require('./utils/helpers.js');
-
 
 if (process.env.NODE_ENV === 'production') {
   app.use((req, res, next) => {
@@ -18,7 +14,7 @@ if (process.env.NODE_ENV === 'production') {
   });
 }
 
-function createPool(){
+function createPool() {
   let pool;
   if (process.env.NODE_ENV === 'production') {
     pool = new Pool({
@@ -38,7 +34,7 @@ function createPool(){
       port: process.env.DB_PORT
     });
   }
-  return pool
+  return pool;
 }
 
 // For handling SQL injection
@@ -97,11 +93,10 @@ app.get('/leaderboard/:season', (req, result) => {
       console.log(err);
     })
     .finally(() => pool.end());
-
-})
+});
 
 app.get('/elohistory/:season/:player', (req, result) => {
-  let pool = createPool()
+  let pool = createPool();
   const cleanedSeasonInput = cleanInput(req.params.season);
 
   pool
@@ -125,11 +120,10 @@ app.get('/elohistory/:season/:player', (req, result) => {
       console.log(err);
     })
     .finally(() => pool.end());
-
-})
+});
 
 app.get(`/awards/total/:season`, (req, result) => {
-  let pool = createPool()
+  let pool = createPool();
   const cleanedSeasonInput = cleanInput(req.params.season);
 
   pool
@@ -153,11 +147,10 @@ app.get(`/awards/total/:season`, (req, result) => {
       console.log(err);
     })
     .finally(() => pool.end());
-})
-
+});
 
 app.get('/awards/faction/random/:season', (req, result) => {
-  let pool = createPool()
+  let pool = createPool();
   const cleanedSeasonInput = cleanInput(req.params.season);
 
   pool
@@ -181,10 +174,10 @@ app.get('/awards/faction/random/:season', (req, result) => {
       console.log(err);
     })
     .finally(() => pool.end());
-})
+});
 
 app.get('/awards/faction/:faction/:season', (req, result) => {
-  let pool = createPool()
+  let pool = createPool();
   const cleanedSeasonInput = cleanInput(req.params.season);
 
   pool
@@ -208,16 +201,14 @@ app.get('/awards/faction/:faction/:season', (req, result) => {
       console.log(err);
     })
     .finally(() => pool.end());
-})
-
-
+});
 
 app.get('/health', (req, res) => {
   return res.sendStatus(200);
 });
 
 app.get(`/nightbot/:season/:playername`, (req, result) => {
-  let pool = createPool()
+  let pool = createPool();
   const cleanedSeasonInput = cleanInput(req.params.season);
 
   pool
@@ -253,7 +244,7 @@ app.get(`/nightbot/:season/:playername`, (req, result) => {
 });
 
 app.get('/obs/:season/:playername', (req, result) => {
-  let pool = createPool()
+  let pool = createPool();
   const cleanedSeasonInput = cleanInput(req.params.season);
   pool
     .connect()
@@ -301,7 +292,7 @@ app.get('/obs/:season/:playername', (req, result) => {
 });
 
 app.get('/recent', (req, result) => {
-  let pool = createPool()
+  let pool = createPool();
 
   const cleanedInput = cleanInput(req.params.season);
 
@@ -329,10 +320,10 @@ app.get('/recent', (req, result) => {
 });
 
 app.get('/recent/hour', (req, result) => {
-  let pool = createPool()
-  let currentTime = Date.now()
-  let hour = 3600000
-  let hourOffset = (currentTime - hour) / 1000
+  let pool = createPool();
+  let currentTime = Date.now();
+  let hour = 3600000;
+  let hourOffset = (currentTime - hour) / 1000;
   pool
     .connect()
     .then(client => {

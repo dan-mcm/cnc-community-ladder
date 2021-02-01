@@ -103,7 +103,6 @@ class ModalGraph extends Component {
           x: this.epochToJsDate(game.starttime),
           y: game.player_new_elo
         });
-        console.log(this.epochToJsDate(game.starttime));
         // newArrayTime.push(new Date(game.starttime))
       } else {
         newArrayElo.push({

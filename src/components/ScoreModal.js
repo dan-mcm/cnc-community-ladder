@@ -126,7 +126,6 @@ class ScoreModal extends Component {
     let wins = this.gamesWon(data, faction, playername);
     let loses = this.gamesLost(data, faction, playername);
     let result = Math.floor((wins / (wins + loses)) * 100);
-    console.log(`WINS ${wins} LOSES ${loses} RESULTS: ${result}`);
     return wins > 0 ? result : 0;
   }
 

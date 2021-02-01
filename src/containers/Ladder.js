@@ -30,7 +30,15 @@ class Ladder extends Component {
   componentDidMount() {
     // defaulting to season 3
     this.ladderState(3);
+    this.awardState(this.state.selectedSeason);
   }
+
+  // componentDidUpdate(prevProps,prevState) {
+  //   if (prevState.selected !== this.state.selectedSeason) {
+  //     this.awardState(this.state.selectedSeason);
+  //   }
+  // }
+
 
   handlePageChange(activePage) {
     let startPlayer = activePage === 1 ? 0 : 200 * (activePage - 1);
@@ -48,9 +56,26 @@ class Ladder extends Component {
     });
   }
 
+  awardState(season) {
+    axios.get(`/awards/total/${season}`).then(matches => {
+      this.setState({ highestTotal: matches.data[0] });
+    });
+    axios.get(`/awards/faction/GDI/${season}`).then(matches => {
+      this.setState({ highestGDI: matches.data[0] });
+    });
+    axios.get(`/awards/faction/Nod/${season}`).then(matches => {
+      this.setState({ highestNod: matches.data[0] });
+    });
+    axios.get(`/awards/faction/random/${season}`).then(matches => {
+      this.setState({ highestRandom: matches.data[0] });
+    });
+    return;
+  }
+
   handleSeasonChange = event => {
     this.setState({ selectedSeason: parseInt(event.target.value) });
     this.ladderState(event.target.value);
+    this.awardState(event.target.value)
   };
 
   render() {
@@ -159,7 +184,8 @@ class Ladder extends Component {
                 activePage={this.state.activePage}
                 itemsCountPerPage={200}
                 totalItemsCount={this.state.leaderboard.length}
-                pageRangeDisplayed={Math.ceil(
+                pageRangeDisplayed={
+                  this.state.leaderboard.length / 200 > 10 ? 10 : Math.ceil(
                   this.state.leaderboard.length / 200
                 )}
                 onChange={this.handlePageChange.bind(this)}
@@ -184,7 +210,8 @@ class Ladder extends Component {
                 activePage={this.state.activePage}
                 itemsCountPerPage={200}
                 totalItemsCount={this.state.leaderboard.length}
-                pageRangeDisplayed={Math.ceil(
+                pageRangeDisplayed={
+                  this.state.leaderboard.length / 200 > 10 ? 10 : Math.ceil(
                   this.state.leaderboard.length / 200
                 )}
                 onChange={this.handlePageChange.bind(this)}

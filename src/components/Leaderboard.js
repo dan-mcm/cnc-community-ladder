@@ -24,7 +24,6 @@ class Leaderboard extends Component {
     if (rank === 1) return '🥇 ' + player + ' 🥇';
     if (rank === 2) return '🥈 ' + player + ' 🥈';
     if (rank === 3) return '🥉 ' + player + ' 🥉';
-
     // Most played badges
     if (player === total) return '🎖️ ' + player + ' 🎖️';
     if (player === gdi) return '🎖️ ' + player + ' 🎖️';
@@ -107,7 +106,11 @@ class Leaderboard extends Component {
                     <td>
                       {this.specialBadge(
                         data.player_name,
-                        index + 1 + this.props.startPlayer
+                        index + 1 + this.props.startPlayer,
+                        this.props.highestTotal.player,
+                        this.props.highestGDI.player,
+                        this.props.highestNod.player,
+                        this.props.highestRandom.player
                       )}
                     </td>
                     <td>{data.points}</td>

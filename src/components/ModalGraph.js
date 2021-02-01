@@ -98,19 +98,13 @@ class ModalGraph extends Component {
     // let newArrayTime = []
 
     array.map(game => {
-      if (game.player === player) {
-        newArrayElo.push({
-          x: this.epochToJsDate(game.starttime),
-          y: game.player_new_elo
-        });
-        // newArrayTime.push(new Date(game.starttime))
-      } else {
-        newArrayElo.push({
-          x: this.epochToJsDate(game.starttime),
-          y: game.opponent_new_elo
-        });
-        // newArrayTime.push(new Date(game.starttime))
-      }
+      return (game.player === player) ? newArrayElo.push({
+        x: this.epochToJsDate(game.starttime),
+        y: game.player_new_elo
+      }) : newArrayElo.push({
+        x: this.epochToJsDate(game.starttime),
+        y: game.opponent_new_elo
+      });
     });
     // console.log(newArrayTime.reverse())
 

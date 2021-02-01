@@ -32,6 +32,7 @@ class Streamers extends Component {
           </CenterBullets>
           <br />
           {
+            // eslint-disable-next-line
             '$(eval a = `$(urlfetch http://www.tibdawn.com/nightbot/3/$(query))`; js = JSON.parse(a); `[S3+ TD Ladder] Player Name: ${js.name} | Rank: ${js.rank} | Wins: ${js.wins} | Losses: ${js.lost} | Points: ${(js.points)}`)'
           }
           <br />
@@ -39,6 +40,7 @@ class Streamers extends Component {
           <button
             onClick={() => {
               navigator.clipboard.writeText(
+                // eslint-disable-next-line
                 '$(eval a = `$(urlfetch http://www.tibdawn.com/nightbot/3/$(query))`; js = JSON.parse(a); `[S3+ TD Ladder] Player Name: ${js.name} | Rank: ${js.rank} | Wins: ${js.wins} | Losses: ${js.lost} | Points: ${(js.points)}`)'
               );
             }}

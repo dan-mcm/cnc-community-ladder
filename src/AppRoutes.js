@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Router, Route } from 'react-router-dom';
 import ReactGA from 'react-ga';
-import createHistory from 'history/createBrowserHistory';
+import { createBrowserHistory } from 'history';
 import Home from './containers/Home';
 import Social from './containers/Social';
 import Ladder from './containers/Ladder';
@@ -12,7 +12,7 @@ import Footer from './components/Footer';
 import Nav from './components/Nav';
 import CookieBanner from 'react-cookie-banner';
 
-const history = createHistory();
+const history = createBrowserHistory();
 history.listen(location => {
   ReactGA.set({ page: location.pathname });
   ReactGA.pageview(location.pathname);

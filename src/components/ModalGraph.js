@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { CustomP2 } from '../utils/styles';
 import ReactApexChart from 'react-apexcharts';
 
@@ -94,17 +95,19 @@ class ModalGraph extends Component {
   }
 
   modifyData(array, player) {
-    let newArrayElo = [];
+    const newArrayElo = [];
     // let newArrayTime = []
 
     array.map(game => {
-      return (game.player === player) ? newArrayElo.push({
-        x: this.epochToJsDate(game.starttime),
-        y: game.player_new_elo
-      }) : newArrayElo.push({
-        x: this.epochToJsDate(game.starttime),
-        y: game.opponent_new_elo
-      });
+      return game.player === player
+        ? newArrayElo.push({
+            x: this.epochToJsDate(game.starttime),
+            y: game.player_new_elo
+          })
+        : newArrayElo.push({
+            x: this.epochToJsDate(game.starttime),
+            y: game.opponent_new_elo
+          });
     });
     // console.log(newArrayTime.reverse())
 
@@ -135,5 +138,10 @@ class ModalGraph extends Component {
     );
   }
 }
+
+ModalGraph.propTypes = {
+  matches: PropTypes.array.isRequired,
+  playername: PropTypes.string.isRequired
+};
 
 export default ModalGraph;

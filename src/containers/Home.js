@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
-import { StandardImage, StyledLink, Wrapper } from '../utils/styles';
-import { Flex, Box } from 'grid-styled';
 import {
   CustomCenterD,
   CustomLeftP,
   CustomLink2,
-  HomeImg
+  HomeImg,
+  StandardImage,
+  StyledLink,
+  Wrapper
 } from '../utils/styles';
+import { Flex, Box } from 'grid-styled';
 
 // Season 3+ maps
 import elevation from '../images/maps/elevation.png';
@@ -35,8 +37,7 @@ class Home extends Component {
   render() {
     return (
       <Wrapper>
-      {
-        console.log(`     ██╗ ██████╗ ██╗███╗   ██╗    ████████╗██╗  ██╗███████╗     ██████╗ ██████╗ ██╗
+        {console.log(`     ██╗ ██████╗ ██╗███╗   ██╗    ████████╗██╗  ██╗███████╗     ██████╗ ██████╗ ██╗
      ██║██╔═══██╗██║████╗  ██║    ╚══██╔══╝██║  ██║██╔════╝    ██╔════╝ ██╔══██╗██║
      ██║██║   ██║██║██╔██╗ ██║       ██║   ███████║█████╗      ██║  ███╗██║  ██║██║
 ██   ██║██║   ██║██║██║╚██╗██║       ██║   ██╔══██║██╔══╝      ██║   ██║██║  ██║██║
@@ -49,8 +50,7 @@ class Home extends Component {
 ██╔══██╗██╔══╝  ╚██╗ ██╔╝██║   ██║██║     ██║   ██║   ██║   ██║██║   ██║██║╚██╗██║
 ██║  ██║███████╗ ╚████╔╝ ╚██████╔╝███████╗╚██████╔╝   ██║   ██║╚██████╔╝██║ ╚████║
 ╚═╝  ╚═╝╚══════╝  ╚═══╝   ╚═════╝ ╚══════╝ ╚═════╝    ╚═╝   ╚═╝ ╚═════╝ ╚═╝  ╚═══╝
-                                                                                   `)
-      }
+                                                                                   `)}
         <Flex flexWrap="wrap">
           <Box px={2} py={3} width={[1, 1 / 3]}>
             <HomeImg src={gdi} alt="gdi" />

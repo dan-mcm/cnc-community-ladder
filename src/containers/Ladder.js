@@ -39,7 +39,6 @@ class Ladder extends Component {
   //   }
   // }
 
-
   handlePageChange(activePage) {
     let startPlayer = activePage === 1 ? 0 : 200 * (activePage - 1);
     this.setState({
@@ -72,10 +71,188 @@ class Ladder extends Component {
     return;
   }
 
+  seasonText(season) {
+    if (this.state.selectedSeason === 3) {
+      return (
+        <div>
+          <CustomP>
+            A natural extension of the official Season 3 ladder using the same
+            maps, considers a starting ELO level of 1,000 for each player.
+            <br />
+            Restricted to games played via in-game quickmatch option from
+            27/01/21.
+          </CustomP>
+          <CustomP></CustomP>
+          Start: ~ 06/01/21 <br />
+          End: ~ 31/03/21
+        </div>
+      );
+    }
+
+    if (this.state.selectedSeason === 4) {
+      return (
+        <div>
+          <CustomP>
+            A brand new ladder to enable players to have ranked games on custom
+            maps (see homepage for map selection)
+            <br />
+            Considers a starting ELO level of 1,000 for each player.
+            <br />
+          </CustomP>
+          <CustomP>
+            Start: ~ 11/01/21 <br />
+            End: ~ 31/03/21
+          </CustomP>
+        </div>
+      );
+    }
+
+    if (this.state.selectedSeason === 5) {
+      return (
+        <div>
+          <CustomP>
+            A natural extension of the community Season 3+ ladder using the same
+            maps, considers a starting ELO level of 1,000 for each player.
+          </CustomP>
+          <CustomP>
+            Start: 01/04/21 <br />
+            End: 30/06/21
+          </CustomP>
+        </div>
+      );
+    }
+
+    if (this.state.selectedSeason === 6) {
+      return (
+        <div>
+          <CustomP>
+            A natural extension of the community Season 5 ladder using the same
+            maps, considers a starting ELO level of 1,000 for each player.
+          </CustomP>
+          <CustomP>
+            Start: 01/07/21 <br />
+            End: 30/09/21
+          </CustomP>
+        </div>
+      );
+    }
+
+    if (this.state.selectedSeason === 7) {
+      return (
+        <div>
+          <CustomP>
+            A natural extension of the community Season 6 ladder using the same
+            maps, considers a starting ELO level of 1,000 for each player.
+          </CustomP>
+          <CustomP>
+            Start: 01/10/21 <br />
+            End:~ 31/12/21
+          </CustomP>
+        </div>
+      );
+    }
+
+    if (this.state.selectedSeason >= 8) {
+      return (
+        <div>
+          <CustomP>
+            A natural extension of the community Season 7 ladder using the same
+            maps, considers a starting ELO level of 1,000 for each player.
+            <br />
+            Considers a starting ELO level of 1,000 for each player.
+            <br />
+          </CustomP>
+          <CustomP>
+            Start: 01/01/22 <br />
+            End: TBC
+          </CustomP>
+        </div>
+      );
+    }
+  }
+
+  seasonOptions() {
+    let current = Date.now();
+    let apr = 1617235200000;
+    let july = 1625097600000;
+    let oct = 1633046400000;
+    let jan = 1640995200000;
+
+    if (current > jan) {
+      return (
+        <select name="season" onChange={this.handleSeasonChange}>
+          <option value="" disabled selected>
+            -Select a season-
+          </option>
+          <option value="3">3+</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+          <option value="6">6</option>
+          <option value="7">7</option>
+          <option value="8">8</option>
+        </select>
+      );
+    }
+
+    if (current > oct) {
+      return (
+        <select name="season" onChange={this.handleSeasonChange}>
+          <option value="" disabled selected>
+            -Select a season-
+          </option>
+          <option value="3">3+</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+          <option value="6">6</option>
+          <option value="7">7</option>
+        </select>
+      );
+    }
+
+    if (current > july) {
+      return (
+        <select name="season" onChange={this.handleSeasonChange}>
+          <option value="" disabled selected>
+            -Select a season-
+          </option>
+          <option value="3">3+</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+          <option value="6">6</option>
+        </select>
+      );
+    }
+
+    if (current > apr) {
+      return (
+        <select name="season" onChange={this.handleSeasonChange}>
+          <option value="" disabled selected>
+            -Select a season-
+          </option>
+          <option value="3">3+</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+        </select>
+      );
+    }
+
+    if (current < apr) {
+      return (
+        <select name="season" onChange={this.handleSeasonChange}>
+          <option value="" disabled selected>
+            -Select a season-
+          </option>
+          <option value="3">3+</option>
+          <option value="4">4</option>
+        </select>
+      );
+    }
+  }
+
   handleSeasonChange = event => {
     this.setState({ selectedSeason: parseInt(event.target.value) });
     this.ladderState(event.target.value);
-    this.awardState(event.target.value)
+    this.awardState(event.target.value);
   };
 
   render() {
@@ -84,10 +261,8 @@ class Ladder extends Component {
         <div>
           <Flex flexWrap="wrap">
             <Box px={2} py={3} width={[1, 2 / 3]}>
-              <p>
-                <h3>TIBERIAN DAWN REMASTERED</h3>
-                COMMUNITY LEADERBOARD RANKINGS
-              </p>
+              <h3>TIBERIAN DAWN REMASTERED</h3>
+              <p>COMMUNITY LEADERBOARD RANKINGS</p>
             </Box>
             <Box px={2} py={3} width={[1, 1 / 3]}>
               <p>
@@ -108,14 +283,7 @@ class Ladder extends Component {
           </h3>
           <>
             <p>SELECT A SEASON</p>
-            <select name="season" onChange={this.handleSeasonChange}>
-              <option value="" disabled selected>
-                -Select a season-
-              </option>
-              <option value="3">3+</option>
-              <option value="4">4</option>
-            </select>
-            {this.state.matchata}
+            {this.seasonOptions()}
           </>
           <SearchBar
             data={this.state.leaderboard}
@@ -130,42 +298,12 @@ class Ladder extends Component {
             SEASON{' '}
             {this.state.selectedSeason === 3 ? '3+' : this.state.selectedSeason}
           </h3>
-          <CustomP>
-            {this.state.selectedSeason === 3 ? (
-              <div>
-                <CustomP>
-                  A natural extension of the official Season 3 ladder using the
-                  same maps, considers a starting ELO level of 1,000 for each
-                  player.
-                  <br />
-                  Restricted to games played via in-game quickmatch option from
-                  27/01/21.
-                </CustomP>
-                <CustomP></CustomP>
-                Start: ~ 06/01/21 <br />
-                End: ~ 31/03/21
-              </div>
-            ) : (
-              <div>
-                <CustomP>
-                  A brand new ladder to enable players to have ranked games on
-                  custom maps (see homepage for map selection)
-                  <br />
-                  Considers a starting ELO level of 1,000 for each player.
-                  <br />
-                </CustomP>
-                <CustomP>
-                  Start: ~ 11/01/21 <br />
-                  End: ~ 31/03/21
-                </CustomP>
-              </div>
-            )}
-          </CustomP>
+          <div>{this.seasonText(this.state.selectedSeason)}</div>
           <CustomP>* click rows for extra player data *</CustomP>
           {this.state.leaderboard.length === 0 ? (
             <div>
               <br />
-              <div class="loader"></div>
+              <div className="loader"></div>
               <br />
             </div>
           ) : (
@@ -185,9 +323,10 @@ class Ladder extends Component {
                 itemsCountPerPage={200}
                 totalItemsCount={this.state.leaderboard.length}
                 pageRangeDisplayed={
-                  this.state.leaderboard.length / 200 > 10 ? 10 : Math.ceil(
-                  this.state.leaderboard.length / 200
-                )}
+                  this.state.leaderboard.length / 200 > 10
+                    ? 10
+                    : Math.ceil(this.state.leaderboard.length / 200)
+                }
                 onChange={this.handlePageChange.bind(this)}
                 prevPageText="<"
                 nextPageText=">"
@@ -211,9 +350,10 @@ class Ladder extends Component {
                 itemsCountPerPage={200}
                 totalItemsCount={this.state.leaderboard.length}
                 pageRangeDisplayed={
-                  this.state.leaderboard.length / 200 > 10 ? 10 : Math.ceil(
-                  this.state.leaderboard.length / 200
-                )}
+                  this.state.leaderboard.length / 200 > 10
+                    ? 10
+                    : Math.ceil(this.state.leaderboard.length / 200)
+                }
                 onChange={this.handlePageChange.bind(this)}
                 prevPageText="<"
                 nextPageText=">"

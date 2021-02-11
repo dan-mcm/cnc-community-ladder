@@ -105,6 +105,7 @@
     "space": 2,
     "prettier": true,
     "rules": {
+      "promise/prefer-await-to-then": "off",
       "unicorn/filename-case": [
         "warn",
         {

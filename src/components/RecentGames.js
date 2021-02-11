@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-import { Wrapper } from '../utils/styles';
 import { Flex, Box } from 'grid-styled';
-import { CustomImg, StyledLink, IconImg } from '../utils/styles';
+import { CustomImg, StyledLink, IconImg, Wrapper } from '../utils/styles';
 
 // Icons
 import gdi from '../images/factions/gdi.png';
@@ -27,7 +26,7 @@ class RecentGames extends Component {
 
   getRecentMatches() {
     return axios.get(`/recent`).then(matches => {
-      let data = matches.data;
+      const { data } = matches;
       this.setState({ matchData: data });
     });
   }
@@ -43,7 +42,7 @@ class RecentGames extends Component {
 
   lastHour() {
     return axios.get(`/recent/hour`).then(matches => {
-      let data = matches.data;
+      const { data } = matches;
       this.setState({ count: data.length });
     });
   }
@@ -53,8 +52,8 @@ class RecentGames extends Component {
       <Wrapper>
         <p>Games played in the last hour: {this.state.count}</p>
         <Flex style={{ flexWrap: 'wrap' }}>
-          {this.state.matchData.map((game, index) => (
-            <Box px={2} py={3} width={[1, 1 / 3]}>
+          {this.state.matchData.map(game => (
+            <Box key={game.starttime} px={2} py={3} width={[1, 1 / 3]}>
               {game.player1_faction === 'GDI' &&
               game.player1_random === false ? (
                 <IconImg src={gdi} />

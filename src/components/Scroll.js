@@ -12,7 +12,7 @@ export default class ScrollToTop extends Component {
   }
 
   componentDidMount() {
-    let scrollComponent = this;
+    const scrollComponent = this;
     document.addEventListener('scroll', function(e) {
       scrollComponent.toggleVisibility();
     });

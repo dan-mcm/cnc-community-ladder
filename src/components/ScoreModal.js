@@ -56,7 +56,7 @@ class ScoreModal extends Component {
 
   scoreState(season, player) {
     return axios.get(`/elohistory/${season}/${player}`).then(matches => {
-      let data = matches.data;
+      const { data } = matches;
       this.setState({ matches: data });
     });
   }
@@ -81,19 +81,19 @@ class ScoreModal extends Component {
             game.result === true &&
             game.opponent_random === true)
       ).length;
-    } else {
-      return data.filter(
-        game =>
-          (game.player === playername &&
-            game.result === false &&
-            game.player_faction === faction &&
-            (game.player_random === false || game.player_random === null)) ||
-          (game.opponent === playername &&
-            game.result === true &&
-            game.opponent_faction === faction &&
-            (game.opponent_random === false || game.opponent_random === null))
-      ).length;
     }
+
+    return data.filter(
+      game =>
+        (game.player === playername &&
+          game.result === false &&
+          game.player_faction === faction &&
+          (game.player_random === false || game.player_random === null)) ||
+        (game.opponent === playername &&
+          game.result === true &&
+          game.opponent_faction === faction &&
+          (game.opponent_random === false || game.opponent_random === null))
+    ).length;
   }
 
   gamesLost(data, faction, playername) {
@@ -107,25 +107,24 @@ class ScoreModal extends Component {
             game.result === false &&
             game.opponent_random === true)
       ).length;
-    } else {
-      return data.filter(
-        game =>
-          (game.player === playername &&
-            game.result === true &&
-            game.player_faction === faction &&
-            (game.player_random === false || game.player_random === null)) ||
-          (game.opponent === playername &&
-            game.result === false &&
-            game.opponent_faction === faction &&
-            (game.opponent_random === false || game.opponent_random === null))
-      ).length;
     }
+    return data.filter(
+      game =>
+        (game.player === playername &&
+          game.result === true &&
+          game.player_faction === faction &&
+          (game.player_random === false || game.player_random === null)) ||
+        (game.opponent === playername &&
+          game.result === false &&
+          game.opponent_faction === faction &&
+          (game.opponent_random === false || game.opponent_random === null))
+    ).length;
   }
 
   winRate(data, faction, playername) {
-    let wins = this.gamesWon(data, faction, playername);
-    let loses = this.gamesLost(data, faction, playername);
-    let result = Math.floor((wins / (wins + loses)) * 100);
+    const wins = this.gamesWon(data, faction, playername);
+    const loses = this.gamesLost(data, faction, playername);
+    const result = Math.floor((wins / (wins + loses)) * 100);
     return wins > 0 ? result : 0;
   }
 
@@ -341,7 +340,10 @@ class ScoreModal extends Component {
                     game.duration - Math.floor(game.duration / 60) * 60
                   )}secs`}
                   <br />
-                  {((game.player === this.props.data.player_name && game.result === false) || (game.opponent === this.props.data.player_name && game.result === true)) ? (
+                  {(game.player === this.props.data.player_name &&
+                    game.result === false) ||
+                  (game.opponent === this.props.data.player_name &&
+                    game.result === true) ? (
                     <span style={greenStyle}>Win</span>
                   ) : (
                     <span style={redStyle}>Loss</span>
@@ -368,6 +370,8 @@ class ScoreModal extends Component {
 ScoreModal.propTypes = {
   data: PropTypes.object.isRequired,
   rank: PropTypes.number.isRequired,
+  season: PropTypes.string.isRequired,
+  playername: PropTypes.string.isRequired,
   onRequestClose: PropTypes.func.isRequired
 };
 

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Wrapper } from '../utils/styles';
-import RecentGames from '../components/RecentGames.js';
+import RecentGames from '../components/RecentGames';
 
 class Recent extends Component {
   render() {

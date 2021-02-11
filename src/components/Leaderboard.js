@@ -8,15 +8,20 @@ class Leaderboard extends Component {
   getRank(rank) {
     if (rank <= 16) {
       return 'general';
-    } else if (rank <= 200) {
-      return 'major';
-    } else if (rank <= 400) {
-      return 'captain';
-    } else if (rank <= 600) {
-      return 'lieutenant';
-    } else {
-      return 'sergeant';
     }
+
+    if (rank <= 200) {
+      return 'major';
+    }
+
+    if (rank <= 400) {
+      return 'captain';
+    }
+
+    if (rank <= 600) {
+      return 'lieutenant';
+    }
+    return 'sergeant';
   }
 
   specialBadge(player, rank, total, gdi, nod, random) {
@@ -61,12 +66,9 @@ class Leaderboard extends Component {
           {this.props.data
             .slice(this.props.startPlayer, this.props.endPlayer)
             .map((data, index) => (
-              <>
+              <div key={data.player_name}>
                 {this.props.activePage === 1 ? (
-                  <CustomRow
-                    key={data.player_name}
-                    onClick={() => this.openModal(data, index)}
-                  >
+                  <CustomRow onClick={() => this.openModal(data, index)}>
                     <td>
                       {' '}
                       <CustomBadge
@@ -120,7 +122,7 @@ class Leaderboard extends Component {
                     <td>{data.winrate + '%'}</td>
                   </tr>
                 )}
-              </>
+              </div>
             ))}
         </TableFormat>
       </Overflow>
@@ -136,7 +138,8 @@ Leaderboard.propTypes = {
   startPlayer: PropTypes.number.isRequired,
   endPlayer: PropTypes.number.isRequired,
   activePage: PropTypes.number.isRequired,
-  data: PropTypes.object.isRequired
+  season: PropTypes.string.isRequired,
+  data: PropTypes.array.isRequired
 };
 
 export default Leaderboard;

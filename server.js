@@ -96,7 +96,7 @@ app.get('/leaderboard/:season', (req, result) => {
 });
 
 app.get('/elohistory/:season/:player', (req, result) => {
-  let pool = createPool();
+  const pool = createPool();
   const cleanedSeasonInput = cleanInput(req.params.season);
 
   pool
@@ -123,7 +123,7 @@ app.get('/elohistory/:season/:player', (req, result) => {
 });
 
 app.get(`/awards/total/:season`, (req, result) => {
-  let pool = createPool();
+  const pool = createPool();
   const cleanedSeasonInput = cleanInput(req.params.season);
 
   pool
@@ -150,7 +150,7 @@ app.get(`/awards/total/:season`, (req, result) => {
 });
 
 app.get('/awards/faction/random/:season', (req, result) => {
-  let pool = createPool();
+  const pool = createPool();
   const cleanedSeasonInput = cleanInput(req.params.season);
 
   pool
@@ -177,7 +177,7 @@ app.get('/awards/faction/random/:season', (req, result) => {
 });
 
 app.get('/awards/faction/:faction/:season', (req, result) => {
-  let pool = createPool();
+  const pool = createPool();
   const cleanedSeasonInput = cleanInput(req.params.season);
 
   pool
@@ -208,7 +208,7 @@ app.get('/health', (req, res) => {
 });
 
 app.get(`/nightbot/:season/:playername`, (req, result) => {
-  let pool = createPool();
+  const pool = createPool();
   const cleanedSeasonInput = cleanInput(req.params.season);
 
   pool
@@ -244,7 +244,7 @@ app.get(`/nightbot/:season/:playername`, (req, result) => {
 });
 
 app.get('/obs/:season/:playername', (req, result) => {
-  let pool = createPool();
+  const pool = createPool();
   const cleanedSeasonInput = cleanInput(req.params.season);
   pool
     .connect()
@@ -292,10 +292,7 @@ app.get('/obs/:season/:playername', (req, result) => {
 });
 
 app.get('/recent', (req, result) => {
-  let pool = createPool();
-
-  const cleanedInput = cleanInput(req.params.season);
-
+  const pool = createPool();
   pool
     .connect()
     .then(client => {
@@ -320,10 +317,10 @@ app.get('/recent', (req, result) => {
 });
 
 app.get('/recent/hour', (req, result) => {
-  let pool = createPool();
-  let currentTime = Date.now();
-  let hour = 3600000;
-  let hourOffset = (currentTime - hour) / 1000;
+  const pool = createPool();
+  const currentTime = Date.now();
+  const hour = 3600000;
+  const hourOffset = (currentTime - hour) / 1000;
   pool
     .connect()
     .then(client => {

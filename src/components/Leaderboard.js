@@ -66,7 +66,7 @@ class Leaderboard extends Component {
           {this.props.data
             .slice(this.props.startPlayer, this.props.endPlayer)
             .map((data, index) => (
-              <div key={data.player_name}>
+              <>
                 {this.props.activePage === 1 ? (
                   <CustomRow onClick={() => this.openModal(data, index)}>
                     <td>
@@ -122,7 +122,7 @@ class Leaderboard extends Component {
                     <td>{data.winrate + '%'}</td>
                   </tr>
                 )}
-              </div>
+              </>
             ))}
         </TableFormat>
       </Overflow>

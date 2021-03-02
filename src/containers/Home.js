@@ -6,9 +6,11 @@ import {
   HomeImg,
   StandardImage,
   StyledLink,
+  StyledInternalLink,
   Wrapper
 } from '../utils/styles';
 import { Flex, Box } from 'grid-styled';
+import Recent from '../components/Recent';
 
 // Season 3+ maps
 import elevation from '../images/maps/elevation.png';
@@ -68,8 +70,10 @@ class Home extends Component {
         </p>
         <br />
         <hr />
+        <Recent />
+        <hr />
         <div>
-          <h3>SEASON OVERVIEW</h3>
+          <h3>COMMUNITY LADDER</h3>
           <CustomCenterD>
             <CustomLeftP>
               As there has been no official reset for the{' '}
@@ -86,23 +90,20 @@ class Home extends Component {
         </div>
         <hr />
         <div>
-          <h3>SEASON 3+ OVERVIEW</h3>
+          <h3>QUICKMATCH SEASON OVERVIEW</h3>
           <CustomLeftP>
-            We currently have a <b>Season 3+</b> ladder which is an elo reset of
-            the official season 3 ladder. This Season 3+ ladder automatically
-            tracks games played on the existing quickmatch ladder pool and has
-            reset all players elos to a score of 1000. You can checkout the
-            existing map pool below.
+            We have started the community ladder with a <b>Season 3+</b> ladder
+            which is an elo reset of the official season 3 ladder. This Season
+            3+ ladder automatically tracks games played on the existing
+            quickmatch ladder pool and has reset all players elos to a score of
+            1000. You can checkout the existing quickmatch map pool below.
             <br />
             <br />
+            The community run quickmatch map ladders will be refreshed every 3
+            months, you can see the start and end date for each season under the{' '}
+            <StyledInternalLink to="/ladder">Ladder</StyledInternalLink>{' '}
+            section.
           </CustomLeftP>
-          Start: ~ 06/01/21 <br />
-          End: ~ 31/03/21
-          <br />
-          <br />
-          This ladder will only track games played via the in-game quickmatch
-          option as of 27/01/21.
-          <br />
           <br />
         </div>
 
@@ -112,7 +113,7 @@ class Home extends Component {
             <span role="img" aria-label="map">
               🌍
             </span>{' '}
-            SEASON 3+ MAPS{' '}
+            QUICKMATCH SEASON MAPS{' '}
             <span role="img" aria-label="map">
               🌍
             </span>
@@ -158,11 +159,12 @@ class Home extends Component {
         <hr />
         <div>
           <CustomCenterD>
-            <h3>SEASON 4 OVERVIEW</h3>
+            <h3>CUSTOMMATCH SEASON OVERVIEW</h3>
             <CustomLeftP>
-              In addition to providing a season 3 elo reset we have set out to
-              create a new map pool for a new community run season - Season 4.
-              The community for Season 4 is primarily moderated via the official{' '}
+              In addition to providing a quickmatch based community ladder we
+              have set out to create a new map pool for a special custom map
+              community run season - Season 4. The community for Season 4 is
+              primarily moderated via the official{' '}
               <StyledLink href="https://discord.gg/wRH37XXy3n">
                 C&C Tiberian Dawn Remastered Communiy{' '}
               </StyledLink>{' '}
@@ -172,11 +174,7 @@ class Home extends Component {
               Players are welcome to join the season at any time. Any matches
               played on the selected Season 4 maps will be scored and counted -
               nothing extra is required for you to pariticpate.
-              <br />
-              <br />
             </CustomLeftP>
-            Start: ~ 11/01/21 <br />
-            End: ~ 31/03/21
           </CustomCenterD>
         </div>
         <br />
@@ -186,7 +184,7 @@ class Home extends Component {
             <span role="img" aria-label="map">
               🌍
             </span>{' '}
-            SEASON 4 MAPS{' '}
+            CUSTOMMATCH SEASON MAPS{' '}
             <span role="img" aria-label="map">
               🌍
             </span>

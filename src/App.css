@@ -31,7 +31,7 @@
 img {
   padding: 10px;
   max-width: 500px;
-  margin: 10px
+  margin: auto;
 }
 
 body{
@@ -158,4 +158,11 @@ for pagination component
 .item:nth-child(3n) {
   page-break-after: always; /* CSS 2.1 syntax */
   break-after: always; /* New syntax */
+}
+
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
 }

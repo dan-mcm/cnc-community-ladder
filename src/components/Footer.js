@@ -8,7 +8,7 @@ class Footer extends Component {
         <CustomLink href="https://github.com/dan-mcm">
           Daniel McMahon
         </CustomLink>{' '}
-        2020 ©
+        {new Date().getFullYear()} ©
       </CustomFooter>
     );
   }

@@ -1,34 +1,52 @@
 import React, { Component } from 'react';
 import { StyledLink, Wrapper } from '../utils/styles';
+import aod from '../images/tourny/aod-titans-3.png';
 
 class Tournaments extends Component {
   render() {
     return (
       <Wrapper>
         <div>
-          <p>Recent Tournament Footage & Details</p>
+          <p>Tournaments, Recordings & Replays</p>
         </div>
         <hr />
         <div>
-          <h3>UPCOMING TOURNAMENTS</h3>
+          <h4>SEASON 3+ TITANS TOURNAMENT</h4>
           <p>
-            <StyledLink
-              alt="admirals cup"
-              href="https://www.gamereplays.org/cnctiberiandawnremastered/portals.php?show=page&name=admirals_cup"
-            >
-              The Admirals Cup 2021
+            AOD Gaming is hosting his first tournament over on his{' '}
+            <StyledLink href="https://aod-gaming.com/cc-tiberian-dawn-season-3-titans/">
+              brand new site
             </StyledLink>
+            !<br />
+            Double Elimination Tournament taking place throughout the month of
+            March 2021
           </p>
-          <p>
-            Taking place throughout the month of February - hosted by
-            GameReplays.
-            <br />
-            For more details checkout the{' '}
-            <StyledLink href="https://www.gamereplays.org/cnctiberiandawnremastered/portals.php?show=page&name=admirals_cup">
-              announcement post
-            </StyledLink>
-          </p>
-          <img alt="admirals cup" src={require(`../images/admiralscup.jpg`)} />
+          <a href="https://aod-gaming.com/cc-tiberian-dawn-season-3-titans/">
+            <img alt="aod" src={aod} />
+          </a>
+          <br />
+          <br />
+          <hr />
+        </div>
+        <div>
+          <h4>THE ADMIRALS CUP 2021</h4>
+          <iframe
+            allowfullscreen
+            title="the admirals cup"
+            width="560"
+            height="315"
+            src="https://www.youtube.com/embed/LnmpXlM9sVc"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          />
+          <br />
+          <StyledLink href="https://www.gamereplays.org/cnctiberiandawnremastered/replays.php?game=99&show=event&id=1418">
+            Replay Files
+          </StyledLink>{' '}
+          |{' '}
+          <StyledLink href="https://www.gamereplays.org/community/index.php?showtopic=1046883">
+            Results
+          </StyledLink>
           <br />
           <br />
           <hr />

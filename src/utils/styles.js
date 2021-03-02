@@ -68,6 +68,16 @@ export const StyledLink = styled.a`
   }
 `;
 
+export const StyledInternalLink = styled(Link)`
+  text-decoration: none;
+  font-weight: bold;
+  color: white;
+  &:hover {
+    text-decoration: none;
+    color: gold;
+  }
+`;
+
 export const TableFormat = styled.table`
   text-align: left;
   border-collapse: collapse;

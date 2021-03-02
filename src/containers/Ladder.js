@@ -101,7 +101,7 @@ class Ladder extends Component {
           </CustomP>
           <CustomP>
             Start: ~ 11/01/21 <br />
-            End: ~ 31/03/21
+            End: ~ TBC
           </CustomP>
         </div>
       );

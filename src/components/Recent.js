@@ -29,7 +29,7 @@ class Recent extends Component {
               <StyledLink href="https://aod-gaming.com/cc-tiberian-dawn-season-3-titans/">
                 Signup
               </StyledLink>{' '}
-              to AOD's March 2021 Double Elimination Tournament!
+              to AOD's April 2021 Double Elimination Tournament!
             </p>
           </div>
           <div>

@@ -31,6 +31,7 @@ class Ladder extends Component {
     // defaulting to season 3
     this.ladderState(3);
     this.awardState(this.state.selectedSeason);
+    this.seasonState();
   }
 
   // componentDidUpdate(prevProps,prevState) {
@@ -53,6 +54,28 @@ class Ladder extends Component {
       let data = matches.data;
       this.setState({ leaderboard: data });
     });
+  }
+
+  seasonState(){
+    // 2021 months
+    let jan = 1609459200
+    let apr = 1617235200
+    let july = 1625097600
+    let oct = 1633046400
+    // 2022 months
+    let jan2 = 1640995200
+
+    let currentSeason = 0;
+    let starttime = Date.now() / 1000;
+    if(starttime > jan && starttime < apr) currentSeason = 3
+    // skipping 4 as used for our custom-map season
+    if(starttime >= apr && starttime < july) currentSeason = 5
+    if(starttime >= july && starttime < oct) currentSeason = 6
+    if(starttime >= oct && starttime < jan2) currentSeason = 7
+    // placeholder defaulting to season 8
+    if(starttime >= jan2) currentSeason = 8
+
+    this.setState({ selectedSeason: currentSeason });
   }
 
   awardState(season) {
@@ -172,13 +195,17 @@ class Ladder extends Component {
   }
 
   seasonOptions() {
-    let current = Date.now();
-    let apr = 1617235200000;
-    let july = 1625097600000;
-    let oct = 1633046400000;
-    let jan = 1640995200000;
+    let current = Date.now() / 1000;
 
-    if (current > jan) {
+    // 2021 months
+    let jan = 1609459200
+    let apr = 1617235200
+    let july = 1625097600
+    let oct = 1633046400
+    // 2022 months
+    let jan2 = 1640995200
+
+    if (current >= jan2) {
       return (
         <select name="season" onChange={this.handleSeasonChange}>
           <option value="" disabled selected>
@@ -194,7 +221,7 @@ class Ladder extends Component {
       );
     }
 
-    if (current > oct) {
+    if (current >= oct) {
       return (
         <select name="season" onChange={this.handleSeasonChange}>
           <option value="" disabled selected>
@@ -209,7 +236,7 @@ class Ladder extends Component {
       );
     }
 
-    if (current > july) {
+    if (current >= july) {
       return (
         <select name="season" onChange={this.handleSeasonChange}>
           <option value="" disabled selected>
@@ -223,7 +250,7 @@ class Ladder extends Component {
       );
     }
 
-    if (current > apr) {
+    if (current >= apr) {
       return (
         <select name="season" onChange={this.handleSeasonChange}>
           <option value="" disabled selected>
@@ -235,8 +262,8 @@ class Ladder extends Component {
         </select>
       );
     }
-
-    if (current < apr) {
+    // should be default case
+    if (current >= jan) {
       return (
         <select name="season" onChange={this.handleSeasonChange}>
           <option value="" disabled selected>

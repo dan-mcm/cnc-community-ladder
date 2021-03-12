@@ -1,6 +1,6 @@
 # CNC Community Ladder
 
-[![style: styled-components](https://img.shields.io/badge/component_style-%F0%9F%92%85%20styled_components-orange.svg?ff69b4)](https://www.styled-components.com/)
+[![style: styled-components](https://img.shields.io/badge/components-%F0%9F%92%85%20styled_components-orange.svg?ff69b4)](https://www.styled-components.com/)
 [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg)](https://github.com/prettier/prettier)
 [![XO code linter](https://img.shields.io/badge/code_linter-XO-5ed9c7.svg)](https://github.com/xojs/xo)
 [![Google Analytics](https://img.shields.io/badge/monitoring-📈_Google_Analytics-blue.svg)](https://analytics.google.com/analytics/web/)

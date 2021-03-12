@@ -33,7 +33,7 @@ class Streamers extends Component {
           <br />
           {
             // eslint-disable-next-line
-            '$(eval a = `$(urlfetch http://www.tibdawn.com/nightbot/3/$(query))`; js = JSON.parse(a); `[S3+ TD Ladder] Player Name: ${js.name} | Rank: ${js.rank} | Wins: ${js.wins} | Losses: ${js.lost} | Points: ${(js.points)}`)'
+            '$(eval a = `$(urlfetch https://www.tibdawn.com/nightbot/3/$(query))`; js = JSON.parse(a); `[S3+ TD Ladder] Player Name: ${js.name} | Rank: ${js.rank} | Wins: ${js.wins} | Losses: ${js.lost} | Points: ${(js.points)}`)'
           }
           <br />
           <br />
@@ -41,7 +41,7 @@ class Streamers extends Component {
             onClick={() => {
               navigator.clipboard.writeText(
                 // eslint-disable-next-line
-                '$(eval a = `$(urlfetch http://www.tibdawn.com/nightbot/3/$(query))`; js = JSON.parse(a); `[S3+ TD Ladder] Player Name: ${js.name} | Rank: ${js.rank} | Wins: ${js.wins} | Losses: ${js.lost} | Points: ${(js.points)}`)'
+                '$(eval a = `$(urlfetch https://www.tibdawn.com/nightbot/3/$(query))`; js = JSON.parse(a); `[S3+ TD Ladder] Player Name: ${js.name} | Rank: ${js.rank} | Wins: ${js.wins} | Losses: ${js.lost} | Points: ${(js.points)}`)'
               );
             }}
           >
@@ -61,8 +61,8 @@ class Streamers extends Component {
           <CenterBullets>
             <li>
               Generate a link using this format:{' '}
-              <StyledLink href="http://www.tibdawn.com/obs/3/Danku">
-                http://www.tibdawn.com/obs/3/Danku
+              <StyledLink href="https://www.tibdawn.com/obs/3/Danku">
+                https://www.tibdawn.com/obs/3/Danku
               </StyledLink>
             </li>
             <li>
@@ -72,18 +72,18 @@ class Streamers extends Component {
             </li>
             <ul>
               <li>
-                <StyledLink href="http://www.tibdawn.com/obs/3/AOD Gaming">
-                  http://www.tibdawn.com/obs/3/AOD Gaming
+                <StyledLink href="https://www.tibdawn.com/obs/3/AOD Gaming">
+                  https://www.tibdawn.com/obs/3/AOD Gaming
                 </StyledLink>
               </li>
               <li>
-                <StyledLink href="http://www.tibdawn.com/obs/3/KHANOMANCER">
-                  http://www.tibdawn.com/obs/3/KHANOMANCER
+                <StyledLink href="https://www.tibdawn.com/obs/3/KHANOMANCER">
+                  https://www.tibdawn.com/obs/3/KHANOMANCER
                 </StyledLink>
               </li>
               <li>
-                <StyledLink href="http://www.tibdawn.com/obs/3/Za_BlackTemplar">
-                  http://www.tibdawn.com/obs/3/Za_BlackTemplar
+                <StyledLink href="https://www.tibdawn.com/obs/3/Za_BlackTemplar">
+                  https://www.tibdawn.com/obs/3/Za_BlackTemplar
                 </StyledLink>
               </li>
             </ul>

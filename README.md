@@ -3,17 +3,20 @@
 [![style: styled-components](https://img.shields.io/badge/component_style-%F0%9F%92%85%20styled_components-orange.svg?ff69b4)](https://www.styled-components.com/)
 [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg)](https://github.com/prettier/prettier)
 [![XO code linter](https://img.shields.io/badge/code_linter-XO-5ed9c7.svg)](https://github.com/xojs/xo)
-[![Google Analytics](https://img.shields.io/badge/monitoring-📈_Google_Analytics-blue.svg)](https://analytics.google.com/analytics/web/) ![Heroku](https://heroku-badge.herokuapp.com/?app=heroku-badge)
+[![Google Analytics](https://img.shields.io/badge/monitoring-📈_Google_Analytics-blue.svg)](https://analytics.google.com/analytics/web/)
+![Heroku](https://heroku-badge.herokuapp.com/?app=heroku-badge)
+[![Discord](https://img.shields.io/discord/784235637715894293?color=purple&label=discord)](https://discord.gg/pgBSxgmkHr)
 
-
-![CnC](src/images/cnc_remastered.png)
+<p align="center">
+  <img width= "400" height="200" src="src/images/cnc_remastered.png"/>
+</p>
 
 Access:
 
-Website is currently accessible at: http://www.tibdawn.com/ (deployed via Heroku infrastructure)  
+Website is currently accessible at: https://www.tibdawn.com/ (deployed via Heroku infrastructure)  
 Legacy Static Site Deployed via Github Pages: https://dan-mcm.github.io/cnc-community-ladder/
 
-Note: there is now a dependency on a local DB solution, the codebase for which is available [here](https://github.com/dan-mcm/cnc-db)
+Note: there is now a dependency on a DB, the codebase for which is available [here](https://github.com/dan-mcm/cnc-db)
 
 ## Overview
 
@@ -61,9 +64,6 @@ Used for nightbot extension
 
 ### /obs/:season/:playername
 Used for obs extension
-
-
-
 
 ## Running Locally
 

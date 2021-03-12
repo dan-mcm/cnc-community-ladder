@@ -31,12 +31,12 @@ class Tournaments extends Component {
         <div>
           <h4>THE ADMIRALS CUP 2021</h4>
           <iframe
-            allowfullscreen
+            allowFullScreen
             title="the admirals cup"
             width="560"
             height="315"
             src="https://www.youtube.com/embed/LnmpXlM9sVc"
-            frameborder="0"
+            frameBorder="0"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
           />
           <br />

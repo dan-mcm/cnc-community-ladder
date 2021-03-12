@@ -9,8 +9,6 @@ import gdi from '../images/factions/gdi.png';
 import nod from '../images/factions/nod.png';
 import random from '../images/factions/random.png';
 
-const axios = require('axios').default;
-
 const plainStyle = {
   color: 'white',
   fontWeight: 'bold'
@@ -215,8 +213,8 @@ class PlayerStats extends Component {
         <br />
         <hr />
         <ModalGraph
+          playername
           matches={this.props.matches}
-          playername={playername}
           key={this.props.matches}
         />
         <br />
@@ -227,11 +225,7 @@ class PlayerStats extends Component {
 }
 
 PlayerStats.propTypes = {
-  data: PropTypes.object.isRequired,
-  rank: PropTypes.number.isRequired,
-  season: PropTypes.string.isRequired,
-  playername: PropTypes.string.isRequired,
-  onRequestClose: PropTypes.func.isRequired
+  playername: PropTypes.string.isRequired
 };
 
 export default PlayerStats;

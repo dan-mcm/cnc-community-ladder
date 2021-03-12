@@ -6,7 +6,7 @@ class Recent extends Component {
   render() {
     return (
       <Wrapper>
-        <h2>Recent Season Games Played</h2>
+        <h2>RECENT GAME STATISTICS</h2>
         <RecentGames />
       </Wrapper>
     );

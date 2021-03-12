@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Pagination from 'react-js-pagination';
 import { Flex, Box } from 'grid-styled';
 import { CustomImg, StyledLink, IconImg, Wrapper } from '../utils/styles';
 
@@ -14,7 +15,10 @@ class RecentGames extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      matchData: []
+      matchData: [],
+      activePage: 1,
+      startMatch: 0,
+      endMatch: 9
     };
   }
 
@@ -22,6 +26,15 @@ class RecentGames extends Component {
     // defaulting to season 3
     this.getRecentMatches();
     this.lastHour();
+  }
+
+  handlePageChange(activePage) {
+    let startMatch = activePage === 1 ? 0 : 9 * (activePage - 1);
+    this.setState({
+      activePage,
+      startMatch,
+      endMatch: startMatch + 9
+    });
   }
 
   getRecentMatches() {
@@ -47,12 +60,44 @@ class RecentGames extends Component {
     });
   }
 
+  stringify(data){
+    let sampleString = ""
+    data
+    .slice(0,9)
+    .map(game => {
+      sampleString += "   [  " + game.player1_name + "-v-" + game.player2_name + "  ]   "
+    })
+
+    return sampleString
+
+  }
+
   render() {
     return (
       <Wrapper>
         <p>Games played in the last hour: {this.state.count}</p>
+        <hr />
+        <h3>MOST RECENT GAMES</h3>
+        <Pagination
+          activePage={this.state.activePage}
+          itemsCountPerPage={9}
+          totalItemsCount={this.state.matchData.length}
+          pageRangeDisplayed={
+            this.state.matchData.length / 9 > 10
+              ? 10
+              : Math.ceil(this.state.matchData.length / 9)
+          }
+          onChange={this.handlePageChange.bind(this)}
+          prevPageText="<"
+          nextPageText=">"
+          itemClass="page-item"
+          linkClass="page-link"
+          activeLinkClass="page-selected"
+        />
         <Flex style={{ flexWrap: 'wrap' }}>
-          {this.state.matchData.map(game => (
+          {this.state.matchData
+            .slice(this.state.startMatch, this.state.endMatch)
+            .map(game => (
             <Box key={game.starttime} px={2} py={3} width={[1, 1 / 3]}>
               {game.player1_faction === 'GDI' &&
               game.player1_random === false ? (
@@ -103,6 +148,22 @@ class RecentGames extends Component {
             </Box>
           ))}
         </Flex>
+        <Pagination
+          activePage={this.state.activePage}
+          itemsCountPerPage={9}
+          totalItemsCount={this.state.matchData.length}
+          pageRangeDisplayed={
+            this.state.matchData.length / 9 > 10
+              ? 10
+              : Math.ceil(this.state.matchData.length / 9)
+          }
+          onChange={this.handlePageChange.bind(this)}
+          prevPageText="<"
+          nextPageText=">"
+          itemClass="page-item"
+          linkClass="page-link"
+          activeLinkClass="page-selected"
+        />
       </Wrapper>
     );
   }

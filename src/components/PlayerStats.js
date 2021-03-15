@@ -149,7 +149,7 @@ class PlayerStats extends Component {
                 game.player_faction === 'GDI' &&
                 game.player_random === false) ||
               (game.opponent === playername &&
-                game.player_faction === 'GDI' &&
+                game.opponent_faction === 'GDI' &&
                 game.opponent_random === false)
           ).length > 0 ? (
             <Box px={2} py={3} width={[1, 1 / 3]}>
@@ -171,7 +171,7 @@ class PlayerStats extends Component {
                 game.player_faction === 'Nod' &&
                 game.player_random === false) ||
               (game.opponent === playername &&
-                game.player_faction === 'Nod' &&
+                game.opponent_faction === 'Nod' &&
                 game.opponent_random === false)
           ).length > 0 ? (
             <Box px={2} py={3} width={[1, 1 / 3]}>
@@ -213,7 +213,7 @@ class PlayerStats extends Component {
         <br />
         <hr />
         <ModalGraph
-          playername
+          playername={playername}
           matches={this.props.matches}
           key={this.props.matches}
         />

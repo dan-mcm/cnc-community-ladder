@@ -11,24 +11,6 @@ class ModalGraph extends Component {
         {
           name: 'Elo',
           data: [
-            4,
-            3,
-            -10,
-            -9,
-            -29,
-            19,
-            22,
-            9,
-            12,
-            7,
-            19,
-            5,
-            13,
-            9,
-            17,
-            2,
-            7,
-            5
           ]
         }
       ],
@@ -97,7 +79,6 @@ class ModalGraph extends Component {
   modifyData(array, player) {
     const newArrayElo = [];
     // let newArrayTime = []
-
     array.map(game => {
       return game.player === player
         ? newArrayElo.push({

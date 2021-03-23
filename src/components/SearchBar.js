@@ -9,24 +9,24 @@ class SearchBar extends Component {
     this.state = {
       query: '',
       data: [],
-      result: []
+      result: [],
     };
     this.searchData = this.searchData.bind(this);
   }
 
-  handleInputChange = event => {
+  handleInputChange = (event) => {
     const query = event.target.value;
-    let result = this.props.data.filter(player =>
+    let result = this.props.data.filter((player) =>
       player.player_name.includes(query)
     );
     this.setState({
       query,
-      result
+      result,
     });
   };
 
   searchData(data, query) {
-    return data.filter(player => player.name.includes(query));
+    return data.filter((player) => player.name.includes(query));
   }
 
   getRank(rank) {
@@ -77,7 +77,7 @@ class SearchBar extends Component {
           type="text"
           id="filter"
           placeholder="Enter a player name..."
-          ref={input => (this.search = input)}
+          ref={(input) => (this.search = input)}
           onChange={this.handleInputChange}
         />
         <br />

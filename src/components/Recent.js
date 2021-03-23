@@ -7,6 +7,7 @@ import 'slick-carousel/slick/slick-theme.css';
 
 import imageOne from '../images/tourny/aod-titans-3.png';
 import imageTwo from '../images/tourny/admirals-cup.jpg';
+import ladder from '../images/ladder.png';
 
 class Recent extends Component {
   render() {
@@ -15,12 +16,24 @@ class Recent extends Component {
       infinite: true,
       speed: 1000,
       slidesToShow: 1,
-      slidesToScroll: 1
+      slidesToScroll: 1,
     };
     return (
       <div>
         <h2>COMMUNITY SPOTLIGHT</h2>
         <Slider {...settings}>
+          <div class="center">
+            <a href="https://steamcommunity.com/app/1213210/discussions/0/6303323545007755536/">
+              <img alt="ladder-reset" src={ladder} />
+            </a>
+            <p>
+              Official Season 4 Ladder Support From EA -{' '}
+              <StyledLink href="https://steamcommunity.com/app/1213210/discussions/0/6303323545007755536/">
+                Details
+              </StyledLink>
+              .
+            </p>
+          </div>
           <div class="center">
             <a href="https://aod-gaming.com/cc-tiberian-dawn-season-3-titans/">
               <img alt="aod-titans-3" src={imageOne} />

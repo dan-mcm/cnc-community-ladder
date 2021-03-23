@@ -7,13 +7,13 @@ export default class ScrollToTop extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      isVisible: false
+      isVisible: false,
     };
   }
 
   componentDidMount() {
     const scrollComponent = this;
-    document.addEventListener('scroll', function(e) {
+    document.addEventListener('scroll', function (e) {
       scrollComponent.toggleVisibility();
     });
   }
@@ -21,11 +21,11 @@ export default class ScrollToTop extends Component {
   toggleVisibility() {
     if (window.pageYOffset > 300) {
       this.setState({
-        isVisible: true
+        isVisible: true,
       });
     } else {
       this.setState({
-        isVisible: false
+        isVisible: false,
       });
     }
   }
@@ -33,7 +33,7 @@ export default class ScrollToTop extends Component {
   scrollToTop() {
     window.scrollTo({
       top: 0,
-      behavior: 'smooth'
+      behavior: 'smooth',
     });
   }
 

@@ -6,7 +6,7 @@ import Pagination from 'react-js-pagination';
 import ScrollToTop from '../components/Scroll.js';
 import Veterans from '../components/Veterans.js';
 import Leaderboard from '../components/Leaderboard.js';
-import { CustomP, CustomImage } from '../utils/styles';
+import { CustomLeftP, CustomP, CustomImage, StyledLink } from '../utils/styles';
 
 const axios = require('axios').default;
 
@@ -23,7 +23,7 @@ class Ladder extends Component {
       highestNod: {},
       highestRandom: {},
       selectedSeason: 3,
-      leaderboard: []
+      leaderboard: [],
     };
   }
 
@@ -45,50 +45,50 @@ class Ladder extends Component {
     this.setState({
       activePage,
       startPlayer,
-      endPlayer: startPlayer + 200
+      endPlayer: startPlayer + 200,
     });
   }
 
   ladderState(season) {
-    return axios.get(`/leaderboard/${season}`).then(matches => {
+    return axios.get(`/leaderboard/${season}`).then((matches) => {
       let data = matches.data;
       this.setState({ leaderboard: data });
     });
   }
 
-  seasonState(){
+  seasonState() {
     // 2021 months
-    let jan = 1609459200
-    let apr = 1617235200
-    let july = 1625097600
-    let oct = 1633046400
+    let jan = 1609459200;
+    let apr = 1617235200;
+    let july = 1625097600;
+    let oct = 1633046400;
     // 2022 months
-    let jan2 = 1640995200
+    let jan2 = 1640995200;
 
     let currentSeason = 0;
     let starttime = Date.now() / 1000;
-    if(starttime > jan && starttime < apr) currentSeason = 3
+    if (starttime > jan && starttime < apr) currentSeason = 3;
     // skipping 4 as used for our custom-map season
-    if(starttime >= apr && starttime < july) currentSeason = 5
-    if(starttime >= july && starttime < oct) currentSeason = 6
-    if(starttime >= oct && starttime < jan2) currentSeason = 7
+    if (starttime >= apr && starttime < july) currentSeason = 5;
+    if (starttime >= july && starttime < oct) currentSeason = 6;
+    if (starttime >= oct && starttime < jan2) currentSeason = 7;
     // placeholder defaulting to season 8
-    if(starttime >= jan2) currentSeason = 8
+    if (starttime >= jan2) currentSeason = 8;
 
     this.setState({ selectedSeason: currentSeason });
   }
 
   awardState(season) {
-    axios.get(`/awards/total/${season}`).then(matches => {
+    axios.get(`/awards/total/${season}`).then((matches) => {
       this.setState({ highestTotal: matches.data[0] });
     });
-    axios.get(`/awards/faction/GDI/${season}`).then(matches => {
+    axios.get(`/awards/faction/GDI/${season}`).then((matches) => {
       this.setState({ highestGDI: matches.data[0] });
     });
-    axios.get(`/awards/faction/Nod/${season}`).then(matches => {
+    axios.get(`/awards/faction/Nod/${season}`).then((matches) => {
       this.setState({ highestNod: matches.data[0] });
     });
-    axios.get(`/awards/faction/random/${season}`).then(matches => {
+    axios.get(`/awards/faction/random/${season}`).then((matches) => {
       this.setState({ highestRandom: matches.data[0] });
     });
     return;
@@ -198,12 +198,12 @@ class Ladder extends Component {
     let current = Date.now() / 1000;
 
     // 2021 months
-    let jan = 1609459200
-    let apr = 1617235200
-    let july = 1625097600
-    let oct = 1633046400
+    let jan = 1609459200;
+    let apr = 1617235200;
+    let july = 1625097600;
+    let oct = 1633046400;
     // 2022 months
-    let jan2 = 1640995200
+    let jan2 = 1640995200;
 
     if (current >= jan2) {
       return (
@@ -276,7 +276,7 @@ class Ladder extends Component {
     }
   }
 
-  handleSeasonChange = event => {
+  handleSeasonChange = (event) => {
     this.setState({ selectedSeason: parseInt(event.target.value) });
     this.ladderState(event.target.value);
     this.awardState(event.target.value);
@@ -298,6 +298,51 @@ class Ladder extends Component {
               <Box px={2} py={3} width={[1, 3 / 3]}></Box>
             </Box>
           </Flex>
+          <hr />
+          <div>
+            <h3>NOTE FROM THE SITE OWNER</h3>
+            <CustomLeftP>
+              As EA have reinstated official ladder support for the Remastered
+              Collection with resets scheduled every 3 months, this has made the
+              functionality of this community run ladder redundant.
+              <br />
+              <br />I was happy to set this up for the community to keep some
+              activity alive in the multiplayer. As official support has been
+              restored please refer to the{' '}
+              <StyledLink href="https://cnc.community/command-and-conquer-remastered/leaderboard/tiberian-dawn">
+                cnc.community
+              </StyledLink>{' '}
+              ladder moving forward.
+              <br />
+              <br />
+              The Season 3+ ladder will continue up until the scheduled end date
+              of the <b>31/03/21</b>. After that date the ladder will no longer
+              update (i.e. there will be no more seasons for the community
+              ladder at this time) <br />
+              <br />
+              There are plans to keep a historic record of the finalised season
+              results on the associatd{' '}
+              <StyledLink href="https://discord.gg/wRH37XXy3n">
+                Discord channel
+              </StyledLink>
+              . I will also aim to include a backup of the DB data in the
+              projects{' '}
+              <StyledLink href="https://github.com/dan-mcm/cnc-db">
+                Github repo
+              </StyledLink>
+              .
+              <br />
+              <br />
+              Thanks you for being a part of the community ladder - it has been
+              a fun project to work on that might be revistered in the future
+              should the community have a need for it.
+              <br />
+              <br />
+              - Danku
+              <br />
+              <br />
+            </CustomLeftP>
+          </div>
           <hr />
           <h3>
             <span role="img" aria-label="trophy">

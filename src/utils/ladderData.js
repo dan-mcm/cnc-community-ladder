@@ -10,7 +10,7 @@ export const ladderData = [
         result: 'W',
         map: 'Vales of the Templar',
         replay:
-          'https://www.gamereplays.org/cnctiberiandawnremastered/replays.php?game=99&show=details&id=349370'
+          'https://www.gamereplays.org/cnctiberiandawnremastered/replays.php?game=99&show=details&id=349370',
       },
       {
         date: '12/14/2020',
@@ -18,7 +18,7 @@ export const ladderData = [
         result: 'L',
         map: 'Sand Crystal Shard',
         replay:
-          'https://www.gamereplays.org/cnctiberiandawnremastered/replays.php?game=99&show=details&id=349370'
+          'https://www.gamereplays.org/cnctiberiandawnremastered/replays.php?game=99&show=details&id=349370',
       },
       {
         date: '12/14/2020',
@@ -26,9 +26,9 @@ export const ladderData = [
         result: 'W',
         map: 'Vales of the Templar',
         replay:
-          'https://www.gamereplays.org/cnctiberiandawnremastered/replays.php?game=99&show=details&id=349370'
-      }
-    ]
+          'https://www.gamereplays.org/cnctiberiandawnremastered/replays.php?game=99&show=details&id=349370',
+      },
+    ],
   },
   {
     rank: 2,
@@ -41,7 +41,7 @@ export const ladderData = [
         result: 'L',
         map: 'Vales of the Templar',
         replay:
-          'https://www.gamereplays.org/cnctiberiandawnremastered/replays.php?game=99&show=details&id=349370'
+          'https://www.gamereplays.org/cnctiberiandawnremastered/replays.php?game=99&show=details&id=349370',
       },
       {
         date: '12/14/2020',
@@ -49,9 +49,9 @@ export const ladderData = [
         result: 'L',
         map: 'Vales of the Templar',
         replay:
-          'https://www.gamereplays.org/cnctiberiandawnremastered/replays.php?game=99&show=details&id=349370'
-      }
-    ]
+          'https://www.gamereplays.org/cnctiberiandawnremastered/replays.php?game=99&show=details&id=349370',
+      },
+    ],
   },
   {
     rank: 3,
@@ -64,43 +64,43 @@ export const ladderData = [
         result: 'W',
         map: 'Sand Crystal Shard',
         replay:
-          'https://www.gamereplays.org/cnctiberiandawnremastered/replays.php?game=99&show=details&id=349370'
-      }
-    ]
+          'https://www.gamereplays.org/cnctiberiandawnremastered/replays.php?game=99&show=details&id=349370',
+      },
+    ],
   },
   {
     rank: 4,
     name: 'Rambo',
     points: 1000,
-    games: []
+    games: [],
   },
   {
     rank: 5,
     name: 'PaRappa56',
     points: 1000,
-    games: []
+    games: [],
   },
   {
     rank: 6,
     name: 'WarMachine',
     points: 1000,
-    games: []
+    games: [],
   },
   {
     rank: 7,
     name: 'Peasy',
     points: 1000,
-    games: []
+    games: [],
   },
   {
     rank: 8,
     name: 'Khanomancer',
     points: 1000,
-    games: []
-  }
+    games: [],
+  },
 ];
 
 // Sorting based on points values
-ladderData.sort(function(a, b) {
+ladderData.sort(function (a, b) {
   return b.points - a.points;
 });

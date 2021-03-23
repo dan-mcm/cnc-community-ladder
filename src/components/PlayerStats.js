@@ -11,7 +11,7 @@ import random from '../images/factions/random.png';
 
 const plainStyle = {
   color: 'white',
-  fontWeight: 'bold'
+  fontWeight: 'bold',
 };
 
 class PlayerStats extends Component {
@@ -27,7 +27,7 @@ class PlayerStats extends Component {
   gamesWon(data, faction, playername) {
     if (faction === 'random') {
       return data.filter(
-        game =>
+        (game) =>
           (game.player === playername &&
             game.result === false &&
             game.player_random === true) ||
@@ -38,7 +38,7 @@ class PlayerStats extends Component {
     }
 
     return data.filter(
-      game =>
+      (game) =>
         (game.player === playername &&
           game.result === false &&
           game.player_faction === faction &&
@@ -53,7 +53,7 @@ class PlayerStats extends Component {
   gamesLost(data, faction, playername) {
     if (faction === 'random') {
       return data.filter(
-        game =>
+        (game) =>
           (game.player === playername &&
             game.result === true &&
             game.player_random === true) ||
@@ -63,7 +63,7 @@ class PlayerStats extends Component {
       ).length;
     }
     return data.filter(
-      game =>
+      (game) =>
         (game.player === playername &&
           game.result === true &&
           game.player_faction === faction &&
@@ -93,7 +93,7 @@ class PlayerStats extends Component {
             </span>{' '}
             TOTAL WINS <br />
             {
-              this.props.matches.filter(game => {
+              this.props.matches.filter((game) => {
                 return (
                   (game.result === false && game.player === playername) ||
                   (game.result === true && game.opponent === playername)
@@ -107,7 +107,7 @@ class PlayerStats extends Component {
             </span>{' '}
             TOTAL LOSSES <br />
             {
-              this.props.matches.filter(game => {
+              this.props.matches.filter((game) => {
                 return (
                   (game.result === true && game.player === playername) ||
                   (game.result === false && game.opponent === playername)
@@ -129,7 +129,7 @@ class PlayerStats extends Component {
             OVERALL WINRATE <br />{' '}
             {Math.floor(
               (this.props.matches.filter(
-                game =>
+                (game) =>
                   (game.result === false && game.player === playername) ||
                   (game.result === true && game.opponent === playername)
               ).length /
@@ -144,7 +144,7 @@ class PlayerStats extends Component {
         <br />
         <Flex>
           {this.props.matches.filter(
-            game =>
+            (game) =>
               (game.player === playername &&
                 game.player_faction === 'GDI' &&
                 game.player_random === false) ||
@@ -166,7 +166,7 @@ class PlayerStats extends Component {
             ''
           )}
           {this.props.matches.filter(
-            game =>
+            (game) =>
               (game.player === playername &&
                 game.player_faction === 'Nod' &&
                 game.player_random === false) ||
@@ -190,7 +190,7 @@ class PlayerStats extends Component {
             ''
           )}
           {this.props.matches.filter(
-            game =>
+            (game) =>
               (game.player === playername && game.player_random === true) ||
               (game.opponent === playername && game.opponent_random === true)
           ).length > 0 ? (
@@ -225,7 +225,7 @@ class PlayerStats extends Component {
 }
 
 PlayerStats.propTypes = {
-  playername: PropTypes.string.isRequired
+  playername: PropTypes.string.isRequired,
 };
 
 export default PlayerStats;

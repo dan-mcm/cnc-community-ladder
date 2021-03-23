@@ -18,5 +18,5 @@ export const twitchData = [
   'thekhyira',
   'dk_cnc',
   'moorblack',
-  'theeshingming'
+  'theeshingming',
 ];

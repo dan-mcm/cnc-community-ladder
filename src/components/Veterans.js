@@ -7,7 +7,7 @@ import {
   RandomData,
   TotalData,
   IconImg,
-  Overflow
+  Overflow,
 } from '../utils/styles';
 
 // Icons
@@ -75,7 +75,7 @@ Veterans.propTypes = {
   highestGDI: PropTypes.object.isRequired,
   highestNod: PropTypes.object.isRequired,
   highestRandom: PropTypes.object.isRequired,
-  highestTotal: PropTypes.object.isRequired
+  highestTotal: PropTypes.object.isRequired,
 };
 
 export default Veterans;

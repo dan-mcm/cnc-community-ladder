@@ -139,7 +139,7 @@ Leaderboard.propTypes = {
   endPlayer: PropTypes.number.isRequired,
   activePage: PropTypes.number.isRequired,
   season: PropTypes.string.isRequired,
-  data: PropTypes.array.isRequired
+  data: PropTypes.array.isRequired,
 };
 
 export default Leaderboard;

@@ -12,12 +12,12 @@ import randomnod from '../images/factions/nodrandom.png';
 
 const greenStyle = {
   color: 'green',
-  fontWeight: 'bold'
+  fontWeight: 'bold',
 };
 
 const redStyle = {
   color: 'red',
-  fontWeight: 'bold'
+  fontWeight: 'bold',
 };
 
 class RecentPlayerGames extends Component {
@@ -26,7 +26,7 @@ class RecentPlayerGames extends Component {
     this.state = {
       activePage: 1,
       startMatch: 0,
-      endMatch: 9
+      endMatch: 9,
     };
   }
 
@@ -35,7 +35,7 @@ class RecentPlayerGames extends Component {
     this.setState({
       activePage,
       startMatch,
-      endMatch: startMatch + 9
+      endMatch: startMatch + 9,
     });
   }
 
@@ -161,7 +161,7 @@ class RecentPlayerGames extends Component {
 }
 
 RecentPlayerGames.propTypes = {
-  playername: PropTypes.string.isRequired
+  playername: PropTypes.string.isRequired,
 };
 
 export default RecentPlayerGames;

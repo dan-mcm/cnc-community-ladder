@@ -7,7 +7,7 @@ import {
   StandardImage,
   StyledLink,
   StyledInternalLink,
-  Wrapper
+  Wrapper,
 } from '../utils/styles';
 import { Flex, Box } from 'grid-styled';
 import Recent from '../components/Recent';
@@ -69,6 +69,50 @@ class Home extends Component {
           Conquer Remastered Collection.
         </p>
         <br />
+        <hr />
+        <div>
+          <h3>NOTE FROM THE SITE OWNER</h3>
+          <CustomLeftP>
+            As EA have reinstated official ladder support for the Remastered
+            Collection with resets scheduled every 3 months, this has made the
+            functionality of this community run ladder redundant.
+            <br />
+            <br />I was happy to set this up for the community to keep some
+            activity alive in the multiplayer. As official support has been
+            restored please refer to the{' '}
+            <StyledLink href="https://cnc.community/command-and-conquer-remastered/leaderboard/tiberian-dawn">
+              cnc.community
+            </StyledLink>{' '}
+            ladder moving forward.
+            <br />
+            <br />
+            The Season 3+ ladder will continue up until the scheduled end date
+            of the <b>31/03/21</b>. After that date the ladder will no longer
+            update (i.e. there will be no more seasons for the community ladder
+            at this time) <br />
+            <br />
+            There are plans to keep a historic record of the finalised season
+            results on the associatd{' '}
+            <StyledLink href="https://discord.gg/wRH37XXy3n">
+              Discord channel
+            </StyledLink>
+            . I will also aim to include a backup of the DB data in the projects{' '}
+            <StyledLink href="https://github.com/dan-mcm/cnc-db">
+              Github repo
+            </StyledLink>
+            .
+            <br />
+            <br />
+            Thanks you for being a part of the community ladder - it has been a
+            fun project to work on that might be revistered in the future should
+            the community have a need for it.
+            <br />
+            <br />
+            - Danku
+            <br />
+            <br />
+          </CustomLeftP>
+        </div>
         <hr />
         <Recent />
         <hr />

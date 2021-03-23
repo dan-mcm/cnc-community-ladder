@@ -13,7 +13,7 @@ import Nav from './components/Nav';
 import CookieBanner from 'react-cookie-banner';
 
 const history = createBrowserHistory();
-history.listen(location => {
+history.listen((location) => {
   ReactGA.set({ page: location.pathname });
   ReactGA.pageview(location.pathname);
 });

@@ -18,7 +18,7 @@ class RecentGames extends Component {
       matchData: [],
       activePage: 1,
       startMatch: 0,
-      endMatch: 9
+      endMatch: 9,
     };
   }
 
@@ -33,12 +33,12 @@ class RecentGames extends Component {
     this.setState({
       activePage,
       startMatch,
-      endMatch: startMatch + 9
+      endMatch: startMatch + 9,
     });
   }
 
   getRecentMatches() {
-    return axios.get(`/recent`).then(matches => {
+    return axios.get(`/recent`).then((matches) => {
       const { data } = matches;
       this.setState({ matchData: data });
     });
@@ -54,22 +54,20 @@ class RecentGames extends Component {
   }
 
   lastHour() {
-    return axios.get(`/recent/hour`).then(matches => {
+    return axios.get(`/recent/hour`).then((matches) => {
       const { data } = matches;
       this.setState({ count: data.length });
     });
   }
 
-  stringify(data){
-    let sampleString = ""
-    data
-    .slice(0,9)
-    .map(game => {
-      sampleString += "   [  " + game.player1_name + "-v-" + game.player2_name + "  ]   "
-    })
+  stringify(data) {
+    let sampleString = '';
+    data.slice(0, 9).map((game) => {
+      sampleString +=
+        '   [  ' + game.player1_name + '-v-' + game.player2_name + '  ]   ';
+    });
 
-    return sampleString
-
+    return sampleString;
   }
 
   render() {
@@ -97,56 +95,59 @@ class RecentGames extends Component {
         <Flex style={{ flexWrap: 'wrap' }}>
           {this.state.matchData
             .slice(this.state.startMatch, this.state.endMatch)
-            .map(game => (
-            <Box key={game.starttime} px={2} py={3} width={[1, 1 / 3]}>
-              {game.player1_faction === 'GDI' &&
-              game.player1_random === false ? (
-                <IconImg src={gdi} />
-              ) : (
-                <IconImg src={nod} />
-              )}
-              <b> {game.player1_name} </b>- v -<b> {game.player2_name} </b>
-              {game.player2_random}{' '}
-              {game.player2_random === true ? (
-                game.player2_faction === 'GDI' ? (
-                  <IconImg src={randomgdi} alt="randomgdi" />
+            .map((game) => (
+              <Box key={game.starttime} px={2} py={3} width={[1, 1 / 3]}>
+                {game.player1_faction === 'GDI' &&
+                game.player1_random === false ? (
+                  <IconImg src={gdi} />
                 ) : (
-                  <IconImg src={randomnod} alt="randomnod" />
-                )
-              ) : game.player2_faction === 'GDI' ? (
-                <IconImg src={gdi} alt="gdi" />
-              ) : (
-                <IconImg src={nod} alt="nod" />
-              )}
-              <br />
-              Season {game.season === 3 ? `${game.season}+` : game.season}{' '}
-              <br />
-              {this.toDateString(game.starttime)} <br />
-              {`${Math.floor(game.match_duration / 60)}mins ${Math.trunc(
-                game.match_duration - Math.floor(game.match_duration / 60) * 60
-              )}secs`}{' '}
-              <br />
-              <span style={{ color: 'green', fontWeight: 'bold' }}>
-                <span role="img" aria-label="medal">
-                  🏅
-                </span>{' '}
-                {game.result}{' '}
-                <span role="img" aria-label="medal">
-                  🏅
+                  <IconImg src={nod} />
+                )}
+                <b> {game.player1_name} </b>- v -<b> {game.player2_name} </b>
+                {game.player2_random}{' '}
+                {game.player2_random === true ? (
+                  game.player2_faction === 'GDI' ? (
+                    <IconImg src={randomgdi} alt="randomgdi" />
+                  ) : (
+                    <IconImg src={randomnod} alt="randomnod" />
+                  )
+                ) : game.player2_faction === 'GDI' ? (
+                  <IconImg src={gdi} alt="gdi" />
+                ) : (
+                  <IconImg src={nod} alt="nod" />
+                )}
+                <br />
+                Season {game.season === 3
+                  ? `${game.season}+`
+                  : game.season}{' '}
+                <br />
+                {this.toDateString(game.starttime)} <br />
+                {`${Math.floor(game.match_duration / 60)}mins ${Math.trunc(
+                  game.match_duration -
+                    Math.floor(game.match_duration / 60) * 60
+                )}secs`}{' '}
+                <br />
+                <span style={{ color: 'green', fontWeight: 'bold' }}>
+                  <span role="img" aria-label="medal">
+                    🏅
+                  </span>{' '}
+                  {game.result}{' '}
+                  <span role="img" aria-label="medal">
+                    🏅
+                  </span>
                 </span>
-              </span>
-              <br />
-              <StyledLink
-                href={`https://replays.cnctdra.ea.com/${game.replay}`}
-              >
-                Replay
-              </StyledLink>
-              <br />
-              {
-                <CustomImg src={require(`../images/maps/${game.map}.png`)} />
-              }{' '}
-            </Box>
-          ))}
+                <br />
+                <StyledLink
+                  href={`https://replays.cnctdra.ea.com/${game.replay}`}
+                >
+                  Replay
+                </StyledLink>
+                <br />
+                {
+                  <CustomImg src={require(`../images/maps/${game.map}.png`)} />
+                }{' '}
+              </Box>
+            ))}
         </Flex>
         <Pagination
           activePage={this.state.activePage}

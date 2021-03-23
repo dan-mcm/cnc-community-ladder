@@ -10,14 +10,14 @@ const axios = require('axios').default;
 
 const modalStyle = {
   color: 'yellow',
-  backgroundColor: 'black'
+  backgroundColor: 'black',
 };
 
 class ScoreModal extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      matches: []
+      matches: [],
     };
   }
 
@@ -26,7 +26,7 @@ class ScoreModal extends Component {
   }
 
   scoreState(season, player) {
-    return axios.get(`/elohistory/${season}/${player}`).then(matches => {
+    return axios.get(`/elohistory/${season}/${player}`).then((matches) => {
       const { data } = matches;
       this.setState({ matches: data });
     });
@@ -74,7 +74,7 @@ ScoreModal.propTypes = {
   rank: PropTypes.number.isRequired,
   season: PropTypes.string.isRequired,
   playername: PropTypes.string.isRequired,
-  onRequestClose: PropTypes.func.isRequired
+  onRequestClose: PropTypes.func.isRequired,
 };
 
 export default ScoreModal;

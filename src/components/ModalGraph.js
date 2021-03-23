@@ -10,26 +10,25 @@ class ModalGraph extends Component {
       series: [
         {
           name: 'Elo',
-          data: [
-          ]
-        }
+          data: [],
+        },
       ],
       options: {
         chart: {
           height: 350,
-          type: 'line'
+          type: 'line',
         },
         stroke: {
           width: 7,
-          curve: 'smooth'
+          curve: 'smooth',
         },
         title: {
           text: 'Elo Progress',
           align: 'left',
           style: {
             fontSize: '16px',
-            color: '#666'
-          }
+            color: '#666',
+          },
         },
         fill: {
           type: 'gradient',
@@ -40,8 +39,8 @@ class ModalGraph extends Component {
             type: 'horizontal',
             opacityFrom: 1,
             opacityTo: 1,
-            stops: [0, 100, 100, 100]
-          }
+            stops: [0, 100, 100, 100],
+          },
         },
         markers: {
           size: 1,
@@ -49,20 +48,20 @@ class ModalGraph extends Component {
           strokeColors: '#fff',
           strokeWidth: 2,
           hover: {
-            size: 7
-          }
+            size: 7,
+          },
         },
         yaxis: {
           min: 800,
           max: 2000,
           title: {
-            text: 'Points'
-          }
+            text: 'Points',
+          },
         },
         xaxis: {
-          type: 'datetime'
-        }
-      }
+          type: 'datetime',
+        },
+      },
     };
   }
 
@@ -79,15 +78,15 @@ class ModalGraph extends Component {
   modifyData(array, player) {
     const newArrayElo = [];
     // let newArrayTime = []
-    array.map(game => {
+    array.map((game) => {
       return game.player === player
         ? newArrayElo.push({
             x: this.epochToJsDate(game.starttime),
-            y: game.player_new_elo
+            y: game.player_new_elo,
           })
         : newArrayElo.push({
             x: this.epochToJsDate(game.starttime),
-            y: game.opponent_new_elo
+            y: game.opponent_new_elo,
           });
     });
     // console.log(newArrayTime.reverse())
@@ -96,9 +95,9 @@ class ModalGraph extends Component {
       series: [
         {
           name: 'Elo',
-          data: newArrayElo.reverse()
-        }
-      ]
+          data: newArrayElo.reverse(),
+        },
+      ],
     });
   }
 
@@ -122,7 +121,7 @@ class ModalGraph extends Component {
 
 ModalGraph.propTypes = {
   matches: PropTypes.array.isRequired,
-  playername: PropTypes.string.isRequired
+  playername: PropTypes.string.isRequired,
 };
 
 export default ModalGraph;

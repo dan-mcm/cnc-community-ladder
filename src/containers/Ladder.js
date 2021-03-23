@@ -321,7 +321,7 @@ class Ladder extends Component {
               ladder at this time) <br />
               <br />
               There are plans to keep a historic record of the finalised season
-              results on the associatd{' '}
+              results on the associated{' '}
               <StyledLink href="https://discord.gg/wRH37XXy3n">
                 Discord channel
               </StyledLink>

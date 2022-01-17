@@ -11,14 +11,25 @@
   <img width= "400" height="200" src="src/images/cnc_remastered.png"/>
 </p>
 
-Access:
 
-Website is currently accessible at: https://www.tibdawn.com/ (deployed via Heroku infrastructure)  
-Legacy Static Site Deployed via Github Pages: https://dan-mcm.github.io/cnc-community-ladder/
+This community run project was built for the C&C Remastered Collection: Tiberian Dawn game. Initially EA supported an online leaderboard @ https://cnc.community/command-and-conquer-remastered/leaderboard/tiberian-dawn that was manually reset every few months, however after the third season EA had seemingly dropped support for ladder resets for competitive quickmatch online games.
 
-Note: there is now a dependency on a DB, the codebase for which is available [here](https://github.com/dan-mcm/cnc-db)
+To help keep the online community alive and active I created this project for a community run leaderboard that aimed to:
+* Record players elo scores using the official EA/Petroglyph API Endpoints (see [DB Repo](https://github.com/dan-mcm/cnc-db)) & reset the scoring at automatically defined intervals (every x months etc.)
+* Generate Leaderboard & Player Analytics based on players stats and serve these via https://tibdawn.com/ website (now deprecated - previously running via Heroku/Route53)
+* Setup a brand new custom map pool - the existing quickmatch setup for this game had a pool of 7 random maps players could be assigned, this new functionality enabled auto recording of scores from players who manually setup lobbies with 8 new maps
+* Setup a special OBS browser endpoint that allowed streamers to pull data from API while streaming live on Twitch to show off their most up to date scoring systems - a similar project was previously active on the official leaderboard that inspired this adaptation
 
-## Overview
+After a few months of the project being live EA decided to implement an automatic elo/scoring reset on their old ladder system which marked the deprecation of this project.
+
+As the project is now deprecated you can refer to the following sources for a snapshot of the sites initial appearance, addition of new features & community interaction:
+
+* [Dedicated Discord Channel](https://discord.gg/pgBSxgmkHr)
+* [AOD's Overview of Community Ladder](https://www.youtube.com/watch?v=60UBTykG7UE)
+* [WayBackMachine Archive](https://web.archive.org/web/20210202065149/https://tibdawn.com/)
+
+
+## Technical Overview
 
 Setup with:
 * [React](https://reactjs.org/)
@@ -31,7 +42,6 @@ Component libraries include:
 For Code Styling & Linting:
 * [Prettier](https://github.com/prettier/prettier) is used for code styling throughout the project.
 * [XO](https://github.com/xojs/xo) is used to enforce linting styles alongside Prettier.
-
 
 DevOps:
 * A [pre-commit](https://www.npmjs.com/package/pre-commit) hook is setup to automatically run the code styler, linter and tests before enabling a successful push to the repo.
@@ -66,6 +76,8 @@ Used for nightbot extension
 Used for obs extension
 
 ## Running Locally
+
+Note: there is now a dependency on a DB, the codebase for which is available [here](https://github.com/dan-mcm/cnc-db)
 
 ```bash
 yarn install
@@ -113,7 +125,7 @@ Updates pushed to the master branch will trigger an immediate deploy of the site
 DB cron updates must be manually triggered.
 
 ### Github Pages
-A version of the site is hosted on [GitHub pages](https://pages.github.com/) @ https://dan-mcm.github.io/cnc-community-ladder/.
+For a separate map making contest that was held a github pages site was hosted through this repo on [GitHub pages](https://pages.github.com/) @ https://dan-mcm.github.io/cnc-community-ladder/.
 Due to domain structures the Github pages codebase is maintained on the [deploy-branch](https://github.com/dan-mcm/cnc-community-ladder/tree/deploy-branch) with source code hosted on the [gh-pages](https://github.com/dan-mcm/cnc-community-ladder/tree/gh-pages) branch.
 
 ## Heroku configuration

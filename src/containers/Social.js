@@ -26,12 +26,12 @@ class Social extends Component {
               For all things C&C Related
             </Box>
             <Box px={2} py={3} width={[1, 1 / 3]}>
-              <a href="https://www.redalertpros.com/">
+              <a href="http://cnc-stats.azurewebsites.net/">
                 <img alt="rap" src={rap} width="250" height="250" />
               </a>
               <br />
               <br />
-              For all your Red Alert Remastered Needs
+              Zlasher's Red Alert Remastered QM Statistics
             </Box>
             <Box px={2} py={3} width={[1, 1 / 3]}>
               <a href="https://aod-gaming.com/">
@@ -50,17 +50,17 @@ class Social extends Component {
           <Flex flexWrap="wrap">
             <Box px={2} py={3} width={[1, 1 / 1]}>
               <StyledLink href="https://discord.gg/wRH37XXy3n">
-                C&C Tiberian Dawn Remastered Community Ladder
+                C&C Tiberian Dawn Remastered Community (Competitive Multiplayer)
               </StyledLink>
             </Box>
             <Box px={2} py={3} width={[1, 1 / 1]}>
-              <StyledLink href="https://discord.gg/B4jDdDDdM4">
-                C&C Tournament Central
+              <StyledLink href="https://discord.gg/edmGNXpkRu">
+                C&C Tiberian Dawn Remastered Community (Casual Multiplayer)
               </StyledLink>
             </Box>
             <Box px={2} py={3} width={[1, 1 / 1]}>
-              <StyledLink href="https://discord.gg/ScPuahJQPM">
-                GameReplays
+              <StyledLink href="https://discord.gg/bsAMEVz9m9">
+                Danku's Discord
               </StyledLink>
             </Box>
           </Flex>

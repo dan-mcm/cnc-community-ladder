@@ -70,50 +70,6 @@ class Home extends Component {
         </p>
         <br />
         <hr />
-        <div>
-          <h3>NOTE FROM THE SITE OWNER</h3>
-          <CustomLeftP>
-            As EA have reinstated official ladder support for the Remastered
-            Collection with resets scheduled every 3 months, this has made the
-            functionality of this community run ladder redundant.
-            <br />
-            <br />I was happy to set this up for the community to keep some
-            activity alive in the multiplayer. As official support has been
-            restored please refer to the{' '}
-            <StyledLink href="https://cnc.community/command-and-conquer-remastered/leaderboard/tiberian-dawn">
-              cnc.community
-            </StyledLink>{' '}
-            ladder moving forward.
-            <br />
-            <br />
-            The Season 3+ ladder will continue up until the scheduled end date
-            of the <b>31/03/21</b>. After that date the ladder will no longer
-            update (i.e. there will be no more seasons for the community ladder
-            at this time) <br />
-            <br />
-            There are plans to keep a historic record of the finalised season
-            results on the associated{' '}
-            <StyledLink href="https://discord.gg/wRH37XXy3n">
-              Discord channel
-            </StyledLink>
-            . I will also aim to include a backup of the DB data in the projects{' '}
-            <StyledLink href="https://github.com/dan-mcm/cnc-db">
-              Github repo
-            </StyledLink>
-            .
-            <br />
-            <br />
-            Thanks you for being a part of the community ladder - it has been a
-            fun project to work on that might be revistered in the future should
-            the community have a need for it.
-            <br />
-            <br />
-            - Danku
-            <br />
-            <br />
-          </CustomLeftP>
-        </div>
-        <hr />
         <Recent />
         <hr />
         <div>
@@ -202,96 +158,96 @@ class Home extends Component {
         </div>
         <hr />
         <div>
-          <CustomCenterD>
-            <h3>CUSTOMMATCH SEASON OVERVIEW</h3>
-            <CustomLeftP>
-              In addition to providing a quickmatch based community ladder we
-              have set out to create a new map pool for a special custom map
-              community run season - Season 4. The community for Season 4 is
-              primarily moderated via the official{' '}
-              <StyledLink href="https://discord.gg/wRH37XXy3n">
-                C&C Tiberian Dawn Remastered Communiy{' '}
-              </StyledLink>{' '}
-              Discord channel. All rules, regulations and issue reporting can be
-              found there. <br />
-              <br />
-              Players are welcome to join the season at any time. Any matches
-              played on the selected Season 4 maps will be scored and counted -
-              nothing extra is required for you to pariticpate.
-            </CustomLeftP>
-          </CustomCenterD>
-        </div>
-        <br />
-        <hr />
-        <div>
-          <h3>
-            <span role="img" aria-label="map">
-              🌍
-            </span>{' '}
-            CUSTOMMATCH SEASON MAPS{' '}
-            <span role="img" aria-label="map">
-              🌍
-            </span>
-          </h3>
+          {/*  <CustomCenterD>*/}
+          {/*    <h3>CUSTOMMATCH SEASON OVERVIEW</h3>*/}
+          {/*    <CustomLeftP>*/}
+          {/*      In addition to providing a quickmatch based community ladder we*/}
+          {/*      have set out to create a new map pool for a special custom map*/}
+          {/*      community run season - Season 4. The community for Season 4 is*/}
+          {/*      primarily moderated via the official{' '}*/}
+          {/*      <StyledLink href="https://discord.gg/wRH37XXy3n">*/}
+          {/*        C&C Tiberian Dawn Remastered Communiy{' '}*/}
+          {/*      </StyledLink>{' '}*/}
+          {/*      Discord channel. All rules, regulations and issue reporting can be*/}
+          {/*      found there. <br />*/}
+          {/*      <br />*/}
+          {/*      Players are welcome to join the season at any time. Any matches*/}
+          {/*      played on the selected Season 4 maps will be scored and counted -*/}
+          {/*      nothing extra is required for you to pariticpate.*/}
+          {/*    </CustomLeftP>*/}
+          {/*  </CustomCenterD>*/}
+          {/*</div>*/}
+          {/*<br />*/}
+          {/*<hr />*/}
+          {/*<div>*/}
+          {/*  <h3>*/}
+          {/*    <span role="img" aria-label="map">*/}
+          {/*      🌍*/}
+          {/*    </span>{' '}*/}
+          {/*    CUSTOMMATCH SEASON MAPS{' '}*/}
+          {/*    <span role="img" aria-label="map">*/}
+          {/*      🌍*/}
+          {/*    </span>*/}
+          {/*  </h3>*/}
 
-          <Flex flexWrap="wrap">
-            <Box px={2} py={3} width={[1, 1 / 4]}>
-              <StyledLink href="https://steamcommunity.com/sharedfiles/filedetails/?id=2190033889">
-                Canyon Paths
-              </StyledLink>
-              <br />
-              <StandardImage src={canyonpaths} alt="canyonpaths" />
-            </Box>
-            <Box px={2} py={3} width={[1, 1 / 4]}>
-              <StyledLink href="https://steamcommunity.com/sharedfiles/filedetails/?id=2179708584">
-                Duality 3.6
-              </StyledLink>
-              <br />
-              <StandardImage src={duality36} alt="duality36" />
-            </Box>
-            <Box px={2} py={3} width={[1, 1 / 4]}>
-              <StyledLink href="https://discord.com/channels/784235637715894293/784235821531922433/784236389142495243">
-                Frosted Hostilities (vertically mirrored)
-              </StyledLink>
-              <br />
-              <StandardImage src={frosted} alt="frosted" />
-            </Box>
-            <Box px={2} py={3} width={[1, 1 / 4]}>
-              <StyledLink href="https://steamcommunity.com/sharedfiles/filedetails/?id=2154039195">
-                Higher Order
-              </StyledLink>
-              <br />
-              <StandardImage src={higherorder} alt="higherorder" />
-            </Box>
-            <Box px={2} py={3} width={[1, 1 / 4]}>
-              <StyledLink href="https://steamcommunity.com/sharedfiles/filedetails/?id=2178849887">
-                Neo Twin Peaks
-              </StyledLink>
-              <br />
-              <StandardImage src={neopeaks} alt="neopeaks" />
-            </Box>
-            <Box px={2} py={3} width={[1, 1 / 4]}>
-              <StyledLink href="https://steamcommunity.com/sharedfiles/filedetails/?id=2121157850">
-                Quicksilver
-              </StyledLink>
-              <br />
-              <StandardImage src={quicksilver} alt="quicksilver" />
-            </Box>
-            <Box px={2} py={3} width={[1, 1 / 4]}>
-              <StyledLink href="https://steamcommunity.com/sharedfiles/filedetails/?id=2192624799">
-                Sand Crystal Shard
-              </StyledLink>
-              <br />
-              <StandardImage src={crystal} alt="crystal" />
-            </Box>
-            <Box px={2} py={3} width={[1, 1 / 4]}>
-              <StyledLink href="https://steamcommunity.com/sharedfiles/filedetails/?id=2190063332">
-                Vales of the Templars
-              </StyledLink>
-              <br />
-              <StandardImage src={vales} alt="vales" />
-            </Box>
-          </Flex>
+          {/*  <Flex flexWrap="wrap">*/}
+          {/*    <Box px={2} py={3} width={[1, 1 / 4]}>*/}
+          {/*      <StyledLink href="https://steamcommunity.com/sharedfiles/filedetails/?id=2190033889">*/}
+          {/*        Canyon Paths*/}
+          {/*      </StyledLink>*/}
+          {/*      <br />*/}
+          {/*      <StandardImage src={canyonpaths} alt="canyonpaths" />*/}
+          {/*    </Box>*/}
+          {/*    <Box px={2} py={3} width={[1, 1 / 4]}>*/}
+          {/*      <StyledLink href="https://steamcommunity.com/sharedfiles/filedetails/?id=2179708584">*/}
+          {/*        Duality 3.6*/}
+          {/*      </StyledLink>*/}
+          {/*      <br />*/}
+          {/*      <StandardImage src={duality36} alt="duality36" />*/}
+          {/*    </Box>*/}
+          {/*    <Box px={2} py={3} width={[1, 1 / 4]}>*/}
+          {/*      <StyledLink href="https://discord.com/channels/784235637715894293/784235821531922433/784236389142495243">*/}
+          {/*        Frosted Hostilities (vertically mirrored)*/}
+          {/*      </StyledLink>*/}
+          {/*      <br />*/}
+          {/*      <StandardImage src={frosted} alt="frosted" />*/}
+          {/*    </Box>*/}
+          {/*    <Box px={2} py={3} width={[1, 1 / 4]}>*/}
+          {/*      <StyledLink href="https://steamcommunity.com/sharedfiles/filedetails/?id=2154039195">*/}
+          {/*        Higher Order*/}
+          {/*      </StyledLink>*/}
+          {/*      <br />*/}
+          {/*      <StandardImage src={higherorder} alt="higherorder" />*/}
+          {/*    </Box>*/}
+          {/*    <Box px={2} py={3} width={[1, 1 / 4]}>*/}
+          {/*      <StyledLink href="https://steamcommunity.com/sharedfiles/filedetails/?id=2178849887">*/}
+          {/*        Neo Twin Peaks*/}
+          {/*      </StyledLink>*/}
+          {/*      <br />*/}
+          {/*      <StandardImage src={neopeaks} alt="neopeaks" />*/}
+          {/*    </Box>*/}
+          {/*    <Box px={2} py={3} width={[1, 1 / 4]}>*/}
+          {/*      <StyledLink href="https://steamcommunity.com/sharedfiles/filedetails/?id=2121157850">*/}
+          {/*        Quicksilver*/}
+          {/*      </StyledLink>*/}
+          {/*      <br />*/}
+          {/*      <StandardImage src={quicksilver} alt="quicksilver" />*/}
+          {/*    </Box>*/}
+          {/*    <Box px={2} py={3} width={[1, 1 / 4]}>*/}
+          {/*      <StyledLink href="https://steamcommunity.com/sharedfiles/filedetails/?id=2192624799">*/}
+          {/*        Sand Crystal Shard*/}
+          {/*      </StyledLink>*/}
+          {/*      <br />*/}
+          {/*      <StandardImage src={crystal} alt="crystal" />*/}
+          {/*    </Box>*/}
+          {/*    <Box px={2} py={3} width={[1, 1 / 4]}>*/}
+          {/*      <StyledLink href="https://steamcommunity.com/sharedfiles/filedetails/?id=2190063332">*/}
+          {/*        Vales of the Templars*/}
+          {/*      </StyledLink>*/}
+          {/*      <br />*/}
+          {/*      <StandardImage src={vales} alt="vales" />*/}
+          {/*    </Box>*/}
+          {/*  </Flex>*/}
         </div>
         <br />
       </Wrapper>

@@ -22,16 +22,16 @@ class Ladder extends Component {
       highestGDI: {},
       highestNod: {},
       highestRandom: {},
-      selectedSeason: 3,
+      selectedSeason: 0,
+      maxSeason: 0,
       leaderboard: [],
     };
   }
 
   componentDidMount() {
-    // defaulting to season 3
-    this.ladderState(3);
-    this.awardState(this.state.selectedSeason);
     this.seasonState();
+    this.ladderState(this.state.selectedSeason);
+    this.awardState(this.state.selectedSeason);
   }
 
   // componentDidUpdate(prevProps,prevState) {
@@ -57,6 +57,9 @@ class Ladder extends Component {
   }
 
   seasonState() {
+    let currentSeason;
+    let currentDate = Date.now() / 1000;
+
     // 2021 months
     let jan = 1609459200;
     let apr = 1617235200;
@@ -64,18 +67,49 @@ class Ladder extends Component {
     let oct = 1633046400;
     // 2022 months
     let jan2 = 1640995200;
+    let apr2 = 1648771200;
+    let july2 = 1656633600;
+    let oct2 = 1664582400;
+    // 2023 months
+    let jan3 = 1672531200;
+    let apr3 = 1680307200;
+    let july3 = 1688169600;
+    let oct3 = 1696118400;
+    // 2024 months
+    let jan4 = 1704067200;
+    let apr4 = 1711929600;
+    let july4 = 1719792000;
+    let oct4 = 1727740800;
+    // 2025 months+
+    let jan5 = 1735689600;
 
-    let currentSeason = 0;
-    let starttime = Date.now() / 1000;
-    if (starttime > jan && starttime < apr) currentSeason = 3;
-    // skipping 4 as used for our custom-map season
-    if (starttime >= apr && starttime < july) currentSeason = 5;
-    if (starttime >= july && starttime < oct) currentSeason = 6;
-    if (starttime >= oct && starttime < jan2) currentSeason = 7;
-    // placeholder defaulting to season 8
-    if (starttime >= jan2) currentSeason = 8;
+    // 2021
+    if (currentDate >= jan && currentDate < apr) currentSeason = 3;
+    if (currentDate >= apr && currentDate < july) currentSeason = 4;
+    if (currentDate >= july && currentDate < oct) currentSeason = 5;
+    if (currentDate >= oct && currentDate < jan2) currentSeason = 6;
+    // 2022
+    if (currentDate >= jan2 && currentDate < apr2) currentSeason = 7;
+    if (currentDate >= apr2 && currentDate < july2) currentSeason = 8;
+    if (currentDate >= july2 && currentDate < oct2) currentSeason = 9;
+    if (currentDate >= oct2 && currentDate < jan3) currentSeason = 10;
+    // 2023
+    if (currentDate >= jan3 && currentDate < apr3) currentSeason = 11;
+    if (currentDate >= apr3 && currentDate < july3) currentSeason = 12;
+    if (currentDate >= july3 && currentDate < oct3) currentSeason = 13;
+    if (currentDate >= oct3 && currentDate < jan4) currentSeason = 14;
+    // 2024
+    if (currentDate >= jan4 && currentDate < apr4) currentSeason = 15;
+    if (currentDate >= apr4 && currentDate < july4) currentSeason = 16;
+    if (currentDate >= july4 && currentDate < oct4) currentSeason = 17;
+    if (currentDate >= oct4 && currentDate < jan5) currentSeason = 18;
+    // 2025
+    if (currentDate > jan5) currentSeason = 19;
 
-    this.setState({ selectedSeason: currentSeason });
+    this.setState({
+      selectedSeason: currentSeason,
+      maxSeason: currentSeason,
+    });
   }
 
   awardState(season) {
@@ -95,185 +129,40 @@ class Ladder extends Component {
   }
 
   seasonText(season) {
-    if (this.state.selectedSeason === 3) {
-      return (
-        <div>
-          <CustomP>
-            A natural extension of the official Season 3 ladder using the same
-            maps, considers a starting ELO level of 1,000 for each player.
-            <br />
-            Restricted to games played via in-game quickmatch option from
-            27/01/21.
-          </CustomP>
-          <CustomP></CustomP>
-          Start: ~ 06/01/21 <br />
-          End: ~ 31/03/21
-        </div>
-      );
-    }
-
-    if (this.state.selectedSeason === 4) {
-      return (
-        <div>
-          <CustomP>
-            A brand new ladder to enable players to have ranked games on custom
-            maps (see homepage for map selection)
-            <br />
-            Considers a starting ELO level of 1,000 for each player.
-            <br />
-          </CustomP>
-          <CustomP>
-            Start: ~ 11/01/21 <br />
-            End: ~ TBC
-          </CustomP>
-        </div>
-      );
-    }
-
-    if (this.state.selectedSeason === 5) {
-      return (
-        <div>
-          <CustomP>
-            A natural extension of the community Season 3+ ladder using the same
-            maps, considers a starting ELO level of 1,000 for each player.
-          </CustomP>
-          <CustomP>
-            Start: 01/04/21 <br />
-            End: 30/06/21
-          </CustomP>
-        </div>
-      );
-    }
-
-    if (this.state.selectedSeason === 6) {
-      return (
-        <div>
-          <CustomP>
-            A natural extension of the community Season 5 ladder using the same
-            maps, considers a starting ELO level of 1,000 for each player.
-          </CustomP>
-          <CustomP>
-            Start: 01/07/21 <br />
-            End: 30/09/21
-          </CustomP>
-        </div>
-      );
-    }
-
-    if (this.state.selectedSeason === 7) {
-      return (
-        <div>
-          <CustomP>
-            A natural extension of the community Season 6 ladder using the same
-            maps, considers a starting ELO level of 1,000 for each player.
-          </CustomP>
-          <CustomP>
-            Start: 01/10/21 <br />
-            End:~ 31/12/21
-          </CustomP>
-        </div>
-      );
-    }
-
-    if (this.state.selectedSeason >= 8) {
-      return (
-        <div>
-          <CustomP>
-            A natural extension of the community Season 7 ladder using the same
-            maps, considers a starting ELO level of 1,000 for each player.
-            <br />
-            Considers a starting ELO level of 1,000 for each player.
-            <br />
-          </CustomP>
-          <CustomP>
-            Start: 01/01/22 <br />
-            End: TBC
-          </CustomP>
-        </div>
-      );
-    }
+    return (
+      <div>
+        <CustomP>
+          A natural extension of the official Season {this.state.selectedSeason}{' '}
+          ladder using the same maps, considers a starting ELO level of 1,000
+          for each player.
+          <br />
+          <br />
+          Seasons run from: <br />
+          January - April | April - July | July - October | October - December{' '}
+          <br />
+        </CustomP>
+      </div>
+    );
   }
 
   seasonOptions() {
-    let current = Date.now() / 1000;
+    let maxSeason = this.state.maxSeason;
 
-    // 2021 months
-    let jan = 1609459200;
-    let apr = 1617235200;
-    let july = 1625097600;
-    let oct = 1633046400;
-    // 2022 months
-    let jan2 = 1640995200;
-
-    if (current >= jan2) {
-      return (
-        <select name="season" onChange={this.handleSeasonChange}>
-          <option value="" disabled selected>
-            -Select a season-
-          </option>
-          <option value="3">3+</option>
-          <option value="4">4</option>
-          <option value="5">5</option>
-          <option value="6">6</option>
-          <option value="7">7</option>
-          <option value="8">8</option>
-        </select>
-      );
+    let seasonsArray = [];
+    for (let season = 1; season < maxSeason + 1; season++) {
+      seasonsArray.push(season);
     }
 
-    if (current >= oct) {
-      return (
-        <select name="season" onChange={this.handleSeasonChange}>
-          <option value="" disabled selected>
-            -Select a season-
-          </option>
-          <option value="3">3+</option>
-          <option value="4">4</option>
-          <option value="5">5</option>
-          <option value="6">6</option>
-          <option value="7">7</option>
-        </select>
-      );
-    }
-
-    if (current >= july) {
-      return (
-        <select name="season" onChange={this.handleSeasonChange}>
-          <option value="" disabled selected>
-            -Select a season-
-          </option>
-          <option value="3">3+</option>
-          <option value="4">4</option>
-          <option value="5">5</option>
-          <option value="6">6</option>
-        </select>
-      );
-    }
-
-    if (current >= apr) {
-      return (
-        <select name="season" onChange={this.handleSeasonChange}>
-          <option value="" disabled selected>
-            -Select a season-
-          </option>
-          <option value="3">3+</option>
-          <option value="4">4</option>
-          <option value="5">5</option>
-        </select>
-      );
-    }
-    // should be default case
-    if (current >= jan) {
-      return (
-        <select name="season" onChange={this.handleSeasonChange}>
-          <option value="" disabled selected>
-            -Select a season-
-          </option>
-          <option value="3">3+</option>
-          <option value="4">4</option>
-        </select>
-      );
-    }
+    return (
+      <select name="season" onChange={this.handleSeasonChange}>
+        <option value="" disabled selected>
+          -Select a season-
+        </option>
+        {seasonsArray.map((season) => (
+          <option value={season}>{season}</option>
+        ))}
+      </select>
+    );
   }
 
   handleSeasonChange = (event) => {
@@ -299,51 +188,6 @@ class Ladder extends Component {
             </Box>
           </Flex>
           <hr />
-          <div>
-            <h3>NOTE FROM THE SITE OWNER</h3>
-            <CustomLeftP>
-              As EA have reinstated official ladder support for the Remastered
-              Collection with resets scheduled every 3 months, this has made the
-              functionality of this community run ladder redundant.
-              <br />
-              <br />I was happy to set this up for the community to keep some
-              activity alive in the multiplayer. As official support has been
-              restored please refer to the{' '}
-              <StyledLink href="https://cnc.community/command-and-conquer-remastered/leaderboard/tiberian-dawn">
-                cnc.community
-              </StyledLink>{' '}
-              ladder moving forward.
-              <br />
-              <br />
-              The Season 3+ ladder will continue up until the scheduled end date
-              of the <b>31/03/21</b>. After that date the ladder will no longer
-              update (i.e. there will be no more seasons for the community
-              ladder at this time) <br />
-              <br />
-              There are plans to keep a historic record of the finalised season
-              results on the associated{' '}
-              <StyledLink href="https://discord.gg/wRH37XXy3n">
-                Discord channel
-              </StyledLink>
-              . I will also aim to include a backup of the DB data in the
-              projects{' '}
-              <StyledLink href="https://github.com/dan-mcm/cnc-db">
-                Github repo
-              </StyledLink>
-              .
-              <br />
-              <br />
-              Thanks you for being a part of the community ladder - it has been
-              a fun project to work on that might be revistered in the future
-              should the community have a need for it.
-              <br />
-              <br />
-              - Danku
-              <br />
-              <br />
-            </CustomLeftP>
-          </div>
-          <hr />
           <h3>
             <span role="img" aria-label="trophy">
               🏆
@@ -366,10 +210,7 @@ class Ladder extends Component {
             highestRandom={this.state.highestRandom}
           />
           <hr />
-          <h3>
-            SEASON{' '}
-            {this.state.selectedSeason === 3 ? '3+' : this.state.selectedSeason}
-          </h3>
+          <h3>SEASON {this.state.selectedSeason}</h3>
           <div>{this.seasonText(this.state.selectedSeason)}</div>
           <CustomP>* click rows for extra player data *</CustomP>
           {this.state.leaderboard.length === 0 ? (

@@ -138,7 +138,7 @@ class Ladder extends Component {
           <br />
           <br />
           Seasons run from: <br />
-          January - April | April - July | July - October | October - December{' '}
+          January - March | April - June | July - September | October - December{' '}
           <br />
         </CustomP>
       </div>

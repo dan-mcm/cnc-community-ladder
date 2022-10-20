@@ -6,7 +6,7 @@ import Pagination from 'react-js-pagination';
 import ScrollToTop from '../components/Scroll.js';
 import Veterans from '../components/Veterans.js';
 import Leaderboard from '../components/Leaderboard.js';
-import { CustomLeftP, CustomP, CustomImage, StyledLink } from '../utils/styles';
+import { CustomP, CustomImage } from '../utils/styles';
 
 const axios = require('axios').default;
 

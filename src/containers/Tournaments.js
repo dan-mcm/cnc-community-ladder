@@ -7,7 +7,7 @@ class Tournaments extends Component {
     return (
       <Wrapper>
         <div>
-          <p>Tournaments, Recordings & Replays</p>
+          <h2>Tournaments, Recordings & Replays</h2>
         </div>
         <hr />
         <div>

@@ -4,7 +4,6 @@
 [![code style: prettier](https://img.shields.io/badge/style-prettier-ff69b4.svg)](https://github.com/prettier/prettier)
 [![XO code linter](https://img.shields.io/badge/linter-XO-5ed9c7.svg)](https://github.com/xojs/xo)
 [![Google Analytics](https://img.shields.io/badge/monitoring-📈_Google_Analytics-blue.svg)](https://analytics.google.com/analytics/web/)
-![Heroku](https://heroku-badge.herokuapp.com/?app=heroku-badge)
 [![Discord](https://img.shields.io/discord/784235637715894293?color=purple&label=discord)](https://discord.gg/pgBSxgmkHr)
 
 <p align="center">

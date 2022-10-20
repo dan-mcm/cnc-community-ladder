@@ -1,16 +1,14 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { CustomerHeader, SiteTitle } from '../utils/styles';
 
-class Header extends Component {
-  render() {
-    return (
-      <CustomerHeader>
-        <SiteTitle>
-          Command & Conquer - Tiberian Dawn - Community Ladder
-        </SiteTitle>
-      </CustomerHeader>
-    );
-  }
+function Header() {
+  return (
+    <CustomerHeader>
+      <SiteTitle>
+        Command & Conquer - Tiberian Dawn - Community Ladder
+      </SiteTitle>
+    </CustomerHeader>
+  );
 }
 
 export default Header;

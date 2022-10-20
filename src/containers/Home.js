@@ -21,15 +21,15 @@ import tournamentmiddle from '../images/maps/tournament_middle_camp.png';
 import tournamentdesert from '../images/maps/tournament_desert.png';
 import heavymetal from '../images/maps/heavy_metal.png';
 
-// Season 4 maps
-import canyonpaths from '../images/maps/canyon_paths.png';
-import duality36 from '../images/maps/duality.png';
-import frosted from '../images/maps/frosted_hostilities_vertically_mirrored.png';
-import higherorder from '../images/maps/higher_order.png';
-import neopeaks from '../images/maps/neo_twin_peaks.png';
-import quicksilver from '../images/maps/quicksilver.png';
-import crystal from '../images/maps/sand_crystal_shard.png';
-import vales from '../images/maps/vales_of_the_templars.png';
+// Season 4 maps - legacy not currently in use
+// import canyonpaths from '../images/maps/canyon_paths.png';
+// import duality36 from '../images/maps/duality.png';
+// import frosted from '../images/maps/frosted_hostilities_vertically_mirrored.png';
+// import higherorder from '../images/maps/higher_order.png';
+// import neopeaks from '../images/maps/neo_twin_peaks.png';
+// import quicksilver from '../images/maps/quicksilver.png';
+// import crystal from '../images/maps/sand_crystal_shard.png';
+// import vales from '../images/maps/vales_of_the_templars.png';
 
 // Icons
 import gdi from '../images/factions/gdi.png';

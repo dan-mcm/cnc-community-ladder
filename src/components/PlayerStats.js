@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { Flex, Box } from 'grid-styled';
 import ModalGraph from './ModalGraph';
@@ -14,214 +14,206 @@ const plainStyle = {
   fontWeight: 'bold',
 };
 
-class PlayerStats extends Component {
-  toDateString(epochValue) {
-    let date = epochValue;
-    const utcSeconds = date;
-    const d = new Date(0); // Sets the date to the epoch
-    d.setUTCSeconds(utcSeconds);
-    date = d;
-    return `${d.toLocaleDateString()} - ${d.toLocaleTimeString()}`;
-  }
+// legacy code - not in use?
+// function toDateString(epochValue) {
+//   let date = epochValue;
+//   const utcSeconds = date;
+//   const d = new Date(0); // Sets the date to the epoch
+//   d.setUTCSeconds(utcSeconds);
+//   date = d;
+//   return `${d.toLocaleDateString()} - ${d.toLocaleTimeString()}`;
+// }
 
-  gamesWon(data, faction, playername) {
-    if (faction === 'random') {
-      return data.filter(
-        (game) =>
-          (game.player === playername &&
-            game.result === false &&
-            game.player_random === true) ||
-          (game.opponent === playername &&
-            game.result === true &&
-            game.opponent_random === true)
-      ).length;
-    }
-
+function gamesWon(data, faction, playername) {
+  if (faction === 'random') {
     return data.filter(
       (game) =>
         (game.player === playername &&
           game.result === false &&
-          game.player_faction === faction &&
-          (game.player_random === false || game.player_random === null)) ||
+          game.player_random === true) ||
         (game.opponent === playername &&
           game.result === true &&
-          game.opponent_faction === faction &&
-          (game.opponent_random === false || game.opponent_random === null))
+          game.opponent_random === true)
     ).length;
   }
 
-  gamesLost(data, faction, playername) {
-    if (faction === 'random') {
-      return data.filter(
-        (game) =>
-          (game.player === playername &&
-            game.result === true &&
-            game.player_random === true) ||
-          (game.opponent === playername &&
-            game.result === false &&
-            game.opponent_random === true)
-      ).length;
-    }
+  return data.filter(
+    (game) =>
+      (game.player === playername &&
+        game.result === false &&
+        game.player_faction === faction &&
+        (game.player_random === false || game.player_random === null)) ||
+      (game.opponent === playername &&
+        game.result === true &&
+        game.opponent_faction === faction &&
+        (game.opponent_random === false || game.opponent_random === null))
+  ).length;
+}
+
+function gamesLost(data, faction, playername) {
+  if (faction === 'random') {
     return data.filter(
       (game) =>
         (game.player === playername &&
           game.result === true &&
-          game.player_faction === faction &&
-          (game.player_random === false || game.player_random === null)) ||
+          game.player_random === true) ||
         (game.opponent === playername &&
           game.result === false &&
-          game.opponent_faction === faction &&
-          (game.opponent_random === false || game.opponent_random === null))
+          game.opponent_random === true)
     ).length;
   }
+  return data.filter(
+    (game) =>
+      (game.player === playername &&
+        game.result === true &&
+        game.player_faction === faction &&
+        (game.player_random === false || game.player_random === null)) ||
+      (game.opponent === playername &&
+        game.result === false &&
+        game.opponent_faction === faction &&
+        (game.opponent_random === false || game.opponent_random === null))
+  ).length;
+}
 
-  winRate(data, faction, playername) {
-    const wins = this.gamesWon(data, faction, playername);
-    const loses = this.gamesLost(data, faction, playername);
-    const result = Math.floor((wins / (wins + loses)) * 100);
-    return wins > 0 ? result : 0;
-  }
+function winRate(data, faction, playername) {
+  const wins = this.gamesWon(data, faction, playername);
+  const loses = this.gamesLost(data, faction, playername);
+  const result = Math.floor((wins / (wins + loses)) * 100);
+  return wins > 0 ? result : 0;
+}
 
-  render() {
-    const { playername } = this.props;
-    return (
-      <div style={plainStyle}>
-        <Flex flexWrap="wrap">
-          <Box px={2} py={3} width={[1, 1 / 4]}>
-            <span role="img" aria-label="trophy">
-              🏆
-            </span>{' '}
-            TOTAL WINS <br />
-            {
-              this.props.matches.filter((game) => {
-                return (
-                  (game.result === false && game.player === playername) ||
-                  (game.result === true && game.opponent === playername)
-                );
-              }).length
-            }
+function PlayerStats(props) {
+  const { playername } = props;
+  return (
+    <div style={plainStyle}>
+      <Flex flexWrap="wrap">
+        <Box px={2} py={3} width={[1, 1 / 4]}>
+          <span role="img" aria-label="trophy">
+            🏆
+          </span>{' '}
+          TOTAL WINS <br />
+          {
+            props.matches.filter((game) => {
+              return (
+                (game.result === false && game.player === playername) ||
+                (game.result === true && game.opponent === playername)
+              );
+            }).length
+          }
+        </Box>
+        <Box px={2} py={3} width={[1, 1 / 4]}>
+          <span role="img" aria-label="x">
+            ❌
+          </span>{' '}
+          TOTAL LOSSES <br />
+          {
+            props.matches.filter((game) => {
+              return (
+                (game.result === true && game.player === playername) ||
+                (game.result === false && game.opponent === playername)
+              );
+            }).length
+          }
+        </Box>
+        <Box px={2} py={3} width={[1, 1 / 4]}>
+          <span role="img" aria-label="play">
+            ▶️
+          </span>{' '}
+          TOTAL PLAYED <br />
+          {props.matches.length}
+        </Box>
+        <Box px={2} py={3} width={[1, 1 / 4]}>
+          <span role="img" aria-label="graph">
+            📈
+          </span>{' '}
+          OVERALL WINRATE <br />{' '}
+          {Math.floor(
+            (props.matches.filter(
+              (game) =>
+                (game.result === false && game.player === playername) ||
+                (game.result === true && game.opponent === playername)
+            ).length /
+              props.matches.length) *
+              100
+          ) + '%'}
+        </Box>
+      </Flex>
+      <br />
+      <hr />
+      <h3>FACTION STATS</h3>
+      <br />
+      <Flex>
+        {props.matches.filter(
+          (game) =>
+            (game.player === playername &&
+              game.player_faction === 'GDI' &&
+              game.player_random === false) ||
+            (game.opponent === playername &&
+              game.opponent_faction === 'GDI' &&
+              game.opponent_random === false)
+        ).length > 0 ? (
+          <Box px={2} py={3} width={[1, 1 / 3]}>
+            <IconImg src={gdi} alt="gdi" />
+            <br />
+            GAMES WON - {gamesWon(props.matches, 'GDI', playername)}
+            <br />
+            GAMES LOST - {gamesLost(props.matches, 'GDI', playername)}
+            <br />
+            WINRATE - {winRate(props.matches, 'GDI', playername)}%
           </Box>
-          <Box px={2} py={3} width={[1, 1 / 4]}>
-            <span role="img" aria-label="x">
-              ❌
-            </span>{' '}
-            TOTAL LOSSES <br />
-            {
-              this.props.matches.filter((game) => {
-                return (
-                  (game.result === true && game.player === playername) ||
-                  (game.result === false && game.opponent === playername)
-                );
-              }).length
-            }
+        ) : (
+          ''
+        )}
+        {props.matches.filter(
+          (game) =>
+            (game.player === playername &&
+              game.player_faction === 'Nod' &&
+              game.player_random === false) ||
+            (game.opponent === playername &&
+              game.opponent_faction === 'Nod' &&
+              game.opponent_random === false)
+        ).length > 0 ? (
+          <Box px={2} py={3} width={[1, 1 / 3]}>
+            <IconImg src={nod} alt="nod" />
+            <br />
+            GAMES WON -{' ' + gamesWon(props.matches, 'Nod', playername)}
+            <br />
+            GAMES LOST -{' ' + gamesLost(props.matches, 'Nod', playername)}
+            <br />
+            WINRATE -{' ' + winRate(props.matches, 'Nod', playername)}%
           </Box>
-          <Box px={2} py={3} width={[1, 1 / 4]}>
-            <span role="img" aria-label="play">
-              ▶️
-            </span>{' '}
-            TOTAL PLAYED <br />
-            {this.props.matches.length}
+        ) : (
+          ''
+        )}
+        {props.matches.filter(
+          (game) =>
+            (game.player === playername && game.player_random === true) ||
+            (game.opponent === playername && game.opponent_random === true)
+        ).length > 0 ? (
+          <Box px={2} py={3} width={[1, 1 / 3]}>
+            <IconImg src={random} alt="random" />
+            <br />
+            GAMES WON -{' ' + gamesWon(props.matches, 'random', playername)}
+            <br />
+            GAMES LOST -{' ' + gamesLost(props.matches, 'random', playername)}
+            <br />
+            WINRATE -{' ' + winRate(props.matches, 'random', playername)}%
           </Box>
-          <Box px={2} py={3} width={[1, 1 / 4]}>
-            <span role="img" aria-label="graph">
-              📈
-            </span>{' '}
-            OVERALL WINRATE <br />{' '}
-            {Math.floor(
-              (this.props.matches.filter(
-                (game) =>
-                  (game.result === false && game.player === playername) ||
-                  (game.result === true && game.opponent === playername)
-              ).length /
-                this.props.matches.length) *
-                100
-            ) + '%'}
-          </Box>
-        </Flex>
-        <br />
-        <hr />
-        <h3>FACTION STATS</h3>
-        <br />
-        <Flex>
-          {this.props.matches.filter(
-            (game) =>
-              (game.player === playername &&
-                game.player_faction === 'GDI' &&
-                game.player_random === false) ||
-              (game.opponent === playername &&
-                game.opponent_faction === 'GDI' &&
-                game.opponent_random === false)
-          ).length > 0 ? (
-            <Box px={2} py={3} width={[1, 1 / 3]}>
-              <IconImg src={gdi} alt="gdi" />
-              <br />
-              GAMES WON - {this.gamesWon(this.props.matches, 'GDI', playername)}
-              <br />
-              GAMES LOST -{' '}
-              {this.gamesLost(this.props.matches, 'GDI', playername)}
-              <br />
-              WINRATE - {this.winRate(this.props.matches, 'GDI', playername)}%
-            </Box>
-          ) : (
-            ''
-          )}
-          {this.props.matches.filter(
-            (game) =>
-              (game.player === playername &&
-                game.player_faction === 'Nod' &&
-                game.player_random === false) ||
-              (game.opponent === playername &&
-                game.opponent_faction === 'Nod' &&
-                game.opponent_random === false)
-          ).length > 0 ? (
-            <Box px={2} py={3} width={[1, 1 / 3]}>
-              <IconImg src={nod} alt="nod" />
-              <br />
-              GAMES WON -
-              {' ' + this.gamesWon(this.props.matches, 'Nod', playername)}
-              <br />
-              GAMES LOST -
-              {' ' + this.gamesLost(this.props.matches, 'Nod', playername)}
-              <br />
-              WINRATE -
-              {' ' + this.winRate(this.props.matches, 'Nod', playername)}%
-            </Box>
-          ) : (
-            ''
-          )}
-          {this.props.matches.filter(
-            (game) =>
-              (game.player === playername && game.player_random === true) ||
-              (game.opponent === playername && game.opponent_random === true)
-          ).length > 0 ? (
-            <Box px={2} py={3} width={[1, 1 / 3]}>
-              <IconImg src={random} alt="random" />
-              <br />
-              GAMES WON -
-              {' ' + this.gamesWon(this.props.matches, 'random', playername)}
-              <br />
-              GAMES LOST -
-              {' ' + this.gamesLost(this.props.matches, 'random', playername)}
-              <br />
-              WINRATE -
-              {' ' + this.winRate(this.props.matches, 'random', playername)}%
-            </Box>
-          ) : (
-            ''
-          )}
-        </Flex>
-        <br />
-        <hr />
-        <ModalGraph
-          playername={playername}
-          matches={this.props.matches}
-          key={this.props.matches}
-        />
-        <br />
-        <hr />
-      </div>
-    );
-  }
+        ) : (
+          ''
+        )}
+      </Flex>
+      <br />
+      <hr />
+      <ModalGraph
+        playername={playername}
+        matches={props.matches}
+        key={props.matches}
+      />
+      <br />
+      <hr />
+    </div>
+  );
 }
 
 PlayerStats.propTypes = {

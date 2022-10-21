@@ -16,23 +16,22 @@ const redStyle = {
   fontWeight: 'bold',
 };
 
-function handleInputChange(props, setQuery, setResult, event) {
+function handleInputChange(props, setResult, event) {
   const query = event.target.value;
   // console.log(Object.keys(this.props.data));
   let result = props.data.filter(
     (game) => game.opponent.includes(query) || game.player.includes(query)
   );
   if (result.length === props.data.length) result = [];
-  setQuery(query);
   setResult(result);
 }
 
 // legacy - not in use?
-function searchData(data, query) {
-  return data.filter(
-    (player) => player.player.includes(query) || player.opponent.includes(query)
-  );
-}
+// function searchData(data, query) {
+//   return data.filter(
+//     (player) => player.player.includes(query) || player.opponent.includes(query)
+//   );
+// }
 
 function toDateString(epochValue) {
   let date = epochValue;
@@ -45,8 +44,8 @@ function toDateString(epochValue) {
 
 // TODO needs testing to verify functionality as certain values seem to have been left unused?
 function ModalSearchBar(props) {
-  const [query, setQuery] = useState(''); // query value was actually unused before? - needs testing
-  const [data] = useState([]);
+  // const [query, setQuery] = useState(''); // query state value was actually unused before? - needs testing
+  // const [data] = useState([]);
   const [result, setResult] = useState([]);
 
   const { playername } = props;
@@ -58,9 +57,9 @@ function ModalSearchBar(props) {
         type="text"
         id="filter"
         placeholder="Enter a player name..."
-        // ref={(input) => (this.search = input)} // unclear intended function here - needs testing
-        ref={(input) => searchData(data, input)}
-        onChange={handleInputChange(props, setQuery, setResult)}
+        ref={(input) => (this.search = input)} // unclear intended function here - needs testing
+        // ref={(input) => searchData(data, input)}
+        onChange={handleInputChange(props, setResult)}
       />
       <br />
       {result.length > 0 ? <h3>GAMES FOUND</h3> : ''}

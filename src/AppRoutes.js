@@ -3,10 +3,16 @@ import { Router, Route } from 'react-router-dom';
 import ReactGA from 'react-ga';
 import { createBrowserHistory } from 'history';
 import CookieBanner from 'react-cookie-banner';
-import { Home, Social, Ladder, Tournaments, Streamers, Recent } from './containers';
+import {
+  Home,
+  Social,
+  Ladder,
+  Tournaments,
+  Streamers,
+  Recent,
+} from './containers';
 import Footer from './components/Footer';
 import Nav from './components/Nav';
-
 
 const history = createBrowserHistory();
 history.listen((location) => {

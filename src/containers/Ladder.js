@@ -158,9 +158,9 @@ class Ladder extends Component {
         <option value="" disabled selected>
           -Select a season-
         </option>
-        {seasonsArray.map((season) => (
-          <option value={season}>{season}</option>
-        ))}
+        {seasonsArray
+          .map((season) => <option value={season}>{season}</option>)
+          .reverse()}
       </select>
     );
   }

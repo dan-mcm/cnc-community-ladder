@@ -23,10 +23,9 @@ function scoreState(setMatches, season, player) {
 function ScoreModal(props) {
   const [matches, setMatches] = useState([]);
 
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
     scoreState(setMatches, props.season, props.data.player_name);
-  });
+  }, [setMatches, props.season, props.data.player_name]);
 
   const { data, playername, rank, season, onRequestClose } = props;
 

@@ -62,6 +62,8 @@ function SearchBar(props) {
   // const [data] = useState([]) // data state value was actually unused?
   const [result, setResult] = useState([]);
 
+  let searchInput = React.createRef();
+
   return (
     <div>
       <p>SEARCH FOR A PLAYER</p>
@@ -69,9 +71,10 @@ function SearchBar(props) {
         type="text"
         id="filter"
         placeholder="Enter a player name..."
-        ref={(input) => (this.search = input)} // unclear intended function here - needs testing
+        ref={searchInput}
+        // ref={(input) => (this.search = input)} // unclear intended function here - needs testing
         // ref={(input) => searchData(input)}
-        onChange={handleInputChange(props, setQuery, setResult)}
+        onChange={(e) => handleInputChange(props, setQuery, setResult, e)}
       />
       <br />
       <br />

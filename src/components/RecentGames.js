@@ -64,11 +64,11 @@ function RecentGames(props) {
   const [endMatch, setEndMatch] = useState(9);
   const [count, setCount] = useState(0);
 
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+  // too many re-renders, seems bugged...
   useEffect(() => {
     getRecentMatches(setMatchData);
     lastHour(setCount);
-  });
+  }, []);
 
   return (
     <Wrapper>

@@ -20,7 +20,7 @@ function Recent() {
     <div>
       <h2>COMMUNITY SPOTLIGHT</h2>
       <Slider {...settings}>
-        <div class="center">
+        <div className="center">
           <a href="https://steamcommunity.com/app/1213210/discussions/0/6303323545007755536/">
             <img alt="ladder-reset" src={ladder} />
           </a>
@@ -32,7 +32,7 @@ function Recent() {
             .
           </p>
         </div>
-        <div class="center">
+        <div className="center">
           <a href="https://aod-gaming.com/cc-tiberian-dawn-season-3-titans/">
             <img alt="aod-titans-3" src={imageOne} />
           </a>

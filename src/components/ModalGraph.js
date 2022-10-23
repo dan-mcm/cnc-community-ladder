@@ -95,10 +95,9 @@ function ModalGraph(props) {
   const [series, setSeries] = useState(defaultSeries);
   const [options] = useState(defaultOptions);
 
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
     modifyData(setSeries, props.matches, props.playername);
-  });
+  }, [setSeries, props.matches, props.playername]);
 
   return (
     <div>

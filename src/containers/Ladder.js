@@ -93,7 +93,7 @@ function awardState(
   setHighestRandom,
   season
 ) {
-  // TODO this new promisifcation needs to be validated as working...
+  // TODO this new promisification needs to be validated as working...
   // TODO fix console error log, when server 500 returning XML parsing error: syntax error (potentially express side header issue)
   const highestTotalURL = `/awards/total/${season}`;
   const highestGDIURL = `/awards/faction/GDI/${season}`;

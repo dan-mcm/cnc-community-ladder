@@ -24,10 +24,13 @@ function handlePageChange(
 }
 
 function getRecentMatches(setMatchData) {
-  return axios.get(`/recent`).then((matches) => {
+  return axios
+  .get(`/recent`)
+  .then((matches) => {
     const { data } = matches;
     setMatchData(data);
-  });
+  })
+  .catch((err) => console.log(err));
 }
 
 function toDateString(epochValue) {
@@ -82,7 +85,7 @@ function RecentGames(props) {
         pageRangeDisplayed={
           matchData.length / 9 > 10 ? 10 : Math.ceil(matchData.length / 9)
         }
-        onChange={handlePageChange(setActivePage, setStartMatch, setEndMatch)}
+        onChange={(e) => handlePageChange(setActivePage, setStartMatch, setEndMatch, e)}
         prevPageText="<"
         nextPageText=">"
         itemClass="page-item"
@@ -142,7 +145,7 @@ function RecentGames(props) {
         pageRangeDisplayed={
           matchData.length / 9 > 10 ? 10 : Math.ceil(matchData.length / 9)
         }
-        onChange={handlePageChange(setActivePage, setStartMatch, setEndMatch)}
+        onChange={(e) => handlePageChange(setActivePage, setStartMatch, setEndMatch, e)}
         prevPageText="<"
         nextPageText=">"
         itemClass="page-item"

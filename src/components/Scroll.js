@@ -25,7 +25,7 @@ function ScrollToTop() {
     document.addEventListener('scroll', function (e) {
       toggleVisibility(setVisibility);
     });
-  });
+  }, []);
 
   return (
     <div className="scroll-to-top">

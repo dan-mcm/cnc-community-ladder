@@ -84,6 +84,26 @@ yarn install
 yarn dev # will start react app on port 3000 and express server on port 5000 by default
 ```
 
+### Environmental Variables
+Codebase is configured to read from a .env file in the repo root directory. The API endpoints stored here were initially crawled via the cnc-db repo. Due to the cnc.community leaderboard downtime this repo has been modified to quickly enable a display for the EA leaderboard endpoints.
+
+Note: the DB settings used are based on the dockerfile present in the cnc-db repo.
+
+```
+NODE_ENV=dev
+DB_USER=dbuser
+DB_HOST=localhost
+DB_NAME=cnc-matches
+DB_PASSWORD=pass
+DB_PORT=5444
+
+PETRO_ENDPOINT=official-ea-endpoint
+RECENT_MATCHES=official-petro-recent-matches-endpoint
+LEADERBOARD_URL=official-petro-leaderboard-endpoint
+LEADERBOARD_STANDINGS_URL=official-petro-leaderboard-standing-endpoint
+```
+
+
 ### Using Docker
 *Not Tested*
 ```bash

@@ -3,14 +3,7 @@ import { Router, Route } from 'react-router-dom';
 import ReactGA from 'react-ga';
 import { createBrowserHistory } from 'history';
 import CookieBanner from 'react-cookie-banner';
-import {
-  Home,
-  Social,
-  Ladder,
-  Tournaments,
-  Streamers,
-  Recent,
-} from './containers';
+import { Home, Recent, CurrentLeaderboard } from './containers';
 import Footer from './components/Footer';
 import Nav from './components/Nav';
 
@@ -36,11 +29,12 @@ export default class AppRoutes extends Component {
         />
         <div>
           <Route exact path="/" component={Home} />
-          <Route exact path="/ladder" component={Ladder} />
-          <Route exact path="/social" component={Social} />
-          <Route exact path="/tournaments" component={Tournaments} />
-          <Route exact path="/streamers" component={Streamers} />
           <Route exact path="/recent" component={Recent} />
+          <Route
+            exact
+            path="/currentleaderboard"
+            component={CurrentLeaderboard}
+          />
         </div>
         <Footer />
       </Router>

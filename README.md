@@ -10,6 +10,7 @@
   <img width= "400" height="200" src="src/images/cnc_remastered.png"/>
 </p>
 
+**UNDERGOING MAJOR REFACTOR -> Due to cnc.community dropping leaderboard support bootstrapping internalised server endpoints to get application up and running for community**
 
 This community run project was built for the C&C Remastered Collection: Tiberian Dawn game. Initially EA supported an online leaderboard @ https://cnc.community/command-and-conquer-remastered/leaderboard/tiberian-dawn that was manually reset every few months, however after the third season EA had seemingly dropped support for ladder resets for competitive quickmatch online games.
 

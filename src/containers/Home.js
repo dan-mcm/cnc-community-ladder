@@ -63,48 +63,8 @@ function Home() {
           <HomeImg src={nod} alt="nod" />
         </Box>
       </Flex>
-      <p>
-        Welcome to the community run Tiberian Dawn ladders for the Command &
-        Conquer Remastered Collection.
-      </p>
-      <br />
       <hr />
       <Recent />
-      <hr />
-      <div>
-        <h3>COMMUNITY LADDER</h3>
-        <CustomCenterD>
-          <CustomLeftP>
-            As there has been no official reset for the{' '}
-            <StyledLink href="https://cnc.community/command-and-conquer-remastered/leaderboard/tiberian-dawn">
-              Official C&C Remastered Tiberian Dawn Ladder
-            </StyledLink>
-            , we the community have set out to create out own ladders.
-          </CustomLeftP>
-          <br />
-          <br />
-          <CustomLink2 to="/ladder">Go To Season Ladders</CustomLink2>
-          <br />
-        </CustomCenterD>
-      </div>
-      <hr />
-      <div>
-        <h3>QUICKMATCH SEASON OVERVIEW</h3>
-        <CustomLeftP>
-          We have started the community ladder with a <b>Season 3+</b> ladder
-          which is an elo reset of the official season 3 ladder. This Season 3+
-          ladder automatically tracks games played on the existing quickmatch
-          ladder pool and has reset all players elos to a score of 1000. You can
-          checkout the existing quickmatch map pool below.
-          <br />
-          <br />
-          The community run quickmatch map ladders will be refreshed every 3
-          months, you can see the start and end date for each season under the{' '}
-          <StyledInternalLink to="/ladder">Ladder</StyledInternalLink> section.
-        </CustomLeftP>
-        <br />
-      </div>
-
       <hr />
       <div>
         <h3>

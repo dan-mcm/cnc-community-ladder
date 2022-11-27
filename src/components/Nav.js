@@ -7,12 +7,7 @@ function Nav() {
     <CustomNav>
       <Flex flexWrap="wrap">
         <Box px={2} py={3} width={[1, 1 / 4]}>
-          <CustomReactLink to="/">
-            C&C REMASTERED
-            <br />
-            TIBERIAN DAWN
-            <br /> COMMUNITY
-          </CustomReactLink>
+          <CustomReactLink to="/">Home</CustomReactLink>
         </Box>
         <Box px={2} py={3} width={[1, 1 / 4]}>
           <CustomReactLink to="/currentleaderboard">

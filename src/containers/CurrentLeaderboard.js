@@ -12,12 +12,18 @@ function handlePageChange(
   setActivePage,
   setSelectedSeason,
   selectedSeason,
+  setPlayerIdTranslation,
   activePage
 ) {
   // let startMatch = activePage === 1 ? 0 : 9 * (activePage - 1);
   setActivePage(activePage);
   setSelectedSeason(selectedSeason);
-  fetchLeaderboard(setLeaderboard, selectedSeason, activePage);
+  fetchLeaderboard(
+    setLeaderboard,
+    selectedSeason,
+    setPlayerIdTranslation,
+    activePage
+  );
 }
 
 function getRank(rank) {
@@ -39,14 +45,33 @@ function getRank(rank) {
   return 'sergeant';
 }
 
-function fetchLeaderboard(setLeaderboard, season, page) {
+function fetchLeaderboard(
+  setLeaderboard,
+  season,
+  setPlayerIdTranslation,
+  page
+) {
   let adjustedPage;
+  const nameArray = [];
+
   page === 1 ? (adjustedPage = 0) : (adjustedPage = (page - 1) * 200);
 
   return axios
-    .get(`/officialleaderboard/${season}/${adjustedPage}`)
+    .get(`/ea/leaderboard/${season}/${adjustedPage}`)
     .then((res) => {
-      // console.log(res.data)
+      // console.log(`Leaderboard Data: ${JSON.stringify(res.data)}`)
+      // adding name values only to array
+      res.data.ranks.map((player) => nameArray.push(player.steamids[0]));
+
+      // TODO fix bug -> showing this function as undefined despite being defined above
+      // when not using .then it displays the board ok!
+      let usernames = getMultipleSteamUsernames(
+        nameArray,
+        setPlayerIdTranslation
+      ); //.then((res) => res);
+      // console.log(`Usernames: ${JSON.stringify(usernames)}`);
+      // console.log(`NAME ARRAY: ${JSON.stringify(usernames)}`)
+      setPlayerIdTranslation(usernames);
       return setLeaderboard(res.data.ranks);
     })
     .catch((err) => console.log(err));
@@ -132,19 +157,88 @@ function seasonOptions(setSelectedSeason, maxSeason) {
   );
 }
 
+// // test this with a single value...
+// // sample user id: 76561198036370701
+// function getSingleSteamUsername(steamID) {
+//   axios
+//     .get(`/steamid/${steamID}`)
+//     .then((res) => {
+//       // console.log(res.data)
+//       if (typeof res.data.response.players[0].personaname !== 'undefined') {
+//         // console.log(res.data.response.players[0].personaname)
+//         return res.data.response.players[0].personaname;
+//       } else {
+//         return 'N/A';
+//       }
+//     })
+//     .catch((err) => {
+//       console.log(err);
+//       return 'N/A';
+//     });
+// }
+
+// make playerIDs comma delimited list of up to 100 users...
+function getMultipleSteamUsernames(steamIDs, setPlayerIdTranslation) {
+  const hundredSplit1 = steamIDs.slice(0, 99).join(',');
+  const hundredSplit2 = steamIDs.slice(100, 199).join(',');
+
+  // note: these will only handle the public steam user accounts...
+  const firstHundredPromise = axios.get(`/steamid/${hundredSplit1}`);
+  const secondHundredPromise = axios.get(`/steamid/${hundredSplit2}`);
+
+  Promise.all([firstHundredPromise, secondHundredPromise])
+    .then((res) => {
+      // const tempArray = []
+      const tempObj = {};
+
+      // console.log(`Promise.all Result: ${JSON.stringify(res.data.response.players)}`)
+      // console.log('RES: ', JSON.stringify(res) )
+      res.map((hundredSplit) => {
+        hundredSplit.data.response.players.map((player) => {
+          const playerIDObj = {}; // {player.steamid : player.personaname}
+          console.log('PLAYER:', player);
+          tempObj[player.steamid] = player.personaname;
+          return tempObj;
+        });
+      });
+      return setPlayerIdTranslation(tempObj);
+    })
+    .catch((err) => {
+      console.log(err);
+      return 'N/A';
+    });
+  // console.log(`getMultipleSteamusernames DEBUG: ${steamIDs}`)
+}
+
+function getUsername(userid, playerIdTranslation) {
+  if (
+    typeof playerIdTranslation === 'object' &&
+    userid in playerIdTranslation
+  ) {
+    return playerIdTranslation[userid];
+  } else {
+    return userid;
+  }
+}
+
 function CurrentLeaderboard() {
   const [leaderboard, setLeaderboard] = useState([]);
   const [activePage, setActivePage] = useState(1);
   // const [awards, setAwards] = useState([]);
   const [selectedSeason, setSelectedSeason] = useState(10); // TODO hardcoded to season 10 as a default, can make it dynamically loaded
   const [maxSeason] = useState(10); // TODO hardcoded to 10 for now, needs setMaxSeason based on seasonState function logic
+  const [playerIdTranslation, setPlayerIdTranslation] = useState({});
 
   useEffect(() => {
-    fetchLeaderboard(setLeaderboard, selectedSeason, activePage);
+    fetchLeaderboard(
+      setLeaderboard,
+      selectedSeason,
+      setPlayerIdTranslation,
+      activePage
+    );
     // awardState(leaderboard,setAwards);
   }, [selectedSeason, activePage]);
 
-  // note: rank is for the images - placeholder it with position for now
   return (
     <Wrapper>
       <Flex flexWrap="wrap">
@@ -182,6 +276,7 @@ function CurrentLeaderboard() {
             setActivePage,
             setSelectedSeason,
             selectedSeason,
+            setPlayerIdTranslation,
             e
           )
         }
@@ -193,16 +288,18 @@ function CurrentLeaderboard() {
       />
       <Overflow>
         <TableFormat>
-          <tr>
-            <th>RANK</th>
-            <th>POSITION</th>
-            <th>NAME</th>
-            <th>POINTS</th>
-            <th>WINS</th>
-            <th>LOSSES</th>
-            <th>PLAYED</th>
-            <th>WINRATE</th>
-          </tr>
+          <tbody>
+            <tr>
+              <th>RANK</th>
+              <th>POSITION</th>
+              <th>NAME</th>
+              <th>POINTS</th>
+              <th>WINS</th>
+              <th>LOSSES</th>
+              <th>PLAYED</th>
+              <th>WINRATE</th>
+            </tr>
+          </tbody>
           {leaderboard.map((player) => {
             return (
               <CustomRow>
@@ -213,7 +310,7 @@ function CurrentLeaderboard() {
                   />
                 </td>
                 <td>{player.rank}</td>
-                <td>{player.steamids[0]}</td>
+                <td>{getUsername(player.steamids[0], playerIdTranslation)}</td>
                 <td>{Math.ceil(player.points)}</td>
                 <td>{player.wins}</td>
                 <td>{player.loses}</td>
@@ -241,6 +338,7 @@ function CurrentLeaderboard() {
             setActivePage,
             setSelectedSeason,
             selectedSeason,
+            setPlayerIdTranslation,
             e
           )
         }

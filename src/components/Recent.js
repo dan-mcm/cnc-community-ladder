@@ -7,6 +7,8 @@ import 'slick-carousel/slick/slick-theme.css';
 import imageOne from '../images/tourny/aod-titans-3.png';
 import imageTwo from '../images/tourny/admirals-cup.jpg';
 import ladder from '../images/ladder.png';
+import zlazher from '../images/tourny/zlazher.png';
+import nyerguds from '../images/tourny/nyerguds.jpg';
 
 function Recent() {
   const settings = {
@@ -20,39 +22,39 @@ function Recent() {
     <div>
       <h2>COMMUNITY SPOTLIGHT</h2>
       <Slider {...settings}>
-        <div className="center">
-          <a href="https://steamcommunity.com/app/1213210/discussions/0/6303323545007755536/">
-            <img alt="ladder-reset" src={ladder} />
+        <div>
+          <a href="https://cnc-stats.azurewebsites.net/">
+            <img alt="zlazhers-leaderboard" src={zlazher} />
           </a>
           <p>
-            Official Season 4 Ladder Support From EA -{' '}
-            <StyledLink href="https://steamcommunity.com/app/1213210/discussions/0/6303323545007755536/">
+            Checkout{' '}
+            <StyledLink href="https://cnc-stats.azurewebsites.net/">
+              Zlazher's Red Alert Leaderboard QM Statistics
+            </StyledLink>{' '}
+          </p>
+        </div>
+        <div className="center">
+          <a href="https://github.com/Nyerguds/CnCTDRAMapEditor">
+            <img alt="nyerguds-map-editor" src={nyerguds} />
+          </a>
+          <p>
+            Nyergud's Upgraded C&C Remastered Map Editor -{' '}
+            <StyledLink href="https://github.com/Nyerguds/CnCTDRAMapEditor">
               Details
             </StyledLink>
             .
           </p>
         </div>
         <div className="center">
-          <a href="https://aod-gaming.com/cc-tiberian-dawn-season-3-titans/">
-            <img alt="aod-titans-3" src={imageOne} />
+          <a href="https://steamcommunity.com/app/1213210/discussions/0/6303323545007755536/">
+            <img alt="ladder-reset" src={ladder} />
           </a>
           <p>
-            <StyledLink href="https://aod-gaming.com/cc-tiberian-dawn-season-3-titans/">
-              Signup
-            </StyledLink>{' '}
-            to AOD's April 2021 Double Elimination Tournament!
-          </p>
-        </div>
-        <div>
-          <a href="https://www.youtube.com/watch?v=LnmpXlM9sVc&t=2s">
-            <img alt="admirals-cup" src={imageTwo} />
-          </a>
-          <p>
-            Checkout{' '}
-            <StyledLink href="https://www.youtube.com/watch?v=LnmpXlM9sVc&t=2s">
-              JimmyVisions cast
-            </StyledLink>{' '}
-            of the Admirals Cup Finals!
+            Official Continued Ladder Support From EA -{' '}
+            <StyledLink href="https://steamcommunity.com/app/1213210/discussions/0/6303323545007755536/">
+              Details
+            </StyledLink>
+            .
           </p>
         </div>
       </Slider>

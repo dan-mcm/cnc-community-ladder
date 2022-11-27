@@ -65,9 +65,8 @@ function getTDMatchesOnly(matches) {
 
 function getRecentMatches(setRecentMatches) {
   return axios
-    .get('/officialrecent')
+    .get('/ea/recent')
     .then((res) => {
-      console.log(res.data.matches);
       return setRecentMatches(getTDMatchesOnly(res.data.matches));
     })
     .catch((err) => console.log(err));

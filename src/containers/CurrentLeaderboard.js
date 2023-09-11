@@ -225,8 +225,8 @@ function CurrentLeaderboard() {
   const [leaderboard, setLeaderboard] = useState([]);
   const [activePage, setActivePage] = useState(1);
   // const [awards, setAwards] = useState([]);
-  const [selectedSeason, setSelectedSeason] = useState(10); // TODO hardcoded to season 10 as a default, can make it dynamically loaded
-  const [maxSeason] = useState(10); // TODO hardcoded to 10 for now, needs setMaxSeason based on seasonState function logic
+  const [selectedSeason, setSelectedSeason] = useState(14); // TODO hardcoded to season 10 as a default, can make it dynamically loaded
+  const [maxSeason] = useState(14); // TODO hardcoded to 10 for now, needs setMaxSeason based on seasonState function logic
   const [playerIdTranslation, setPlayerIdTranslation] = useState({});
 
   useEffect(() => {

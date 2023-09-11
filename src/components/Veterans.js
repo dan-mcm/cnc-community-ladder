@@ -15,7 +15,18 @@ import gdi from '../images/factions/gdi.png';
 import nod from '../images/factions/nod.png';
 import random from '../images/factions/random.png';
 
-function Veterans(props) {
+function Veterans({
+  highestTotal,
+  highestGDI,
+  highestNod,
+  highestRandom,
+  season,
+}) {
+  const totalData = highestTotal || {};
+  const gdiData = highestGDI || {};
+  const nodData = highestNod || {};
+  const randomData = highestRandom || {};
+
   return (
     <Overflow>
       <table>
@@ -26,11 +37,11 @@ function Veterans(props) {
             <span role="img" aria-label="medal">
               🎖️
             </span>{' '}
-            {props.highestGDI.player}{' '}
+            {highestGDI.player}{' '}
             <span role="img" aria-label="medal">
               🎖️
             </span>{' '}
-            <br /> {props.highestGDI.totals} GDI Games Played
+            <br /> {highestGDI.totals} GDI Games Played
           </GDIData>
           <NodData>
             <IconImg src={nod} alt="nod" />
@@ -38,11 +49,11 @@ function Veterans(props) {
             <span role="img" aria-label="medal">
               🎖️
             </span>{' '}
-            {props.highestNod.player}{' '}
+            {highestNod.player}{' '}
             <span role="img" aria-label="medal">
               🎖️
             </span>{' '}
-            <br /> {props.highestNod.totals} Nod Games Played
+            <br /> {highestNod.totals} Nod Games Played
           </NodData>
           <RandomData>
             <IconImg src={random} alt="random" />
@@ -50,18 +61,18 @@ function Veterans(props) {
             <span role="img" aria-label="medal">
               🎖️
             </span>{' '}
-            {props.highestRandom.player}{' '}
+            {highestRandom.player}{' '}
             <span role="img" aria-label="medal">
               🎖️
             </span>{' '}
-            <br /> {props.highestRandom.totals} Random Games Played
+            <br /> {highestRandom.totals} Random Games Played
           </RandomData>
           <TotalData>
             <IconImg src={gdi} alt="nod" /> <IconImg src={nod} alt="nod" />{' '}
             <IconImg src={random} alt="random" />
             <br />
-            🎖️ {props.highestTotal.player} 🎖️ <br /> {props.highestTotal.totals}{' '}
-            Total Games Played
+            🎖️ {highestTotal.player} 🎖️ <br /> {highestTotal.totals} Total Games
+            Played
           </TotalData>
         </CustomRow3>
       </table>
@@ -70,10 +81,11 @@ function Veterans(props) {
 }
 
 Veterans.propTypes = {
-  highestGDI: PropTypes.object.isRequired,
-  highestNod: PropTypes.object.isRequired,
-  highestRandom: PropTypes.object.isRequired,
-  highestTotal: PropTypes.object.isRequired,
+  highestTotal: PropTypes.object,
+  highestGDI: PropTypes.object,
+  highestNod: PropTypes.object,
+  highestRandom: PropTypes.object,
+  season: PropTypes.number.isRequired,
 };
 
 export default Veterans;

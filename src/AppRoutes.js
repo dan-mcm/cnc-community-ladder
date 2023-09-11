@@ -3,7 +3,7 @@ import { Router, Route } from 'react-router-dom';
 import ReactGA from 'react-ga';
 import { createBrowserHistory } from 'history';
 import CookieBanner from 'react-cookie-banner';
-import { Home, Recent, CurrentLeaderboard } from './containers';
+import { Home, Recent, CurrentLeaderboard, Ladder } from './containers';
 import Footer from './components/Footer';
 import Nav from './components/Nav';
 
@@ -30,11 +30,7 @@ export default class AppRoutes extends Component {
         <div>
           <Route exact path="/" component={Home} />
           <Route exact path="/recent" component={Recent} />
-          <Route
-            exact
-            path="/currentleaderboard"
-            component={CurrentLeaderboard}
-          />
+          <Route exact path="/leaderboard" component={Ladder} />
         </div>
         <Footer />
       </Router>

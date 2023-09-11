@@ -1,8 +1,11 @@
 const { cleanInput, createPool } = require('../utils/helpers');
 const express = require('express');
+const { Pool } = require('pg');
+
 const router = express.Router();
 
 router.get('/leaderboard/:season', (req, result) => {
+  const pool = createPool();
   // For prod
   const cleanedInput = cleanInput(req.params.season);
   pool
@@ -28,6 +31,7 @@ router.get('/leaderboard/:season', (req, result) => {
 });
 
 router.get('/elohistory/:season/:player', (req, result) => {
+  const pool = createPool();
   const cleanedSeasonInput = cleanInput(req.params.season);
   pool
     .connect()
@@ -52,6 +56,7 @@ router.get('/elohistory/:season/:player', (req, result) => {
 });
 
 router.get(`/awards/total/:season`, (req, result) => {
+  const pool = createPool();
   const cleanedSeasonInput = cleanInput(req.params.season);
   pool
     .connect()
@@ -76,6 +81,7 @@ router.get(`/awards/total/:season`, (req, result) => {
 });
 
 router.get('/awards/faction/random/:season', (req, result) => {
+  const pool = createPool();
   const cleanedSeasonInput = cleanInput(req.params.season);
   pool
     .connect()
@@ -100,6 +106,7 @@ router.get('/awards/faction/random/:season', (req, result) => {
 });
 
 router.get('/awards/faction/:faction/:season', (req, result) => {
+  const pool = createPool();
   const cleanedSeasonInput = cleanInput(req.params.season);
   pool
     .connect()
@@ -124,6 +131,7 @@ router.get('/awards/faction/:faction/:season', (req, result) => {
 });
 
 router.get(`/nightbot/:season/:playername`, (req, result) => {
+  const pool = createPool();
   const cleanedSeasonInput = cleanInput(req.params.season);
   pool
     .connect()
@@ -157,6 +165,7 @@ router.get(`/nightbot/:season/:playername`, (req, result) => {
 });
 
 router.get('/obs/:season/:playername', (req, result) => {
+  const pool = createPool();
   const cleanedSeasonInput = cleanInput(req.params.season);
   pool
     .connect()

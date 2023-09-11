@@ -10,9 +10,7 @@ function Nav() {
           <CustomReactLink to="/">Home</CustomReactLink>
         </Box>
         <Box px={2} py={3} width={[1, 1 / 4]}>
-          <CustomReactLink to="/currentleaderboard">
-            Leaderboard
-          </CustomReactLink>
+          <CustomReactLink to="/leaderboard">Leaderboard</CustomReactLink>
         </Box>
         <Box px={2} py={3} width={[1, 1 / 4]}>
           <CustomReactLink to="/recent">Recent</CustomReactLink>

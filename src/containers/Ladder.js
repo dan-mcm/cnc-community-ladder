@@ -133,7 +133,7 @@ function seasonOptions(maxSeason, dispatch) {
   }
 
   const handleSeasonChange = (event) => {
-    const selectedSeason = parseInt(event.target.value);
+    const selectedSeason = parseInt(event);
     dispatch({ type: 'SET_SELECTED_SEASON', payload: selectedSeason });
   };
 
@@ -231,7 +231,6 @@ function Ladder(props) {
 
   useEffect(() => {
     fetchInitialData(dispatch);
-    console.log(state);
   }, []);
 
   return (
@@ -275,15 +274,17 @@ function Ladder(props) {
         <h3>SEASON {state.selectedSeason}</h3>
         <div>{seasonText(state.selectedSeason)}</div>
         <CustomP>* click rows for extra player data *</CustomP>
-        {state.leaderboard === undefined ? (
+        {state.matchData === undefined ? (
           <div>
+            {console.log(`loading ${JSON.stringify(state)}`)}
+            {console.log(`loading ${state.selectedSeason}`)}
             <br />
             <div className="loader"></div>
             <br />
           </div>
         ) : (
           <>
-            TOTAL PLAYERS: {state.leaderboard.length}
+            TOTAL PLAYERS: {state.matchData.length}
             <br />
             <br />
             <Veterans
@@ -296,11 +297,11 @@ function Ladder(props) {
             <Pagination
               activePage={state.activePage}
               itemsCountPerPage={200}
-              totalItemsCount={state.leaderboard.length}
+              totalItemsCount={state.matchData.length}
               pageRangeDisplayed={
-                state.leaderboard.length / 200 > 10
+                state.matchData.length / 200 > 10
                   ? 10
-                  : Math.ceil(state.leaderboard.length / 200)
+                  : Math.ceil(state.matchData.length / 200)
               }
               onChange={(pageNumber) => handlePageChange(dispatch, pageNumber)}
               prevPageText="<"
@@ -310,7 +311,7 @@ function Ladder(props) {
               activeLinkClass="page-selected"
             />
             <Leaderboard
-              data={state.leaderboard}
+              data={state.matchData}
               startPlayer={state.startPlayer}
               endPlayer={state.endPlayer}
               activePage={state.activePage}
@@ -323,11 +324,11 @@ function Ladder(props) {
             <Pagination
               activePage={state.activePage}
               itemsCountPerPage={200}
-              totalItemsCount={state.leaderboard.length}
+              totalItemsCount={state.matchData.length}
               pageRangeDisplayed={
-                state.leaderboard.length / 200 > 10
+                state.matchData.length / 200 > 10
                   ? 10
-                  : Math.ceil(state.leaderboard.length / 200)
+                  : Math.ceil(state.matchData.length / 200)
               }
               onChange={(e) => handlePageChange(e)}
               prevPageText="<"

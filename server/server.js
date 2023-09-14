@@ -21,7 +21,8 @@ if (process.env.NODE_ENV === 'production') {
 }
 
 app.use(cors());
-app.use(express.static(path.join(__dirname, 'build')));
+app.use(express.static(path.join(__dirname, '../build')));
+
 
 app.use('/', indexRouter);
 app.use('/health', healthRouter);
@@ -30,7 +31,7 @@ app.use('/legacy', legacyRouter);
 app.use('/steamid', steamRouter);
 
 app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'build', 'index.html'));
+  res.sendFile(path.join(__dirname, '../build', 'index.html'));
 });
 
 app.listen(port);

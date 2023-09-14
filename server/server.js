@@ -23,7 +23,6 @@ if (process.env.NODE_ENV === 'production') {
 app.use(cors());
 app.use(express.static(path.join(__dirname, '../build')));
 
-
 app.use('/', indexRouter);
 app.use('/health', healthRouter);
 app.use('/ea', eaRouter);

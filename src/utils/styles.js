@@ -242,6 +242,8 @@ export const CustomReactLink = styled(Link)`
   color: white;
   text-decoration: none;
   font-weight: bold;
+  font-size: 22px;
+  vertical-align: middle;
   &:hover {
     text-decoration: none;
     color: gold;

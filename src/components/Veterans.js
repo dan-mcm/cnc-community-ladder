@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import {
   CustomRow3,
@@ -15,67 +15,77 @@ import gdi from '../images/factions/gdi.png';
 import nod from '../images/factions/nod.png';
 import random from '../images/factions/random.png';
 
-class Veterans extends Component {
-  render() {
-    return (
-      <Overflow>
-        <table>
-          <CustomRow3>
-            <GDIData>
-              <IconImg src={gdi} alt="nod" />
-              <br />
-              <span role="img" aria-label="medal">
-                🎖️
-              </span>{' '}
-              {this.props.highestGDI.player}{' '}
-              <span role="img" aria-label="medal">
-                🎖️
-              </span>{' '}
-              <br /> {this.props.highestGDI.totals} GDI Games Played
-            </GDIData>
-            <NodData>
-              <IconImg src={nod} alt="nod" />
-              <br />
-              <span role="img" aria-label="medal">
-                🎖️
-              </span>{' '}
-              {this.props.highestNod.player}{' '}
-              <span role="img" aria-label="medal">
-                🎖️
-              </span>{' '}
-              <br /> {this.props.highestNod.totals} Nod Games Played
-            </NodData>
-            <RandomData>
-              <IconImg src={random} alt="random" />
-              <br />
-              <span role="img" aria-label="medal">
-                🎖️
-              </span>{' '}
-              {this.props.highestRandom.player}{' '}
-              <span role="img" aria-label="medal">
-                🎖️
-              </span>{' '}
-              <br /> {this.props.highestRandom.totals} Random Games Played
-            </RandomData>
-            <TotalData>
-              <IconImg src={gdi} alt="nod" /> <IconImg src={nod} alt="nod" />{' '}
-              <IconImg src={random} alt="random" />
-              <br />
-              🎖️ {this.props.highestTotal.player} 🎖️ <br />{' '}
-              {this.props.highestTotal.totals} Total Games Played
-            </TotalData>
-          </CustomRow3>
-        </table>
-      </Overflow>
-    );
-  }
+function Veterans({
+  highestTotal,
+  highestGDI,
+  highestNod,
+  highestRandom,
+  season,
+}) {
+  const totalData = highestTotal || {};
+  const gdiData = highestGDI || {};
+  const nodData = highestNod || {};
+  const randomData = highestRandom || {};
+
+  return (
+    <Overflow>
+      <table>
+        <CustomRow3>
+          <GDIData>
+            <IconImg src={gdi} alt="nod" />
+            <br />
+            <span role="img" aria-label="medal">
+              🎖️
+            </span>{' '}
+            {highestGDI.player}{' '}
+            <span role="img" aria-label="medal">
+              🎖️
+            </span>{' '}
+            <br /> {highestGDI.totals} GDI Games Played
+          </GDIData>
+          <NodData>
+            <IconImg src={nod} alt="nod" />
+            <br />
+            <span role="img" aria-label="medal">
+              🎖️
+            </span>{' '}
+            {highestNod.player}{' '}
+            <span role="img" aria-label="medal">
+              🎖️
+            </span>{' '}
+            <br /> {highestNod.totals} Nod Games Played
+          </NodData>
+          <RandomData>
+            <IconImg src={random} alt="random" />
+            <br />
+            <span role="img" aria-label="medal">
+              🎖️
+            </span>{' '}
+            {highestRandom.player}{' '}
+            <span role="img" aria-label="medal">
+              🎖️
+            </span>{' '}
+            <br /> {highestRandom.totals} Random Games Played
+          </RandomData>
+          <TotalData>
+            <IconImg src={gdi} alt="nod" /> <IconImg src={nod} alt="nod" />{' '}
+            <IconImg src={random} alt="random" />
+            <br />
+            🎖️ {highestTotal.player} 🎖️ <br /> {highestTotal.totals} Total Games
+            Played
+          </TotalData>
+        </CustomRow3>
+      </table>
+    </Overflow>
+  );
 }
 
 Veterans.propTypes = {
-  highestGDI: PropTypes.object.isRequired,
-  highestNod: PropTypes.object.isRequired,
-  highestRandom: PropTypes.object.isRequired,
-  highestTotal: PropTypes.object.isRequired,
+  highestTotal: PropTypes.object,
+  highestGDI: PropTypes.object,
+  highestNod: PropTypes.object,
+  highestRandom: PropTypes.object,
+  season: PropTypes.number.isRequired,
 };
 
 export default Veterans;

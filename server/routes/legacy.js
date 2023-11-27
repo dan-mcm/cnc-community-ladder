@@ -1,56 +1,11 @@
-const axios = require('axios').default;
+const { cleanInput, createPool } = require('../utils/helpers');
 const express = require('express');
-const path = require('path');
-const app = express();
-const port = process.env.PORT || 5000;
-const dotenv = require('dotenv').config();
 const { Pool } = require('pg');
 
-if (process.env.NODE_ENV === 'production') {
-  app.use((req, res, next) => {
-    if (req.header('x-forwarded-proto') !== 'https')
-      res.redirect(`https://${req.header('host')}${req.url}`);
-    else next();
-  });
-}
+const router = express.Router();
 
-function createPool() {
-  let pool;
-  if (process.env.NODE_ENV === 'production') {
-    pool = new Pool({
-      connectionString: process.env.DATABASE_URL,
-      ssl: {
-        rejectUnauthorized: false,
-      },
-    });
-  }
-
-  if (process.env.NODE_ENV !== 'production') {
-    pool = new Pool({
-      user: process.env.DB_USER,
-      host: process.env.DB_HOST,
-      database: process.env.DB_NAME,
-      password: process.env.DB_PASSWORD,
-      port: process.env.DB_PORT,
-    });
-  }
-  return pool;
-}
-
-const pool = createPool();
-
-// For handling SQL injection
-function cleanInput(input) {
-  return /^\d+$/.test(input) ? input : 3;
-}
-
-app.use(express.static(path.join(__dirname, 'build')));
-
-app.get('/', function (req, res) {
-  res.sendFile(path.join(__dirname, 'build', 'index.html'));
-});
-
-app.get('/leaderboard/:season', (req, result) => {
+router.get('/leaderboard/:season', (req, result) => {
+  const pool = createPool();
   // For prod
   const cleanedInput = cleanInput(req.params.season);
   pool
@@ -75,7 +30,8 @@ app.get('/leaderboard/:season', (req, result) => {
     });
 });
 
-app.get('/elohistory/:season/:player', (req, result) => {
+router.get('/elohistory/:season/:player', (req, result) => {
+  const pool = createPool();
   const cleanedSeasonInput = cleanInput(req.params.season);
   pool
     .connect()
@@ -99,7 +55,8 @@ app.get('/elohistory/:season/:player', (req, result) => {
     });
 });
 
-app.get(`/awards/total/:season`, (req, result) => {
+router.get(`/awards/total/:season`, (req, result) => {
+  const pool = createPool();
   const cleanedSeasonInput = cleanInput(req.params.season);
   pool
     .connect()
@@ -123,7 +80,8 @@ app.get(`/awards/total/:season`, (req, result) => {
     });
 });
 
-app.get('/awards/faction/random/:season', (req, result) => {
+router.get('/awards/faction/random/:season', (req, result) => {
+  const pool = createPool();
   const cleanedSeasonInput = cleanInput(req.params.season);
   pool
     .connect()
@@ -147,7 +105,8 @@ app.get('/awards/faction/random/:season', (req, result) => {
     });
 });
 
-app.get('/awards/faction/:faction/:season', (req, result) => {
+router.get('/awards/faction/:faction/:season', (req, result) => {
+  const pool = createPool();
   const cleanedSeasonInput = cleanInput(req.params.season);
   pool
     .connect()
@@ -171,11 +130,8 @@ app.get('/awards/faction/:faction/:season', (req, result) => {
     });
 });
 
-app.get('/health', (req, res) => {
-  return res.sendStatus(200);
-});
-
-app.get(`/nightbot/:season/:playername`, (req, result) => {
+router.get(`/nightbot/:season/:playername`, (req, result) => {
+  const pool = createPool();
   const cleanedSeasonInput = cleanInput(req.params.season);
   pool
     .connect()
@@ -208,7 +164,8 @@ app.get(`/nightbot/:season/:playername`, (req, result) => {
     });
 });
 
-app.get('/obs/:season/:playername', (req, result) => {
+router.get('/obs/:season/:playername', (req, result) => {
+  const pool = createPool();
   const cleanedSeasonInput = cleanInput(req.params.season);
   pool
     .connect()
@@ -254,7 +211,7 @@ app.get('/obs/:season/:playername', (req, result) => {
     });
 });
 
-app.get('/recent', (req, result) => {
+router.get('/recent', (req, result) => {
   const pool = createPool();
   pool
     .connect()
@@ -278,7 +235,7 @@ app.get('/recent', (req, result) => {
     });
 });
 
-app.get('/recent/hour', (req, result) => {
+router.get('/recent/hour', (req, result) => {
   const pool = createPool();
   const currentTime = Date.now();
   const hour = 3600000;
@@ -305,9 +262,4 @@ app.get('/recent/hour', (req, result) => {
     });
 });
 
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'build', 'index.html'));
-});
-
-app.listen(port);
-console.log('App is listening on port ' + port);
+module.exports = router;

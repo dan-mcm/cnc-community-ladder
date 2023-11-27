@@ -10,6 +10,7 @@
     "apexcharts": "^3.23.1",
     "axios": "^0.21.1",
     "concurrently": "^5.3.0",
+    "cors": "^2.8.5",
     "dotenv": "^8.2.0",
     "elo-rating": "^1.0.1",
     "express": "^4.17.1",
@@ -47,13 +48,13 @@
     "test:coverage": "react-scripts test --coverage",
     "eject": "react-scripts eject",
     "aws-deploy": "aws s3 sync build/ s3://cnc-community-ladder.info",
-    "ghpages-predeploy": "yarn run build",
+    "ghpages-predeploy": "npm run build",
     "ghpages-deploy": "gh-pages -d build",
     "pretify": "echo Stage 1: Running Pretify...🌸 && prettier --write \"**/*.js\"",
     "lint": "echo Stage 2: Running Linter... 💩 && xo --prettier",
-    "server": "nodemon server.js",
-    "client": "yarn start",
-    "dev": "concurrently --kill-others-on-fail \"yarn server\" \"yarn client\""
+    "server": "nodemon server/server.js",
+    "client": "npm start",
+    "dev": "concurrently --kill-others-on-fail \"npm run server\" \"npm run client\""
   },
   "eslintConfig": {
     "extends": "react-app"

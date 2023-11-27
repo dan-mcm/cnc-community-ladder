@@ -177,24 +177,24 @@ export const CustomBadge = styled.img`
 `;
 
 export const CustomRow = styled.tr`
-  &:nth-child(2) {
-    background-color: rgb(212, 175, 55, 0.6);
-  }
-  &:nth-child(2):hover {
-    background-color: rgb(212, 175, 55, 0.9);
-  }
-  &:nth-child(3) {
-    background-color: rgb(192, 192, 192, 0.6);
-  }
-  &:nth-child(3):hover {
-    background-color: rgb(192, 192, 192, 0.9);
-  }
-  &:nth-child(4) {
-    background-color: rgb(205, 127, 50, 0.6);
-  }
-  &:nth-child(4):hover {
-    background-color: rgb(205, 127, 50, 0.9);
-  }
+  // &:nth-child(2) {
+  //   background-color: rgb(212, 175, 55, 0.6);
+  // }
+  // &:nth-child(2):hover {
+  //   background-color: rgb(212, 175, 55, 0.9);
+  // }
+  // &:nth-child(3) {
+  //   background-color: rgb(192, 192, 192, 0.6);
+  // }
+  // &:nth-child(3):hover {
+  //   background-color: rgb(192, 192, 192, 0.9);
+  // }
+  // &:nth-child(4) {
+  //   background-color: rgb(205, 127, 50, 0.6);
+  // }
+  // &:nth-child(4):hover {
+  //   background-color: rgb(205, 127, 50, 0.9);
+  // }
 `;
 
 export const Overflow = styled.div`
@@ -235,12 +235,15 @@ export const CustomNav = styled.div`
   background-repeat: repeat;
   background-color: black;
   min-width: 600px;
+  text-align: center;
 `;
 
 export const CustomReactLink = styled(Link)`
   color: white;
   text-decoration: none;
   font-weight: bold;
+  font-size: 22px;
+  vertical-align: middle;
   &:hover {
     text-decoration: none;
     color: gold;

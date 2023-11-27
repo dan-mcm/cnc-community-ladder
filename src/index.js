@@ -5,6 +5,7 @@ import Styles from './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 
+//TODO needs reimplemtnation
 ReactGA.initialize('UA-47078105-7', {
   gaOptions: { cookieFlags: 'max-age=7200;secure;samesite=none' },
 });

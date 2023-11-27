@@ -4,13 +4,13 @@
 [![code style: prettier](https://img.shields.io/badge/style-prettier-ff69b4.svg)](https://github.com/prettier/prettier)
 [![XO code linter](https://img.shields.io/badge/linter-XO-5ed9c7.svg)](https://github.com/xojs/xo)
 [![Google Analytics](https://img.shields.io/badge/monitoring-📈_Google_Analytics-blue.svg)](https://analytics.google.com/analytics/web/)
-![Heroku](https://heroku-badge.herokuapp.com/?app=heroku-badge)
 [![Discord](https://img.shields.io/discord/784235637715894293?color=purple&label=discord)](https://discord.gg/pgBSxgmkHr)
 
 <p align="center">
   <img width= "400" height="200" src="src/images/cnc_remastered.png"/>
 </p>
 
+**UNDERGOING MAJOR REFACTOR -> Due to cnc.community dropping leaderboard support bootstrapping internalised server endpoints to get application up and running for community**
 
 This community run project was built for the C&C Remastered Collection: Tiberian Dawn game. Initially EA supported an online leaderboard @ https://cnc.community/command-and-conquer-remastered/leaderboard/tiberian-dawn that was manually reset every few months, however after the third season EA had seemingly dropped support for ladder resets for competitive quickmatch online games.
 
@@ -83,6 +83,26 @@ Note: there is now a dependency on a DB, the codebase for which is available [he
 yarn install
 yarn dev # will start react app on port 3000 and express server on port 5000 by default
 ```
+
+### Environmental Variables
+Codebase is configured to read from a .env file in the repo root directory. The API endpoints stored here were initially crawled via the cnc-db repo. Due to the cnc.community leaderboard downtime this repo has been modified to quickly enable a display for the EA leaderboard endpoints.
+
+Note: the DB settings used are based on the dockerfile present in the cnc-db repo.
+
+```
+NODE_ENV=dev
+DB_USER=dbuser
+DB_HOST=localhost
+DB_NAME=cnc-matches
+DB_PASSWORD=pass
+DB_PORT=5444
+
+PETRO_ENDPOINT=official-ea-endpoint
+RECENT_MATCHES=official-petro-recent-matches-endpoint
+LEADERBOARD_URL=official-petro-leaderboard-endpoint
+LEADERBOARD_STANDINGS_URL=official-petro-leaderboard-standing-endpoint
+```
+
 
 ### Using Docker
 *Not Tested*
